@@ -33,7 +33,7 @@ public class MainBanner_ListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return listData.size();
     }
 
-    void addItem(MainBanner_ListData data) {
+    public void addItem(MainBanner_ListData data) {
         listData.add(data);
     }
 }
