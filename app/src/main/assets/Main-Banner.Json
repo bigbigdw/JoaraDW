@@ -1,0 +1,89 @@
+{
+  "status": 1,
+  "banner": [
+    {
+      "idx": "15271",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_134312.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8206",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15308",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210106_173202.jpg",
+      "joaralink": "joaralink:\/\/shop?tabIndex=0",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15295",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_105405.png",
+      "joaralink": "joaralink:\/\/event?event_id=8243",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15293",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_104833.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8240",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15291",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_100011.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8237",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15287",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_105752.png",
+      "joaralink": "joaralink:\/\/event?event_id=8234",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15285",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_104923.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8231",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15283",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_103700.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8228",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15269",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_123617.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8225",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15267",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_123124.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8222",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15265",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_121839.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8219",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15276",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_160402.jpg",
+      "joaralink": "joaralink:\/\/iurl?url=http%3A%2F%2Fwww.joara.com%2Felection_2020%2Fvote_result.htm&title=2020%20NOTY%20%EB%B0%9C%ED%91%9C&checkuser=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15211",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201228_100630.jpg",
+      "joaralink": "joaralink:\/\/event?event_id=8151",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15040",
+      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201211_152647.jpg",
+      "joaralink": "joaralink:\/\/notice?notice_id=1000032",
+      "is_banner_cnt": "N"
+    }
+  ]
+}
