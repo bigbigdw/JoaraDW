@@ -19,7 +19,7 @@
             android:name=".Etc.Splash"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".Etc.Test"
+            android:name=".Test.Test"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

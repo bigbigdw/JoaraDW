@@ -17,7 +17,7 @@
             android:id="@+id/MainBannerList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:background="#F44336">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
