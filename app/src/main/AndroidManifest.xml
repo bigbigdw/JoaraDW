@@ -10,14 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.JoaraDW.NoActionBar">
-
-        </activity>
-        <activity
             android:name=".Etc.Splash"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <activity
             android:name=".Test.Test"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >

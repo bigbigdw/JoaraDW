@@ -1,13 +1,9 @@
 package Bigbigdw.JoaraDW.Test;
 
-import android.content.Intent;
-import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +16,6 @@ import Bigbigdw.JoaraDW.R;
 
 public class Test_ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // adapter에 들어갈 list 입니다.
     private ArrayList<Test_ListData> listData = new ArrayList<>();
 
     @NonNull
@@ -49,11 +44,7 @@ public class Test_ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.listData = items;
     }
 
-    public void addItem(Test_ListData data) {
-        listData.add(data);
-    }
-
-    class Test_ListViewHolder extends  RecyclerView.ViewHolder {
+    static class Test_ListViewHolder extends RecyclerView.ViewHolder {
 
         ImageView Image;
 
