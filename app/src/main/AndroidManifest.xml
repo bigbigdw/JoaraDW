@@ -14,13 +14,19 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
-            android:name=".Test.Test"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:name=".Main.Main"
+            android:theme="@style/Theme.JoaraDW.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Test.Test"
+            android:theme="@style/Theme.JoaraDW" >
+
         </activity>
 
         <meta-data

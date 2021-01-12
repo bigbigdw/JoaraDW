@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:title="큰 제목">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:title="테스트">
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/footer_bookmark_btn_d"
+                    android:title="테스트" />
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/footer_bookmark_btn_d"
+                    android:title="테스트" />
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/footer_bookmark_btn_d"
+                    android:title="테스트" />
+            </group>
+        </menu>
+    </item>
+
+</menu>
