@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/LOGO"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:contentDescription="@string/TODO"
             android:src="@drawable/splash_logo2" />
 
@@ -45,7 +45,7 @@
                     android:text="@string/Splash_Year"
                     android:textAlignment="center"
                     android:textColor="#00283f"
-                    android:textSize="17sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:text="@string/Splash_Name"
                     android:textAlignment="center"
                     android:textColor="#00283f"
-                    android:textSize="17sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

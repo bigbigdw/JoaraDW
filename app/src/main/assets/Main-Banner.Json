@@ -2,88 +2,52 @@
   "status": 1,
   "banner": [
     {
-      "idx": "15271",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_134312.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8206",
+      "idx": "7973",
+      "imgfile": "http://cf.joara.com/banner_file/20200914_211535.jpg",
+      "joaralink": "joaralink://notice?notice_id=1000022",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15308",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210106_173202.jpg",
-      "joaralink": "joaralink:\/\/shop?tabIndex=0",
+      "idx": "7994",
+      "imgfile": "http://cf.joara.com/banner_file/20201015_102516.jpg",
+      "joaralink": "joaralink://itemshop?",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15295",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_105405.png",
-      "joaralink": "joaralink:\/\/event?event_id=8243",
+      "idx": "7990",
+      "imgfile": "http://cf.joara.com/banner_file/20200923_120021.jpg",
+      "joaralink": "joaralink://event?event_id=5891",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15293",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_104833.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8240",
+      "idx": "7984",
+      "imgfile": "http://cf.joara.com/banner_file/20200923_110355.jpg",
+      "joaralink": "",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15291",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210105_100011.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8237",
+      "idx": "7976",
+      "imgfile": "http://cf.joara.com/banner_file/20200922_105806.jpg",
+      "joaralink": "",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15287",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_105752.png",
-      "joaralink": "joaralink:\/\/event?event_id=8234",
+      "idx": "7961",
+      "imgfile": "http://cf.joara.com/banner_file/20200827_142252.jpg",
+      "joaralink": "joaralink://shop?tabIndex=1",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15285",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_104923.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8231",
+      "idx": "7960",
+      "imgfile": "http://cf.joara.com/banner_file/20200813_155116.jpg",
+      "joaralink": "https://m2-dev.joara.com/event/5865",
       "is_banner_cnt": "N"
     },
     {
-      "idx": "15283",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20210104_103700.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8228",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15269",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_123617.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8225",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15267",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_123124.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8222",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15265",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_121839.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8219",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15276",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201231_160402.jpg",
-      "joaralink": "joaralink:\/\/iurl?url=http%3A%2F%2Fwww.joara.com%2Felection_2020%2Fvote_result.htm&title=2020%20NOTY%20%EB%B0%9C%ED%91%9C&checkuser=true",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15211",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201228_100630.jpg",
-      "joaralink": "joaralink:\/\/event?event_id=8151",
-      "is_banner_cnt": "N"
-    },
-    {
-      "idx": "15040",
-      "imgfile": "https:\/\/cf.joara.com\/banner_file\/20201211_152647.jpg",
-      "joaralink": "joaralink:\/\/notice?notice_id=1000032",
-      "is_banner_cnt": "N"
+      "idx": "7944",
+      "imgfile": "http://cf.joara.com/banner_file/20200728_110909.jpg",
+      "joaralink": "joaralink://list?type=type_new&position=1",
+      "is_banner_cnt": "Y"
     }
   ]
 }
