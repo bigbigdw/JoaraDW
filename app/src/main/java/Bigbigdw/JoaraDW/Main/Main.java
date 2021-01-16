@@ -35,20 +35,15 @@ public class Main extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_vie);
 
-        androidx.navigation.ui.AppBarConfiguration.Builder builder = new AppBarConfiguration.Builder(
+        AppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.fragment_main
-        );
-        builder.setDrawerLayout(drawer);
-        AppBarConfiguration = builder.build();
+        ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, AppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.fragment_main)
-                .build();
         NavigationUI.setupWithNavController(navView, navController);
     }
 
