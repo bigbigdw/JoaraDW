@@ -38,7 +38,7 @@ public class Fragment_Main extends Fragment implements SetMainBanner{
     CarouselView MainBanner;
 
 //    String[] MainBannerUrl = new String[0];
-    String[] MainBannerUrl = new String[8];
+    String[] MainBannerUrl = new String[7];
 
     List<String> testList = new ArrayList<>(Arrays.asList(MainBannerUrl));
 
@@ -80,32 +80,33 @@ public class Fragment_Main extends Fragment implements SetMainBanner{
                 JSONObject jo = flag.getJSONObject(i);
 
                 String imgfile = jo.getString("imgfile");
-                MainBannerUrl[i] = imgfile;
 
-//                MainBannerUrl = new String[testList.size()];
-//                testList.toArray(MainBannerUrl);
+
+                MainBannerUrl = new String[testList.size()];
+                testList.toArray(MainBannerUrl);
 
                 MainBanner.setPageCount(MainBannerUrl.length);
                 MainBanner.setSlideInterval(4000);
                 MainBanner.setViewListener(viewListener);
 
-//                testList.add(imgfile);
+                testList.add(imgfile);
             }
+            System.out.println("하하하" + Arrays.toString(MainBannerUrl));
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    ViewListener viewListener = position -> {
 
+
+    ViewListener viewListener = position -> {
         View customView = getLayoutInflater().inflate(R.layout.main_banner_top, null);
 
         ImageView fruitImageView = customView.findViewById(R.id.fruitImageView);
 
         Glide.with(requireActivity().getApplicationContext()).load(MainBannerUrl[position])
                 .into(fruitImageView);
-
         return customView;
     };
 }

@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 interface SetMainBanner {
 
@@ -43,6 +44,8 @@ interface SetMainBanner {
 
                 String imgfile = jo.getString("imgfile");
                 MainBannerUrl[i] = imgfile;
+
+                System.out.println("하하하" + MainBannerUrl[i]);
 
 //                MainBannerUrl = new String[testList.size()];
 //                testList.toArray(MainBannerUrl);
