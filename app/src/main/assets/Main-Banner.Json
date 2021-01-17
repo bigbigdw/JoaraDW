@@ -42,12 +42,6 @@
       "imgfile": "https://cf.joara.com/banner_file/20200813_155116.jpg",
       "joaralink": "https://m2-dev.joara.com/event/5865",
       "is_banner_cnt": "N"
-    },
-    {
-      "idx": "7944",
-      "imgfile": "https://cf.joara.com/banner_file/20200728_110909.jpg",
-      "joaralink": "joaralink://list?type=type_new&position=1",
-      "is_banner_cnt": "Y"
     }
   ]
 }
