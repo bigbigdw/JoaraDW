@@ -3,49 +3,49 @@
   "banner": [
     {
       "idx": "7973",
-      "imgfile": "http://cf.joara.com/banner_file/20200914_211535.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200914_211535.jpg",
       "joaralink": "joaralink://notice?notice_id=1000022",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7994",
-      "imgfile": "http://cf.joara.com/banner_file/20201015_102516.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20201015_102516.jpg",
       "joaralink": "joaralink://itemshop?",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7990",
-      "imgfile": "http://cf.joara.com/banner_file/20200923_120021.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200923_120021.jpg",
       "joaralink": "joaralink://event?event_id=5891",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7984",
-      "imgfile": "http://cf.joara.com/banner_file/20200923_110355.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200923_110355.jpg",
       "joaralink": "",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7976",
-      "imgfile": "http://cf.joara.com/banner_file/20200922_105806.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200922_105806.jpg",
       "joaralink": "",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7961",
-      "imgfile": "http://cf.joara.com/banner_file/20200827_142252.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200827_142252.jpg",
       "joaralink": "joaralink://shop?tabIndex=1",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7960",
-      "imgfile": "http://cf.joara.com/banner_file/20200813_155116.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200813_155116.jpg",
       "joaralink": "https://m2-dev.joara.com/event/5865",
       "is_banner_cnt": "N"
     },
     {
       "idx": "7944",
-      "imgfile": "http://cf.joara.com/banner_file/20200728_110909.jpg",
+      "imgfile": "https://cf.joara.com/banner_file/20200728_110909.jpg",
       "joaralink": "joaralink://list?type=type_new&position=1",
       "is_banner_cnt": "Y"
     }
