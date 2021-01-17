@@ -1,21 +1,17 @@
 package Bigbigdw.JoaraDW.Fragment;
 
 import android.content.res.AssetManager;
-import android.graphics.Movie;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 import com.synnapps.carouselview.ViewListener;
 
 import org.json.JSONArray;
@@ -29,18 +25,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_Main extends Fragment implements SetMainBanner{
 
     CarouselView MainBanner;
-
-//    String[] MainBannerUrl = new String[0];
-    String[] MainBannerUrl = new String[7];
-
-    List<String> testList = new ArrayList<>(Arrays.asList(MainBannerUrl));
+    List<String> testList = new ArrayList<String>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,54 +41,10 @@ public class Fragment_Main extends Fragment implements SetMainBanner{
         AssetManager assetManager = getActivity().getAssets();
         MainBanner = root.findViewById(R.id.Carousel_MainBanner);
 
-//        MainBanner(assetManager, MainBanner);
-
-        SetMainBanner.MainBanner(assetManager, MainBannerUrl, MainBanner, viewListener);
+        SetMainBanner.MainBanner(assetManager, MainBanner, viewListener, testList);
 
         return root;
     }
-
-    private void MainBanner(AssetManager assetManager, CarouselView MainBanner)
-    {
-        try {
-            InputStream is = assetManager.open("Main-Banner.Json");
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader reader = new BufferedReader(isr);
-
-            StringBuilder buffer = new StringBuilder();
-            String line = reader.readLine();
-            while (line != null) {
-                buffer.append(line).append("\n");
-                line = reader.readLine();
-            }
-
-            String jsonData = buffer.toString();
-
-            JSONObject jsonObject = new JSONObject(jsonData);
-            JSONArray flag = jsonObject.getJSONArray("banner");
-
-            for (int i = 0; i < flag.length(); i++) {
-                JSONObject jo = flag.getJSONObject(i);
-
-                String imgfile = jo.getString("imgfile");
-
-
-                MainBannerUrl = new String[testList.size()];
-                testList.toArray(MainBannerUrl);
-
-                MainBanner.setPageCount(MainBannerUrl.length);
-                MainBanner.setSlideInterval(4000);
-                MainBanner.setViewListener(viewListener);
-
-                testList.add(imgfile);
-            }
-            System.out.println("하하하" + Arrays.toString(MainBannerUrl));
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 
     ViewListener viewListener = position -> {
@@ -105,7 +52,7 @@ public class Fragment_Main extends Fragment implements SetMainBanner{
 
         ImageView fruitImageView = customView.findViewById(R.id.fruitImageView);
 
-        Glide.with(requireActivity().getApplicationContext()).load(MainBannerUrl[position])
+        Glide.with(requireActivity().getApplicationContext()).load(testList.get(position))
                 .into(fruitImageView);
         return customView;
     };
