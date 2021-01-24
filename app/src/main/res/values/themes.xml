@@ -4,7 +4,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#1743a4</item>
-        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorPrimaryDark">#00283d</item>
         <item name="colorAccent">#00283d</item>
     </style>
 
