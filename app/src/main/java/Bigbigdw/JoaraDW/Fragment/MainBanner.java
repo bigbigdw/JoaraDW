@@ -21,7 +21,7 @@ interface Main_Banner {
     static void SetMainBanner(AssetManager assetManager, CarouselView MainBanner, ImageListener imageListener, List<String> MainBannerURLs)
     {
         try {
-            InputStream is = assetManager.open("Main-Banner.Json");
+            InputStream is = assetManager.open("Main_Banner.json");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -59,7 +59,7 @@ interface Main_Banner {
     static void SetMidMainBanner(AssetManager assetManager, CarouselView MainBanner, ViewListener viewListener, List<String> MainBannerURLs)
     {
         try {
-            InputStream is = assetManager.open("Main-Banner.Json");
+            InputStream is = assetManager.open("Main_Banner.json");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 

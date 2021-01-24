@@ -1,7 +1,6 @@
 package Bigbigdw.JoaraDW.Fragment;
 
 import android.content.res.AssetManager;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,19 +44,29 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
         Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs);
 
-        BookHistoryList(root, assetManager);
+        BookHistoryList(root, assetManager, "Main_HistoryBooks.json");
+        BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
 
 
         return root;
     }
 
-    public void BookHistoryList(View root, AssetManager assetManager)
+    public void BookHistoryList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.MD_Recommend_Book);
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.Main_HistoryBookList);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-        adapter.setItems(new Main_BookData_A().getData(assetManager));
+        adapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void BookHobbyList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.Main_HobbyBookList);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+        adapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
     }
 
 

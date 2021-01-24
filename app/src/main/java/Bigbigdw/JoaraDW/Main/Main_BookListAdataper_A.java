@@ -24,7 +24,7 @@ public class Main_BookListAdataper_A extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklist_a, parent, false);
-        return new Main_BookListAdataper_A.Main_BookLIstViewHolder_A(view);
+        return new Main_BookListAdataper_A.Main_BookListViewHolder_A(view);
     }
 
     @Override
@@ -34,10 +34,10 @@ public class Main_BookListAdataper_A extends RecyclerView.Adapter<RecyclerView.V
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
-                .into(((Main_BookListAdataper_A.Main_BookLIstViewHolder_A) holder).Image);
+                .into(((Main_BookListAdataper_A.Main_BookListViewHolder_A) holder).Image);
 
-        ((Main_BookLIstViewHolder_A) holder).Title.setText(listData.get(position).getTitle());
-        ((Main_BookLIstViewHolder_A) holder).Writer.setText(listData.get(position).getWriter());
+        ((Main_BookListViewHolder_A) holder).Title.setText(listData.get(position).getTitle());
+        ((Main_BookListViewHolder_A) holder).Writer.setText(listData.get(position).getWriter());
 
     }
 
@@ -50,13 +50,13 @@ public class Main_BookListAdataper_A extends RecyclerView.Adapter<RecyclerView.V
         this.listData = items;
     }
 
-    static class Main_BookLIstViewHolder_A extends RecyclerView.ViewHolder {
+    static class Main_BookListViewHolder_A extends RecyclerView.ViewHolder {
 
         ImageView Image;
         TextView Title;
         TextView Writer;
 
-        Main_BookLIstViewHolder_A(@NonNull View itemView) {
+        Main_BookListViewHolder_A(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookA);
             Title = itemView.findViewById(R.id.Text_TitleA);

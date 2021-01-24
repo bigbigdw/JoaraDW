@@ -1,7 +1,6 @@
 package Bigbigdw.JoaraDW.Main;
 
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,10 +15,10 @@ import java.util.ArrayList;
 public class Main_BookData_A {
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(AssetManager assetManager) {
+    public ArrayList<Main_BookListData_A> getData(AssetManager assetManager, String BookType) {
 
         try {
-            InputStream is = assetManager.open("Main_HistoryBooks.json");
+            InputStream is = assetManager.open(BookType);
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 
