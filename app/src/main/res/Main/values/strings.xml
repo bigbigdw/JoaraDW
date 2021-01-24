@@ -9,4 +9,6 @@
     <string name="Main_BookList_Hobby1">당신의</string>
     <string name="Main_BookList_Hobby2">취향을</string>
     <string name="Main_BookList_Hobby3"> 저격할 작품</string>
+    <string name="Main_MDNovel">가 추천하는 소설</string>
+    <string name="Main_MDWebtoon">가 추천하는 웹툰</string>
 </resources>

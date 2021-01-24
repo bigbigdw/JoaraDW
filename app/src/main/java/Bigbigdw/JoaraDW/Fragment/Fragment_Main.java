@@ -23,13 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.Main.Main_BookData_A;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdataper_A;
+import Bigbigdw.JoaraDW.Main.Main_BookData_A_Webtoon;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdatper_A;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Fragment_Main extends Fragment implements Main_Banner {
 
-    private Main_BookListAdataper_A adapter = new Main_BookListAdataper_A();
+    private final Main_BookListAdatper_A HistoryAdapter = new Main_BookListAdatper_A();
+    private final Main_BookListAdatper_A HobbyAdapter = new Main_BookListAdatper_A();
+    private final Main_BookListAdatper_A MDNovelAdapter = new Main_BookListAdatper_A();
+    private final Main_BookListAdatper_A MDWebtoonAdapter = new Main_BookListAdatper_A();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -38,7 +42,6 @@ public class Fragment_Main extends Fragment implements Main_Banner {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-
         AssetManager assetManager = getActivity().getAssets();
         MainBanner = root.findViewById(R.id.Carousel_MainBanner);
 
@@ -46,27 +49,46 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
         BookHistoryList(root, assetManager, "Main_HistoryBooks.json");
         BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
-
+        BookMDNovelList(root, assetManager, "Main_MDNovel.json");
+        BookMDWebtoonList(root, assetManager, "Main_MDWebtoon.json");
 
         return root;
     }
 
     public void BookHistoryList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.Main_HistoryBookList);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-        adapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        RecyclerView recyclerViewHistory = (RecyclerView) root.findViewById(R.id.Main_HistoryBookList);
+        LinearLayoutManager managerHistory = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewHistory.setLayoutManager(managerHistory);
+        recyclerViewHistory.setAdapter(HistoryAdapter);
+        HistoryAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
     }
 
     public void BookHobbyList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.Main_HobbyBookList);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-        adapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        RecyclerView recyclerViewHobby = (RecyclerView) root.findViewById(R.id.Main_HobbyBookList);
+        LinearLayoutManager managerHobby = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewHobby.setLayoutManager(managerHobby);
+        recyclerViewHobby.setAdapter(HobbyAdapter);
+        HobbyAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void BookMDNovelList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewMDNovel = (RecyclerView) root.findViewById(R.id.Main_MDNovelList);
+        LinearLayoutManager managerMDNovel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewMDNovel.setLayoutManager(managerMDNovel);
+        recyclerViewMDNovel.setAdapter(MDNovelAdapter);
+        MDNovelAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void BookMDWebtoonList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewMDWebtoon = (RecyclerView) root.findViewById(R.id.Main_MDWebtoonList);
+        LinearLayoutManager managerMDWebtoon = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewMDWebtoon.setLayoutManager(managerMDWebtoon);
+        recyclerViewMDWebtoon.setAdapter(MDWebtoonAdapter);
+        MDWebtoonAdapter.setItems(new Main_BookData_A_Webtoon().getData(assetManager, BookType));
     }
 
 

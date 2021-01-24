@@ -1,0 +1,188 @@
+{
+  "status": 1,
+  "total_cnt": 20,
+  "page": 1,
+  "offset": 20,
+  "webtoons": [
+    {
+      "webtoon_title": "속도위반 대표님과 계약 아내",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201111/25139_45.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25139",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25139&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "일생의 사랑",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200602/24610_54.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24610",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24610&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "잘못된 결혼을 되돌리는 법",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200826/24799_32.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24799",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24799&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "시스터",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20191018/23771_41.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/23771",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F23771&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "태자 전하, 한입만요",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201112/24536_38.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24536",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24536&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "사신 짱 드롭킥",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20210115/25455_11.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25455",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25455&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "사랑할 수 없는 그녀",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201111/25110_50.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25110",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25110&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "울어줘",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201112/24734_14.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24734",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24734&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "릴리 마블",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200422/23778_37.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/23778",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F23778&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "조난입니까",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20210115/25458_41.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25458",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25458&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "동전 하나",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200602/24617_02.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24617",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24617&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "금어초가 사는 곳",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20210114/25453_37.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25453",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25453&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "천면남친",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20191220/23801_27.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/23801",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F23801&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "옆집남자",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201005/24909_26.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24909",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24909&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "달의 속삭임",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200421/23385_40.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/23385",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F23385&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "대표님 저 결혼했어요",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200402/24390_50.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24390",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24390&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "이 미술부에는 문제가 있다",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20210115/25457_51.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/25457",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25457&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "파이터스",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20201201/24537_15.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24537",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24537&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "불완전 부부",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20191025/23779_35.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/23779",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F23779&amp;bridge=true"
+    },
+    {
+      "webtoon_title": "남주를 공략하는 방법",
+      "webtoon_img": "https://cf.joara.com/webtoon2_file/20200427/24504_26.jpg",
+      "is_adult": "FALSE",
+      "category_code": "7",
+      "category_name": "드라마",
+      "webtoon_url": "http://webtoon.joara.com/comics/24504",
+      "joaralink": "joaralink://eurl?url=http%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F24504&amp;bridge=true"
+    }
+  ]
+}
