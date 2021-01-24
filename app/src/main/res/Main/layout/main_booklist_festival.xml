@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:text="@string/Common_Joara"
+                    android:text="@string/Main_BookList_Event1"
                     android:textColor="#A5C500"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -41,10 +40,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans"
-                    android:text="@string/Main_MDNovel"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="0dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="@string/Main_BookList_Event2"
                     android:textColor="#002635"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
@@ -57,7 +59,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Main_MDNovelList"
+            android:id="@+id/Main_FestivalBookList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

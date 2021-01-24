@@ -66,12 +66,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp" />
 
+                <include
+                    layout="@layout/main_booklist_festival"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    />
+
+
+                <com.synnapps.carouselview.CarouselView
+                    android:id="@+id/Carousel_MainBanner_Mid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F9F9F9"
+                    app:indicatorMarginVertical="2dp"
+                    app:disableAutoPlayOnUserInteraction="false" />
 
                 <LinearLayout
+                    android:layout_marginTop="18dp"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
-                    android:orientation="vertical"/>
-
+                    android:orientation="vertical" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

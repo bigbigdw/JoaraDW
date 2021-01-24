@@ -2,6 +2,7 @@ package Bigbigdw.JoaraDW.Fragment;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,19 +25,24 @@ import java.util.List;
 
 import Bigbigdw.JoaraDW.Main.Main_BookData_A;
 import Bigbigdw.JoaraDW.Main.Main_BookData_A_Webtoon;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdatper_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Fragment_Main extends Fragment implements Main_Banner {
 
-    private final Main_BookListAdatper_A HistoryAdapter = new Main_BookListAdatper_A();
-    private final Main_BookListAdatper_A HobbyAdapter = new Main_BookListAdatper_A();
-    private final Main_BookListAdatper_A MDNovelAdapter = new Main_BookListAdatper_A();
-    private final Main_BookListAdatper_A MDWebtoonAdapter = new Main_BookListAdatper_A();
+    private final Main_BookListAdapter_A HistoryAdapter = new Main_BookListAdapter_A();
+    private final Main_BookListAdapter_A HobbyAdapter = new Main_BookListAdapter_A();
+    private final Main_BookListAdapter_A MDNovelAdapter = new Main_BookListAdapter_A();
+    private final Main_BookListAdapter_A MDWebtoonAdapter = new Main_BookListAdapter_A();
+    private final Main_BookListAdapter_B FestivalAdapter = new Main_BookListAdapter_B();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
+
+    CarouselView MainBannerMid;
+    List<String> MainBannerMidURLs = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         AssetManager assetManager = getActivity().getAssets();
         MainBanner = root.findViewById(R.id.Carousel_MainBanner);
+        MainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid);
 
         Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs);
 
@@ -51,6 +58,9 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
         BookMDNovelList(root, assetManager, "Main_MDNovel.json");
         BookMDWebtoonList(root, assetManager, "Main_MDWebtoon.json");
+        BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
+
+        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
 
         return root;
     }
@@ -91,6 +101,15 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         MDWebtoonAdapter.setItems(new Main_BookData_A_Webtoon().getData(assetManager, BookType));
     }
 
+    public void BookFestivalList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_FestivalBookList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(FestivalAdapter);
+        FestivalAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
 
     ImageListener imageListener = (position, imageView) -> {
         imageView.setAdjustViewBounds(true);
@@ -112,6 +131,30 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         });
 
         Glide.with(requireActivity().getApplicationContext()).load(MainBannerURLs.get(position))
+                .into(imageView);
+
+    };
+
+    ImageListener imageListenerMid = (position, imageView) -> {
+        imageView.setAdjustViewBounds(true);
+
+        ViewTreeObserver vtoMid = imageView.getViewTreeObserver();
+        vtoMid.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+                imageView.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                double doubled = (imageView.getMeasuredWidth()/6);
+                int finalHeight = Integer.parseInt(String.valueOf(Math.round(doubled)));
+
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                        finalHeight);
+                MainBannerMid.setLayoutParams(layoutParams);
+
+                return true;
+            }
+        });
+
+        Glide.with(requireActivity().getApplicationContext()).load(MainBannerMidURLs.get(position))
                 .into(imageView);
 
     };

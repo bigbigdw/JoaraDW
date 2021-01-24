@@ -12,7 +12,7 @@
         android:title="테스트" />
 
     <item
-        android:id="@id/fragment_main"
+        android:id="@id/Fragment_Test"
         android:icon="@drawable/footer_bookmark_btn_d"
         android:title="테스트" />
 

@@ -11,4 +11,10 @@
         android:label=""
         tools:layout="@layout/fragment_main" />
 
+    <fragment
+        android:id="@+id/Fragment_Test"
+        android:name="Bigbigdw.JoaraDW.Test.Fragment_Test"
+        android:label=""
+        tools:layout="@layout/test" />
+
 </navigation>

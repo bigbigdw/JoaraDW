@@ -1,0 +1,65 @@
+{
+  "status": 1,
+  "banner": [
+    {
+      "idx": "15525",
+      "imgfile": "https://cf.joara.com/banner_file/20210122_141840.jpg",
+      "joaralink": "https://onesto.re/0000752540",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15445",
+      "imgfile": "https://cf.joara.com/banner_file/20210115_140602.jpg",
+      "joaralink": "joaralink://eurl?url=https%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25438&bridge=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15444",
+      "imgfile": "https://cf.joara.com/banner_file/20210115_140530.jpg",
+      "joaralink": "joaralink://eurl?url=https%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25434&bridge=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15443",
+      "imgfile": "https://cf.joara.com/banner_file/20210115_140452.jpg",
+      "joaralink": "joaralink://eurl?url=https%3A%2F%2Fwebtoon.joara.com%2Fcomics%2F25431&bridge=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15482",
+      "imgfile": "https://cf.joara.com/banner_file/20210120_150826.jpg",
+      "joaralink": "joaralink://event?event_id=8391",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15467",
+      "imgfile": "https://cf.joara.com/banner_file/20210119_152500.jpg",
+      "joaralink": "joaralink://eurl?url=https%3A%2F%2Fwebtoon.joara.com%2Fevent%2F553&bridge=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15367",
+      "imgfile": "https://cf.joara.com/banner_file/20210112_101351.jpg",
+      "joaralink": "joaralink://list?type=type_new&position=1",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "15307",
+      "imgfile": "https://cf.joara.com/banner_file/20210115_154003.jpg",
+      "joaralink": "joaralink://eurl?checkuser=true&url=http%3A%2F%2Fbanner.joara.com%2Fbanner%2FbannerClick.inc.php%3Fidx%3D15307%26is_cnt%3DY%26go_url%3Dhttps%253A%252F%252Fbirdiecrush.com2us.com%252Fko%253Fr%253Dp17",
+      "is_banner_cnt": "Y"
+    },
+    {
+      "idx": "15250",
+      "imgfile": "https://cf.joara.com/banner_file/20201231_111046.jpg",
+      "joaralink": "joaralink://eurl?url=https%3A%2F%2Fwebtoon.joara.com%2Fevent%2Fcalendar%2F202101&bridge=true",
+      "is_banner_cnt": "N"
+    },
+    {
+      "idx": "14313",
+      "imgfile": "https://cf.joara.com/banner_file/20210105_140201.jpg",
+      "joaralink": "joaralink://shop?tabIndex=0",
+      "is_banner_cnt": "N"
+    }
+  ]
+}

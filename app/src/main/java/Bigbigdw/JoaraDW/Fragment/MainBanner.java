@@ -56,10 +56,10 @@ interface Main_Banner {
         }
     }
 
-    static void SetMidMainBanner(AssetManager assetManager, CarouselView MainBanner, ViewListener viewListener, List<String> MainBannerURLs)
+    static void SetMidMainBanner(AssetManager assetManager, CarouselView MainBannerMid, ImageListener imageListenerMid, List<String> MainBannerMidURLs)
     {
         try {
-            InputStream is = assetManager.open("Main_Banner.json");
+            InputStream is = assetManager.open("Main_Banner_Mid.json");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -80,13 +80,13 @@ interface Main_Banner {
 
                 String imgfile = jo.getString("imgfile");
 
-                String[] BannerUrl = new String[MainBannerURLs.size()];
-                MainBannerURLs.toArray(BannerUrl);
-                MainBannerURLs.add(imgfile);
+                String[] BannerUrl = new String[MainBannerMidURLs.size()];
+                MainBannerMidURLs.toArray(BannerUrl);
+                MainBannerMidURLs.add(imgfile);
 
-                MainBanner.setPageCount(BannerUrl.length);
-                MainBanner.setSlideInterval(4000);
-                MainBanner.setViewListener(viewListener);
+                MainBannerMid.setPageCount(BannerUrl.length);
+                MainBannerMid.setSlideInterval(4000);
+                MainBannerMid.setImageListener(imageListenerMid);
             }
 
         } catch (IOException | JSONException e) {
