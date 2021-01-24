@@ -18,32 +18,36 @@
 
             <ImageView
                 android:id="@+id/Img_BookA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
                 android:contentDescription="@string/TODO"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/booktest" />
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/Text_TitleA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/noto_sans_bold"
-            android:minLines="1"
-            android:text="@string/Common_BoookTitle"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/Text_TitleA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:breakStrategy="high_quality"
+        android:ellipsize="end"
+        android:fontFamily="@font/noto_sans_bold"
+        android:maxLines="2"
+        android:text="@string/Common_BookTitle"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/Text_WriterA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/noto_sans"
-            android:text="@string/Common_BookWriter"
-            android:textColor="#767676"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/Text_WriterA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:breakStrategy="high_quality"
+        android:fontFamily="@font/noto_sans"
+        android:maxLines="2"
+        android:text="@string/Common_BookWriter"
+        android:textColor="#767676"
+        android:textSize="12sp" />
     </LinearLayout>

@@ -1,28 +1,53 @@
 package Bigbigdw.JoaraDW.Main;
 
+import android.content.res.AssetManager;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Main_BookData_A {
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData() {
+    public ArrayList<Main_BookListData_A> getData(AssetManager assetManager) {
 
-        Main_BookListData_A data = new Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
-        data = new  Main_BookListData_A("작가명","작품명", "https://cf.joara.com/literature_file/20210104_1711522607.jpg_thumb.png");
-        items.add(data);
+        try {
+            InputStream is = assetManager.open("Main_HistoryBooks.json");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+
+            StringBuilder buffer = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                buffer.append(line).append("\n");
+                line = reader.readLine();
+            }
+
+            String jsonData = buffer.toString();
+
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONArray flag = jsonObject.getJSONArray("books");
+
+            for (int i = 0; i < flag.length(); i++) {
+                JSONObject jo = flag.getJSONObject(i);
+
+                String BookImg = jo.getString("book_img");
+                String Title = jo.getString("subject");
+                String Writer = jo.getString("writer_name");
+
+                items.add(new Main_BookListData_A(Writer, Title, BookImg));
+            }
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
 
         return items;
     }
