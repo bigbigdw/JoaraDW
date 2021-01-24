@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- 메인 -->
+    <string name="Main_Top_Lavel1">77페스티벌</string>
+    <string name="Main_Top_Lavel2">선물함</string>
+    <string name="Main_Top_Lavel3">맞춤 추천</string>
+    <string name="Main_Top_Lavel4">선호장르</string>
+</resources>

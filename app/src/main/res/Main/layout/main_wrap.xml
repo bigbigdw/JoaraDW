@@ -18,11 +18,11 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageView
-                android:layout_width="131dp"
-                android:layout_height="20.5dp"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/TODO"
-                app:srcCompat="@drawable/splash_logo" />
+                app:srcCompat="@drawable/logo_white" />
 
         </androidx.appcompat.widget.Toolbar>
 

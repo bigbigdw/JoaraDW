@@ -2,28 +2,33 @@ package Bigbigdw.JoaraDW.Fragment;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import Bigbigdw.JoaraDW.Main.Main_BookData_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdataper_A;
 import Bigbigdw.JoaraDW.R;
 
-public class Fragment_Main extends Fragment implements Main_Banner{
+
+public class Fragment_Main extends Fragment implements Main_Banner {
+
+    private Main_BookListAdataper_A adapter = new Main_BookListAdataper_A();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -38,8 +43,21 @@ public class Fragment_Main extends Fragment implements Main_Banner{
 
        Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs);
 
+        RecyclerView recyclerView = (RecyclerView)root.findViewById(R.id.MD_Recommend_Book);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(manager); // LayoutManager 등록
+        recyclerView.setAdapter(adapter);
+
+
+        //아이템 로드
+        adapter.setItems(new Main_BookData_A().getData());
+
+
+
         return root;
     }
+
+
 
 
     ImageListener imageListener = (position, imageView) -> {
@@ -51,7 +69,6 @@ public class Fragment_Main extends Fragment implements Main_Banner{
                 imageView.getViewTreeObserver().removeOnPreDrawListener(this);
 
                 double doubled = (imageView.getMeasuredWidth()/ 1.704) + 5;
-
                 int finalHeight = Integer.parseInt(String.valueOf(Math.round(doubled)));
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
@@ -66,4 +83,5 @@ public class Fragment_Main extends Fragment implements Main_Banner{
             .into(imageView);
 
     };
+
 }

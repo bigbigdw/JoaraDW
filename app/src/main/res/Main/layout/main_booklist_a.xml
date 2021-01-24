@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="92dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="0dp"
+    android:layout_marginEnd="17dp"
+    android:orientation="vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="90dp"
+            android:layout_height="132dp"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/Img_BookA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/TODO"
+                app:srcCompat="@drawable/booktest" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/Text_TitleA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_bold"
+            android:minLines="1"
+            android:text="@string/Common_BoookTitle"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Text_WriterA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/Common_BookWriter"
+            android:textColor="#767676"
+            android:textSize="12sp" />
+    </LinearLayout>

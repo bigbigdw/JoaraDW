@@ -12,4 +12,6 @@
     <!-- 공통 영역 -->
     <string name="app_name">조아라DW</string>
     <string name="TODO"> </string>
+    <string name="Common_BookWriter">작가명</string>
+    <string name="Common_BoookTitle">작품명</string>
 </resources>
