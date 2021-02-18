@@ -2,18 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/fragment_main"
-        android:icon="@drawable/footer_bookmark_btn_d"
+        android:id="@id/Fragment_Test"
+        android:icon="@drawable/bottom_icon_new"
         android:title="테스트" />
 
     <item
         android:id="@id/fragment_main"
-        android:icon="@drawable/footer_bookmark_btn_d"
+        android:icon="@drawable/bottom_icon_finish"
+        android:title="테스트" />
+
+    <item
+        android:id="@id/fragment_main"
+        android:icon="@drawable/bottom_icon_best"
         android:title="테스트" />
 
     <item
         android:id="@id/Fragment_Test"
-        android:icon="@drawable/footer_bookmark_btn_d"
+        android:icon="@drawable/bottom_icon_prefer"
         android:title="테스트" />
+
+    <item
+        android:id="@id/Fragment_Test"
+        android:icon="@drawable/bottom_icon_history"
+        android:title="테스트" />
+
 
 </menu>
