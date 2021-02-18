@@ -50,7 +50,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
-    LinearLayout LoadingLayout, AfterLoading;
+    LinearLayout LoadingLayoutWrap, AfterLoading;
 
     CarouselView MainBannerMid;
     List<String> MainBannerMidURLs = new ArrayList<>();
@@ -69,12 +69,12 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         BookHistoryList(root, assetManager, "Main_HistoryBooks.json");
         BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
 
-        LoadingLayout = root.findViewById(R.id.LoadingLayout);
+        LoadingLayoutWrap = root.findViewById(R.id.LoadingLayoutWrap);
         AfterLoading = root.findViewById(R.id.AfterLoading);
 
         new android.os.Handler().postDelayed(
                 () -> {
-                    LoadingLayout.setVisibility(View.GONE);
+                    LoadingLayoutWrap.setVisibility(View.GONE);
                     AfterLoading.setVisibility(View.VISIBLE);
                 },
                 1000);
