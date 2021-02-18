@@ -58,9 +58,9 @@ public class Main_BookListAdapter_B extends RecyclerView.Adapter<RecyclerView.Vi
 
         Main_BookListViewHolder_B(@NonNull View itemView) {
             super(itemView);
-            Image = itemView.findViewById(R.id.Img_BookA);
-            Title = itemView.findViewById(R.id.Text_TitleA);
-            Writer = itemView.findViewById(R.id.Text_WriterA);
+            Image = itemView.findViewById(R.id.Img_BookB);
+            Title = itemView.findViewById(R.id.Text_TitleB);
+            Writer = itemView.findViewById(R.id.Text_WriterB);
         }
 
     }

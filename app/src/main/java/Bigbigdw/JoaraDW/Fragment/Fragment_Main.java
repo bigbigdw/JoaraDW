@@ -25,8 +25,10 @@ import java.util.List;
 
 import Bigbigdw.JoaraDW.Main.Main_BookData_A;
 import Bigbigdw.JoaraDW.Main.Main_BookData_A_Webtoon;
+import Bigbigdw.JoaraDW.Main.Main_BookData_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -37,6 +39,9 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     private final Main_BookListAdapter_A MDNovelAdapter = new Main_BookListAdapter_A();
     private final Main_BookListAdapter_A MDWebtoonAdapter = new Main_BookListAdapter_A();
     private final Main_BookListAdapter_B FestivalAdapter = new Main_BookListAdapter_B();
+    private final Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C();
+    private final Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C();
+    private final Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -59,6 +64,9 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         BookMDNovelList(root, assetManager, "Main_MDNovel.json");
         BookMDWebtoonList(root, assetManager, "Main_MDWebtoon.json");
         BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
+        BookUserPickedList(root, assetManager, "Main_UserPicked.json");
+        BookNotyList(root, assetManager, "Main_NotyList.json");
+        BookRecommendList(root, assetManager, "Main_Recommended.json");
 
         Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
 
@@ -108,6 +116,33 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(FestivalAdapter);
         FestivalAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void BookUserPickedList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_UserPickedList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(UserPickedAdapter);
+        UserPickedAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+    }
+
+    public void BookNotyList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_NotyList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(NotyAdapter);
+        NotyAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+    }
+
+    public void BookRecommendList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_RecommendedList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(RecommendAdapter);
+        RecommendAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
     }
 
 

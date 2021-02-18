@@ -74,7 +74,6 @@
                     android:layout_marginBottom="18dp"
                     />
 
-
                 <com.synnapps.carouselview.CarouselView
                     android:id="@+id/Carousel_MainBanner_Mid"
                     android:layout_width="match_parent"
@@ -82,6 +81,28 @@
                     android:background="#F9F9F9"
                     app:indicatorVisibility="gone"
                     app:disableAutoPlayOnUserInteraction="false" />
+
+                <include
+                    layout="@layout/main_booklist_userpicked"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <include
+                    layout="@layout/main_booklist_noty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <include
+                    layout="@layout/main_booklist_recommeded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
 
                 <LinearLayout
                     android:layout_marginTop="18dp"
