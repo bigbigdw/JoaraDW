@@ -18,4 +18,13 @@
     <string name="Common_UserID">소고기냠냠</string>
     <string name="Common_SeeMore">더보기</string>
     <string name="Common_Joara">조아라</string>
+    <!-- 푸터 -->
+    <string name="Footer_Section1">사업자 정보확인</string>
+    <string name="Footer_Section2">이용약관</string>
+    <string name="Footer_Section3">개인정보처리방침</string>
+    <string name="Footer_Middle1"> (주) 조아라DW 대표자명 : 김대우 이메일 : dwkim@joara.com</string>
+    <string name="Footer_Middle2">통신판매업신고: 서울특별시 금천구 가산 디지털 1로 131, 2104호</string>
+    <string name="Footer_Middle3">사업자등록번호 : 123–45–678910 고객센터 : 1234–5678</string>
+    <string name="Footer_Middle4">오전9시~오후6시, 토/공휴일 휴무</string>
 </resources>
+

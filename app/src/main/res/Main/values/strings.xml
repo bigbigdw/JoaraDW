@@ -19,4 +19,8 @@
     <string name="Main_BookList_Noty2">수상작</string>
     <string name="Main_BookList_UserPicked1">독자가 픽한</string>
     <string name="Main_BookList_UserPicked2">공모전 수상작</string>
+    <string name="Main_BookList_Nobless">노블레스</string>
+    <string name="Main_BookList_Premium">프리미엄</string>
+    <string name="Main_BookList_Coupon">후원쿠폰</string>
+    <string name="Main_BookList_TodayBestList">베스트</string>
 </resources>

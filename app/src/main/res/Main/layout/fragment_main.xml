@@ -104,11 +104,39 @@
                     android:layout_marginBottom="8dp"
                     />
 
-                <LinearLayout
-                    android:layout_marginTop="18dp"
+                <include
+                    layout="@layout/main_nobelsstodaybest"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:orientation="vertical" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <include
+                    layout="@layout/main_premiumtodaybest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <include
+                    layout="@layout/main_coupontodaybest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/TODO"
+                    app:srcCompat="@drawable/joara_footer" />
+
+                <include
+                    layout="@layout/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

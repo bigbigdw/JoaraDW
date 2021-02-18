@@ -29,6 +29,7 @@ import Bigbigdw.JoaraDW.Main.Main_BookData_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -42,6 +43,9 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     private final Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C();
     private final Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C();
     private final Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C();
+    private final Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D();
+    private final Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D();
+    private final Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -67,6 +71,10 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         BookUserPickedList(root, assetManager, "Main_UserPicked.json");
         BookNotyList(root, assetManager, "Main_NotyList.json");
         BookRecommendList(root, assetManager, "Main_Recommended.json");
+        BookRecommendList(root, assetManager, "Main_Recommended.json");
+        NoblessToadyBestList(root, assetManager, "Main_NoblessTodayBest.json");
+        PremiumToadyBestList(root, assetManager, "Main_PremiumTodayBest.json");
+        CouponToadyBestList(root, assetManager, "Main_CouponTodayBest.json");
 
         Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
 
@@ -143,6 +151,33 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(RecommendAdapter);
         RecommendAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+    }
+
+    public void NoblessToadyBestList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_NoblessTodayBestList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(NoblessTodayBestAdapter);
+        NoblessTodayBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void PremiumToadyBestList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_PremiumTodayBestList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(PremiumToadyBestAdapter);
+        PremiumToadyBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+    }
+
+    public void CouponToadyBestList(View root, AssetManager assetManager, String BookType)
+    {
+        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_CouponTodayBestList);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(CouponToadyBestAdapter);
+        CouponToadyBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
     }
 
 
