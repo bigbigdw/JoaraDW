@@ -19,7 +19,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fillViewport="true">
 
             <LinearLayout
@@ -51,92 +51,99 @@
                 <include
                     layout="@layout/main_booklist_hobby"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_height="wrap_content" />
 
-                <include
-                    layout="@layout/main_booklist_mdnovel"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:paddingTop="40dp"
+                    android:paddingBottom="80dp">
 
-                <include
-                    layout="@layout/main_booklist_mdwebtoon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    <include
+                        layout="@layout/loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                <include
-                    layout="@layout/main_booklist_festival"
+                <LinearLayout
+                    android:id="@+id/AfterLoading"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="18dp"
-                    />
-
-                <com.synnapps.carouselview.CarouselView
-                    android:id="@+id/Carousel_MainBanner_Mid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:background="#F9F9F9"
-                    app:indicatorVisibility="gone"
-                    app:disableAutoPlayOnUserInteraction="false" />
+                    android:visibility="gone">
 
-                <include
-                    layout="@layout/main_booklist_userpicked"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <include
+                        layout="@layout/main_booklist_mdnovel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <include
-                    layout="@layout/main_booklist_noty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <include
+                        layout="@layout/main_booklist_mdwebtoon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <include
-                    layout="@layout/main_booklist_recommeded"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <include
+                        layout="@layout/main_booklist_festival"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <include
-                    layout="@layout/main_nobelsstodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <com.synnapps.carouselview.CarouselView
+                        android:id="@+id/Carousel_MainBanner_Mid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F9F9F9"
+                        app:disableAutoPlayOnUserInteraction="false"
+                        app:indicatorVisibility="gone" />
 
-                <include
-                    layout="@layout/main_premiumtodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <include
+                        layout="@layout/main_booklist_userpicked"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <include
-                    layout="@layout/main_coupontodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    />
+                    <include
+                        layout="@layout/main_booklist_noty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/joara_footer" />
+                    <include
+                        layout="@layout/main_booklist_recommeded"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp" />
 
-                <include
-                    layout="@layout/footer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    <include
+                        layout="@layout/main_nobelsstodaybest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/main_premiumtodaybest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp" />
+
+                    <include
+                        layout="@layout/main_coupontodaybest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/TODO"
+                        app:srcCompat="@drawable/joara_footer" />
+
+                    <include
+                        layout="@layout/footer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

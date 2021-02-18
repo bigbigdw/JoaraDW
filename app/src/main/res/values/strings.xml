@@ -26,5 +26,7 @@
     <string name="Footer_Middle2">통신판매업신고: 서울특별시 금천구 가산 디지털 1로 131, 2104호</string>
     <string name="Footer_Middle3">사업자등록번호 : 123–45–678910 고객센터 : 1234–5678</string>
     <string name="Footer_Middle4">오전9시~오후6시, 토/공휴일 휴무</string>
+    <!-- 공통 영역 -->
+    <string name="loading">Loading…</string>
 </resources>
 

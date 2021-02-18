@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -49,6 +50,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
+    LinearLayout LoadingLayout, AfterLoading;
 
     CarouselView MainBannerMid;
     List<String> MainBannerMidURLs = new ArrayList<>();
@@ -62,9 +64,21 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         MainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid);
 
         Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs);
+        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
 
         BookHistoryList(root, assetManager, "Main_HistoryBooks.json");
         BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
+
+        LoadingLayout = root.findViewById(R.id.LoadingLayout);
+        AfterLoading = root.findViewById(R.id.AfterLoading);
+
+        new android.os.Handler().postDelayed(
+                () -> {
+                    LoadingLayout.setVisibility(View.GONE);
+                    AfterLoading.setVisibility(View.VISIBLE);
+                },
+                1000);
+
         BookMDNovelList(root, assetManager, "Main_MDNovel.json");
         BookMDWebtoonList(root, assetManager, "Main_MDWebtoon.json");
         BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
@@ -76,108 +90,118 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         PremiumToadyBestList(root, assetManager, "Main_PremiumTodayBest.json");
         CouponToadyBestList(root, assetManager, "Main_CouponTodayBest.json");
 
-        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
-
         return root;
     }
 
     public void BookHistoryList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewHistory = (RecyclerView) root.findViewById(R.id.Main_HistoryBookList);
+        RecyclerView recyclerViewHistory = root.findViewById(R.id.Main_HistoryBookList);
         LinearLayoutManager managerHistory = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewHistory.setLayoutManager(managerHistory);
         recyclerViewHistory.setAdapter(HistoryAdapter);
         HistoryAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        HistoryAdapter.notifyDataSetChanged();
+
     }
 
     public void BookHobbyList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewHobby = (RecyclerView) root.findViewById(R.id.Main_HobbyBookList);
+        RecyclerView recyclerViewHobby = root.findViewById(R.id.Main_HobbyBookList);
         LinearLayoutManager managerHobby = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewHobby.setLayoutManager(managerHobby);
         recyclerViewHobby.setAdapter(HobbyAdapter);
         HobbyAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        HobbyAdapter.notifyDataSetChanged();
     }
 
     public void BookMDNovelList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewMDNovel = (RecyclerView) root.findViewById(R.id.Main_MDNovelList);
+        RecyclerView recyclerViewMDNovel = root.findViewById(R.id.Main_MDNovelList);
         LinearLayoutManager managerMDNovel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewMDNovel.setLayoutManager(managerMDNovel);
         recyclerViewMDNovel.setAdapter(MDNovelAdapter);
         MDNovelAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        MDNovelAdapter.notifyDataSetChanged();
     }
 
     public void BookMDWebtoonList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewMDWebtoon = (RecyclerView) root.findViewById(R.id.Main_MDWebtoonList);
+        RecyclerView recyclerViewMDWebtoon = root.findViewById(R.id.Main_MDWebtoonList);
         LinearLayoutManager managerMDWebtoon = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewMDWebtoon.setLayoutManager(managerMDWebtoon);
         recyclerViewMDWebtoon.setAdapter(MDWebtoonAdapter);
         MDWebtoonAdapter.setItems(new Main_BookData_A_Webtoon().getData(assetManager, BookType));
+        MDWebtoonAdapter.notifyDataSetChanged();
     }
 
     public void BookFestivalList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_FestivalBookList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_FestivalBookList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(FestivalAdapter);
         FestivalAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        FestivalAdapter.notifyDataSetChanged();
     }
 
     public void BookUserPickedList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_UserPickedList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_UserPickedList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(UserPickedAdapter);
         UserPickedAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        UserPickedAdapter.notifyDataSetChanged();
     }
 
     public void BookNotyList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_NotyList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_NotyList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(NotyAdapter);
         NotyAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        NotyAdapter.notifyDataSetChanged();
     }
 
     public void BookRecommendList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_RecommendedList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_RecommendedList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(RecommendAdapter);
         RecommendAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        RecommendAdapter.notifyDataSetChanged();
     }
 
     public void NoblessToadyBestList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_NoblessTodayBestList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_NoblessTodayBestList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(NoblessTodayBestAdapter);
         NoblessTodayBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        NoblessTodayBestAdapter.notifyDataSetChanged();
     }
 
     public void PremiumToadyBestList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_PremiumTodayBestList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_PremiumTodayBestList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(PremiumToadyBestAdapter);
         PremiumToadyBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        PremiumToadyBestAdapter.notifyDataSetChanged();
     }
 
     public void CouponToadyBestList(View root, AssetManager assetManager, String BookType)
     {
-        RecyclerView recyclerViewFestival = (RecyclerView) root.findViewById(R.id.Main_CouponTodayBestList);
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_CouponTodayBestList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(CouponToadyBestAdapter);
         CouponToadyBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        CouponToadyBestAdapter.notifyDataSetChanged();
     }
 
 
