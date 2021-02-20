@@ -2,8 +2,8 @@
 <resources>
     <!-- 메인 -->
     <string name="Main_Top_Lavel1">77페스티벌</string>
-    <string name="Main_Top_Lavel2">선물함</string>
-    <string name="Main_Top_Lavel3">맞춤 추천</string>
+    <string name="Main_Top_Lavel2">기다무</string>
+    <string name="Main_Top_Lavel3">NOTY</string>
     <string name="Main_Top_Lavel4">이벤트</string>
     <string name="Main_BookList_History">님의 선호작 이어보기</string>
     <string name="Main_BookList_Hobby1">당신의</string>

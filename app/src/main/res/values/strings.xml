@@ -30,12 +30,31 @@
     <string name="loading">Loading…</string>
     <!-- 바텀 영역 -->
     <string name="app_bottom1">최신작품</string>
-    <string name="app_bottom2">완결작품</string>
+    <string name="app_bottom2">더보기</string>
     <string name="app_bottom3">베스트</string>
     <string name="app_bottom4">선호작</string>
     <string name="app_bottom5">이어보기</string>
     <!-- 팝업 -->
     <string name="popup_left">하루동안 보지 않기</string>
     <string name="popup_right">닫기</string>
+    <!-- 드로워 -->
+    <string name="drawer_id_example">소고기냠냠</string>
+    <string name="drawer_points_1">이용권</string>
+    <string name="drawer_points_ex">10,000</string>
+    <string name="drawer_points_jang">장</string>
+    <string name="drawer_points_2">딱지</string>
+    <string name="drawer_points_3">마나</string>
+    <string name="drawer_points_M">M</string>
+    <string name="drawer_points_4">후원 쿠폰</string>
+    <string name="drawer_points_5">원고료 쿠폰</string>
+    <string name="drawer_Bottom_title1">My Joara</string>
+    <string name="drawer_Bottom_title2">서비스</string>
+    <string name="drawer_Bottom_subTitle1">내 정보</string>
+    <string name="drawer_Bottom_subTitle2">작품 관리</string>
+    <string name="drawer_Bottom_subTitle3">정산 관리</string>
+    <string name="drawer_Bottom_subTitle4">공지 사항</string>
+    <string name="drawer_Bottom_subTitle5">자주 묻는 질문</string>
+    <string name="drawer_Bottom_subTitle6">작가 지원 정책</string>
+    <string name="drawer_Bottom_subTitle7">1:1 고객 센터</string>
 </resources>
 

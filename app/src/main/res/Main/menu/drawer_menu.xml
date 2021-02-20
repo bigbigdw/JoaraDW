@@ -4,23 +4,48 @@
     tools:showIn="navigation_view">
 
     <item
-        android:title="큰 제목">
+        android:title="@string/drawer_Bottom_title1">
         <menu>
             <group
-                android:checkableBehavior="single"
-                android:title="테스트">
+                android:checkableBehavior="single">
                 <item
                     android:id="@id/fragment_main"
-                    android:icon="@drawable/toolbar_search"
-                    android:title="테스트" />
+                    android:icon="@drawable/icon_lnb_1"
+                    android:title="@string/drawer_Bottom_subTitle1" />
                 <item
                     android:id="@id/fragment_main"
-                    android:icon="@drawable/toolbar_search"
-                    android:title="테스트" />
+                    android:icon="@drawable/icon_lnb_2"
+                    android:title="@string/drawer_Bottom_subTitle2" />
                 <item
                     android:id="@id/fragment_main"
-                    android:icon="@drawable/toolbar_search"
-                    android:title="테스트" />
+                    android:icon="@drawable/icon_lnb_3"
+                    android:title="@string/drawer_Bottom_subTitle3" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/drawer_Bottom_title2">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/icon_lnb_4"
+                    android:title="@string/drawer_Bottom_subTitle4" />
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/icon_lnb_5"
+                    android:title="@string/drawer_Bottom_subTitle5" />
+
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/icon_lnb_6"
+                    android:title="@string/drawer_Bottom_subTitle6" />
+                <item
+                    android:id="@id/fragment_main"
+                    android:icon="@drawable/icon_lnb_7"
+                    android:title="@string/drawer_Bottom_subTitle7" />
             </group>
         </menu>
     </item>

@@ -7,8 +7,8 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="234dp"
-        android:layout_height="374dp"
+        android:layout_width="279dp"
+        android:layout_height="446dp"
         android:contentDescription="@string/TODO"
         app:srcCompat="@drawable/banner_ex" />
 
@@ -18,28 +18,30 @@
         android:background="#888888">
 
         <Button
-            app:backgroundTint="@null"
             android:id="@+id/pbutton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_weight="6"
             android:background="#888888"
             android:text="@string/popup_left"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
         <Button
-            app:backgroundTint="@null"
             android:id="@+id/nbutton"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_weight="4"
             android:background="#00283d"
             android:text="@string/popup_right"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
 </LinearLayout>
