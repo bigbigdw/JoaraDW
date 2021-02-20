@@ -12,7 +12,6 @@
         <activity
             android:name=".Etc.Splash"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".Main.Main"
             android:theme="@style/Theme.JoaraDW.NoActionBar">

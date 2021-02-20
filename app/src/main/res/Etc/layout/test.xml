@@ -5,4 +5,13 @@
     android:layout_height="match_parent"
     android:background="#00BCD4"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start" />
+    tools:openDrawer="start" >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#FF0000"
+        android:text="Button" />
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +19,14 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Main extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
+    private Popup Popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class Main extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
+
+        Popup = new Popup(this, positiveListener, negativeListener);
+        Popup.show();
     }
 
     //추가된 소스, ToolBar에 menu.xml을 인플레이트함
@@ -80,4 +86,16 @@ public class Main extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, AppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    private View.OnClickListener positiveListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Popup.dismiss();
+        }
+    };
+
+    private View.OnClickListener negativeListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Popup.dismiss();
+        }
+    };
 }
