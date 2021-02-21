@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -44,7 +43,7 @@ public class Main extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_vie);
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.Fragment_main, R.id.Fragment_More, R.id.Fragment_Test
+                R.id.Fragment_main
         ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -54,24 +53,15 @@ public class Main extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
 
-//        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-//            if (destination.getId() == R.id.Fragment_Test) {
-//                navView.setVisibility(View.VISIBLE);
-//                toolbar.setVisibility(View.VISIBLE);
-//            } else {
-//                navView.setVisibility(View.GONE);
-//                toolbar.setVisibility(View.GONE);
-//            }
-//        });
-
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.Fragment_main) {
                 setCheckable(navView, false);
                 navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
-            } else if (destination.getId() == R.id.Fragment_More){
+            } else {
                 setCheckable(navView, true);
                 navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
             }
+
         });
 
 
@@ -81,7 +71,9 @@ public class Main extends AppCompatActivity {
 
     public static void setCheckable(BottomNavigationView navView, boolean checkable) {
         final Menu menu = navView.getMenu();
-        menu.getItem(0).setCheckable(checkable);
+        for (int i = 0; i < menu.size(); i++) {
+            menu.getItem(i).setCheckable(checkable);
+        }
     }
 
     //추가된 소스, ToolBar에 menu.xml을 인플레이트함
