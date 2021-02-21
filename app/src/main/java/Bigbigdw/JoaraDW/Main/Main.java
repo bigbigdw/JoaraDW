@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationView;
 
 import Bigbigdw.JoaraDW.Etc.Popup;
@@ -62,8 +64,24 @@ public class Main extends AppCompatActivity {
 //            }
 //        });
 
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.Fragment_main) {
+                setCheckable(navView, false);
+                navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
+            } else if (destination.getId() == R.id.Fragment_More){
+                setCheckable(navView, true);
+                navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
+            }
+        });
+
+
         Popup = new Popup(this, BtnLeftListener, BtnRightListener);
         Popup.show();
+    }
+
+    public static void setCheckable(BottomNavigationView navView, boolean checkable) {
+        final Menu menu = navView.getMenu();
+        menu.getItem(0).setCheckable(checkable);
     }
 
     //추가된 소스, ToolBar에 menu.xml을 인플레이트함
