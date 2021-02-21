@@ -16,8 +16,8 @@ import Bigbigdw.JoaraDW.R;
 
 public class Popup extends Dialog {
 
-    private View.OnClickListener mPositiveListener;
-    private View.OnClickListener mNegativeListener;
+    private View.OnClickListener mBtnLeftListener;
+    private View.OnClickListener mBtnRightListener;
 
     public Popup(@NonNull Context context) {
         super(context);
@@ -36,18 +36,18 @@ public class Popup extends Dialog {
         setContentView(R.layout.popup);
 
         //셋팅
-        Button mPositiveButton = findViewById(R.id.pbutton);
-        Button mNegativeButton = findViewById(R.id.nbutton);
+        Button BtnLeft = findViewById(R.id.BtnLeft);
+        Button BtnRight = findViewById(R.id.BtnRight);
 
         //클릭 리스너 셋팅 (클릭버튼이 동작하도록 만들어줌.)
-        mPositiveButton.setOnClickListener(mPositiveListener);
-        mNegativeButton.setOnClickListener(mNegativeListener);
+        BtnLeft.setOnClickListener(mBtnLeftListener);
+        BtnRight.setOnClickListener(mBtnRightListener);
     }
 
     //생성자 생성
-    public Popup(@NonNull Context context, View.OnClickListener positiveListener, View.OnClickListener negativeListener) {
+    public Popup(@NonNull Context context, View.OnClickListener BtnLeftListener, View.OnClickListener BtnRightListener) {
         super(context);
-        this.mPositiveListener = positiveListener;
-        this.mNegativeListener = negativeListener;
+        this.mBtnLeftListener = BtnLeftListener;
+        this.mBtnRightListener = BtnRightListener;
     }
 }

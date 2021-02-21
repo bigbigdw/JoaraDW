@@ -18,7 +18,7 @@
         android:background="#888888">
 
         <Button
-            android:id="@+id/pbutton"
+            android:id="@+id/BtnLeft"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -31,7 +31,7 @@
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/nbutton"
+            android:id="@+id/BtnRight"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
             android:layout_height="40dp"

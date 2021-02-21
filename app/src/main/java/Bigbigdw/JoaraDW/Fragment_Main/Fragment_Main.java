@@ -1,13 +1,11 @@
-package Bigbigdw.JoaraDW.Fragment;
+package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;

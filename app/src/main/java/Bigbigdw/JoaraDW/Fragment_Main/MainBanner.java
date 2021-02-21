@@ -1,10 +1,9 @@
-package Bigbigdw.JoaraDW.Fragment;
+package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.res.AssetManager;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
-import com.synnapps.carouselview.ViewListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;

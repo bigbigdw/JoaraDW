@@ -42,7 +42,7 @@ public class Main extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_vie);
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.fragment_main
+                R.id.Fragment_main, R.id.Fragment_More, R.id.Fragment_Test
         ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -52,7 +52,17 @@ public class Main extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Popup = new Popup(this, positiveListener, negativeListener);
+//        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+//            if (destination.getId() == R.id.Fragment_Test) {
+//                navView.setVisibility(View.VISIBLE);
+//                toolbar.setVisibility(View.VISIBLE);
+//            } else {
+//                navView.setVisibility(View.GONE);
+//                toolbar.setVisibility(View.GONE);
+//            }
+//        });
+
+        Popup = new Popup(this, BtnLeftListener, BtnRightListener);
         Popup.show();
     }
 
@@ -86,13 +96,13 @@ public class Main extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private View.OnClickListener positiveListener = new View.OnClickListener() {
+    private View.OnClickListener BtnLeftListener = new View.OnClickListener() {
         public void onClick(View v) {
             Popup.dismiss();
         }
     };
 
-    private View.OnClickListener negativeListener = new View.OnClickListener() {
+    private View.OnClickListener BtnRightListener = new View.OnClickListener() {
         public void onClick(View v) {
             Popup.dismiss();
         }

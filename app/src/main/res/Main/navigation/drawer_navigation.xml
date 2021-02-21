@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_navigation"
-    app:startDestination="@+id/fragment_main">
+    app:startDestination="@+id/Fragment_main">
 
     <fragment
-        android:id="@+id/fragment_main"
-        android:name="Bigbigdw.JoaraDW.Fragment.Fragment_Main"
+        android:id="@+id/Fragment_main"
+        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main"
         android:label=""
         tools:layout="@layout/fragment_main" />
 
@@ -16,5 +16,11 @@
         android:name="Bigbigdw.JoaraDW.Test.Fragment_Test"
         android:label=""
         tools:layout="@layout/test" />
+
+    <fragment
+        android:id="@+id/Fragment_More"
+        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_More"
+        android:label=""
+        tools:layout="@layout/fragment_main_more" />
 
 </navigation>

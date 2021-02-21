@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 메인 더보기 카테고리 -->
+    <string name="Main_More">더보기</string>
+    <string name="Main_More_category1">77페스티벌</string>
+    <string name="Main_More_category2">기다무</string>
+    <string name="Main_More_category3">NOTY</string>
+    <string name="Main_More_category4">이벤트</string>
+    <string name="Main_More_category5">맞춤 추천</string>
+    <string name="Main_More_category6">선호 장르</string>
+    <string name="Main_More_category7">자유게시판</string>
+    <string name="Main_More_category8">작품 서평</string>
+    <string name="Main_More_category9">선물함</string>
+    <string name="Main_More_category10">아이템샵</string>
+    <string name="Main_More_category11">조아라 웹툰</string>
+    <string name="Main_More_category12">언론 보도</string>
+    <string name="Main_More_category13">블로그</string>
+    <string name="Main_More_category14">페이스북</string>
+    <string name="Main_More_category15">인스타그램</string>
+    <!-- 메인 더보기 공지사항, 이벤트 -->
+    <string name="Main_More_Event">이벤트</string>
+    <string name="Main_More_Notice">공지사항</string>
+    <string name="Main_More_seeMore">더보기</string>
+</resources>

@@ -2,29 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/Fragment_Test"
+        android:id="@id/Fragment_More"
         android:icon="@drawable/bottom_icon_new"
         android:title="@string/app_bottom1" />
 
     <item
-        android:id="@id/fragment_main"
-        android:icon="@drawable/bottom_icon_finish"
-        android:title="@string/app_bottom2" />
-
-    <item
-        android:id="@id/fragment_main"
+        android:id="@id/Fragment_More"
         android:icon="@drawable/bottom_icon_best"
         android:title="@string/app_bottom3" />
 
     <item
-        android:id="@id/Fragment_Test"
+        android:id="@id/Fragment_More"
         android:icon="@drawable/bottom_icon_prefer"
         android:title="@string/app_bottom4" />
 
     <item
-        android:id="@id/Fragment_Test"
+        android:id="@id/Fragment_More"
         android:icon="@drawable/bottom_icon_history"
         android:title="@string/app_bottom5" />
+
+    <item
+        android:id="@id/Fragment_More"
+        android:icon="@drawable/bottom_icon_finish"
+        android:title="@string/app_bottom2" />
 
 
 </menu>
