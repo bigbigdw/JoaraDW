@@ -24,7 +24,6 @@ import java.util.List;
 
 import Bigbigdw.JoaraDW.Main.Main_BookData_A;
 import Bigbigdw.JoaraDW.Main.Main_BookData_A_Webtoon;
-import Bigbigdw.JoaraDW.Main.Main_BookData_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
@@ -153,7 +152,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(UserPickedAdapter);
-        UserPickedAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        UserPickedAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
         UserPickedAdapter.notifyDataSetChanged();
     }
 
@@ -163,7 +162,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(NotyAdapter);
-        NotyAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        NotyAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
         NotyAdapter.notifyDataSetChanged();
     }
 
@@ -173,7 +172,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
         recyclerViewFestival.setAdapter(RecommendAdapter);
-        RecommendAdapter.setItems(new Main_BookData_C().getData(assetManager, BookType));
+        RecommendAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
         RecommendAdapter.notifyDataSetChanged();
     }
 

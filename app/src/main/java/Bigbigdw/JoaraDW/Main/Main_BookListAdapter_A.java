@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +40,36 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         ((Main_BookListViewHolder_A) holder).Title.setText(listData.get(position).getTitle());
         ((Main_BookListViewHolder_A) holder).Writer.setText(listData.get(position).getWriter());
 
+        System.out.println(item.getIsAdult());
+
+        if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.NOBLESS);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAa5c500);
+        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.PREMIUM);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAa5c500);
+        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.FINISH);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAa5c500);
+        } else if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_NOBLESS);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAF44336);
+        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_PREMIUM);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAF44336);
+        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_FINISH);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAF44336);
+        } else {
+            ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -55,12 +86,16 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView Image;
         TextView Title;
         TextView Writer;
+        ConstraintLayout UnderCover;
+        TextView UnderCoverText;
 
         Main_BookListViewHolder_A(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookA);
             Title = itemView.findViewById(R.id.Text_TitleA);
             Writer = itemView.findViewById(R.id.Text_WriterA);
+            UnderCover = itemView.findViewById(R.id.BookImgUnderWrap);
+            UnderCoverText = itemView.findViewById(R.id.UnderCoverText);
         }
 
     }

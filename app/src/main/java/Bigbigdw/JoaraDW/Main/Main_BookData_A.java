@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Main;
 
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,14 +35,20 @@ public class Main_BookData_A {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONArray flag = jsonObject.getJSONArray("books");
 
+
             for (int i = 0; i < flag.length(); i++) {
                 JSONObject jo = flag.getJSONObject(i);
 
                 String BookImg = jo.getString("book_img");
                 String Title = jo.getString("subject");
                 String Writer = jo.getString("writer_name");
+                String IsAdult = jo.getString("is_adult");
+                String IsFinish = jo.getString("is_finish");
+                String IsPremium = jo.getString("is_premium");
+                String IsNobless = jo.getString("is_nobless");
+                String Intro = jo.getString("intro");
 
-                items.add(new Main_BookListData_A(Writer, Title, BookImg));
+                items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro));
             }
 
         } catch (IOException | JSONException e) {

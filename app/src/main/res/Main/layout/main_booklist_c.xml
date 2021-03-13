@@ -35,13 +35,24 @@
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
-
+        <TextView
+            android:id="@+id/TopText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:breakStrategy="high_quality"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_bold"
+            android:maxLines="2"
+            android:text="@string/Common_BookTitle"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/Text_TitleC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
             android:layout_marginBottom="2dp"
             android:breakStrategy="high_quality"
             android:ellipsize="end"
@@ -72,7 +83,7 @@
             android:breakStrategy="high_quality"
             android:ellipsize="end"
             android:fontFamily="@font/noto_sans"
-            android:maxLines="3"
+            android:maxLines="2"
             android:text="@string/Common_BookIntro"
             android:textColor="#767676"
             android:textSize="14sp" />

@@ -7,6 +7,7 @@ package Bigbigdw.JoaraDW.Main;
         import android.widget.TextView;
 
         import androidx.annotation.NonNull;
+        import androidx.constraintlayout.widget.ConstraintLayout;
         import androidx.recyclerview.widget.RecyclerView;
 
         import com.bumptech.glide.Glide;
@@ -39,6 +40,12 @@ public class Main_BookListAdapter_B extends RecyclerView.Adapter<RecyclerView.Vi
         ((Main_BookListViewHolder_B) holder).Title.setText(listData.get(position).getTitle());
         ((Main_BookListViewHolder_B) holder).Writer.setText(listData.get(position).getWriter());
 
+        if(listData.get(position).getIsAdult().equals("TRUE")){
+            ((Main_BookListViewHolder_B) holder).UnderCover.setVisibility(View.VISIBLE);
+        }  else {
+            ((Main_BookListViewHolder_B) holder).UnderCover.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -55,12 +62,14 @@ public class Main_BookListAdapter_B extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView Image;
         TextView Title;
         TextView Writer;
+        ConstraintLayout UnderCover;
 
         Main_BookListViewHolder_B(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookB);
             Title = itemView.findViewById(R.id.Text_TitleB);
             Writer = itemView.findViewById(R.id.Text_WriterB);
+            UnderCover = itemView.findViewById(R.id.BookImgUnderWrap);
         }
 
     }

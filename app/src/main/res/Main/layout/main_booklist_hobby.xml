@@ -36,7 +36,8 @@
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/Main_BookList_Hobby1"
                     android:textColor="#002635"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -54,7 +55,8 @@
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/Main_BookList_Hobby3"
                     android:textColor="#002635"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView

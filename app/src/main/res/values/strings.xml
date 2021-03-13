@@ -18,6 +18,13 @@
     <string name="Common_UserID">소고기냠냠</string>
     <string name="Common_SeeMore">더보기</string>
     <string name="Common_Joara">조아라</string>
+    <string name="NOBLESS">노블레스</string>
+    <string name="PREMIUM">프리미엄</string>
+    <string name="FINISH">완결</string>
+    <string name="ADULT_NOBLESS">노블레스 성인</string>
+    <string name="ADULT_PREMIUM">프리미엄 성인</string>
+    <string name="ADULT_FINISH">완결 성인</string>
+    <string name="ADULT">성인</string>
     <!-- 푸터 -->
     <string name="Footer_Section1">사업자 정보확인</string>
     <string name="Footer_Section2">이용약관</string>
