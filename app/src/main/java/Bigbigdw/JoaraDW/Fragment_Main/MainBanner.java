@@ -17,10 +17,10 @@ import java.util.List;
 
 interface Main_Banner {
 
-    static void SetMainBanner(AssetManager assetManager, CarouselView MainBanner, ImageListener imageListener, List<String> MainBannerURLs)
+    static void SetMainBanner(AssetManager assetManager, CarouselView MainBanner, ImageListener imageListener, List<String> MainBannerURLs, String BannerType)
     {
         try {
-            InputStream is = assetManager.open("Main_Banner.json");
+            InputStream is = assetManager.open(BannerType);
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -36,29 +36,29 @@ interface Main_Banner {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONArray flag = jsonObject.getJSONArray("banner");
 
-            for (int i = 0; i < flag.length(); i++) {
-                JSONObject jo = flag.getJSONObject(i);
+                for (int i = 0; i < flag.length(); i++) {
+                    JSONObject jo = flag.getJSONObject(i);
 
-                String imgfile = jo.getString("imgfile");
+                    String imgfile = jo.getString("imgfile");
 
-                String[] BannerUrl = new String[MainBannerURLs.size()];
-                MainBannerURLs.toArray(BannerUrl);
-                MainBannerURLs.add(imgfile);
+                    String[] BannerUrl = new String[MainBannerURLs.size()];
+                    MainBannerURLs.toArray(BannerUrl);
+                    MainBannerURLs.add(imgfile);
 
-                MainBanner.setPageCount(BannerUrl.length);
-                MainBanner.setSlideInterval(4000);
-                MainBanner.setImageListener(imageListener);
-            }
+                    MainBanner.setPageCount(BannerUrl.length);
+                    MainBanner.setSlideInterval(4000);
+                    MainBanner.setImageListener(imageListener);
+                }
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    static void SetMidMainBanner(AssetManager assetManager, CarouselView MainBannerMid, ImageListener imageListenerMid, List<String> MainBannerMidURLs)
+    static void SetMidMainBanner(AssetManager assetManager, CarouselView MainBannerMid, ImageListener imageListenerMid, List<String> MainBannerMidURLs, String BannerType)
     {
         try {
-            InputStream is = assetManager.open("Main_Banner_Mid.json");
+            InputStream is = assetManager.open(BannerType);
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 

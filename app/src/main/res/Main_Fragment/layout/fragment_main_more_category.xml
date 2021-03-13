@@ -389,7 +389,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Main_More_category9"
+                    android:text="@string/Main_More_category13"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textStyle="bold" />
@@ -416,7 +416,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Main_More_category10"
+                    android:text="@string/Main_More_category14"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textStyle="bold" />
@@ -443,7 +443,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Main_More_category11"
+                    android:text="@string/Main_More_category15"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textStyle="bold" />

@@ -53,16 +53,21 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     CarouselView MainBannerMid;
     List<String> MainBannerMidURLs = new ArrayList<>();
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         AssetManager assetManager = getActivity().getAssets();
+
         MainBanner = root.findViewById(R.id.Carousel_MainBanner);
         MainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid);
 
-        Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs);
-        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs);
+        Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs, "Main_Banner.json");
+        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs, "Main_Banner_Mid.json");
+
+        MainBanner.setPageCount(15);
+        MainBannerMid.setPageCount(10);
 
         BookHistoryList(root, assetManager, "Main_HistoryBooks.json");
         BookHobbyList(root, assetManager, "Main_HobbyBooks.json");
