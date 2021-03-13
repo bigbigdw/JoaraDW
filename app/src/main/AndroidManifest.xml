@@ -15,17 +15,17 @@
         <activity
             android:name=".Main.Main"
             android:theme="@style/Theme.JoaraDW.NoActionBar">
-
-        </activity>
-
-        <activity
-            android:name=".Test.Test"
-            android:theme="@style/Theme.JoaraDW" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Test.Test"
+            android:theme="@style/Theme.JoaraDW" >
+
         </activity>
 
         <meta-data

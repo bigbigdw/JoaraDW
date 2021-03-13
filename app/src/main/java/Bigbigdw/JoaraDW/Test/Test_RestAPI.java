@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public interface MainBanner_API {
+public interface Test_RestAPI {
 
     static void getJSON(String TAG, String REQUEST_URL, TextView textviewJSONText) {
 
@@ -65,8 +65,6 @@ public interface MainBanner_API {
             }
 
             textviewJSONText.setText(result);
-
-            Log.d(TAG, result);
         });
         thread.start();
     }
