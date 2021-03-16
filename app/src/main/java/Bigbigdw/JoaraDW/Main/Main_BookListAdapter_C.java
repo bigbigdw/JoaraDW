@@ -41,31 +41,23 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         ((Main_BookListViewHolder_C) holder).Intro.setText(listData.get(position).getIntro());
 
         if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.NOBLESS);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAAa5c500);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.PREMIUM);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.FINISH);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAA767676);
         } else if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.ADULT_NOBLESS);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAAF44336);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.ADULT_PREMIUM);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_C) holder).TopText.setText(R.string.ADULT_FINISH);
             ((Main_BookListViewHolder_C) holder).TopText.setTextColor(0xAA767676);
-        } else {
-            ((Main_BookListViewHolder_C) holder).TopText.setVisibility(View.GONE);
         }
 
     }

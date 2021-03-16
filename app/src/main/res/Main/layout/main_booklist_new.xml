@@ -10,9 +10,11 @@
     android:layout_marginBottom="18dp"
     android:orientation="horizontal"
     app:layout_constraintStart_toStartOf="parent"
+    android:id="@+id/Img_Wrap"
     app:layout_constraintTop_toTopOf="parent">
 
     <androidx.cardview.widget.CardView
+
         android:layout_width="91dp"
         android:layout_height="132dp"
         android:layout_marginEnd="15dp"
@@ -85,16 +87,15 @@
             android:ellipsize="end"
             android:fontFamily="@font/noto_sans_bold"
             android:maxLines="2"
-            android:text="@string/Common_BookTitle"
+            android:text="@string/FREE"
             android:textColor="#000000"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/Text_TitleC"
+            android:id="@+id/Text_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="2dp"
             android:breakStrategy="high_quality"
             android:ellipsize="end"
@@ -102,11 +103,11 @@
             android:maxLines="1"
             android:text="@string/Common_BookTitle"
             android:textColor="#000000"
-            android:textSize="19sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/Text_WriterC"
+            android:id="@+id/Text_Writer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -119,13 +120,13 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/Text_IntroC"
+            android:id="@+id/Text_Intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:breakStrategy="high_quality"
             android:ellipsize="end"
             android:fontFamily="@font/noto_sans"
-            android:maxLines="2"
+            android:maxLines="3"
             android:text="@string/Common_BookIntro"
             android:textColor="#767676"
             android:textSize="14sp" />

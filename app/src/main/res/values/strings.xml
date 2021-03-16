@@ -25,6 +25,7 @@
     <string name="ADULT_PREMIUM">프리미엄 성인</string>
     <string name="ADULT_FINISH">완결 성인</string>
     <string name="ADULT">성인</string>
+    <string name="FREE">무료</string>
     <!-- 푸터 -->
     <string name="Footer_Section1">사업자 정보확인</string>
     <string name="Footer_Section2">이용약관</string>
