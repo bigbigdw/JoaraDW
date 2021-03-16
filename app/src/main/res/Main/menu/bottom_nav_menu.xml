@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/Fragment_More"
+        android:id="@id/Fragment_New"
         android:icon="@drawable/bottom_icon_new"
         android:title="@string/app_bottom1" />
 

@@ -47,8 +47,11 @@ public class Main_BookData_A {
                 String IsPremium = jo.getString("is_premium");
                 String IsNobless = jo.getString("is_nobless");
                 String Intro = jo.getString("intro");
+                String IsFav = jo.getString("is_favorite");
 
-                items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro));
+                System.out.println(IsFav);
+
+                items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
             }
 
         } catch (IOException | JSONException e) {

@@ -23,4 +23,10 @@
         android:label=""
         tools:layout="@layout/fragment_main_more" />
 
+    <fragment
+        android:id="@+id/Fragment_New"
+        android:name="Bigbigdw.JoaraDW.Fragment_New.Fragment_New"
+        android:label=""
+        tools:layout="@layout/fragment_new" />
+
 </navigation>

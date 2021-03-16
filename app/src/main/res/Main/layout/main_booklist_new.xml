@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="0dp"
@@ -17,14 +18,56 @@
         android:layout_marginEnd="15dp"
         app:cardCornerRadius="6dp">
 
-        <ImageView
-            android:id="@+id/Img_BookC"
-            android:layout_width="91dp"
-            android:layout_height="132dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/TODO"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/booktest" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/Img_Book"
+                android:layout_width="91dp"
+                android:layout_height="132dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/TODO"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/booktest" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/FavON"
+                        android:layout_width="25dp"
+                        android:layout_height="26dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/TODO"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/icon_favon" />
+
+                    <ImageView
+                        android:id="@+id/FavOff"
+                        android:layout_width="25dp"
+                        android:layout_height="26dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/TODO"
+                        android:scaleType="fitXY"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/icon_favoff"
+                        tools:visibility="gone" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
 

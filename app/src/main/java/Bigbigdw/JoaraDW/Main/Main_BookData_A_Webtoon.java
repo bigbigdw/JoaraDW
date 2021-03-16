@@ -41,7 +41,7 @@ public class Main_BookData_A_Webtoon {
                 String Title = jo.getString("webtoon_title");
 
 
-                items.add(new Main_BookListData_A("", Title, BookImg, "", "", "", "",""));
+                items.add(new Main_BookListData_A("", Title, BookImg, "", "", "", "","",""));
             }
 
         } catch (IOException | JSONException e) {
