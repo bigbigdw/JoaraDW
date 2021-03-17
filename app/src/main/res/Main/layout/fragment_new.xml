@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -10,16 +11,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Main_NewBookList"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00283D"
+            app:itemBackground="@android:color/transparent"
+            app:itemIconTint="@color/drawer_item"
+            app:itemTextColor="@color/drawer_item"
+            app:tabIndicatorColor="#A5C500"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#A5C500"
+            app:tabTextColor="#ffffff">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
-            android:background="#FFFFFF"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="0dp"
-            android:paddingBottom="16dp" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
