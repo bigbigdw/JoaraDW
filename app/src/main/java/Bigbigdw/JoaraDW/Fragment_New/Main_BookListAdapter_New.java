@@ -63,7 +63,6 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
             ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.ADULT_FINISH);
             ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAA767676);
         }
-//        System.out.println(listData.get(position).getIsFav());
 
         if(listData.get(position).getIsFav().equals("TRUE")){
             ((Main_BookListViewHolder_New) holder).Favon.setVisibility(View.VISIBLE);
@@ -113,7 +112,6 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
                     Favon.setVisibility(View.VISIBLE);
                     Toast.makeText(itemView.getContext(),"작품이 선호작에 등록되었습니다",
                             Toast.LENGTH_SHORT).show();
-
                 } else {
                     Favoff.setVisibility(View.VISIBLE);
                     Favon.setVisibility(View.GONE);

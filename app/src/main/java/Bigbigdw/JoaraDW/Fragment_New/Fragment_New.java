@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,13 +41,30 @@ public class Fragment_New extends Fragment {
         tabLayout = root.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Toast.makeText(getActivity().getApplicationContext(),"adasd",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+//        System.out.println(TabTitle);
+
+
         return root;
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new New_Tab_New(), "전체");
-        adapter.addFragment(new New_Tab_New(), "77FES");
+        adapter.addFragment(new New_Tab_77FES(), "77FES");
         adapter.addFragment(new New_Tab_New(), "기다무");
         adapter.addFragment(new New_Tab_New(), "노블성실");
         adapter.addFragment(new New_Tab_New(), "노블레스");
@@ -57,7 +75,7 @@ public class Fragment_New extends Fragment {
         viewPager.setAdapter(adapter);
     }
 
-    public static class ViewPagerAdapter extends FragmentPagerAdapter {
+    public  class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -83,8 +101,9 @@ public class Fragment_New extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            ;
             return mFragmentTitleList.get(position);
         }
     }
-    
+
 }
