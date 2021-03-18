@@ -3,11 +3,18 @@ package Bigbigdw.JoaraDW.Etc;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
@@ -18,6 +25,10 @@ public class Popup extends Dialog {
 
     private View.OnClickListener mBtnLeftListener;
     private View.OnClickListener mBtnRightListener;
+    private WebView PopupWebView;
+    ImageView Popup;
+    String Banner = "https://api.joara.com/v1/banner/main_popup.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&banner_id=15967";
+
 
     public Popup(@NonNull Context context) {
         super(context);
@@ -35,6 +46,29 @@ public class Popup extends Dialog {
 
         setContentView(R.layout.popup);
 
+        PopupWebView= findViewById(R.id.PopupWebView);
+        Popup= findViewById(R.id.PopupImg);
+
+        WebSettings mws=PopupWebView.getSettings();
+        mws.setJavaScriptEnabled(true);
+        mws.setLoadWithOverviewMode(true);
+        PopupWebView.setBackgroundColor(0);
+        mws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        mws.setUseWideViewPort(true);
+
+        PopupWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+        PopupWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        PopupWebView.loadUrl(Banner);
+
+        Glide.with(Popup).load("https://cf.joara.com/banner_file/20210312_094353.jpg").into(Popup);
+
         //셋팅
         Button BtnLeft = findViewById(R.id.BtnLeft);
         Button BtnRight = findViewById(R.id.BtnRight);
@@ -49,5 +83,16 @@ public class Popup extends Dialog {
         super(context);
         this.mBtnLeftListener = BtnLeftListener;
         this.mBtnRightListener = BtnRightListener;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (PopupWebView.canGoBack()) {
+                PopupWebView.goBack();
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

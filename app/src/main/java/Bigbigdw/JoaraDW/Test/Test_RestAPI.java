@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Test;
 
+import android.os.AsyncTask;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
@@ -13,59 +14,37 @@ import java.nio.charset.StandardCharsets;
 
 public interface Test_RestAPI {
 
-    static void getJSON(String TAG, String REQUEST_URL, TextView textviewJSONText) {
+    static void getJSON() {
 
-        Thread thread = new Thread(() -> {
+        AsyncTask.execute(new Runnable() {
+            String result = null;
+            @Override
+            public void run() {
+                try {
+                    // Open the connection
+                    URL url = new URL("https://api.joara.com/v1/banner/main_popup.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&banner_id=15967");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    InputStream is = conn.getInputStream();
 
-            String result;
+                    // Get the stream
+                    StringBuilder builder = new StringBuilder();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        builder.append(line);
+                    }
 
-            try {
-
-                Log.d(TAG, REQUEST_URL);
-                URL url = new URL(REQUEST_URL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
-                httpURLConnection.setReadTimeout(3000);
-                httpURLConnection.setConnectTimeout(3000);
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.setUseCaches(false);
-                httpURLConnection.connect();
-
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                } else {
-                    inputStream = httpURLConnection.getErrorStream();
+                    // Set the result
+                    result = builder.toString();
+                    System.out.println(result);
                 }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
+                catch (Exception e) {
+                    // Error calling the rest api
+                    Log.e("REST_API", "GET method failed: " + e.getMessage());
+                    e.printStackTrace();
                 }
-
-                bufferedReader.close();
-                httpURLConnection.disconnect();
-
-                result = sb.toString().trim();
-
-
-            } catch (Exception e) {
-                result = e.toString();
             }
-
-            textviewJSONText.setText(result);
         });
-        thread.start();
     }
 }

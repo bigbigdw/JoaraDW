@@ -8,6 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
             android:name=".Etc.Splash"
@@ -23,8 +25,7 @@
 
         <activity
             android:name=".Test.Test"
-            android:theme="@style/Theme.JoaraDW" >
-
+            android:theme="@style/Theme.JoaraDW">
         </activity>
 
         <meta-data
