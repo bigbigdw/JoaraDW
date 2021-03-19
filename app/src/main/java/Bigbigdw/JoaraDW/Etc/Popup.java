@@ -2,10 +2,17 @@ package Bigbigdw.JoaraDW.Etc;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,9 +23,15 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Objects;
 
 import Bigbigdw.JoaraDW.R;
+import Bigbigdw.JoaraDW.Test.Test_RestAPI;
 
 
 public class Popup extends Dialog {
@@ -28,7 +41,6 @@ public class Popup extends Dialog {
     private WebView PopupWebView;
     ImageView Popup;
     String Banner = "https://api.joara.com/v1/banner/main_popup.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&banner_id=15967";
-
 
     public Popup(@NonNull Context context) {
         super(context);
@@ -50,13 +62,11 @@ public class Popup extends Dialog {
         Popup= findViewById(R.id.PopupImg);
 
         WebSettings mws=PopupWebView.getSettings();
-        mws.setJavaScriptEnabled(true);
         mws.setLoadWithOverviewMode(true);
-        PopupWebView.setBackgroundColor(0);
         mws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        mws.setUseWideViewPort(true);
-
-        PopupWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+//        mws.setUseWideViewPort(true);
+        WebView.setWebContentsDebuggingEnabled(true);
+        mws.setSupportZoom(false); // 화면 줌 허용 여부
 
         PopupWebView.setWebViewClient(new WebViewClient(){
             @Override
@@ -65,7 +75,11 @@ public class Popup extends Dialog {
                 return true;
             }
         });
+        PopupWebView.setWebChromeClient(new WebChromeClient());
+        PopupWebView.setInitialScale(133);
+        PopupWebView.setBackgroundColor(0x00000000);
         PopupWebView.loadUrl(Banner);
+
 
         Glide.with(Popup).load("https://cf.joara.com/banner_file/20210312_094353.jpg").into(Popup);
 
@@ -76,6 +90,7 @@ public class Popup extends Dialog {
         //클릭 리스너 셋팅 (클릭버튼이 동작하도록 만들어줌.)
         BtnLeft.setOnClickListener(mBtnLeftListener);
         BtnRight.setOnClickListener(mBtnRightListener);
+
     }
 
     //생성자 생성
@@ -83,16 +98,5 @@ public class Popup extends Dialog {
         super(context);
         this.mBtnLeftListener = BtnLeftListener;
         this.mBtnRightListener = BtnRightListener;
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (PopupWebView.canGoBack()) {
-                PopupWebView.goBack();
-                return false;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }

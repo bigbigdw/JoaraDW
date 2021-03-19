@@ -22,7 +22,8 @@
         <WebView
             android:id="@+id/PopupWebView"
             android:layout_width="279dp"
-            android:layout_height="446dp"
+            android:layout_height="438dp"
+            android:background="#000000"
             android:visibility="visible" />
     </LinearLayout>
 

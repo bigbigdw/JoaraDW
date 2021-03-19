@@ -22,7 +22,7 @@ public class Test extends AppCompatActivity implements Test_RestAPI {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
 
-        Test_RestAPI.getJSON();
+        Test_RestAPI.getJSON("HIHI");
 
 
 
