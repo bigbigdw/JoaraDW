@@ -80,7 +80,6 @@ public class Popup extends Dialog {
         PopupWebView.setBackgroundColor(0x00000000);
         PopupWebView.loadUrl(Banner);
 
-
         Glide.with(Popup).load("https://cf.joara.com/banner_file/20210312_094353.jpg").into(Popup);
 
         //셋팅
