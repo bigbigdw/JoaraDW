@@ -64,6 +64,8 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         MainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid);
 
         Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs, "Main_Banner.json");
+//        Main_Banner.SetBanner(MainBanner, imageListener, MainBannerURLs, "/v1/banner/home_banner.joa","&token=da7e03d618b8689fc8bed38ee8c99273&page=0&banner_type=app_home_top_banner");
+//        Main_Banner.SetBanner(MainBannerMid, imageListener, MainBannerMidURLs, "/v1/banner/home_banner.joa","&token=da7e03d618b8689fc8bed38ee8c99273&page=0&banner_type=app_home_top_banner");
         Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs, "Main_Banner_Mid.json");
 
         MainBanner.setPageCount(15);
@@ -71,6 +73,15 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
         BookList_A(root, "/v1/user/historybooks.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&page=1&mem_time=0",  R.id.Main_HistoryBookList,  HistoryAdapter);
         BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&book_code=&category=22%2C2&offset=20",  R.id.Main_HobbyBookList,  HobbyAdapter);
+        BookList_A(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=recommend_book&category=22%2C2&offset=10",  R.id.Main_MDNovelList,  MDNovelAdapter);
+        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&offset=10",  R.id.Main_MDWebtoonList,  MDWebtoonAdapter);
+        BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
+        BookList_C(root, "/v1/book/list.joa", "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_UserPickedList,  UserPickedAdapter);
+        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_NotyList,  NotyAdapter);
+        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10",  R.id.Main_RecommendedList,  RecommendAdapter);
+        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_NoblessTodayBestList,  NoblessTodayBestAdapter);
+        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_PremiumTodayBestList,  PremiumToadyBestAdapter);
+        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_CouponTodayBestList,  CouponToadyBestAdapter);
 
         LoadingLayoutWrap = root.findViewById(R.id.LoadingLayoutWrap);
         AfterLoading = root.findViewById(R.id.AfterLoading);
@@ -81,16 +92,6 @@ public class Fragment_Main extends Fragment implements Main_Banner {
                     AfterLoading.setVisibility(View.VISIBLE);
                 },
                 1000);
-
-        BookList_A(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=recommend_book&category=22%2C2&offset=10",  R.id.Main_MDNovelList,  MDNovelAdapter);
-        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&offset=10",  R.id.Main_MDWebtoonList,  MDWebtoonAdapter);
-        BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
-        BookList_C(root, "/v1/book/list.joa", "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_UserPickedList,  UserPickedAdapter);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_NotyList,  NotyAdapter);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10",  R.id.Main_RecommendedList,  RecommendAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_NoblessTodayBestList,  NoblessTodayBestAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_PremiumTodayBestList,  PremiumToadyBestAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_CouponTodayBestList,  CouponToadyBestAdapter);
 
         return root;
     }

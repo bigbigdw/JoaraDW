@@ -20,7 +20,6 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationView;
 
 import Bigbigdw.JoaraDW.Etc.Popup;
-import Bigbigdw.JoaraDW.Etc.Splash;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -33,8 +32,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Intent intent = new Intent(this, Splash.class);
-        startActivity(intent);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
