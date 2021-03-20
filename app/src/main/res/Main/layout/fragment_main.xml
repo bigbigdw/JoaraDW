@@ -133,9 +133,16 @@
                         android:layout_height="wrap_content" />
 
                     <include
+                        layout="@layout/main_booklist_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
                         layout="@layout/footer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
+
 
                 </LinearLayout>
 

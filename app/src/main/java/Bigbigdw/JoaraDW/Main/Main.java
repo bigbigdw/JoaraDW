@@ -61,9 +61,7 @@ public class Main extends AppCompatActivity {
                 setCheckable(navView, true);
                 navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
             }
-
         });
-
 
         Popup = new Popup(this, BtnLeftListener, BtnRightListener);
         Popup.show();

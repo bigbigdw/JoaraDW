@@ -22,8 +22,10 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.Main.Main_API;
 import Bigbigdw.JoaraDW.Main.Main_BookData_A;
 import Bigbigdw.JoaraDW.Main.Main_BookData_A_Webtoon;
+import Bigbigdw.JoaraDW.Main.Main_BookData_Z;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
@@ -44,6 +46,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     private final Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D();
+    private final Main_BookListAdapter_D CouponToadyBestAdapter2 = new Main_BookListAdapter_D();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -87,10 +90,12 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         BookUserPickedList(root, assetManager, "Main_UserPicked.json");
         BookNotyList(root, assetManager, "Main_NotyList.json");
         BookRecommendList(root, assetManager, "Main_Recommended.json");
-        BookRecommendList(root, assetManager, "Main_Recommended.json");
         NoblessToadyBestList(root, assetManager, "Main_NoblessTodayBest.json");
         PremiumToadyBestList(root, assetManager, "Main_PremiumTodayBest.json");
         CouponToadyBestList(root, assetManager, "Main_CouponTodayBest.json");
+
+        CouponToadyBestList2(root, "/v1/home/list.joa", "&page=1", "&section_mode=todaybest", "&store=nobless", "&orderby=cnt_best", "&show_type=home", "&category=", "&offset=20") ;
+
 
         return root;
     }
@@ -205,6 +210,17 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         CouponToadyBestAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
         CouponToadyBestAdapter.notifyDataSetChanged();
     }
+
+    public void CouponToadyBestList2(View root, String API_URL , String Page, String SectionMode, String Store, String OrderBy, String ShowType, String Category, String Offest)
+    {
+        RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_BookListTestt);
+        LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewFestival.setLayoutManager(managerFestival);
+        recyclerViewFestival.setAdapter(CouponToadyBestAdapter2);
+        CouponToadyBestAdapter2.setItems(new Main_BookData_Z().getData(API_URL, Page + SectionMode + Store + OrderBy + ShowType + Category + Offest));
+        CouponToadyBestAdapter2.notifyDataSetChanged();
+    }
+
 
 
     ImageListener imageListener = (position, imageView) -> {

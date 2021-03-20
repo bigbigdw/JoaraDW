@@ -64,7 +64,6 @@ public class Popup extends Dialog {
         WebSettings mws=PopupWebView.getSettings();
         mws.setLoadWithOverviewMode(true);
         mws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-//        mws.setUseWideViewPort(true);
         WebView.setWebContentsDebuggingEnabled(true);
         mws.setSupportZoom(false); // 화면 줌 허용 여부
 
