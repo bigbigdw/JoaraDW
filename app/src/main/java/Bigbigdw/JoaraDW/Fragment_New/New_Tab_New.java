@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import Bigbigdw.JoaraDW.Main.Main_BookData_A;
+import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.R;
 
 public class New_Tab_New extends Fragment {
@@ -30,7 +30,7 @@ public class New_Tab_New extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(NewBookListAdapter);
-        NewBookListAdapter.setItems(new Main_BookData_A().getData(assetManager, BookType));
+        NewBookListAdapter.setItems(new Main_BookData_JSON().getData(assetManager, BookType));
         NewBookListAdapter.notifyDataSetChanged();
     }
 }

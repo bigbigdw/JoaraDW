@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Main_BookData_A {
+public class Main_BookData_JSON {
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
     public ArrayList<Main_BookListData_A> getData(AssetManager assetManager, String BookType) {

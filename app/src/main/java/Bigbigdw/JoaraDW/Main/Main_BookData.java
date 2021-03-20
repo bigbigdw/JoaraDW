@@ -16,7 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Main_BookData_Z {
+public class Main_BookData {
 
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
     public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC) {
@@ -34,6 +34,7 @@ public class Main_BookData_Z {
             public void run() {
                 try {
                     URL url = new URL(API + API_URL + API_KEY + VER + DEVICE + DEVICE_ID + DEVICE_TOKEN + ETC);
+//                    URL url = new URL("https://api.joara.com/v1/home/list.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&token=da7e03d618b8689fc8bed38ee8c99273&ver=2.6.3&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     InputStream is = conn.getInputStream();
@@ -68,7 +69,6 @@ public class Main_BookData_Z {
                     }
                 }
                 catch (Exception e) {
-                    // Error calling the rest api
                     Log.e("REST_API", "GET method failed: " + e.getMessage());
                     e.printStackTrace();
                 }
