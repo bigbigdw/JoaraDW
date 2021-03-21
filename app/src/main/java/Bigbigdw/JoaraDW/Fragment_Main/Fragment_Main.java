@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -25,6 +27,7 @@ import java.util.List;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
+import Bigbigdw.JoaraDW.Main.Main_BookData_Z;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
@@ -45,6 +48,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     private final Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D();
+    private RequestQueue queue;
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -71,17 +75,19 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         MainBanner.setPageCount(15);
         MainBannerMid.setPageCount(10);
 
-        BookList_A(root, "/v1/user/historybooks.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&page=1&mem_time=0",  R.id.Main_HistoryBookList,  HistoryAdapter);
-        BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&book_code=&category=22%2C2&offset=20",  R.id.Main_HobbyBookList,  HobbyAdapter);
-        BookList_A(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=recommend_book&category=22%2C2&offset=10",  R.id.Main_MDNovelList,  MDNovelAdapter);
+        queue = Volley.newRequestQueue(getActivity());
+
+        BookList_Z(root, "/v1/user/historybooks.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&page=1&mem_time=0",  R.id.Main_HistoryBookList,  HistoryAdapter, queue);
+        BookList_Z(root, "/v1/book/recommend_list_api.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&book_code=&category=22%2C2&offset=20",  R.id.Main_HobbyBookList,  HobbyAdapter, queue);
+        BookList_Z(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=recommend_book&category=22%2C2&offset=10",  R.id.Main_MDNovelList,  MDNovelAdapter, queue);
         BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&offset=10",  R.id.Main_MDWebtoonList,  MDWebtoonAdapter);
         BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
-        BookList_C(root, "/v1/book/list.joa", "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_UserPickedList,  UserPickedAdapter);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_NotyList,  NotyAdapter);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10",  R.id.Main_RecommendedList,  RecommendAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_NoblessTodayBestList,  NoblessTodayBestAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_PremiumTodayBestList,  PremiumToadyBestAdapter);
-        BookList_D(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_CouponTodayBestList,  CouponToadyBestAdapter);
+        BookList_X(root, "/v1/book/list.joa", "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_UserPickedList,  UserPickedAdapter, queue);
+        BookList_X(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_NotyList,  NotyAdapter, queue);
+        BookList_X(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10",  R.id.Main_RecommendedList,  RecommendAdapter, queue);
+        BookList_Y(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_NoblessTodayBestList,  NoblessTodayBestAdapter, queue);
+        BookList_Y(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_PremiumTodayBestList,  PremiumToadyBestAdapter, queue);
+        BookList_Y(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_CouponTodayBestList,  CouponToadyBestAdapter, queue);
 
         LoadingLayoutWrap = root.findViewById(R.id.LoadingLayoutWrap);
         AfterLoading = root.findViewById(R.id.AfterLoading);
@@ -94,6 +100,36 @@ public class Fragment_Main extends Fragment implements Main_Banner {
                 1000);
 
         return root;
+    }
+
+    public void BookList_Z(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue)
+    {
+        RecyclerView recyclerView = root.findViewById(RecylerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(Adapter);
+        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue));
+        Adapter.notifyDataSetChanged();
+    }
+
+    public void BookList_X(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue)
+    {
+        RecyclerView recyclerView = root.findViewById(RecylerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(Adapter);
+        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue));
+        Adapter.notifyDataSetChanged();
+    }
+
+    public void BookList_Y(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue)
+    {
+        RecyclerView recyclerView = root.findViewById(RecylerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(Adapter);
+        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue));
+        Adapter.notifyDataSetChanged();
     }
 
     public void BookList_A(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter)

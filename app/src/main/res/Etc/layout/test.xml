@@ -6,26 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
+        android:id="@+id/tvMain"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.9"
-        android:layout_margin="15dp"
-        android:padding="15dp"
-        android:maxLines="100"
-        android:id="@+id/textview_main_jsontext"
-        android:singleLine="false"
-        android:scrollbars="vertical"
-        android:scrollHorizontally="false"
-        android:text="" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_margin="15dp"
-        android:text="JSON 가져오기"
-        android:id="@+id/button_main_requestjson"/>
-
-
+        android:layout_height="wrap_content"
+         />
 </LinearLayout>

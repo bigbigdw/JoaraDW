@@ -1,11 +1,9 @@
-package Bigbigdw.JoaraDW.Test;
 
+package Bigbigdw.JoaraDW.Main;
+
+import android.content.res.AssetManager;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,37 +17,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.Main.Main_BookListData_A;
-import Bigbigdw.JoaraDW.R;
+public class Main_BookData_Z {
 
+    ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
+    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue) {
+        String API = "https://api.joara.com";
+        String API_KEY = "?api_key=mw_8ba234e7801ba288554ca07ae44c7";
+        String VER = "&ver=2.6.3";
+        String DEVICE = "&device=mw";
+        String DEVICE_ID = "&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604";
+        String DEVICE_TOKEN = "&devicetoken=mw";
+        String ResultURL = API + API_URL + API_KEY + VER + DEVICE + DEVICE_ID + DEVICE_TOKEN + ETC;
 
-public class Test extends AppCompatActivity {
-
-    private static final String TAG = "MAIN";
-    private TextView tv;
-    private RequestQueue queue;
-
-    private String id;
-    private String pw;
-    private JSONArray language;
-    private JSONObject item;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
-        tv = findViewById(R.id.tvMain);
-
-        queue = Volley.newRequestQueue(this);
-        String url = "https://api.joara.com/v1/user/historybooks.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&token=da7e03d618b8689fc8bed38ee8c99273&ver=2.6.3&page=1&favorite=1&offset=50";
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -68,7 +56,7 @@ public class Test extends AppCompatActivity {
                         String Intro = jo.getString("intro");
                         String IsFav = jo.getString("is_favorite");
 
-                        tv.setText(BookImg);
+                        items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
                     }
 
 
@@ -82,16 +70,7 @@ public class Test extends AppCompatActivity {
 
             }
         });
-
-//        jsonRequest.setTag(TAG);
         queue.add(jsonRequest);
+        return items;
     }
-
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (queue != null) {
-//            queue.cancelAll(TAG);
-//        }
-//    }
 }

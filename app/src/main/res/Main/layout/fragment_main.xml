@@ -60,7 +60,8 @@
                     android:background="#FFFFFF"
                     android:orientation="vertical"
                     android:paddingTop="40dp"
-                    android:paddingBottom="80dp">
+                    android:paddingBottom="80dp"
+                    android:visibility="visible">
 
                     <include
                         layout="@layout/loading"
@@ -72,9 +73,9 @@
                     android:id="@+id/AfterLoading"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_marginTop="8dp"
                     android:background="#F9F9F9"
+                    android:orientation="vertical"
                     android:visibility="gone">
 
                     <include
@@ -137,7 +138,6 @@
                         layout="@layout/footer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
 
 
                 </LinearLayout>
