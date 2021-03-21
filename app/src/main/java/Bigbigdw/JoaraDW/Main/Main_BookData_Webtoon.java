@@ -3,6 +3,13 @@ package Bigbigdw.JoaraDW.Main;
         import android.content.res.AssetManager;
         import android.os.AsyncTask;
         import android.util.Log;
+        import android.view.View;
+        import android.widget.LinearLayout;
+
+        import com.android.volley.Request;
+        import com.android.volley.RequestQueue;
+        import com.android.volley.Response;
+        import com.android.volley.toolbox.JsonObjectRequest;
 
         import org.json.JSONArray;
         import org.json.JSONException;
@@ -19,37 +26,20 @@ package Bigbigdw.JoaraDW.Main;
 public class Main_BookData_Webtoon {
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC) {
+    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
+        String API = "https://api.joara.com";
+        String API_KEY = "?api_key=mw_8ba234e7801ba288554ca07ae44c7";
+        String VER = "&ver=2.6.3";
+        String DEVICE = "&device=mw";
+        String DEVICE_ID = "&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604";
+        String DEVICE_TOKEN = "&devicetoken=mw";
+        String ResultURL = API + API_URL + API_KEY + VER + DEVICE + DEVICE_ID + DEVICE_TOKEN + ETC;
 
-        AsyncTask.execute(new Runnable() {
-            String result = null;
-            String API = "https://api.joara.com";
-            String API_KEY = "?api_key=mw_8ba234e7801ba288554ca07ae44c7";
-            String VER = "&ver=2.6.3";
-            String DEVICE = "&device=mw";
-            String DEVICE_ID = "&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604";
-            String DEVICE_TOKEN = "&devicetoken=mw";
-
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, new Response.Listener<JSONObject>() {
             @Override
-            public void run() {
+            public void onResponse(JSONObject response) {
                 try {
-                    URL url = new URL(API + API_URL + API_KEY + VER + DEVICE + DEVICE_ID + DEVICE_TOKEN + ETC);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    InputStream is = conn.getInputStream();
-
-                    StringBuilder builder = new StringBuilder();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        builder.append(line);
-                    }
-
-                    result = builder.toString();
-
-                    JSONObject jsonObject = new JSONObject(result);
-                    JSONArray flag = jsonObject.getJSONArray("webtoons");
-
+                    JSONArray flag = response.getJSONArray("webtoons");
 
                     for (int i = 0; i < flag.length(); i++) {
                         JSONObject jo = flag.getJSONObject(i);
@@ -59,14 +49,18 @@ public class Main_BookData_Webtoon {
 
                         items.add(new Main_BookListData_A("", Title, BookImg, "", "", "", "","",""));
                     }
-                }
-                catch (Exception e) {
-                    Log.e("REST_API", "GET method failed: " + e.getMessage());
+
+                    Wrap.setVisibility(View.VISIBLE);
+                    System.out.println("1성공!");
+                } catch (JSONException e) {
                     e.printStackTrace();
+                    System.out.println("2실패!");
                 }
             }
-        });
+        }, error -> {
 
+        });
+        queue.add(jsonRequest);
         return items;
     }
 }
