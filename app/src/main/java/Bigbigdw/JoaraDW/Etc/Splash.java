@@ -15,12 +15,13 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        new android.os.Handler().postDelayed(
-                () -> {
-                    Intent intent = new Intent(this, Main.class);
-                    startActivity(intent);
-                },
-                2000);
-
+        startLoading();
     }
+
+    private void startLoading() {
+        Handler handler = new Handler();
+        handler.postDelayed(() -> finish(), 2000);
+    }
+
+
 }

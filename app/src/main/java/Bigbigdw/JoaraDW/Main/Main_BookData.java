@@ -4,6 +4,8 @@ package Bigbigdw.JoaraDW.Main;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,7 +30,7 @@ public class Main_BookData {
 
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue) {
+    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String API = "https://api.joara.com";
         String API_KEY = "?api_key=mw_8ba234e7801ba288554ca07ae44c7";
         String VER = "&ver=2.6.3";
@@ -57,16 +59,19 @@ public class Main_BookData {
                         String IsFav = jo.getString("is_favorite");
 
                         items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                        Wrap.setVisibility(View.VISIBLE);
                     }
 
-                    System.out.println("1성공!");
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("2실패!");
                 }
             }
-        }, error -> {
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+            }
         });
         queue.add(jsonRequest);
         return items;

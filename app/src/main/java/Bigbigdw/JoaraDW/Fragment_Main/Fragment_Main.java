@@ -27,7 +27,6 @@ import java.util.List;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
-import Bigbigdw.JoaraDW.Main.Main_BookData_Z;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
@@ -99,7 +98,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
     }
 
@@ -110,7 +109,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
     }
 
@@ -121,7 +120,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData_Z().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
     }
 
