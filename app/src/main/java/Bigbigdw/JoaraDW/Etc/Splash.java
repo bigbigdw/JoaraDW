@@ -20,7 +20,7 @@ public class Splash extends Activity {
 
     private void startLoading() {
         Handler handler = new Handler();
-        handler.postDelayed(() -> finish(), 2000);
+        handler.postDelayed(this::finish, 2000);
     }
 
 
