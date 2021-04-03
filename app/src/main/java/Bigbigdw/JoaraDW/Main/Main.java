@@ -21,10 +21,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
@@ -34,17 +39,41 @@ import Bigbigdw.JoaraDW.R;
 public class Main extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
     private Popup Popup;
+    String TOKEN = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        Intent intent = getIntent();
+        boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
+        if (IsFirstPage) {
+            Intent intentSplash = new Intent(this, Splash.class);
+            startActivity(intentSplash);
+        }
+
+        try {
+            // 파일읽어오기 : 내부 디랙토리, 파일이름
+            FileReader fr = new FileReader(getDataDir() + "/userInfo.json");
+            BufferedReader br = new BufferedReader(fr);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                sb.append(line).append("\n");
+                line = br.readLine();
+            }
+            br.close();
+            String result = sb.toString();//
+            System.out.println(result);// 결과 로그찍기
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Intent intent = new Intent(this, Splash.class);
-        startActivity(intent);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_vie);
@@ -63,10 +92,10 @@ public class Main extends AppCompatActivity {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.Fragment_main) {
                 setCheckable(navView, false);
-                navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
+                navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
             } else {
                 setCheckable(navView, true);
-                navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
+                navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_AUTO);
             }
         });
 
@@ -75,13 +104,10 @@ public class Main extends AppCompatActivity {
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, "https://api.joara.com/api/info/index.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&menu_ver=43", null, response -> {
             try {
                 JSONArray BannerArray = response.getJSONArray("banner");
-                if(BannerArray.length() == 0){
-
-                } else{
+                if (BannerArray.length() != 0) {
                     Popup = new Popup(this, BtnLeftListener, BtnRightListener);
                     Popup.show();
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
