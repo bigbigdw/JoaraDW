@@ -20,17 +20,19 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Bigbigdw.JoaraDW.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
 import Bigbigdw.JoaraDW.R;
@@ -39,7 +41,7 @@ import Bigbigdw.JoaraDW.R;
 public class Main extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
     private Popup Popup;
-    String TOKEN = "";
+    String USERTOKEN = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +67,15 @@ public class Main extends AppCompatActivity {
             }
             br.close();
             String result = sb.toString();//
-            System.out.println(result);// 결과 로그찍기
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject UserInfo = jsonObject.getJSONObject("user");
+            USERTOKEN = "&token=" + UserInfo.getString("token");
 
-        } catch (IOException e) {
+//            System.out.println(result);// 결과 로그찍기
+
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -101,7 +106,7 @@ public class Main extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, "https://api.joara.com/api/info/index.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&menu_ver=43", null, response -> {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/api/info/index.joa" + HELPER.ETC +  USERTOKEN + "&category=22%2C2&menu_ver=43", null, response -> {
             try {
                 JSONArray BannerArray = response.getJSONArray("banner");
                 if (BannerArray.length() != 0) {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import Bigbigdw.JoaraDW.HELPER;
 import Bigbigdw.JoaraDW.Etc.Splash;
 import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
@@ -47,22 +47,12 @@ public class Login_Main extends AppCompatActivity {
         PWtext = findViewById(R.id.PWtext);
         LoginBtn = findViewById(R.id.LoginBtn);
         queue = Volley.newRequestQueue(this);
-        final CheckBox AutoLogin = findViewById(R.id.AutoLogin);
 
         Intent intent = new Intent(this, Splash.class);
         startActivity(intent);
 
         LOGO = findViewById(R.id.LOGO);
 
-        AutoLogin.setOnCheckedChangeListener(
-                (buttonView, isChecked) -> {
-                    if (AutoLogin.isChecked()) {
-                        Toast.makeText(Login_Main.this.getApplicationContext(), "자동로그인이 활성화 되었습니다", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(Login_Main.this.getApplicationContext(), "자동로그인이 비활성화 되었습니다", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
     }
 
 
@@ -88,11 +78,11 @@ public class Login_Main extends AppCompatActivity {
                     bufwr.write(response);
                     bufwr.close();
 
-                    System.out.println("파일 쓰기 완료");
+                    System.out.println("USERINFO 쓰기 완료");
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("파일 쓰기 실패");
+                    System.out.println("USERINFO 쓰기 실패");
                 }
 
                 Toast.makeText(getApplicationContext(), "환영합니다!" + UserName + "님!", Toast.LENGTH_SHORT).show();
@@ -114,11 +104,11 @@ public class Login_Main extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("member_id", idCheck);
                 params.put("passwd", pwCheck);
-                params.put("api_key", "mw_8ba234e7801ba288554ca07ae44c7");
-                params.put("ver", "2.6.3");
-                params.put("device", "mw");
-                params.put("deviceuid", "5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604");
-                params.put("devicetoken", "mw");
+                params.put("api_key", HELPER.API_KEY);
+                params.put("ver", HELPER.VER);
+                params.put("device", HELPER.DEVICE);
+                params.put("deviceuid", HELPER.DEVICE_ID);
+                params.put("devicetoken", HELPER.DEVICE_TOKEN);
                 return params;
             }
         };
