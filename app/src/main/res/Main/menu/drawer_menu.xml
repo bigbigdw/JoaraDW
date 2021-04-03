@@ -4,10 +4,11 @@
     tools:showIn="navigation_view">
 
     <item
-        android:title="@string/drawer_Bottom_title1">
+        android:id="@+id/Menu_Logined"
+        android:title="@string/drawer_Bottom_title1"
+        android:visible="false">
         <menu>
-            <group
-                android:checkableBehavior="single">
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@id/Fragment_main"
                     android:icon="@drawable/icon_lnb_1"
@@ -20,19 +21,43 @@
                     android:id="@id/Fragment_main"
                     android:icon="@drawable/icon_lnb_3"
                     android:title="@string/drawer_Bottom_subTitle3" />
+                <item
+                    android:id="@id/Fragment_main"
+                    android:icon="@drawable/icon_lnb_3_2"
+                    android:title="@string/drawer_Bottom_subTitle3_2" />
             </group>
         </menu>
     </item>
 
     <item
+        android:id="@+id/Menu_Default"
         android:title="@string/drawer_Bottom_title2">
         <menu>
-            <group
-                android:checkableBehavior="single">
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@id/Fragment_main"
+                    android:icon="@drawable/icon_lnb_9"
+                    android:title="@string/drawer_Bottom_subTitle8" />
+                <item
+                    android:id="@id/Fragment_main"
+                    android:icon="@drawable/icon_lnb_10"
+                    android:title="@string/drawer_Bottom_subTitle9" />
+
+                <item
+                    android:id="@id/Fragment_main"
+                    android:icon="@drawable/icon_lnb_11"
+                    android:title="@string/drawer_Bottom_subTitle10" />
+                <item
+                    android:id="@id/Fragment_main"
+                    android:icon="@drawable/icon_lnb_12"
+                    android:title="@string/drawer_Bottom_subTitle11" />
+
                 <item
                     android:id="@id/Fragment_main"
                     android:icon="@drawable/icon_lnb_4"
                     android:title="@string/drawer_Bottom_subTitle4" />
+
                 <item
                     android:id="@id/Fragment_main"
                     android:icon="@drawable/icon_lnb_5"
@@ -40,12 +65,13 @@
 
                 <item
                     android:id="@id/Fragment_main"
-                    android:icon="@drawable/icon_lnb_6"
+                    android:icon="@drawable/icon_lnb_8"
                     android:title="@string/drawer_Bottom_subTitle6" />
                 <item
                     android:id="@id/Fragment_main"
                     android:icon="@drawable/icon_lnb_7"
                     android:title="@string/drawer_Bottom_subTitle7" />
+
             </group>
         </menu>
     </item>

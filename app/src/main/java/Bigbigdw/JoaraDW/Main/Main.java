@@ -1,11 +1,14 @@
 package Bigbigdw.JoaraDW.Main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,13 +31,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import Bigbigdw.JoaraDW.HELPER;
+import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
+import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -42,11 +45,14 @@ public class Main extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
     private Popup Popup;
     String USERTOKEN = "";
+    String STATUS = "";
+    LinearLayout Drawer_LogOut;
+    LinearLayout Drawer_LogIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.component_main);
 
         Intent intent = getIntent();
         boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
@@ -56,7 +62,6 @@ public class Main extends AppCompatActivity {
         }
 
         try {
-            // 파일읽어오기 : 내부 디랙토리, 파일이름
             FileReader fr = new FileReader(getDataDir() + "/userInfo.json");
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
@@ -69,19 +74,44 @@ public class Main extends AppCompatActivity {
             String result = sb.toString();//
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
+            STATUS = jsonObject.getString("status");
             USERTOKEN = "&token=" + UserInfo.getString("token");
-
-//            System.out.println(result);// 결과 로그찍기
-
+            System.out.println("USERINFO 읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+            System.out.println("USERINFO 읽기 실패");
         }
+
+//        if(STATUS.equals("1")){
+//            Drawer_LogOut.setVisibility(View.GONE);
+//            Drawer_LogIn.setVisibility(View.VISIBLE);
+//        } else {
+//            Drawer_LogOut.setVisibility(View.VISIBLE);
+//            Drawer_LogIn.setVisibility(View.GONE);
+//        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_vie);
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        Drawer_LogOut = nav_header_view.findViewById(R.id.Drawer_LogOut);
+        Drawer_LogIn = nav_header_view.findViewById(R.id.Drawer_LogIn);
+
+
+        if (STATUS.equals("1")) {
+            System.out.println("로그인 성공");
+            Drawer_LogOut.setVisibility(View.GONE);
+            Drawer_LogIn.setVisibility(View.VISIBLE);
+        } else {
+            System.out.println("로그인 안됨");
+            Drawer_LogOut.setVisibility(View.VISIBLE);
+            Drawer_LogIn.setVisibility(View.GONE);
+        }
+
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_main
@@ -106,7 +136,7 @@ public class Main extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/api/info/index.joa" + HELPER.ETC +  USERTOKEN + "&category=22%2C2&menu_ver=43", null, response -> {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/api/info/index.joa" + HELPER.ETC + "&category=22%2C2&menu_ver=43", null, response -> {
             try {
                 JSONArray BannerArray = response.getJSONArray("banner");
                 if (BannerArray.length() != 0) {
@@ -121,6 +151,13 @@ public class Main extends AppCompatActivity {
         });
         queue.add(jsonRequest);
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public static void setCheckable(BottomNavigationView navView, boolean checkable) {
@@ -171,4 +208,17 @@ public class Main extends AppCompatActivity {
             Popup.dismiss();
         }
     };
+
+    public void onClickLogin(View v) {
+        Toast.makeText(getApplicationContext(), "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), Login_Main.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(intent, 0);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

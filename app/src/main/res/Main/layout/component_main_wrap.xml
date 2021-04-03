@@ -29,7 +29,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/main_contents" />
+    <include layout="@layout/component_main_contents" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Bottom_Navigation"

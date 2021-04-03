@@ -4,7 +4,7 @@
     <string name="Main_Top_Lavel1">77페스티벌</string>
     <string name="Main_Top_Lavel2">기다무</string>
     <string name="Main_Top_Lavel3">NOTY</string>
-    <string name="Main_Top_Lavel4">이벤트</string>
+    <string name="Main_Top_Lavel4">노블성실</string>
     <string name="Main_BookList_History">님의 선호작 이어보기</string>
     <string name="Main_BookList_Hobby1">당신의</string>
     <string name="Main_BookList_Hobby2">취향을</string>
@@ -23,6 +23,7 @@
     <string name="Main_BookList_Premium">프리미엄</string>
     <string name="Main_BookList_Coupon">후원쿠폰</string>
     <string name="Main_BookList_TodayBestList">베스트</string>
+    <string name="Main_NotLogined">로그인이 필요합니다</string>
     <!-- 바텀 영역 -->
     <string name="app_bottom1">최신작품</string>
     <string name="app_bottom2">더보기</string>
@@ -47,8 +48,13 @@
     <string name="drawer_Bottom_subTitle1">내 정보</string>
     <string name="drawer_Bottom_subTitle2">작품 관리</string>
     <string name="drawer_Bottom_subTitle3">정산 관리</string>
+    <string name="drawer_Bottom_subTitle3_2">보관함</string>
     <string name="drawer_Bottom_subTitle4">공지 사항</string>
     <string name="drawer_Bottom_subTitle5">자주 묻는 질문</string>
     <string name="drawer_Bottom_subTitle6">작가 지원 정책</string>
     <string name="drawer_Bottom_subTitle7">1:1 고객 센터</string>
+    <string name="drawer_Bottom_subTitle8">이벤트</string>
+    <string name="drawer_Bottom_subTitle9">작품 서평</string>
+    <string name="drawer_Bottom_subTitle10">조아라 웹툰</string>
+    <string name="drawer_Bottom_subTitle11">자유게시판</string>
 </resources>

@@ -19,7 +19,10 @@
         <activity
             android:name=".Main.Main"
             android:theme="@style/Theme.JoaraDW.NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -31,10 +34,7 @@
         <activity
             android:name=".Login.Login_Main"
             android:theme="@style/Theme.JoaraDW">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <meta-data

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import Bigbigdw.JoaraDW.HELPER;
-import Bigbigdw.JoaraDW.Etc.Splash;
+import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -38,6 +38,7 @@ public class Login_Main extends AppCompatActivity {
     Button LoginBtn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +48,34 @@ public class Login_Main extends AppCompatActivity {
         PWtext = findViewById(R.id.PWtext);
         LoginBtn = findViewById(R.id.LoginBtn);
         queue = Volley.newRequestQueue(this);
-
-        Intent intent = new Intent(this, Splash.class);
-        startActivity(intent);
-
         LOGO = findViewById(R.id.LOGO);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), Main.class);
+        intent.putExtra("IsFirstPage", false);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(intent, 0);
+        finish();
+    }
+
+    static void WriteJson(String filename, String response){
+        FileWriter fw = null;
+
+        try {
+            fw = new FileWriter(filename + "userInfo.json");
+            System.out.println(filename);
+            BufferedWriter bufwr = new BufferedWriter(fw);
+            bufwr.write(response);
+            bufwr.close();
+            System.out.println("USERINFO 쓰기 완료");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("USERINFO 쓰기 실패");
+        }
     }
 
 
@@ -67,29 +90,17 @@ public class Login_Main extends AppCompatActivity {
                 JSONObject reader = new JSONObject(response);
                 JSONObject userInfo = reader.getJSONObject("user");
                 String UserName = userInfo.getString("nickname");
-
-                FileWriter fw = null;
                 String filename = getDataDir() + "/";
-                try {
-                    fw = new FileWriter(filename + "userInfo.json");
-                    System.out.println(filename);
 
-                    BufferedWriter bufwr = new BufferedWriter(fw);
-                    bufwr.write(response);
-                    bufwr.close();
-
-                    System.out.println("USERINFO 쓰기 완료");
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("USERINFO 쓰기 실패");
-                }
+                WriteJson(filename, response);
 
                 Toast.makeText(getApplicationContext(), "환영합니다!" + UserName + "님!", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 intent.putExtra("IsFirstPage", false);
-                startActivity(intent);
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(intent, 0);
+                finish();
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();
@@ -120,7 +131,7 @@ public class Login_Main extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if (queue != null) {
-            System.out.println("HIHI");
+            System.out.println("queue가 없습니다");
         }
     }
 
@@ -148,6 +159,10 @@ public class Login_Main extends AppCompatActivity {
 //        startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
 
 
