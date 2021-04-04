@@ -66,12 +66,10 @@ public class Login_Main extends AppCompatActivity {
 
         try {
             fw = new FileWriter(filename + "userInfo.json");
-            System.out.println(filename);
             BufferedWriter bufwr = new BufferedWriter(fw);
             bufwr.write(response);
             bufwr.close();
             System.out.println("USERINFO 쓰기 완료");
-
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("USERINFO 쓰기 실패");

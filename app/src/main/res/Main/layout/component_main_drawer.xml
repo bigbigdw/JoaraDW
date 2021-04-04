@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,9 +44,11 @@
                 android:textColor="#B1C124" />
 
             <ImageView
+                android:id="@+id/Btn_Logout"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/TODO"
+                android:onClick="onClickLogout"
                 android:src="@drawable/icon_logout" />
         </LinearLayout>
 
@@ -234,7 +236,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClickLogin"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:visibility="gone">
 
         <ImageView
             android:layout_width="match_parent"

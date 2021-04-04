@@ -20,7 +20,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,8 +34,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.Buffer;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
@@ -48,11 +55,13 @@ public class Main extends AppCompatActivity {
     String STATUS = "";
     LinearLayout Drawer_LogOut;
     LinearLayout Drawer_LogIn;
+    RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.component_main);
+        queue = Volley.newRequestQueue(this);
 
         Intent intent = getIntent();
         boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
@@ -82,14 +91,6 @@ public class Main extends AppCompatActivity {
             System.out.println("USERINFO 읽기 실패");
         }
 
-//        if(STATUS.equals("1")){
-//            Drawer_LogOut.setVisibility(View.GONE);
-//            Drawer_LogIn.setVisibility(View.VISIBLE);
-//        } else {
-//            Drawer_LogOut.setVisibility(View.VISIBLE);
-//            Drawer_LogIn.setVisibility(View.GONE);
-//        }
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -111,7 +112,6 @@ public class Main extends AppCompatActivity {
             Drawer_LogOut.setVisibility(View.VISIBLE);
             Drawer_LogIn.setVisibility(View.GONE);
         }
-
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_main
@@ -215,6 +215,54 @@ public class Main extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivityIfNeeded(intent, 0);
         finish();
+    }
+
+    void DeleteSignedInfo(String filename){
+        // 파일의 경로 + 파일명
+        String filePath = filename + "userInfo.json";
+        File deleteFile = new File(filePath);
+        // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+        if(deleteFile.exists()) {
+            // 파일을 삭제합니다.
+            deleteFile.delete();
+            Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+            System.out.println("파일을 삭제하였습니다.");
+            Intent intent = new Intent(getApplicationContext(), Main.class);
+            intent.putExtra("IsFirstPage", false);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivityIfNeeded(intent, 0);
+            finish();
+            startActivity(getIntent());
+        } else {
+            System.out.println("파일이 존재하지 않습니다.");
+        }
+    }
+
+    public void onClickLogout(View v) {
+
+        String LogoutURL = "/v1/user/deauth.joa";
+        System.out.println(HELPER.API + LogoutURL + HELPER.ETC + "&category=22%2C2" + USERTOKEN);
+
+        String filename = getDataDir() + "/";
+
+        final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + LogoutURL + HELPER.ETC + "&category=22%2C2" + USERTOKEN, response -> {
+            System.out.println(response);
+            try {
+                JSONObject reader = new JSONObject(response);
+                STATUS = reader.getString("status");
+                if(STATUS.equals("1")){
+                    DeleteSignedInfo(filename);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(jsonRequest);
     }
 
     @Override
