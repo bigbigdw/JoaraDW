@@ -5,8 +5,7 @@
 
     <item
         android:id="@+id/Menu_Logined"
-        android:title="@string/drawer_Bottom_title1"
-        android:visible="false">
+        android:title="@string/drawer_Bottom_title1">
         <menu>
             <group android:checkableBehavior="single">
                 <item

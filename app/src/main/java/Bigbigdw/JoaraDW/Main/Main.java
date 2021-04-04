@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Main;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -58,12 +60,30 @@ public class Main extends AppCompatActivity {
     LinearLayout Drawer_LogOut;
     LinearLayout Drawer_LogIn;
     RequestQueue queue;
+    TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.component_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         queue = Volley.newRequestQueue(this);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = findViewById(R.id.nav_vie);
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        Drawer_LogOut = nav_header_view.findViewById(R.id.Drawer_LogOut);
+        Drawer_LogIn = nav_header_view.findViewById(R.id.Drawer_LogIn);
+        Mana = nav_header_view.findViewById(R.id.Mana);
+        Coupon = nav_header_view.findViewById(R.id.Coupon);
+        Cash = nav_header_view.findViewById(R.id.Cash);
+        Manuscript_Coupon = nav_header_view.findViewById(R.id.Manuscript_Coupon);
+        Support_Coupon = nav_header_view.findViewById(R.id.Support_Coupon);
 
         Intent intent = getIntent();
         boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
@@ -87,32 +107,33 @@ public class Main extends AppCompatActivity {
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             STATUS = jsonObject.getString("status");
             USERTOKEN = "&token=" + UserInfo.getString("token");
+            String mana = UserInfo.getString("mana");
+            Mana.setText(mana);
+            String expire_cash = UserInfo.getString("expire_cash");
+            Coupon.setText(expire_cash);
+            String cash = UserInfo.getString("cash");
+            Cash.setText(cash);
+            String manuscript_coupon = UserInfo.getString("manuscript_coupon");
+            Manuscript_Coupon.setText(manuscript_coupon);
+            String support_coupon = UserInfo.getString("support_coupon");
+            Support_Coupon.setText(support_coupon);
             System.out.println("USERINFO 읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             System.out.println("USERINFO 읽기 실패");
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_vie);
-        View nav_header_view = navigationView.getHeaderView(0);
-
-        Drawer_LogOut = nav_header_view.findViewById(R.id.Drawer_LogOut);
-        Drawer_LogIn = nav_header_view.findViewById(R.id.Drawer_LogIn);
-
 
         if (STATUS.equals("1")) {
             System.out.println("로그인 성공");
             Drawer_LogOut.setVisibility(View.GONE);
             Drawer_LogIn.setVisibility(View.VISIBLE);
+            hideItem(navigationView);
         } else {
             System.out.println("로그인 안됨");
             Drawer_LogOut.setVisibility(View.VISIBLE);
             Drawer_LogIn.setVisibility(View.GONE);
+            hideItem(navigationView);
         }
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
@@ -191,6 +212,11 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void hideItem(NavigationView navigationView)
+    {
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.Menu_Logined).setVisible(STATUS.equals("1"));
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -199,13 +225,13 @@ public class Main extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private View.OnClickListener BtnLeftListener = new View.OnClickListener() {
+    private final View.OnClickListener BtnLeftListener = new View.OnClickListener() {
         public void onClick(View v) {
             Popup.dismiss();
         }
     };
 
-    private View.OnClickListener BtnRightListener = new View.OnClickListener() {
+    private final View.OnClickListener BtnRightListener = new View.OnClickListener() {
         public void onClick(View v) {
             Popup.dismiss();
         }
@@ -265,12 +291,9 @@ public class Main extends AppCompatActivity {
     public void onClickLogout(View v) {
 
         String LogoutURL = "/v1/user/deauth.joa";
-        System.out.println(HELPER.API + LogoutURL + HELPER.ETC + "&category=22%2C2" + USERTOKEN);
-
         String filename = getDataDir() + "/";
 
         final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + LogoutURL + HELPER.ETC + "&category=22%2C2" + USERTOKEN, response -> {
-            System.out.println(response);
             try {
                 JSONObject reader = new JSONObject(response);
                 STATUS = reader.getString("status");

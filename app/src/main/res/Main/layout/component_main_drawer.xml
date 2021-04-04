@@ -76,6 +76,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/Coupon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
@@ -109,6 +110,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/Cash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
@@ -143,6 +145,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/Mana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
@@ -177,6 +180,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/Support_Coupon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
@@ -212,6 +216,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/Manuscript_Coupon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
