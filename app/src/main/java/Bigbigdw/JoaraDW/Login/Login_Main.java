@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -111,10 +112,10 @@ public class Login_Main extends AppCompatActivity {
             BufferedWriter bufwr = new BufferedWriter(fw);
             bufwr.write(response);
             bufwr.close();
-            System.out.println("USERINFO 쓰기 완료");
+            Log.d("USERINFO", "쓰기 완료");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("USERINFO 쓰기 실패");
+            Log.d("USERINFO", "쓰기 실패");
         }
     }
 
@@ -174,7 +175,7 @@ public class Login_Main extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if (queue != null) {
-            System.out.println("queue가 없습니다");
+            Log.d("ONSTOP", "queue가 없습니다");
         }
     }
 

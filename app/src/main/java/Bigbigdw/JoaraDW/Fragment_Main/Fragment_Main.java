@@ -2,6 +2,7 @@ package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,12 @@ import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +61,33 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
     CarouselView MainBannerMid;
     List<String> MainBannerMidURLs = new ArrayList<>();
-
+    String USERTOKEN = "&token=";
+    String STATUS = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        try {
+            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
+            BufferedReader br = new BufferedReader(fr);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                sb.append(line).append("\n");
+                line = br.readLine();
+            }
+            br.close();
+            String result = sb.toString();
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject UserInfo = jsonObject.getJSONObject("user");
+            USERTOKEN = "&token=" + UserInfo.getString("token");
+            STATUS = jsonObject.getString("status");
+            Log.d("USERINFO", "읽기 완료");
+            Log.d("TEST", USERTOKEN);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.d("USERINFO", "읽기 실패");
+        }
 
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         AssetManager assetManager = getActivity().getAssets();
@@ -75,24 +105,27 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
         queue = Volley.newRequestQueue(getActivity());
 
-        BookList_A(root, "/v1/user/historybooks.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&category=22%2C2&page=1&mem_time=0",  R.id.Main_HistoryBookList,  HistoryAdapter, queue, R.id.main_booklist_history);
-        BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&book_code=&category=22%2C2&offset=20",  R.id.Main_HobbyBookList,  HobbyAdapter, queue, R.id.main_booklist_hobby);
-        BookList_A(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=recommend_book&category=22%2C2&offset=10",  R.id.Main_MDNovelList,  MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
-        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&offset=10",  R.id.Main_MDWebtoonList,  MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
+        if (STATUS.equals("1")) {
+            BookList_A(root, "/v1/user/historybooks.joa", USERTOKEN + "&category=22%2C2&page=1&mem_time=0", R.id.Main_HistoryBookList, HistoryAdapter, queue, R.id.main_booklist_history);
+            BookList_A(root, "/v1/book/recommend_list_api.joa", USERTOKEN + "&page=1&book_code=&category=22%2C2&offset=20", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
+        }
+
+
+        BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book&category=22%2C2&offset=10", R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
+        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN + "&page=1&offset=10", R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
         BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
-        BookList_B(root, "/v1/book/list.joa", "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_UserPickedList,  UserPickedAdapter, queue, R.id.main_booklist_userpicked);
-        BookList_B(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10",  R.id.Main_NotyList,  NotyAdapter, queue, R.id.main_booklist_noty);
-        BookList_B(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10",  R.id.Main_RecommendedList,  RecommendAdapter, queue, R.id.main_booklist_recommeded);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_NoblessTodayBestList,  NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_PremiumTodayBestList,  PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
-        BookList_C(root, "/v1/home/list.joa", "&token=da7e03d618b8689fc8bed38ee8c99273&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10",  R.id.Main_CouponTodayBestList,  CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
+        BookList_B(root, "/v1/book/list.joa", USERTOKEN + "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10", R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
+        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10", R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
+        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10", R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
 
 
         return root;
     }
 
-    public void BookList_A(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue, Integer Wrap)
-    {
+    public void BookList_A(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue, Integer Wrap) {
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -102,8 +135,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         Adapter.notifyDataSetChanged();
     }
 
-    public void BookList_B(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap)
-    {
+    public void BookList_B(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -113,8 +145,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         Adapter.notifyDataSetChanged();
     }
 
-    public void BookList_C(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap)
-    {
+    public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap) {
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -124,8 +155,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
         Adapter.notifyDataSetChanged();
     }
 
-    public void BookList_A_WebToon(View root, String API_URL , String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue , Integer Wrap)
-    {
+    public void BookList_A_WebToon(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue, Integer Wrap) {
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -136,8 +166,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     }
 
 
-    public void BookFestivalList(View root, AssetManager assetManager, String BookType)
-    {
+    public void BookFestivalList(View root, AssetManager assetManager, String BookType) {
         RecyclerView recyclerViewFestival = root.findViewById(R.id.Main_FestivalBookList);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
@@ -179,7 +208,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
             public boolean onPreDraw() {
                 imageView.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                double doubled = (imageView.getMeasuredWidth()/6);
+                double doubled = (imageView.getMeasuredWidth() / 6);
                 int finalHeight = Integer.parseInt(String.valueOf(Math.round(doubled)));
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,

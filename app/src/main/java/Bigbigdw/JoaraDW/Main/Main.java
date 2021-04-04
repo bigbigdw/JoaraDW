@@ -5,10 +5,12 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -48,6 +53,7 @@ import java.nio.Buffer;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
+import Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main;
 import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -117,20 +123,19 @@ public class Main extends AppCompatActivity {
             Manuscript_Coupon.setText(manuscript_coupon);
             String support_coupon = UserInfo.getString("support_coupon");
             Support_Coupon.setText(support_coupon);
-            System.out.println("USERINFO 읽기 완료");
+            Log.d("USERINFO", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            System.out.println("USERINFO 읽기 실패");
+            Log.d("USERINFO", "읽기 실패");
         }
 
-
         if (STATUS.equals("1")) {
-            System.out.println("로그인 성공");
+            Log.d("Login", "로그인 성공");
             Drawer_LogOut.setVisibility(View.GONE);
             Drawer_LogIn.setVisibility(View.VISIBLE);
             hideItem(navigationView);
         } else {
-            System.out.println("로그인 안됨");
+            Log.d("Login", "로그인 실패");
             Drawer_LogOut.setVisibility(View.VISIBLE);
             Drawer_LogIn.setVisibility(View.GONE);
             hideItem(navigationView);
@@ -263,7 +268,7 @@ public class Main extends AppCompatActivity {
                     // 파일을 삭제합니다.
                     deleteFile.delete();
                     Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                    System.out.println("파일을 삭제하였습니다.");
+                    Log.d("Logout", "파일 삭제 성공");
                     Intent intent = new Intent(getApplicationContext(), Main.class);
                     intent.putExtra("IsFirstPage", false);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -271,7 +276,7 @@ public class Main extends AppCompatActivity {
                     finish();
                     startActivity(getIntent());
                 } else {
-                    System.out.println("파일이 존재하지 않습니다.");
+                    Log.d("Logout", "파일이 없음");
                 }
                 finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
             }
