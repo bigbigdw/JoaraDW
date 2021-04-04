@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Main;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -217,25 +219,47 @@ public class Main extends AppCompatActivity {
         finish();
     }
 
-    void DeleteSignedInfo(String filename){
-        // 파일의 경로 + 파일명
-        String filePath = filename + "userInfo.json";
-        File deleteFile = new File(filePath);
-        // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-        if(deleteFile.exists()) {
-            // 파일을 삭제합니다.
-            deleteFile.delete();
-            Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-            System.out.println("파일을 삭제하였습니다.");
-            Intent intent = new Intent(getApplicationContext(), Main.class);
-            intent.putExtra("IsFirstPage", false);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivityIfNeeded(intent, 0);
-            finish();
-            startActivity(getIntent());
-        } else {
-            System.out.println("파일이 존재하지 않습니다.");
-        }
+    void DeleteSignedInfo(String filename) {
+
+        // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
+        AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
+        alBuilder.setMessage("로그아웃하시겠습니까?");
+
+        // "예" 버튼을 누르면 실행되는 리스너
+        alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 파일의 경로 + 파일명
+                String filePath = filename + "userInfo.json";
+                File deleteFile = new File(filePath);
+                // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+                if (deleteFile.exists()) {
+                    // 파일을 삭제합니다.
+                    deleteFile.delete();
+                    Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                    System.out.println("파일을 삭제하였습니다.");
+                    Intent intent = new Intent(getApplicationContext(), Main.class);
+                    intent.putExtra("IsFirstPage", false);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivityIfNeeded(intent, 0);
+                    finish();
+                    startActivity(getIntent());
+                } else {
+                    System.out.println("파일이 존재하지 않습니다.");
+                }
+                finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
+            }
+        });
+        // "아니오" 버튼을 누르면 실행되는 리스너
+        alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return; // 아무런 작업도 하지 않고 돌아간다
+            }
+        });
+//        alBuilder.setTitle("로그아웃");
+        alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
+
     }
 
     public void onClickLogout(View v) {
@@ -250,7 +274,7 @@ public class Main extends AppCompatActivity {
             try {
                 JSONObject reader = new JSONObject(response);
                 STATUS = reader.getString("status");
-                if(STATUS.equals("1")){
+                if (STATUS.equals("1")) {
                     DeleteSignedInfo(filename);
                 }
             } catch (JSONException e) {
