@@ -50,7 +50,7 @@ import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Fragment_Main extends Fragment implements Main_BannerAPI {
+public class Fragment_Main_Main extends Fragment implements Main_BannerAPI {
 
     private final Main_BookListAdapter_A HistoryAdapter = new Main_BookListAdapter_A();
     private final Main_BookListAdapter_A HobbyAdapter = new Main_BookListAdapter_A();

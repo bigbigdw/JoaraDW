@@ -182,7 +182,6 @@ public class Main extends AppCompatActivity {
             Popup.hide();
         });
         queue.add(jsonRequest);
-
     }
 
 
