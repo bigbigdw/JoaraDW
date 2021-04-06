@@ -9,28 +9,37 @@ import android.view.ViewGroup;
 
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
@@ -41,7 +50,7 @@ import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Fragment_Main extends Fragment implements Main_Banner {
+public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     private final Main_BookListAdapter_A HistoryAdapter = new Main_BookListAdapter_A();
     private final Main_BookListAdapter_A HobbyAdapter = new Main_BookListAdapter_A();
@@ -58,14 +67,21 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
-
     CarouselView MainBannerMid;
     List<String> MainBannerMidURLs = new ArrayList<>();
     String USERTOKEN = "&token=";
     String STATUS = "";
+    String ETC = "&page=1&offset=10";
+    String ShowType = "&show_type=home";
+    String Category = "&category=";
+    TextView UserNameCategory;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_main, container, false);
+
+        UserNameCategory = root.findViewById(R.id.UserNameCategory);
 
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
@@ -81,45 +97,50 @@ public class Fragment_Main extends Fragment implements Main_Banner {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             USERTOKEN = "&token=" + UserInfo.getString("token");
+            Category = "&token=" + UserInfo.getString("category");
             STATUS = jsonObject.getString("status");
+            String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+            UserNameCategory.setText(usernamed);
             Log.d("USERINFO", "읽기 완료");
-            Log.d("TEST", USERTOKEN);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d("USERINFO", "읽기 실패");
         }
 
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+
         AssetManager assetManager = getActivity().getAssets();
+        queue = Volley.newRequestQueue(getActivity());
 
         MainBanner = root.findViewById(R.id.Carousel_MainBanner);
         MainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid);
 
-        Main_Banner.SetMainBanner(assetManager, MainBanner, imageListener, MainBannerURLs, "Main_Banner.json");
-//        Main_Banner.SetBanner(MainBanner, imageListener, MainBannerURLs, "/v1/banner/home_banner.joa","&token=da7e03d618b8689fc8bed38ee8c99273&page=0&banner_type=app_home_top_banner");
-//        Main_Banner.SetBanner(MainBannerMid, imageListener, MainBannerMidURLs, "/v1/banner/home_banner.joa","&token=da7e03d618b8689fc8bed38ee8c99273&page=0&banner_type=app_home_top_banner");
-        Main_Banner.SetMidMainBanner(assetManager, MainBannerMid, imageListenerMid, MainBannerMidURLs, "Main_Banner_Mid.json");
+        Main_BannerAPI.SetBanner(MainBannerMid, MainBannerMidURLs, queue, USERTOKEN, "&page=&banner_type=app_main2016_event");
+        Main_BannerAPI.SetBanner(MainBanner, MainBannerURLs, queue, USERTOKEN, "&page=0&banner_type=app_home_top_banner");
 
-        MainBanner.setPageCount(15);
-        MainBannerMid.setPageCount(10);
+        MainBanner.setSlideInterval(4000);
+        MainBanner.setImageListener(imageListener);
+        MainBanner.setVisibility(View.VISIBLE);
 
-        queue = Volley.newRequestQueue(getActivity());
+        MainBannerMid.setSlideInterval(4000);
+        MainBannerMid.setImageListener(imageListenerMid);
+        MainBannerMid.setVisibility(View.VISIBLE);
+
 
         if (STATUS.equals("1")) {
-            BookList_A(root, "/v1/user/historybooks.joa", USERTOKEN + "&category=22%2C2&page=1&mem_time=0", R.id.Main_HistoryBookList, HistoryAdapter, queue, R.id.main_booklist_history);
-            BookList_A(root, "/v1/book/recommend_list_api.joa", USERTOKEN + "&page=1&book_code=&category=22%2C2&offset=20", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
+            BookList_A(root, "/v1/user/historybooks.joa", USERTOKEN + "&mem_time=0" + ETC, R.id.Main_HistoryBookList, HistoryAdapter, queue, R.id.main_booklist_history);
+            BookList_A(root, "/v1/book/recommend_list_api.joa", USERTOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
         }
 
 
-        BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book&category=22%2C2&offset=10", R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
-        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN + "&page=1&offset=10", R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
+        BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
+        BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN, R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
         BookFestivalList(root, assetManager, "Main_FestivalBookList.json");
-        BookList_B(root, "/v1/book/list.joa", USERTOKEN + "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10", R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
-        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=contest_free_award&show_type=home&category=22%2C2&offset=10", R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
-        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=page_read_book&show_type=home&category=22%2C2&offset=10", R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
-        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=todaybest&store=nobless&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
-        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=todaybest&store=premium&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
-        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=support_coupon&orderby=cnt_best&show_type=home&category=22%2C2&offset=10", R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
+        BookList_B(root, "/v1/book/list.joa", USERTOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
+        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
+        BookList_B(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
+        BookList_C(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
 
 
         return root;
@@ -201,6 +222,7 @@ public class Fragment_Main extends Fragment implements Main_Banner {
     };
 
     ImageListener imageListenerMid = (position, imageView) -> {
+
         imageView.setAdjustViewBounds(true);
 
         ViewTreeObserver vtoMid = imageView.getViewTreeObserver();
@@ -224,4 +246,14 @@ public class Fragment_Main extends Fragment implements Main_Banner {
 
     };
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("TEST", "파괴!");
+        MainBanner.removeAllViews();
+//        MainBannerMid.removeAllViews();
+        MainBannerURLs = new ArrayList<>();
+//        MainBannerMidURLs = new ArrayList<>();
+    }
 }

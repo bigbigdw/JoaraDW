@@ -2,7 +2,8 @@ package Bigbigdw.JoaraDW.Etc;
 
 public interface HELPER {
 
-    String API = "https://api.joara.com";
+    String API = "https://api-dev1.joara.com:7443";
+//    String API = "https://api.joara.com";
     String API_KEY = "mw_8ba234e7801ba288554ca07ae44c7";
     String VER = "2.6.3";
     String DEVICE = "mw";
@@ -11,4 +12,6 @@ public interface HELPER {
     String ETC = "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
     String ResultURL = API + "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
     String TOKEN = "";
+    Boolean IsProduction = false;
 }
+

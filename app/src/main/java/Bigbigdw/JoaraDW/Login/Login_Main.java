@@ -122,7 +122,7 @@ public class Login_Main extends AppCompatActivity {
 
     public void onClickLogin(View v) {
 
-        String ResultURL = "https://api.joara.com/v1/user/auth.joa";
+        String ResultURL = HELPER.API + "/v1/user/auth.joa";
         String idCheck = Objects.requireNonNull(IDtext.getEditText()).getText().toString();
         String pwCheck = Objects.requireNonNull(PWtext.getEditText()).getText().toString();
 

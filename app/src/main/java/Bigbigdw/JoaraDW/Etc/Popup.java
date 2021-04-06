@@ -40,7 +40,8 @@ public class Popup extends Dialog {
     private View.OnClickListener mBtnRightListener;
     private WebView PopupWebView;
     ImageView Popup;
-    String Banner = "https://api.joara.com/v1/banner/main_popup.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&banner_id=15967";
+    String Url = "";
+    String POPUPURL = HELPER.API + "/v1/banner/main_popup.joa" + HELPER.ETC + "&banner_id=";
 
     public Popup(@NonNull Context context) {
         super(context);
@@ -77,9 +78,7 @@ public class Popup extends Dialog {
         PopupWebView.setWebChromeClient(new WebChromeClient());
         PopupWebView.setInitialScale(133);
         PopupWebView.setBackgroundColor(0x00000000);
-        PopupWebView.loadUrl(Banner);
-
-        Glide.with(Popup).load("https://cf.joara.com/banner_file/20210312_094353.jpg").into(Popup);
+        PopupWebView.loadUrl(POPUPURL + Url);
 
         //셋팅
         Button BtnLeft = findViewById(R.id.BtnLeft);
@@ -89,12 +88,15 @@ public class Popup extends Dialog {
         BtnLeft.setOnClickListener(mBtnLeftListener);
         BtnRight.setOnClickListener(mBtnRightListener);
 
+
+
     }
 
     //생성자 생성
-    public Popup(@NonNull Context context, View.OnClickListener BtnLeftListener, View.OnClickListener BtnRightListener) {
+    public Popup(@NonNull Context context, View.OnClickListener BtnLeftListener, View.OnClickListener BtnRightListener, String Url) {
         super(context);
         this.mBtnLeftListener = BtnLeftListener;
         this.mBtnRightListener = BtnRightListener;
+        this.Url = Url;
     }
 }

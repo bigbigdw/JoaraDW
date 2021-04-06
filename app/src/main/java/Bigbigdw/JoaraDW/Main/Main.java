@@ -49,11 +49,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.Buffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
-import Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main;
 import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -66,7 +67,7 @@ public class Main extends AppCompatActivity {
     LinearLayout Drawer_LogOut;
     LinearLayout Drawer_LogIn;
     RequestQueue queue;
-    TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon;
+    TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon, UserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class Main extends AppCompatActivity {
         Cash = nav_header_view.findViewById(R.id.Cash);
         Manuscript_Coupon = nav_header_view.findViewById(R.id.Manuscript_Coupon);
         Support_Coupon = nav_header_view.findViewById(R.id.Support_Coupon);
+        UserName = nav_header_view.findViewById(R.id.UserName);
 
         Intent intent = getIntent();
         boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
@@ -119,6 +121,8 @@ public class Main extends AppCompatActivity {
             Coupon.setText(expire_cash);
             String cash = UserInfo.getString("cash");
             Cash.setText(cash);
+            String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+            UserName.setText(usernamed);
             String manuscript_coupon = UserInfo.getString("manuscript_coupon");
             Manuscript_Coupon.setText(manuscript_coupon);
             String support_coupon = UserInfo.getString("support_coupon");
@@ -168,7 +172,7 @@ public class Main extends AppCompatActivity {
             try {
                 JSONArray BannerArray = response.getJSONArray("banner");
                 if (BannerArray.length() != 0) {
-                    Popup = new Popup(this, BtnLeftListener, BtnRightListener);
+                    Popup = new Popup(this, BtnLeftListener, BtnRightListener, BannerArray.getString(0));
                     Popup.show();
                 }
             } catch (JSONException e) {
