@@ -54,15 +54,15 @@ public class Fragment_New extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new New_Tab_New(), "전체");
+        adapter.addFragment(new New_Tab_ALL(), "전체");
         adapter.addFragment(new New_Tab_77FES(), "77FES");
-        adapter.addFragment(new New_Tab_New(), "기다무");
-        adapter.addFragment(new New_Tab_New(), "노블성실");
-        adapter.addFragment(new New_Tab_New(), "노블레스");
-        adapter.addFragment(new New_Tab_New(), "프리미엄");
-        adapter.addFragment(new New_Tab_New(), "무료");
-        adapter.addFragment(new New_Tab_New(), "완결");
-        adapter.addFragment(new New_Tab_New(), "단편");
+        adapter.addFragment(new New_Tab_ALL(), "기다무");
+        adapter.addFragment(new New_Tab_77FES(), "노블성실");
+        adapter.addFragment(new New_Tab_77FES(), "노블레스");
+        adapter.addFragment(new New_Tab_77FES(), "프리미엄");
+        adapter.addFragment(new New_Tab_ALL(), "무료");
+        adapter.addFragment(new New_Tab_ALL(), "완결");
+        adapter.addFragment(new New_Tab_ALL(), "단편");
         viewPager.setAdapter(adapter);
     }
 

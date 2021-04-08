@@ -35,6 +35,8 @@ public class Main_BookData {
     public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
+        Log.d("TEST", ResultURL);
+
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 JSONArray flag = response.getJSONArray("books");
@@ -51,19 +53,18 @@ public class Main_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-
                     items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 
-
+                Log.d("Main_BookData", "성공!");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("Main_BookData", "에러!");
             }
         });
         queue.add(jsonRequest);
