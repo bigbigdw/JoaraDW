@@ -146,7 +146,7 @@ public class Main extends AppCompatActivity {
         }
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.Fragment_main
+                R.id.Fragment_Main
         ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -157,7 +157,7 @@ public class Main extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.Fragment_main) {
+            if (destination.getId() == R.id.Fragment_Main) {
                 setCheckable(navView, false);
                 navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
             } else {

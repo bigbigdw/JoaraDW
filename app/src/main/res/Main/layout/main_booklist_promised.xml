@@ -7,7 +7,6 @@
 
     <LinearLayout
         android:layout_marginTop="8dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -35,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:text="@string/Main_BookList_Event1"
+                    android:text="@string/Main_BookList_Event3"
                     android:textColor="#A5C500"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -63,7 +62,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Main_FestivalBookList"
+            android:id="@+id/Main_PromisedBookList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

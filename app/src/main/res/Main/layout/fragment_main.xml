@@ -81,6 +81,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <include
+                    layout="@layout/main_booklist_promised"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/main_booklist_kidamu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
                 <com.synnapps.carouselview.CarouselView
                     android:id="@+id/Carousel_MainBanner_Mid"
                     android:layout_width="match_parent"

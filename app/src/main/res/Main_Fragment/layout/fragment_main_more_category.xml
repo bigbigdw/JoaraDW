@@ -204,7 +204,7 @@
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
                     android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/icon_main_more_7" />
+                    app:srcCompat="@drawable/icon_main_more_9" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -232,7 +232,7 @@
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
                     android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/icon_main_more_8" />
+                    app:srcCompat="@drawable/icon_main_more_12" />
 
                 <Space
                     android:layout_width="match_parent"

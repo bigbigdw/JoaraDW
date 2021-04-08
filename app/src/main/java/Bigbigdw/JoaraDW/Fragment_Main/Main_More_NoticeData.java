@@ -17,7 +17,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Queue;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
@@ -28,30 +31,31 @@ public class Main_More_NoticeData {
     ArrayList<Main_More_ListData> items = new ArrayList<>();
 
     public ArrayList<Main_More_ListData> getData(RequestQueue queue, LinearLayout NoticeList) {
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, "https://api.joara.com/v1/board/notice_list.joa?api_key=mw_8ba234e7801ba288554ca07ae44c7&ver=2.6.3&device=mw&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604&devicetoken=mw&board=&page=1&offset=20", null, response -> {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/v1/board/notice_list.joa" + HELPER.ETC + "&board=&page=1&offset=20", null, response -> {
             try {
                 JSONArray JSONArray = response.getJSONArray("notices");
 
                 for (int i = 0; i < 5; i++) {
                     JSONObject jo = JSONArray.getJSONObject(i);
-
                     String Title = jo.getString("title");
                     String StartDate = jo.getString("created");
-                    items.add(new Main_More_ListData(Title, StartDate));
-                    System.out.println("HELLO" + items);
+                    String Date = StartDate.substring(2,4) + '.' + StartDate.substring(4,6) + '.' + StartDate.substring(6,8);
+                    items.add(new Main_More_ListData(Title, Date));
                     NoticeList.setVisibility(View.VISIBLE);
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d("NOTICE", "에러!!");
             }
         }, error -> {
             Log.d("NOTICE", "연결 실패");
         });
         queue.add(jsonRequest);
         return items;
-    };
+    }
+
+    ;
 }
 
 

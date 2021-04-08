@@ -16,6 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Queue;
 
 import Bigbigdw.JoaraDW.R;
@@ -37,6 +44,14 @@ public class Fragment_More extends Fragment {
 
         NoticeAdapter(root, queue, NoticeList);
         EventAdapter(root, queue, EventList);
+
+        String str = "210408235656"; //대상 문자열
+        /*A=0 B=1 C=2 D=3 E=4 F=5 G=6의 index를 가진다.*/
+
+
+        System.out.println(str.substring(0,2) + '.' + str.substring(2,4) + '.' + str.substring(4,6)) ;
+
+
 
         return root;
     }

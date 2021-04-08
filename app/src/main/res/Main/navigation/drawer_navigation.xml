@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_navigation"
-    app:startDestination="@+id/Fragment_More">
+    app:startDestination="@+id/Fragment_Main">
 
 
 
     <fragment
-        android:id="@+id/Fragment_main"
-        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main_Main"
+        android:id="@+id/Fragment_Main"
+        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main"
         android:label=""
         tools:layout="@layout/fragment_main" />
 
