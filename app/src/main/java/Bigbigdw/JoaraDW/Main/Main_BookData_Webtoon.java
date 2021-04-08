@@ -23,17 +23,14 @@ package Bigbigdw.JoaraDW.Main;
         import java.net.URL;
         import java.util.ArrayList;
 
+        import Bigbigdw.JoaraDW.Etc.HELPER;
+
 public class Main_BookData_Webtoon {
     ArrayList<Main_BookListData_A> items = new ArrayList<>();
 
     public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
-        String API = "https://api.joara.com";
-        String API_KEY = "?api_key=mw_8ba234e7801ba288554ca07ae44c7";
-        String VER = "&ver=2.6.3";
-        String DEVICE = "&device=mw";
-        String DEVICE_ID = "&deviceuid=5127d5951c983034a16980c8a893ac99d16dbef988ee36882b793aa14ad33604";
-        String DEVICE_TOKEN = "&devicetoken=mw";
-        String ResultURL = API + API_URL + API_KEY + VER + DEVICE + DEVICE_ID + DEVICE_TOKEN + ETC;
+
+        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -51,10 +48,8 @@ public class Main_BookData_Webtoon {
                     }
 
                     Wrap.setVisibility(View.VISIBLE);
-                    System.out.println("1성공!");
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("2실패!");
                 }
             }
         }, error -> {

@@ -32,23 +32,6 @@ public class Fragment_New extends Fragment {
         tabLayout = root.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-//                Toast.makeText(getActivity().getApplicationContext(),"adasd",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-
-//        System.out.println(TabTitle);
-
-
         return root;
     }
 
@@ -56,8 +39,8 @@ public class Fragment_New extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new New_Tab_ALL(), "전체");
         adapter.addFragment(new New_Tab_77FES(), "77FES");
-        adapter.addFragment(new New_Tab_ALL(), "기다무");
-        adapter.addFragment(new New_Tab_77FES(), "노블성실");
+        adapter.addFragment(new New_Tab_Kidamu(), "기다무");
+        adapter.addFragment(new New_Tab_Promised(), "노블성실");
         adapter.addFragment(new New_Tab_77FES(), "노블레스");
         adapter.addFragment(new New_Tab_77FES(), "프리미엄");
         adapter.addFragment(new New_Tab_ALL(), "무료");

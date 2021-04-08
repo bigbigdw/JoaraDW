@@ -35,8 +35,6 @@ public class Main_BookData {
     public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
-        Log.d("TEST", ResultURL);
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 JSONArray flag = response.getJSONArray("books");
@@ -57,7 +55,6 @@ public class Main_BookData {
                     Wrap.setVisibility(View.VISIBLE);
                 }
 
-                Log.d("Main_BookData", "성공!");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
