@@ -22,8 +22,6 @@ import Bigbigdw.JoaraDW.R;
 
 
 public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
     private ArrayList<Main_BookListData_A> listData = new ArrayList<>();
 
     @NonNull
@@ -97,7 +95,7 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
         ImageView Favoff;
         LinearLayout Img_Wrap;
 
-        Main_BookListViewHolder_New(@NonNull View itemView) {
+        public Main_BookListViewHolder_New(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_Book);
             Title = itemView.findViewById(R.id.Text_Title);

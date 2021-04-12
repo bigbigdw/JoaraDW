@@ -26,8 +26,6 @@ import Bigbigdw.JoaraDW.R;
 
 public class New_Tab_ALL extends Fragment {
     private final Main_BookListAdapter_New NewBookListAdapter = new Main_BookListAdapter_New();
-    private boolean isLoading = false;
-    private ArrayList<Main_BookListData_A> listData = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.tab_new_all, container, false);
