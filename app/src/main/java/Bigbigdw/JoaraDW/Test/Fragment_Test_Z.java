@@ -2,6 +2,7 @@ package Bigbigdw.JoaraDW.Test;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,24 +74,36 @@ public class Fragment_Test_Z extends Fragment {
         items.add(null);
         adapter.notifyItemInserted(items.size() - 1);
 
+//        Log.d("TEST-items.size()", Integer.toString(items.size()));
+        Log.d("TEST-items.size()", "1111111111111111111");
+
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                items.remove(items.size() - 1);
-                int scrollPosition = items.size();
-                adapter.notifyItemRemoved(scrollPosition);
-                int currentSize = scrollPosition;
-                int nextLimit = currentSize + 10;
-
-                while (currentSize - 1 < nextLimit) {
-                    items.add("Item " + currentSize);
-                    currentSize++;
-                }
-
-                adapter.notifyDataSetChanged();
-                isLoading = false;
+        handler.postDelayed(() -> {
+//            Log.d("TEST-items.size()22222", Integer.toString(items.size()));
+            Log.d("TEST-items.size()22222", "2222222222222222222222222");
+            items.remove(items.size() - 1);
+//            Log.d("TEST-items.size()33333", Integer.toString(items.size()));
+            Log.d("TEST-items.size()33333", "333333333333333333333333333");
+            int scrollPosition = items.size();
+//            Log.d("TEST-scrollPosition", Integer.toString(scrollPosition));
+            Log.d("TEST-scrollPosition", "444444444444444444444444444444444");
+            adapter.notifyItemRemoved(scrollPosition);
+            int currentSize = scrollPosition;
+//            Log.d("TEST-currentSize", Integer.toString(currentSize));
+            Log.d("TEST-currentSize", "5555555555555555555555555555555555");
+            int nextLimit = currentSize + 10;
+//            Log.d("TEST-nextLimit", Integer.toString(currentSize));
+            Log.d("TEST-nextLimit", "66666666666666666666666666666666666");
+            while (currentSize - 1 < nextLimit) {
+                items.add("Item " + currentSize);
+                currentSize++;
             }
+            Log.d("TEST-TEST", "7777777777777777777777777777777");
+
+            adapter.notifyDataSetChanged();
+            Log.d("TEST-TEST", "888888888888888888888888888");
+            isLoading = false;
+            Log.d("TEST-TEST", "999999999999999999999999999");
         }, 2000);
     }
 

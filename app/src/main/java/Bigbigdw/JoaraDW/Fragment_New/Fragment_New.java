@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.R;
+import Bigbigdw.JoaraDW.Test.Fragment_Test;
+import Bigbigdw.JoaraDW.Test.Fragment_Test_Z;
+import Bigbigdw.JoaraDW.Test.Test;
 
 public class Fragment_New extends Fragment {
 
@@ -37,12 +40,12 @@ public class Fragment_New extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new New_Tab_ALL(), "전체");
+        adapter.addFragment(new Fragment_Test(), "전체");
         adapter.addFragment(new New_Tab_77FES(), "77FES");
         adapter.addFragment(new New_Tab_Kidamu(), "기다무");
         adapter.addFragment(new New_Tab_Promised(), "노블성실");
-        adapter.addFragment(new New_Tab_77FES(), "노블레스");
-        adapter.addFragment(new New_Tab_77FES(), "프리미엄");
+        adapter.addFragment(new Fragment_Test(), "노블레스");
+        adapter.addFragment(new Fragment_Test_Z(), "프리미엄");
         adapter.addFragment(new New_Tab_ALL(), "무료");
         adapter.addFragment(new New_Tab_ALL(), "완결");
         adapter.addFragment(new New_Tab_ALL(), "단편");
@@ -75,7 +78,6 @@ public class Fragment_New extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            ;
             return mFragmentTitleList.get(position);
         }
     }
