@@ -38,25 +38,26 @@ public class Fragment_Test extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData_A> items = new ArrayList<>();
     private boolean isLoading = false;
-    private boolean isAPILoading = false;
+    int Page = 2;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.tab_new_test, container, false);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        Integer Page = 1;
+
         String API = "/v1/book/list.joa";
-        String ETC = "&store=&orderby=redate&offset=25&page=" + Page + "&class=";
+        String ETC = "&store=&orderby=redate&offset=25&page=" + 1 + "&class=";
         recyclerView = root.findViewById(R.id.Main_NewTest);
         LinearLayout Wrap = root.findViewById(R.id.Tab_NewTest);
 
-        populateData(API, ETC, queue, Wrap, Page);
+        populateData(API, ETC, queue, Wrap);
         initAdapter();
-        initScrollListener(API, "&store=&orderby=redate&offset=25&page=" + Page + "&class=", queue, Wrap, Page);
+        initScrollListener(API, "&store=&orderby=redate&offset=25&page=" + Page + "&class=", queue, Wrap);
 
         return root;
     }
 
-    public void setItems(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, Integer Page) {
+
+    private void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
@@ -84,12 +85,6 @@ public class Fragment_Test extends Fragment {
             }
         }, error -> Log.d("setItems", "에러!"));
         queue.add(jsonRequest);
-
-    }
-
-
-    private void populateData(String API, String ETC, RequestQueue queue, LinearLayout Wrap, Integer Page) {
-        setItems(API, ETC, queue, Wrap, Page);
     }
 
     private void initAdapter() {
@@ -99,7 +94,7 @@ public class Fragment_Test extends Fragment {
         recyclerView.setAdapter(NewBookListAdapter);
     }
 
-    private void initScrollListener(String API, String ETC, RequestQueue queue, LinearLayout Wrap, Integer Page) {
+    private void initScrollListener(String API, String ETC, RequestQueue queue, LinearLayout Wrap) {
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -112,17 +107,12 @@ public class Fragment_Test extends Fragment {
 
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
-                Log.d("TEST-layoutManager.layoutManager.getItemCount()", Integer.toString(layoutManager.getItemCount()));
-                Log.d("TEST-layoutManager.findLastCompletelyVisibleItemPosition()", Integer.toString(layoutManager.findLastCompletelyVisibleItemPosition()));
-
                 if (!isLoading) {
                     if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
-                        Log.d("TEST-", "짜잔!");
-                        isAPILoading = true;
                         //리스트 마지막
                         loadMore(API, ETC, queue, Wrap, Page);
                         isLoading = true;
-
+                        Page++;
                     }
                 }
             }
@@ -135,50 +125,43 @@ public class Fragment_Test extends Fragment {
     private void loadMore(String API, String ETC, RequestQueue queue, LinearLayout Wrap, Integer Page) {
         items.add(null);
         NewBookListAdapter.notifyItemInserted(items.size() - 1);
-        Page++;
 
-
-        String ResultURL = HELPER.API + API + HELPER.ETC + ETC;
+        String ResultURL = HELPER.API + API + HELPER.ETC + "&store=&orderby=redate&offset=25&page=" + Page + "&class=";
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            items.remove(items.size() - 1);
-            int scrollPosition = items.size();
-            NewBookListAdapter.notifyItemRemoved(scrollPosition);
 
-//            Handler handler = new Handler();
-//            handler.postDelayed(() -> {
-//                ;
-//            }, 2000);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                items.remove(items.size() - 1);
+                int scrollPosition = items.size();
+                NewBookListAdapter.notifyItemRemoved(scrollPosition);
 
-            try {
-                JSONArray flag = response.getJSONArray("books");
+                try {
+                    JSONArray flag = response.getJSONArray("books");
 
-                for (int i = 0; i < flag.length(); i++) {
-                    JSONObject jo = flag.getJSONObject(i);
+                    for (int i = 0; i < flag.length(); i++) {
+                        JSONObject jo = flag.getJSONObject(i);
+                        String BookImg = jo.getString("book_img");
+                        String Title = jo.getString("subject");
+                        String Writer = jo.getString("writer_name");
+                        String IsAdult = jo.getString("is_adult");
+                        String IsFinish = jo.getString("is_finish");
+                        String IsPremium = jo.getString("is_premium");
+                        String IsNobless = jo.getString("is_nobless");
+                        String Intro = jo.getString("intro");
+                        String IsFav = jo.getString("is_favorite");
+                        items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                        Wrap.setVisibility(View.VISIBLE);
+                    }
+                    Log.d("setItems", "완료!");
 
-                    String BookImg = jo.getString("book_img");
-                    String Title = jo.getString("subject");
-                    String Writer = jo.getString("writer_name");
-                    String IsAdult = jo.getString("is_adult");
-                    String IsFinish = jo.getString("is_finish");
-                    String IsPremium = jo.getString("is_premium");
-                    String IsNobless = jo.getString("is_nobless");
-                    String Intro = jo.getString("intro");
-                    String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
-                    Wrap.setVisibility(View.VISIBLE);
+                    NewBookListAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                Log.d("setItems", "완료!");
-
-                NewBookListAdapter.notifyDataSetChanged();
-                isLoading = false;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            }, 2000);
         }, error -> Log.d("setItems", "에러!"));
         queue.add(jsonRequest);
-
-
-
     }
 }
