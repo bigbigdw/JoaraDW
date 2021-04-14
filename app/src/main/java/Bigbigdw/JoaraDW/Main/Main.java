@@ -68,6 +68,7 @@ public class Main extends AppCompatActivity {
     LinearLayout Drawer_LogIn;
     RequestQueue queue;
     TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon, UserName;
+    boolean IsFirstPage = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class Main extends AppCompatActivity {
         UserName = nav_header_view.findViewById(R.id.UserName);
 
         Intent intent = getIntent();
-        boolean IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
+        IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
         if (IsFirstPage) {
             Intent intentSplash = new Intent(this, Splash.class);
             startActivity(intentSplash);
@@ -182,14 +183,21 @@ public class Main extends AppCompatActivity {
             Popup.hide();
         });
         queue.add(jsonRequest);
+
+//        if(IsFirstPage){
+//            onBackPressed();
+//        }
+
     }
 
 
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(getApplicationContext(), "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
-        finish();
-    }
+
+
+//    @Override
+//    public void onBackPressed() {
+//        Toast.makeText(getApplicationContext(), "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
+//        finish();
+//    }
 
     public static void setCheckable(BottomNavigationView navView, boolean checkable) {
         final Menu menu = navView.getMenu();
