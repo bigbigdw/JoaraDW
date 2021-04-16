@@ -1,8 +1,6 @@
 
 package Bigbigdw.JoaraDW.Main;
 
-import android.content.res.AssetManager;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,27 +10,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 
 public class Main_BookData {
 
-    ArrayList<Main_BookListData_A> items = new ArrayList<>();
+    ArrayList<Main_BookListData> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
+    public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
@@ -51,7 +42,7 @@ public class Main_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

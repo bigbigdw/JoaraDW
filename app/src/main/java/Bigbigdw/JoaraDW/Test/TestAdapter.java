@@ -15,18 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
-import Bigbigdw.JoaraDW.Main.Main_BookListData_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<Main_BookListData_A> listData;
+    ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
-    public TestAdapter(ArrayList<Main_BookListData_A> items) {
+    public TestAdapter(ArrayList<Main_BookListData> items) {
         this.listData = items;
     }
 
@@ -69,7 +67,7 @@ public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void populateItemRows(TestAdapter.Main_BookListViewHolder_New holder, int position) {
-        Main_BookListData_A item = listData.get(position);
+        Main_BookListData item = listData.get(position);
 
             Glide.with(holder.itemView.getContext())
                     .load(item.getBookImg())

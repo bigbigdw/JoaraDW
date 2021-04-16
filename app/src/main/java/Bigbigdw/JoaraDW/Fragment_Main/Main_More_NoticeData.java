@@ -1,6 +1,5 @@
 package Bigbigdw.JoaraDW.Fragment_Main;
 
-import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,19 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Queue;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Etc.Popup;
-import Bigbigdw.JoaraDW.Main.Main_BookListData_A;
 
 public class Main_More_NoticeData {
     ArrayList<Main_More_ListData> items = new ArrayList<>();

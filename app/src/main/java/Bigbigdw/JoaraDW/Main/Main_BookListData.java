@@ -1,6 +1,6 @@
 package Bigbigdw.JoaraDW.Main;
 
-public class Main_BookListData_A {
+public class Main_BookListData {
     String Writer;
     String Title;
     String BookImg;
@@ -11,7 +11,7 @@ public class Main_BookListData_A {
     String Intro;
     String IsFav;
 
-    public Main_BookListData_A(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav) {
+    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav) {
         this.Writer = Writer;
         this.Title = Title;
         this.BookImg = BookImg;

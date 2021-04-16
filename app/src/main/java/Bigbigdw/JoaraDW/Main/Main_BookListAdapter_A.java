@@ -19,19 +19,19 @@ import Bigbigdw.JoaraDW.R;
 
 public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<Main_BookListData_A> listData = new ArrayList<>();
+    private ArrayList<Main_BookListData> listData = new ArrayList<>();
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklist_a, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_a, parent, false);
         return new Main_BookListAdapter_A.Main_BookListViewHolder_A(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Main_BookListData_A item = listData.get(position);
+        Main_BookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
@@ -77,7 +77,7 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         return listData.size();
     }
 
-    public void setItems(ArrayList<Main_BookListData_A> items) {
+    public void setItems(ArrayList<Main_BookListData> items) {
         this.listData = items;
     }
 

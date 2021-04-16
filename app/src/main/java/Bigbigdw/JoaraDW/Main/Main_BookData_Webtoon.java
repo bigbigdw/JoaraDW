@@ -1,8 +1,5 @@
 package Bigbigdw.JoaraDW.Main;
 
-        import android.content.res.AssetManager;
-        import android.os.AsyncTask;
-        import android.util.Log;
         import android.view.View;
         import android.widget.LinearLayout;
 
@@ -15,20 +12,14 @@ package Bigbigdw.JoaraDW.Main;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
         import java.util.ArrayList;
 
         import Bigbigdw.JoaraDW.Etc.HELPER;
 
 public class Main_BookData_Webtoon {
-    ArrayList<Main_BookListData_A> items = new ArrayList<>();
+    ArrayList<Main_BookListData> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
+    public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
 
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
@@ -44,7 +35,7 @@ public class Main_BookData_Webtoon {
                         String BookImg = jo.getString("webtoon_img");
                         String Title = jo.getString("webtoon_title");
 
-                        items.add(new Main_BookListData_A("", Title, BookImg, "", "", "", "","",""));
+                        items.add(new Main_BookListData("", Title, BookImg, "", "", "", "","",""));
                     }
 
                     Wrap.setVisibility(View.VISIBLE);

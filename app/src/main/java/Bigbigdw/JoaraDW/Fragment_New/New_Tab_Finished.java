@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Fragment_New;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,29 +17,31 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
-public class New_Tab_ALL extends Fragment {
+public class New_Tab_Finished extends Fragment {
     private Main_BookListAdapter_New NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover;
-    String Store="";
+    String Store="finish";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab_all, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab_finished, container, false);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String API = "/v1/book/list.joa";
         String ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&class=";
-        recyclerView = root.findViewById(R.id.Main_NewBookList);
-        Wrap = root.findViewById(R.id.Tab_NewAll);
+        recyclerView = root.findViewById(R.id.Main_NewBookList_Finished);
+        Wrap = root.findViewById(R.id.Tab_NewFinishedWrap);
         Cover = root.findViewById(R.id.LoadingLayout);
 
         New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
-        New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView,Store);
 
         return root;
     }

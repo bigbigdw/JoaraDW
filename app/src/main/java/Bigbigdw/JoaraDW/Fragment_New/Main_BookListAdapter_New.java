@@ -10,77 +10,101 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.Main.Main_BookListData_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<Main_BookListData_A> listData = new ArrayList<>();
+    ArrayList<Main_BookListData> listData;
+    private final int VIEW_TYPE_ITEM = 0;
+    private final int VIEW_TYPE_LOADING = 1;
+
+    public Main_BookListAdapter_New(ArrayList<Main_BookListData> items) {
+        this.listData = items;
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklist_new, parent, false);
-        return new Main_BookListAdapter_New.Main_BookListViewHolder_New(view);
+        if (viewType == VIEW_TYPE_ITEM) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_main_booklist_new, parent, false);
+            return new Main_BookListAdapter_New.Main_BookListViewHolder_New(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
+            return new Main_BookListAdapter_New.LoadingViewHolder(view);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Main_BookListData_A item = listData.get(position);
-
-        Glide.with(holder.itemView.getContext())
-                .load(item.getBookImg())
-                .into(((Main_BookListAdapter_New.Main_BookListViewHolder_New) holder).Image);
-
-        ((Main_BookListViewHolder_New) holder).Title.setText(listData.get(position).getTitle());
-        ((Main_BookListViewHolder_New) holder).Writer.setText(listData.get(position).getWriter());
-        ((Main_BookListViewHolder_New) holder).Intro.setText(listData.get(position).getIntro());
-
-        if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.NOBLESS);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAAa5c500);
-        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.PREMIUM);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAA4971EF);
-        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.FINISH);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAA767676);
-        } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.ADULT_NOBLESS);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAAF44336);
-        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.ADULT_PREMIUM);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAA4971EF);
-        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            ((Main_BookListViewHolder_New) holder).TopText.setText(R.string.ADULT_FINISH);
-            ((Main_BookListViewHolder_New) holder).TopText.setTextColor(0xAA767676);
-        }
-
-        if (listData.get(position).getIsFav().equals("TRUE")) {
-            ((Main_BookListViewHolder_New) holder).Favon.setVisibility(View.VISIBLE);
-            ((Main_BookListViewHolder_New) holder).Favoff.setVisibility(View.GONE);
-        } else {
-            ((Main_BookListViewHolder_New) holder).Favoff.setVisibility(View.VISIBLE);
-            ((Main_BookListViewHolder_New) holder).Favon.setVisibility(View.GONE);
+        if (holder instanceof Main_BookListAdapter_New.Main_BookListViewHolder_New) {
+            populateItemRows((Main_BookListAdapter_New.Main_BookListViewHolder_New) holder, position);
+        } else if (holder instanceof Main_BookListAdapter_New.LoadingViewHolder) {
+            showLoadingView((Main_BookListAdapter_New.LoadingViewHolder) holder, position);
         }
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return listData.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+    }
 
     @Override
     public int getItemCount() {
         return listData == null ? 0 : listData.size();
     }
 
-    public void setItems(ArrayList<Main_BookListData_A> items) {
-        this.listData = items;
+
+
+    private void showLoadingView(Main_BookListAdapter_New.LoadingViewHolder holder, int position) {
+
+    }
+
+    private void populateItemRows(Main_BookListAdapter_New.Main_BookListViewHolder_New holder, int position) {
+        Main_BookListData item = listData.get(position);
+
+        Glide.with(holder.itemView.getContext())
+                .load(item.getBookImg())
+                .into(holder.Image);
+
+        holder.Title.setText(listData.get(position).getTitle());
+        holder.Writer.setText(listData.get(position).getWriter());
+        holder.Intro.setText(listData.get(position).getIntro());
+
+        if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
+            holder.TopText.setText(R.string.NOBLESS);
+            holder.TopText.setTextColor(0xAAa5c500);
+        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
+            holder.TopText.setText(R.string.PREMIUM);
+            holder.TopText.setTextColor(0xAA4971EF);
+        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
+            holder.TopText.setText(R.string.FINISH);
+            holder.TopText.setTextColor(0xAA767676);
+        } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
+            holder.TopText.setText(R.string.ADULT_NOBLESS);
+            holder.TopText.setTextColor(0xAAF44336);
+        } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
+            holder.TopText.setText(R.string.ADULT_PREMIUM);
+            holder.TopText.setTextColor(0xAA4971EF);
+        } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
+            holder.TopText.setText(R.string.ADULT_FINISH);
+            holder.TopText.setTextColor(0xAA767676);
+        }
+
+        if (listData.get(position).getIsFav().equals("TRUE")) {
+            holder.Favon.setVisibility(View.VISIBLE);
+            holder.Favoff.setVisibility(View.GONE);
+        } else {
+            holder.Favoff.setVisibility(View.VISIBLE);
+            holder.Favon.setVisibility(View.GONE);
+        }
     }
 
 
@@ -95,7 +119,8 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
         ImageView Favoff;
         LinearLayout Img_Wrap;
 
-        public Main_BookListViewHolder_New(@NonNull View itemView) {
+
+        Main_BookListViewHolder_New(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_Book);
             Title = itemView.findViewById(R.id.Text_Title);
@@ -123,4 +148,12 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
 
     }
 
+    private class LoadingViewHolder extends RecyclerView.ViewHolder {
+        private ProgressBar progressBar;
+
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progressBar);
+        }
+    }
 }

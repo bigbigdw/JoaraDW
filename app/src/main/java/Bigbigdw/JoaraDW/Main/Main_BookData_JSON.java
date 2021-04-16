@@ -1,7 +1,6 @@
 package Bigbigdw.JoaraDW.Main;
 
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,9 +13,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Main_BookData_JSON {
-    ArrayList<Main_BookListData_A> items = new ArrayList<>();
+    ArrayList<Main_BookListData> items = new ArrayList<>();
 
-    public ArrayList<Main_BookListData_A> getData(AssetManager assetManager, String BookType) {
+    public ArrayList<Main_BookListData> getData(AssetManager assetManager, String BookType) {
 
         try {
             InputStream is = assetManager.open(BookType);
@@ -49,7 +48,7 @@ public class Main_BookData_JSON {
                 String Intro = jo.getString("intro");
                 String IsFav = jo.getString("is_favorite");
 
-                items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
             }
 
         } catch (IOException | JSONException e) {

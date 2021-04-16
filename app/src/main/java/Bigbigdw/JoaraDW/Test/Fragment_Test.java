@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -28,15 +25,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
-import Bigbigdw.JoaraDW.Main.Main_BookData;
-import Bigbigdw.JoaraDW.Main.Main_BookListData_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_Test extends Fragment {
     private TestAdapter NewBookListAdapter;
     private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData_A> items = new ArrayList<>();
+    private ArrayList<Main_BookListData> items = new ArrayList<>();
     private boolean isLoading = false;
     int Page = 2;
 
@@ -76,7 +71,7 @@ public class Fragment_Test extends Fragment {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
                     Wrap.setVisibility(View.VISIBLE);
                 }
                 Log.d("setItems", "완료!");
@@ -150,7 +145,7 @@ public class Fragment_Test extends Fragment {
                         String IsNobless = jo.getString("is_nobless");
                         String Intro = jo.getString("intro");
                         String IsFav = jo.getString("is_favorite");
-                        items.add(new Main_BookListData_A(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
+                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav));
                         Wrap.setVisibility(View.VISIBLE);
                     }
                     Log.d("setItems", "완료!");

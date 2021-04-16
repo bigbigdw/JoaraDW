@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.R;
 
 
 public class New_Tab_Promised extends Fragment {
-    private final Main_BookListAdapter_New NewBookListAdapter = new Main_BookListAdapter_New();
+    private final Main_BookListAdapter_C NewBookListAdapter = new Main_BookListAdapter_C();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tab_new_promised, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab_promised, container, false);
         AssetManager assetManager = getActivity().getAssets();
         NewBookList(root, assetManager, "Main_PromisedBookList.json");
 
