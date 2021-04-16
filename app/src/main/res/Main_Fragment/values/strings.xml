@@ -21,4 +21,13 @@
     <string name="Main_More_Event">이벤트</string>
     <string name="Main_More_Notice">공지사항</string>
     <string name="Main_More_seeMore">더보기</string>
+    <!-- 베스트 -->
+    <string name="Main_Best_Best">베스트</string>
+    <string name="Main_Best_BestCount">베스트 지수 : </string>
+    <string name="Main_Best_BookViewed">조회 수 : </string>
+    <string name="Main_Best_BookFavCount">선호작 등록 수 : </string>
+    <string name="Main_Best_BookRecommend">작품 추천 수 : </string>
+    <string name="Main_Best_Num">12345678</string>
+    <string name="Main_Best_All">전체</string>
+    <string name="Main_Best_Rank">1등</string>
 </resources>

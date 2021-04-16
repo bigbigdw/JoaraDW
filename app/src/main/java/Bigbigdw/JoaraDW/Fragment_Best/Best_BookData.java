@@ -1,5 +1,4 @@
-
-package Bigbigdw.JoaraDW.Main;
+package Bigbigdw.JoaraDW.Fragment_Best;
 
 import android.util.Log;
 import android.view.View;
@@ -18,8 +17,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
-public class Main_BookData {
+public class Best_BookData {
 
     ArrayList<Main_BookListData> items = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class Main_BookData {
             try {
                 JSONArray flag = response.getJSONArray("books");
 
-                for (int i = 0; i < flag.length(); i++) {
+                for (int i = 0; i < 3; i++) {
                     JSONObject jo = flag.getJSONObject(i);
 
                     String BookImg = jo.getString("book_img");
@@ -42,7 +42,12 @@ public class Main_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",""));
+//                    String BestCount = jo.getString("cnt_best");
+//                    String BestViewed = jo.getString("cnt_page_read");
+//                    String BestFav = jo.getString("cnt_favorite");
+//                    String BestRecommend = jo.getString("cnt_recom");
+//                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"BestCount","BestViewed","BestFav","BestRecommend"));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 
@@ -52,7 +57,7 @@ public class Main_BookData {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Main_BookData", "에러!");
+                Log.d("Best_BookData", "에러!");
             }
         });
         queue.add(jsonRequest);

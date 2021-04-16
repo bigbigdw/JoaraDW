@@ -199,10 +199,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         Adapter.notifyDataSetChanged();
     }
 
-
-
-
-
     ImageListener imageListener = (position, imageView) -> {
         imageView.setAdjustViewBounds(true);
 
@@ -258,8 +254,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         super.onDestroyView();
         Log.d("TEST", "파괴!");
         MainBanner.removeAllViews();
-//        MainBannerMid.removeAllViews();
         MainBannerURLs = new ArrayList<>();
-//        MainBannerMidURLs = new ArrayList<>();
     }
 }

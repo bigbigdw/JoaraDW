@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_navigation"
-    app:startDestination="@+id/Fragment_Main">
+    app:startDestination="@+id/Fragment_Best">
 
 
 
@@ -28,6 +28,12 @@
     <fragment
         android:id="@+id/Fragment_New"
         android:name="Bigbigdw.JoaraDW.Fragment_New.Fragment_New"
+        android:label=""
+        tools:layout="@layout/fragment_new" />
+
+    <fragment
+        android:id="@+id/Fragment_Best"
+        android:name="Bigbigdw.JoaraDW.Fragment_Best.Fragment_Best"
         android:label=""
         tools:layout="@layout/fragment_new" />
 

@@ -50,22 +50,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:id="@+id/LoadingLayoutWrap"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#FFFFFF"
-                    android:orientation="vertical"
-                    android:paddingTop="40dp"
-                    android:paddingBottom="80dp"
-                    android:visibility="gone">
-
-                    <include
-                        layout="@layout/loading"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
                 <include
                     layout="@layout/fragment_main_booklist_mdnovel"
                     android:layout_width="match_parent"

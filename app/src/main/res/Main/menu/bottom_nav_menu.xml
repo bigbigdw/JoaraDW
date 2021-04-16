@@ -7,7 +7,7 @@
         android:title="@string/app_bottom1" />
 
     <item
-        android:id="@id/Fragment_More"
+        android:id="@id/Fragment_Best"
         android:icon="@drawable/bottom_icon_best"
         android:title="@string/app_bottom3" />
 
