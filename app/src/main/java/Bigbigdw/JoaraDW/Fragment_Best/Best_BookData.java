@@ -27,8 +27,6 @@ public class Best_BookData {
     public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
-//        Log.d("TEST", ResultURL);
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 JSONArray flag = response.getJSONArray("books");

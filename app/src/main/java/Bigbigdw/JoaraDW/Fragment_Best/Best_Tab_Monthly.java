@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 import Bigbigdw.JoaraDW.R;
 
-public class Best_Tab_Alltime extends Fragment {
+public class Best_Tab_Monthly extends Fragment {
     private final Main_BookListAdapter_Best AllAdapter = new Main_BookListAdapter_Best();
     private final Main_BookListAdapter_Best NoblessAdapter = new Main_BookListAdapter_Best();
     private final Main_BookListAdapter_Best PremiumAdapter = new Main_BookListAdapter_Best();
@@ -26,7 +26,7 @@ public class Best_Tab_Alltime extends Fragment {
     private final Main_BookListAdapter_Best FinishAdapter = new Main_BookListAdapter_Best();
     private final Main_BookListAdapter_Best NoblessClassicAdapter = new Main_BookListAdapter_Best();
     private RequestQueue queue;
-    String BestType = "realtime";
+    String BestType = "monthly";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
