@@ -26,6 +26,8 @@ public class Main_BookData {
     public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
+//        Log.d("TEST", ResultURL);
+
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 JSONArray flag = response.getJSONArray("books");
@@ -42,7 +44,7 @@ public class Main_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",""));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

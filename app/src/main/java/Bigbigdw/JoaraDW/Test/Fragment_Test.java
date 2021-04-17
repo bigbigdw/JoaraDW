@@ -71,7 +71,7 @@ public class Fragment_Test extends Fragment {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",""));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0));
                     Wrap.setVisibility(View.VISIBLE);
                 }
                 Log.d("setItems", "완료!");
@@ -145,7 +145,7 @@ public class Fragment_Test extends Fragment {
                         String IsNobless = jo.getString("is_nobless");
                         String Intro = jo.getString("intro");
                         String IsFav = jo.getString("is_favorite");
-                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",""));
+                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0));
                         Wrap.setVisibility(View.VISIBLE);
                     }
                     Log.d("setItems", "완료!");

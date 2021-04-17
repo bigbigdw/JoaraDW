@@ -100,9 +100,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BestCount"
                 android:textColor="#000000"
@@ -128,9 +127,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookViewed"
                 android:textColor="#000000"
@@ -156,9 +154,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookFavCount"
                 android:textColor="#000000"
@@ -180,13 +177,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookRecommend"
                 android:textColor="#000000"

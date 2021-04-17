@@ -37,6 +37,8 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
                 .load(item.getBookImg())
                 .into(((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder).Image);
 
+        ((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder).BestRankImage.setImageResource(listData.get(position).getBookBestRank());
+
         ((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder).Title.setText(listData.get(position).getTitle());
         ((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder).Writer.setText(listData.get(position).getWriter());
         ((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder).Intro.setText(listData.get(position).getIntro());
@@ -60,6 +62,7 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
     static class Main_BookListViewHolder_Best extends RecyclerView.ViewHolder {
 
         ImageView Image;
+        ImageView BestRankImage;
         TextView Title;
         TextView Writer;
         TextView Intro;
@@ -71,6 +74,7 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
 
         Main_BookListViewHolder_Best(@NonNull View itemView) {
             super(itemView);
+            BestRankImage = itemView.findViewById(R.id.BestRankImg);
             Image = itemView.findViewById(R.id.Img_BookBest);
             Title = itemView.findViewById(R.id.Text_Title_Best);
             Writer = itemView.findViewById(R.id.Text_Writer_Best);

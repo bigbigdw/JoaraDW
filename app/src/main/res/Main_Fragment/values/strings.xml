@@ -29,5 +29,7 @@
     <string name="Main_Best_BookRecommend">작품 추천 수 : </string>
     <string name="Main_Best_Num">12345678</string>
     <string name="Main_Best_All">전체</string>
-    <string name="Main_Best_Rank">1등</string>
+    <string name="Main_Best_Lately">신규</string>
+    <string name="Main_Best_Finish">완결</string>
+    <string name="Main_Best_NoblessClassic">노블레스 클래식</string>
 </resources>

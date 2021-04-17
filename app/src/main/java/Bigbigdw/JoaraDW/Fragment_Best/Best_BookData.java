@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
+import Bigbigdw.JoaraDW.R;
 
 public class Best_BookData {
 
@@ -25,6 +26,8 @@ public class Best_BookData {
 
     public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
+
+//        Log.d("TEST", ResultURL);
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
@@ -42,12 +45,21 @@ public class Best_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-//                    String BestCount = jo.getString("cnt_best");
-//                    String BestViewed = jo.getString("cnt_page_read");
-//                    String BestFav = jo.getString("cnt_favorite");
-//                    String BestRecommend = jo.getString("cnt_recom");
-//                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend));
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"BestCount","BestViewed","BestFav","BestRecommend"));
+                    String BestCount = jo.getString("cnt_best");
+                    String BestViewed = jo.getString("cnt_page_read");
+                    String BestFav = jo.getString("cnt_favorite");
+                    String BestRecommend = jo.getString("cnt_recom");
+                    Integer BookBestRank = 0;
+
+                    if(i == 0){
+                       BookBestRank = R.drawable.icon_best_1;
+                    } else if (i == 1){
+                        BookBestRank = R.drawable.icon_best_2;
+                    } else {
+                        BookBestRank = R.drawable.icon_best_3;
+                    }
+
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

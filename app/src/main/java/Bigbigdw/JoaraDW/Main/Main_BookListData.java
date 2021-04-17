@@ -14,8 +14,9 @@ public class Main_BookListData {
     String BookViewed;
     String BookFavCount;
     String BookRecommend;
+    int BookBestRank;
 
-    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BestCount, String BookViewed, String BookFavCount, String BookRecommend) {
+    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BestCount, String BookViewed, String BookFavCount, String BookRecommend, int BookBestRank) {
         this.Writer = Writer;
         this.Title = Title;
         this.BookImg = BookImg;
@@ -33,6 +34,7 @@ public class Main_BookListData {
         this.BookViewed = BookViewed;
         this.BookFavCount = BookFavCount;
         this.BookRecommend = BookRecommend;
+        this.BookBestRank = BookBestRank;
     }
 
     public String getWriter() {
@@ -85,5 +87,9 @@ public class Main_BookListData {
 
     public String getBookRecommend() {
         return BookRecommend;
+    }
+
+    public int getBookBestRank() {
+        return BookBestRank;
     }
 }

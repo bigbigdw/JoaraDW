@@ -43,63 +43,47 @@ import Bigbigdw.JoaraDW.R;
 
 public class Best_Tab_Alltime extends Fragment {
     private final Main_BookListAdapter_Best AllAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best NoblessAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best PremiumAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best FreeAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best SeriesAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best FinishAdapter = new Main_BookListAdapter_Best();
+    private final Main_BookListAdapter_Best NoblessClassicAdapter = new Main_BookListAdapter_Best();
     private RequestQueue queue;
-
-    String USERTOKEN = "&token=";
-    String STATUS = "";
-    String ETC = "&page=1&offset=10";
-    String ShowType = "&show_type=home";
-    String Category = "&category=";
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_best_tab_alltime, container, false);
-
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
-            }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = "&token=" + UserInfo.getString("token");
-            Category = "&token=" + UserInfo.getString("category");
-            STATUS = jsonObject.getString("status");
-            Log.d("USERINFO", "읽기 완료");
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
-        }
-
         queue = Volley.newRequestQueue(getActivity());
 
-        BookList_A(root, "/v1/book/recommend_list_api.joa", USERTOKEN + "&book_code=", R.id.Best_Tab_AllList, AllAdapter, queue, R.id.Best_Tab_All);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_AllList, AllAdapter, queue, R.id.Best_Tab_All);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=nobless&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_NoblessList, NoblessAdapter, queue, R.id.Best_Tab_Nobless);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=premium&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_PremiumList, PremiumAdapter, queue, R.id.Best_Tab_Premium);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=series&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_FreeList, FreeAdapter, queue, R.id.Best_Tab_Free);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=lately&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_SeriesList, SeriesAdapter, queue, R.id.Best_Tab_Series);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=finish&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_FinishList, FinishAdapter, queue, R.id.Best_Tab_Finish);
+        BookBest(root, "/v1/best/book.joa", "&best=today&store=nobless_classic&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
 
 
         return root;
     }
 
-    public void BookList_A(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_Best Adapter, RequestQueue queue, Integer Wrap) {
+    public void BookBest(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_Best Adapter, RequestQueue queue, Integer Wrap) {
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
         Adapter.setItems(new Best_BookData().getData(API_URL, ETC, queue, wrap));
+        Log.d("TEST", "불림!");
         Adapter.notifyDataSetChanged();
+
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("TEST", "파괴!");
+        Log.d("onDestroyView", "파괴!");
     }
 }

@@ -26,8 +26,37 @@
                 android:orientation="vertical">
 
                 <include
-
                     layout="@layout/fragment_best_list_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_nobless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_free"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_series"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/fragment_best_list_noblessclassic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

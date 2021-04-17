@@ -51,7 +51,6 @@
             android:id="@+id/Text_TitleC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="2dp"
             android:breakStrategy="high_quality"
             android:ellipsize="end"
