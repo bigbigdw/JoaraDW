@@ -35,6 +35,12 @@
         android:id="@+id/Fragment_Best"
         android:name="Bigbigdw.JoaraDW.Fragment_Best.Fragment_Best"
         android:label=""
-        tools:layout="@layout/fragment_new" />
+        tools:layout="@layout/fragment_best" />
+
+    <fragment
+        android:id="@+id/Fragment_Finish"
+        android:name="Bigbigdw.JoaraDW.Fragment_Finish.Fragment_Finish"
+        android:label=""
+        tools:layout="@layout/fragment_best" />
 
 </navigation>

@@ -12,18 +12,18 @@
         android:title="@string/app_bottom3" />
 
     <item
-        android:id="@id/Fragment_More"
-        android:icon="@drawable/bottom_icon_prefer"
+        android:id="@id/Fragment_Finish"
+        android:icon="@drawable/bottom_icon_finish"
         android:title="@string/app_bottom4" />
 
     <item
         android:id="@id/Fragment_More"
-        android:icon="@drawable/bottom_icon_history"
+        android:icon="@drawable/bottom_icon_prefer"
         android:title="@string/app_bottom5" />
 
     <item
         android:id="@id/Fragment_More"
-        android:icon="@drawable/bottom_icon_finish"
+        android:icon="@drawable/bottom_icon_history"
         android:title="@string/app_bottom2" />
 
 

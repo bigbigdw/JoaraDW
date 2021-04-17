@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/Best_Tab_Free"
+        android:id="@+id/Best_Tab_NoblessClassic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -16,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         tools:visibility="visible">
 
         <LinearLayout
@@ -38,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:text="@string/FREE"
+                    android:text="@string/Main_Best_NoblessClassic"
                     android:textColor="#A5C500"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -46,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/Main_Best_Best"
                     android:textColor="#002635"
@@ -64,7 +65,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Best_Tab_FreeList"
+            android:id="@+id/Best_Tab_NoblessClassicList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

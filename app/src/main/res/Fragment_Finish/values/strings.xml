@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 완결 작품 -->
+<resources>
+    <string name="Finish_All">전체</string>
+    <string name="Finish_Top20">Top20</string>
+</resources>

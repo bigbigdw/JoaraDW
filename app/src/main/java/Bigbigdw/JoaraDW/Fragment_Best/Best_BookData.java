@@ -31,7 +31,9 @@ public class Best_BookData {
             try {
                 JSONArray flag = response.getJSONArray("books");
 
-                for (int i = 0; i < 3; i++) {
+                int Length = Math.min(flag.length(), 3);
+
+                for (int i = 0; i < Length; i++) {
                     JSONObject jo = flag.getJSONObject(i);
 
                     String BookImg = jo.getString("book_img");

@@ -1,5 +1,4 @@
-
-package Bigbigdw.JoaraDW.Main;
+package Bigbigdw.JoaraDW.Fragment_Finish;
 
 import android.util.Log;
 import android.view.View;
@@ -18,8 +17,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
-public class Main_BookData {
+public class Finish_BookData {
 
     ArrayList<Main_BookListData> items = new ArrayList<>();
 
@@ -30,7 +30,9 @@ public class Main_BookData {
             try {
                 JSONArray flag = response.getJSONArray("books");
 
-                for (int i = 0; i < flag.length(); i++) {
+                int Length = Math.min(flag.length(), 20);
+
+                for (int i = 0; i < Length; i++) {
                     JSONObject jo = flag.getJSONObject(i);
 
                     String BookImg = jo.getString("book_img");
@@ -59,3 +61,4 @@ public class Main_BookData {
         return items;
     }
 }
+

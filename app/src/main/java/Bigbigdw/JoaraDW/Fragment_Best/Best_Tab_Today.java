@@ -52,7 +52,6 @@ public class Best_Tab_Today extends Fragment {
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
         Adapter.setItems(new Best_BookData().getData(API_URL, ETC, queue, wrap));
-        Log.d("TEST", "불림!");
         Adapter.notifyDataSetChanged();
 
     }

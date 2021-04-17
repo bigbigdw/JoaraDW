@@ -7,15 +7,15 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/main_coupontodaybest"
+        android:id="@+id/Best_Tab_Free"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
         tools:visibility="visible">
 
         <LinearLayout
@@ -37,9 +37,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:text="@string/Main_BookList_Coupon"
+                    android:text="@string/FREE"
                     android:textColor="#A5C500"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -47,10 +46,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:fontFamily="@font/noto_sans"
-                    android:text="@string/Main_BookList_TodayBestList"
+                    android:text="@string/Main_Best_Best"
                     android:textColor="#002635"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
@@ -63,7 +64,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Main_CouponTodayBestList"
+            android:id="@+id/Best_Tab_FreeList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

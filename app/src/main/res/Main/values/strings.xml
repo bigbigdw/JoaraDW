@@ -30,8 +30,8 @@
     <string name="app_bottom1">최신작품</string>
     <string name="app_bottom2">더보기</string>
     <string name="app_bottom3">베스트</string>
-    <string name="app_bottom4">선호작</string>
-    <string name="app_bottom5">이어보기</string>
+    <string name="app_bottom4">완결작품</string>
+    <string name="app_bottom5">내 서재</string>
     <!-- 팝업 -->
     <string name="popup_left">하루동안 보지 않기</string>
     <string name="popup_right">닫기</string>
