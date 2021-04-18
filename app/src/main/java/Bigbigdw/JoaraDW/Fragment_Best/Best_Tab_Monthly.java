@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Fragment_Best;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,11 +29,21 @@ public class Best_Tab_Monthly extends Fragment {
     private final Main_BookListAdapter_Best NoblessClassicAdapter = new Main_BookListAdapter_Best();
     private RequestQueue queue;
     String BestType = "monthly";
+    LinearLayout LoadingLayout;
+    NestedScrollView ContentsLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_best_tab, container, false);
         queue = Volley.newRequestQueue(getActivity());
+
+        LoadingLayout = root.findViewById(R.id.LoadingLayout);
+        ContentsLayout = root.findViewById(R.id.ContentsLayout);
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            LoadingLayout.setVisibility(View.GONE);
+            ContentsLayout.setVisibility(View.VISIBLE);
+        }, 500);
 
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_AllList, AllAdapter, queue, R.id.Best_Tab_All);
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_NoblessList, NoblessAdapter, queue, R.id.Best_Tab_Nobless);

@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Fragment_Finish;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,11 +27,21 @@ public class Finish_Tab_Read extends Fragment {
 
     private RequestQueue queue;
     String FinishType = "cnt_page_read";
+    LinearLayout LoadingLayout;
+    NestedScrollView ContentsLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_finish_tab, container, false);
         queue = Volley.newRequestQueue(getActivity());
+
+        LoadingLayout = root.findViewById(R.id.LoadingLayout);
+        ContentsLayout = root.findViewById(R.id.ContentsLayout);
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            LoadingLayout.setVisibility(View.GONE);
+            ContentsLayout.setVisibility(View.VISIBLE);
+        }, 500);
 
         BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
         BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);

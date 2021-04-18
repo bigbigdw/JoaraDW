@@ -43,4 +43,10 @@
         android:label=""
         tools:layout="@layout/fragment_best" />
 
+    <fragment
+        android:id="@+id/Fragment_Fav"
+        android:name="Bigbigdw.JoaraDW.Fragment_Fav.Fragment_Fav"
+        android:label=""
+        tools:layout="@layout/fragment_best" />
+
 </navigation>

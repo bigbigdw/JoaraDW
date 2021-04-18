@@ -59,7 +59,7 @@ public class Best_BookData {
                         BookBestRank = R.drawable.icon_best_3;
                     }
 
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank,""));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

@@ -1,62 +1,99 @@
-package Bigbigdw.JoaraDW.Fragment_New;
+package Bigbigdw.JoaraDW.Fragment_Fav;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
+import Bigbigdw.JoaraDW.Fragment_New.New_Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
+import Bigbigdw.JoaraDW.R;
 
-public interface New_Book_Pagination {
+public class Fav_Tab_Fav extends Fragment {
+    private Main_BookListAdapter_Fav FavBookListAdapter;
+    private RecyclerView recyclerView;
+    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    LinearLayout Wrap, Cover;
+    String Store="";
+    String USERTOKEN = "&token=";
+    String STATUS = "";
 
-    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover) {
-        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_fav_list_fav, container, false);
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            try {
-                JSONArray flag = response.getJSONArray("books");
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        recyclerView = root.findViewById(R.id.Fav_FavBookList);
+        Wrap = root.findViewById(R.id.Tab_Fav);
+        Cover = root.findViewById(R.id.LoadingLayout);
 
-                for (int i = 0; i < flag.length(); i++) {
-                    JSONObject jo = flag.getJSONObject(i);
-
-                    String BookImg = jo.getString("book_img");
-                    String Title = jo.getString("subject");
-                    String Writer = jo.getString("writer_name");
-                    String IsAdult = jo.getString("is_adult");
-                    String IsFinish = jo.getString("is_finish");
-                    String IsPremium = jo.getString("is_premium");
-                    String IsNobless = jo.getString("is_nobless");
-                    String Intro = jo.getString("intro");
-                    String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"1"));
-                    Cover.setVisibility(View.GONE);
-                    Wrap.setVisibility(View.VISIBLE);
-                }
-                Log.d("setItems", "완료!");
-            } catch (JSONException e) {
-                e.printStackTrace();
+        try {
+            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
+            BufferedReader br = new BufferedReader(fr);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                sb.append(line).append("\n");
+                line = br.readLine();
             }
-        }, error -> Log.d("setItems", "에러!"));
+            br.close();
+            String result = sb.toString();
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject UserInfo = jsonObject.getJSONObject("user");
+            USERTOKEN = "&token=" + UserInfo.getString("token");
+            STATUS = jsonObject.getString("status");
+            Log.d("USERINFO", "읽기 완료");
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.d("USERINFO", "읽기 실패");
+        }
 
-        queue.add(jsonRequest);
+        String API = "/v1/user/favorite.joa";
+        String ETC = USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
+
+        New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        initAdapter();
+        initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, Store);
+
+        return root;
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_New NewBookListAdapter, RecyclerView recyclerView, String Store) {
+    private void initAdapter() {
+        FavBookListAdapter = new Main_BookListAdapter_Fav(items);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(FavBookListAdapter);
+    }
+
+    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav FavBookListAdapter, RecyclerView recyclerView, String Store) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -77,7 +114,7 @@ public interface New_Book_Pagination {
                     if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
 
                         items.add(null);
-                        NewBookListAdapter.notifyItemInserted(items.size() - 1);
+                        FavBookListAdapter.notifyItemInserted(items.size() - 1);
 
                         String ResultURL = HELPER.API + API + HELPER.ETC + "&store=" + Store + "&orderby=redate&offset=25&page=" + Page[0] + "&class=";
 
@@ -87,7 +124,7 @@ public interface New_Book_Pagination {
                             handler.postDelayed(() -> {
                                 items.remove(items.size() - 1);
                                 int scrollPosition = items.size();
-                                NewBookListAdapter.notifyItemRemoved(scrollPosition);
+                                FavBookListAdapter.notifyItemRemoved(scrollPosition);
 
                                 try {
                                     JSONArray flag = response.getJSONArray("books");
@@ -108,7 +145,7 @@ public interface New_Book_Pagination {
                                     }
                                     Log.d("setItems", "완료!");
 
-                                    NewBookListAdapter.notifyDataSetChanged();
+                                    FavBookListAdapter.notifyDataSetChanged();
                                     isLoading[0] = false;
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -124,3 +161,4 @@ public interface New_Book_Pagination {
         });
     }
 }
+
