@@ -87,9 +87,6 @@ public class Popup extends Dialog {
         //클릭 리스너 셋팅 (클릭버튼이 동작하도록 만들어줌.)
         BtnLeft.setOnClickListener(mBtnLeftListener);
         BtnRight.setOnClickListener(mBtnRightListener);
-
-
-
     }
 
     //생성자 생성

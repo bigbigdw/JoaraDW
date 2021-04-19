@@ -39,7 +39,7 @@ public class Fav_Tab_Fav extends Fragment {
     private Main_BookListAdapter_Fav FavBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover;
+    LinearLayout Wrap, Cover, LoginLayout;
     String Store="";
     String USERTOKEN = "&token=";
     String STATUS = "";
@@ -51,6 +51,7 @@ public class Fav_Tab_Fav extends Fragment {
         recyclerView = root.findViewById(R.id.Fav_FavBookList);
         Wrap = root.findViewById(R.id.Tab_Fav);
         Cover = root.findViewById(R.id.LoadingLayout);
+        LoginLayout = root.findViewById(R.id.LoginLayout);
 
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
@@ -76,9 +77,14 @@ public class Fav_Tab_Fav extends Fragment {
         String API = "/v1/user/favorite.joa";
         String ETC = USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
 
-        New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
-        initAdapter();
-        initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, Store);
+        if (STATUS.equals("1")) {
+            LoginLayout.setVisibility(View.GONE);
+            New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+            initAdapter();
+            initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, Store);
+        }
+
+
 
         return root;
     }
@@ -140,7 +146,7 @@ public class Fav_Tab_Fav extends Fragment {
                                         String IsNobless = jo.getString("is_nobless");
                                         String Intro = jo.getString("intro");
                                         String IsFav = jo.getString("is_favorite");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,""));
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",""));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
                                     Log.d("setItems", "완료!");

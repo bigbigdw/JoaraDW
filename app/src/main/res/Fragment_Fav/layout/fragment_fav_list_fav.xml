@@ -15,6 +15,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
+            layout="@layout/need_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
+        <include
             layout="@layout/loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

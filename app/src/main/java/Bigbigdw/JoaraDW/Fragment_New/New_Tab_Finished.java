@@ -38,7 +38,6 @@ public class New_Tab_Finished extends Fragment {
         recyclerView = root.findViewById(R.id.Main_NewBookList_Finished);
         Wrap = root.findViewById(R.id.Tab_NewFinishedWrap);
         Cover = root.findViewById(R.id.LoadingLayout);
-
         New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
         New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView,Store);

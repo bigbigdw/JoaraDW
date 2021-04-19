@@ -1,5 +1,14 @@
 package Bigbigdw.JoaraDW.Etc;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public interface HELPER {
 
 //    String API = "https://api-dev1.joara.com:7443";
@@ -11,7 +20,6 @@ public interface HELPER {
     String DEVICE_TOKEN = "mw";
     String ETC = "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
     String ResultURL = API + "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
-    String TOKEN = "";
     Boolean IsProduction = false;
 }
 

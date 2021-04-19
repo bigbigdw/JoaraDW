@@ -38,7 +38,7 @@ public class Fav_Tab_History extends Fragment {
     private Main_BookList_Adapter_History NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover;
+    LinearLayout Wrap, Cover, LoginLayout;
     String Store="";
     String USERTOKEN = "&token=";
     String STATUS = "";
@@ -48,6 +48,7 @@ public class Fav_Tab_History extends Fragment {
         recyclerView = root.findViewById(R.id.Fav_HistoryBookList);
         Wrap = root.findViewById(R.id.Tab_History);
         Cover = root.findViewById(R.id.LoadingLayout);
+        LoginLayout = root.findViewById(R.id.LoginLayout);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         try {
@@ -72,12 +73,19 @@ public class Fav_Tab_History extends Fragment {
         }
 
 
+
+
         String API = "/v1/user/historybooks.joa";
         String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
 
-        populateData(API, ETC, queue, Wrap, items, Cover);
-        initAdapter();
-        initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        if (STATUS.equals("1")) {
+            LoginLayout.setVisibility(View.GONE);
+            populateData(API, ETC, queue, Wrap, items, Cover);
+            initAdapter();
+            initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        }
+
+
 
         return root;
     }
@@ -94,8 +102,6 @@ public class Fav_Tab_History extends Fragment {
 
     static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
-
-        Log.d("ResultURL", ResultURL);
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
@@ -114,7 +120,7 @@ public class Fav_Tab_History extends Fragment {
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
                     String ReadHistory = jo.getString("history_sortno");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
                     Cover.setVisibility(View.GONE);
                     Wrap.setVisibility(View.VISIBLE);
                 }
@@ -175,7 +181,7 @@ public class Fav_Tab_History extends Fragment {
                                         String Intro = jo.getString("intro");
                                         String IsFav = jo.getString("is_favorite");
                                         String ReadHistory = jo.getString("history_sortno");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory));
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
                                     Log.d("setItems", "완료!");
