@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,8 +35,6 @@ public class New_Tab_ALL extends Fragment {
     LinearLayout Wrap, Cover;
     String Store="";
     String TOKEN = "";
-    ImageView Favon;
-    ImageView Favoff;
     String ETC = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +42,7 @@ public class New_Tab_ALL extends Fragment {
 
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
+            Log.d("TEST", getActivity().getDataDir().toString());
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -74,8 +74,6 @@ public class New_Tab_ALL extends Fragment {
         recyclerView = root.findViewById(R.id.Main_NewBookList);
         Wrap = root.findViewById(R.id.Tab_NewAll);
         Cover = root.findViewById(R.id.LoadingLayout);
-        Favon = root.findViewById(R.id.FavON);
-        Favoff = root.findViewById(R.id.FavOff);
 
         New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();

@@ -83,9 +83,7 @@ public class Fav_Tab_Fav extends Fragment {
             initAdapter();
             initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, Store);
         }
-
-
-
+        
         return root;
     }
 

@@ -17,6 +17,7 @@ import Bigbigdw.JoaraDW.R;
 
 
 public class New_Tab_Promised extends Fragment {
+
     private final Main_BookListAdapter_C NewBookListAdapter = new Main_BookListAdapter_C();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

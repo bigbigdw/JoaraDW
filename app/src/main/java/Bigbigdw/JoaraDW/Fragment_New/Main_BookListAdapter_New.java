@@ -11,10 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -133,8 +140,9 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
         TextView BookFav;
         ImageView Favon;
         ImageView Favoff;
-        LinearLayout Img_Wrap;
+        CardView Img_Wrap;
         String BookTitle,Book_Code;
+        String TOKEN = "";
 
         Main_BookListViewHolder_New(@NonNull View itemView, final OnClickFavListener listener) {
             super(itemView);
@@ -149,31 +157,59 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
             BookCode = itemView.findViewById(R.id.BookCodeText);
             BookFav = itemView.findViewById(R.id.TextBookFav);
 
-            Img_Wrap.setOnClickListener(v -> {
-                if (Favoff.getVisibility() == View.VISIBLE) {
-                    Favoff.setVisibility(View.GONE);
-                    Favon.setVisibility(View.VISIBLE);
-                    BookTitle = Title.getText().toString();
-                    Book_Code = BookCode.getText().toString();
-                    Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
-                            Toast.LENGTH_SHORT).show();
-                    int position = getAdapterPosition();
-                    if (listener != null) {
-                        listener.onItemClick(Main_BookListViewHolder_New.this, v, position, Book_Code);
-                    }
-                } else {
-                    Favoff.setVisibility(View.VISIBLE);
-                    Favon.setVisibility(View.GONE);
-                    BookTitle = Title.getText().toString();
-                    Book_Code = BookCode.getText().toString();
-                    Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
-                            Toast.LENGTH_SHORT).show();
-                    int position = getAdapterPosition();
-                    if (listener != null) {
-                        listener.onItemClick(Main_BookListViewHolder_New.this, v, position, Book_Code);
-                    }
+            try {
+                FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
+                BufferedReader br = new BufferedReader(fr);
+                StringBuilder sb = new StringBuilder();
+                String line = br.readLine();
+                while (line != null) {
+                    sb.append(line).append("\n");
+                    line = br.readLine();
                 }
-            });
+                br.close();
+                String result = sb.toString();
+                JSONObject jsonObject = new JSONObject(result);
+                JSONObject UserInfo = jsonObject.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+                Log.d("TOKENNNN", TOKEN);
+                Log.d("USERINFO", "읽기 완료");
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+                Log.d("USERINFO", "읽기 실패");
+            }
+
+            if(!TOKEN.equals("")){
+                Img_Wrap.setOnClickListener(v -> {
+                    if (Favoff.getVisibility() == View.VISIBLE) {
+                        Favoff.setVisibility(View.GONE);
+                        Favon.setVisibility(View.VISIBLE);
+                        BookTitle = Title.getText().toString();
+                        Book_Code = BookCode.getText().toString();
+                        Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
+                                Toast.LENGTH_SHORT).show();
+                        int position = getAdapterPosition();
+                        if (listener != null) {
+                            listener.onItemClick(Main_BookListViewHolder_New.this, v, position, Book_Code);
+                        }
+                    } else {
+                        Favoff.setVisibility(View.VISIBLE);
+                        Favon.setVisibility(View.GONE);
+                        BookTitle = Title.getText().toString();
+                        Book_Code = BookCode.getText().toString();
+                        Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
+                                Toast.LENGTH_SHORT).show();
+                        int position = getAdapterPosition();
+                        if (listener != null) {
+                            listener.onItemClick(Main_BookListViewHolder_New.this, v, position, Book_Code);
+                        }
+                    }
+                });
+            } else {
+                Img_Wrap.setOnClickListener(v -> {
+                        Toast.makeText(itemView.getContext(), "선호작을 등록하려면 로그인이 필요합니다",
+                                Toast.LENGTH_SHORT).show();
+                });
+            }
         }
     }
 

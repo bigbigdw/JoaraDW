@@ -20,6 +20,7 @@ public interface HELPER {
     String DEVICE_TOKEN = "mw";
     String ETC = "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
     String ResultURL = API + "?api_key=" + API_KEY + "&ver=" + VER + "&device=" + DEVICE + "&deviceuid=" + DEVICE_ID + "&devicetoken=" + DEVICE_TOKEN;
-    Boolean IsProduction = false;
+
+
 }
 

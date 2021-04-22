@@ -32,7 +32,7 @@ public interface New_Book_Pagination {
 
     static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
-        Log.d("ResultURL", ResultURL);
+//        Log.d("ResultURL", ResultURL);
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
