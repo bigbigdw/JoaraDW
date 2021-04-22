@@ -24,6 +24,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
+    OnClickFavListener listener;
 
     public Main_BookListAdapter_Fav(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -34,7 +35,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_fav, parent, false);
-            return new Main_BookListAdapter_Fav.Main_BookListViewHolder_New(view);
+            return new Main_BookListAdapter_Fav.Main_BookListViewHolder_New(view, this::onItemClickFav);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
             return new Main_BookListAdapter_Fav.LoadingViewHolder(view);
@@ -87,6 +88,15 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
+    public void onItemClickFav(Main_BookListAdapter_Fav.Main_BookListViewHolder_New holder, View view, int position, String Value) {
+        if (listener != null) {
+            listener.onItemClick(holder, view, position, Value);
+        }
+    }
+
+    public void setOnItemClicklistener(OnClickFavListener listener) {
+        this.listener = listener;
+    }
 
     static public class Main_BookListViewHolder_New extends RecyclerView.ViewHolder {
 
@@ -97,9 +107,10 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
         ImageView Favon;
         ImageView Favoff;
         LinearLayout Img_Wrap;
+        String BookTitle,Book_Code;
+        TextView BookCode;
 
-
-        Main_BookListViewHolder_New(@NonNull View itemView) {
+        Main_BookListViewHolder_New(@NonNull View itemView, final OnClickFavListener listener ) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookFav);
             Title = itemView.findViewById(R.id.Text_TitleFav);
@@ -108,18 +119,31 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
             Favon = itemView.findViewById(R.id.Icon_FavOn);
             Favoff = itemView.findViewById(R.id.Icon_FavOff);
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
+            BookCode = itemView.findViewById(R.id.BookCodeText);
 
             Img_Wrap.setOnClickListener(v -> {
                 if (Favoff.getVisibility() == View.VISIBLE) {
                     Favoff.setVisibility(View.GONE);
                     Favon.setVisibility(View.VISIBLE);
-                    Toast.makeText(itemView.getContext(), "작품이 선호작에 등록되었습니다",
+                    BookTitle = Title.getText().toString();
+                    Book_Code = BookCode.getText().toString();
+                    Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
                             Toast.LENGTH_SHORT).show();
+                    int position = getAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, Book_Code);
+                    }
                 } else {
                     Favoff.setVisibility(View.VISIBLE);
                     Favon.setVisibility(View.GONE);
-                    Toast.makeText(itemView.getContext(), "작품을 선호작에서 해제하였습니다",
+                    BookTitle = Title.getText().toString();
+                    Book_Code = BookCode.getText().toString();
+                    Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
                             Toast.LENGTH_SHORT).show();
+                    int position = getAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, Book_Code);
+                    }
                 }
             });
         }
@@ -132,5 +156,13 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
             super(itemView);
             progressBar = itemView.findViewById(R.id.progressBar);
         }
+    }
+
+    public void setItems(ArrayList<Main_BookListData> items) {
+        this.listData = items;
+    }
+
+    public Main_BookListData getItem(int position) {
+        return listData.get(position);
     }
 }

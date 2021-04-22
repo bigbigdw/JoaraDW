@@ -73,8 +73,6 @@ public class Fav_Tab_History extends Fragment {
         }
 
 
-
-
         String API = "/v1/user/historybooks.joa";
         String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
 
@@ -82,10 +80,8 @@ public class Fav_Tab_History extends Fragment {
             LoginLayout.setVisibility(View.GONE);
             populateData(API, ETC, queue, Wrap, items, Cover);
             initAdapter();
-            initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+            initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
         }
-
-
 
         return root;
     }
@@ -105,6 +101,8 @@ public class Fav_Tab_History extends Fragment {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
+
+
                 JSONArray flag = response.getJSONArray("books");
 
                 for (int i = 0; i < flag.length(); i++) {
@@ -133,7 +131,7 @@ public class Fav_Tab_History extends Fragment {
         queue.add(jsonRequest);
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookList_Adapter_History FavBookListAdapter, RecyclerView recyclerView, String Store) {
+    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookList_Adapter_History FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -156,8 +154,8 @@ public class Fav_Tab_History extends Fragment {
                         items.add(null);
                         FavBookListAdapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + "&store=" + Store + "&orderby=redate&offset=25&page=" + Page[0] + "&class=";
-
+                        String ResultURL = HELPER.API + API + HELPER.ETC + USERTOKEN + "&category=0&page="+ Page[0] + "&mem_time=0";
+                        Log.d("ResultURL", ResultURL);
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
                             Handler handler = new Handler();
@@ -167,27 +165,32 @@ public class Fav_Tab_History extends Fragment {
                                 FavBookListAdapter.notifyItemRemoved(scrollPosition);
 
                                 try {
-                                    JSONArray flag = response.getJSONArray("books");
+                                    int MaxPage = (int) Math.ceil(response.getInt("total_cnt") / 50);
+                                    System.out.println("MaxPage =" + MaxPage + "!!!" + Page[0]);
 
-                                    for (int i = 0; i < flag.length(); i++) {
-                                        JSONObject jo = flag.getJSONObject(i);
-                                        String BookImg = jo.getString("book_img");
-                                        String Title = jo.getString("subject");
-                                        String Writer = jo.getString("writer_name");
-                                        String IsAdult = jo.getString("is_adult");
-                                        String IsFinish = jo.getString("is_finish");
-                                        String IsPremium = jo.getString("is_premium");
-                                        String IsNobless = jo.getString("is_nobless");
-                                        String Intro = jo.getString("intro");
-                                        String IsFav = jo.getString("is_favorite");
-                                        String ReadHistory = jo.getString("history_sortno");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
-                                        Wrap.setVisibility(View.VISIBLE);
+                                    if(Page[0] < MaxPage + 2 ){
+                                        JSONArray flag = response.getJSONArray("books");
+
+                                        for (int i = 0; i < flag.length(); i++) {
+                                            JSONObject jo = flag.getJSONObject(i);
+                                            String BookImg = jo.getString("book_img");
+                                            String Title = jo.getString("subject");
+                                            String Writer = jo.getString("writer_name");
+                                            String IsAdult = jo.getString("is_adult");
+                                            String IsFinish = jo.getString("is_finish");
+                                            String IsPremium = jo.getString("is_premium");
+                                            String IsNobless = jo.getString("is_nobless");
+                                            String Intro = jo.getString("intro");
+                                            String IsFav = jo.getString("is_favorite");
+                                            String ReadHistory = jo.getString("history_sortno");
+                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
+                                            Wrap.setVisibility(View.VISIBLE);
+                                        }
+                                        Log.d("setItems", "완료!");
+
+                                        FavBookListAdapter.notifyDataSetChanged();
+                                        isLoading[0] = false;
                                     }
-                                    Log.d("setItems", "완료!");
-
-                                    FavBookListAdapter.notifyDataSetChanged();
-                                    isLoading[0] = false;
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

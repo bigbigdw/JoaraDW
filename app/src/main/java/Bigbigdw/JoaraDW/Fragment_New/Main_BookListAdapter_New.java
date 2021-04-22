@@ -28,11 +28,11 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnClickFavListener {
+public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnClickNewListener {
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    OnClickFavListener listener;
+    OnClickNewListener listener;
 
     public Main_BookListAdapter_New(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -125,7 +125,7 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public void setOnItemClicklistener(OnClickFavListener listener) {
+    public void setOnItemClicklistener(OnClickNewListener listener) {
         this.listener = listener;
     }
 
@@ -144,7 +144,7 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
         String BookTitle,Book_Code;
         String TOKEN = "";
 
-        Main_BookListViewHolder_New(@NonNull View itemView, final OnClickFavListener listener) {
+        Main_BookListViewHolder_New(@NonNull View itemView, final OnClickNewListener listener) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_Book);
             Title = itemView.findViewById(R.id.Text_Title);
@@ -171,7 +171,6 @@ public class Main_BookListAdapter_New extends RecyclerView.Adapter<RecyclerView.
                 JSONObject jsonObject = new JSONObject(result);
                 JSONObject UserInfo = jsonObject.getJSONObject("user");
                 TOKEN = UserInfo.getString("token");
-                Log.d("TOKENNNN", TOKEN);
                 Log.d("USERINFO", "읽기 완료");
             } catch (IOException | JSONException e) {
                 e.printStackTrace();

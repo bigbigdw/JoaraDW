@@ -40,8 +40,7 @@ public class Fav_Tab_Fav extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, LoginLayout;
-    String Store="";
-    String USERTOKEN = "&token=";
+    String USERTOKEN = "";
     String STATUS = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class Fav_Tab_Fav extends Fragment {
             String result = sb.toString();
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = "&token=" + UserInfo.getString("token");
+            USERTOKEN = UserInfo.getString("token");
             STATUS = jsonObject.getString("status");
             Log.d("USERINFO", "읽기 완료");
         } catch (IOException | JSONException e) {
@@ -75,14 +74,19 @@ public class Fav_Tab_Fav extends Fragment {
         }
 
         String API = "/v1/user/favorite.joa";
-        String ETC = USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
+        String ETC = "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
 
         if (STATUS.equals("1")) {
             LoginLayout.setVisibility(View.GONE);
             New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
             initAdapter();
-            initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, Store);
+            initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, USERTOKEN);
         }
+
+        FavBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = FavBookListAdapter.getItem(position);
+            New_Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+        });
         
         return root;
     }
@@ -97,7 +101,7 @@ public class Fav_Tab_Fav extends Fragment {
         recyclerView.setAdapter(FavBookListAdapter);
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav FavBookListAdapter, RecyclerView recyclerView, String Store) {
+    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -120,7 +124,7 @@ public class Fav_Tab_Fav extends Fragment {
                         items.add(null);
                         FavBookListAdapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + "&store=" + Store + "&orderby=redate&offset=25&page=" + Page[0] + "&class=";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page="+ Page[0] + "&query=&mem_time=0";
 
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
