@@ -166,7 +166,6 @@ public class Fav_Tab_History extends Fragment {
 
                                 try {
                                     int MaxPage = (int) Math.ceil(response.getInt("total_cnt") / 50);
-                                    System.out.println("MaxPage =" + MaxPage + "!!!" + Page[0]);
 
                                     if(Page[0] < MaxPage + 2 ){
                                         JSONArray flag = response.getJSONArray("books");

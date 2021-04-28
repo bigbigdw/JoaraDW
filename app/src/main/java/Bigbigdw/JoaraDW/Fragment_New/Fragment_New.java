@@ -1,9 +1,11 @@
 package Bigbigdw.JoaraDW.Fragment_New;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import Bigbigdw.JoaraDW.R;
 import Bigbigdw.JoaraDW.Test.Fragment_Test;
@@ -23,15 +26,25 @@ import Bigbigdw.JoaraDW.Test.Test;
 
 public class Fragment_New extends Fragment {
 
-    private TabLayout tabLayout;
+    private TabLayout Fragment_NewTab;
     private ViewPager viewPager;
+    int TabNum = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new, container, false);
+
+        Bundle bundle = this.getArguments();
         viewPager = root.findViewById(R.id.view_pager);
         setupViewPager(viewPager);
-        tabLayout = root.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+
+        if (bundle != null) {
+            TabNum = bundle.getInt("TabNum");
+            viewPager.setCurrentItem(TabNum);
+        }
+
+        Fragment_NewTab = root.findViewById(R.id.Fragment_NewTab);
+        Fragment_NewTab.setupWithViewPager(viewPager);
+
 
         return root;
     }

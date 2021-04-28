@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/Wrap77Fes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,6 +44,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/WrapKidamu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -68,6 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/WrapNOTY"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -93,6 +96,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/WrapPromised"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"

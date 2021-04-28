@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Fragment_Main;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,26 +10,22 @@ import android.view.ViewGroup;
 
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,14 +36,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -77,6 +74,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     String ShowType = "&show_type=home";
     String Category = "&category=";
     TextView UserNameCategory;
+    LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -133,7 +131,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             BookList_A(root, "/v1/book/recommend_list_api.joa", USERTOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
         }
 
-
         BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
         BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN, R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
         BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
@@ -146,6 +143,36 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         BookList_D(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
         BookList_D(root, "/v1/home/list.joa", USERTOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
 
+        Wrap77Fes = root.findViewById(R.id.Wrap77Fes);
+        WrapKidamu = root.findViewById(R.id.WrapKidamu);
+        WrapNOTY = root.findViewById(R.id.WrapNOTY);
+        WrapPromised = root.findViewById(R.id.WrapPromised);
+
+        Bundle bundle = new Bundle();
+
+        Wrap77Fes.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 1);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        WrapKidamu.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 2);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        WrapNOTY.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 3);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        WrapPromised.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 4);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
 
         return root;
     }
@@ -158,6 +185,14 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         LinearLayout wrap = root.findViewById(Wrap);
         Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
+
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
+            Toast.makeText(getActivity().getApplicationContext(), item.getBookCode(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail.class);
+            intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
+            startActivity(intent);
+        });
     }
 
     public void BookList_B(View root, AssetManager assetManager, String BookType,  Integer RecylerView, Main_BookListAdapter_B Adapter) {

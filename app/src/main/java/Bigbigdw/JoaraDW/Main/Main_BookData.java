@@ -42,7 +42,8 @@ public class Main_BookData {
                     String IsNobless = jo.getString("is_nobless");
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",""));
+                    String BookCode = jo.getString("book_code");
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

@@ -14,7 +14,6 @@
         <activity
             android:name=".Etc.Splash"
             android:theme="@style/Theme.JoaraDW">
-
         </activity>
         <activity
             android:name=".Main.Main"
@@ -33,6 +32,12 @@
 
         <activity
             android:name=".Login.Login_Main"
+            android:theme="@style/Theme.JoaraDW">
+        </activity>
+
+        <activity
+            android:name=".Book_Detail.Book_Detail"
+            android:label=""
             android:theme="@style/Theme.JoaraDW">
 
         </activity>

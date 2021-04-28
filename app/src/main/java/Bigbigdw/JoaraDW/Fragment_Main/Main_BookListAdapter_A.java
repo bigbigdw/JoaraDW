@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Main;
+package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,18 +15,20 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_A {
 
     private ArrayList<Main_BookListData> listData = new ArrayList<>();
+    onClickAdapterListener_A listener;
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_a, parent, false);
-        return new Main_BookListAdapter_A.Main_BookListViewHolder_A(view);
+        return new Main_BookListAdapter_A.Main_BookListViewHolder_A(view, listener);
     }
 
     @Override
@@ -81,6 +84,21 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         this.listData = items;
     }
 
+    public Main_BookListData getItem(int position) {
+        return listData.get(position);
+    }
+
+    @Override
+    public void onClickAdapter_A(Main_BookListViewHolder_A holder, View view, int position, String Value) {
+        if (listener != null) {
+            listener.onClickAdapter_A(holder, view, position, Value);
+        }
+    }
+
+    public void setOnItemClicklistener(onClickAdapterListener_A listener) {
+        this.listener = listener;
+    }
+
     static class Main_BookListViewHolder_A extends RecyclerView.ViewHolder {
 
         ImageView Image;
@@ -88,14 +106,27 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         TextView Writer;
         ConstraintLayout UnderCover;
         TextView UnderCoverText;
+        CardView Img_Wrap;
+        TextView BookCode;
+        String Book_Code;
 
-        Main_BookListViewHolder_A(@NonNull View itemView) {
+        Main_BookListViewHolder_A(@NonNull View itemView, final onClickAdapterListener_A listener) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookA);
             Title = itemView.findViewById(R.id.Text_TitleA);
             Writer = itemView.findViewById(R.id.Text_WriterA);
             UnderCover = itemView.findViewById(R.id.BookImgUnderWrap);
             UnderCoverText = itemView.findViewById(R.id.UnderCoverText);
+            BookCode = itemView.findViewById(R.id.BookCodeText);
+            Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
+
+            Img_Wrap.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null) {
+                    listener.onClickAdapter_A(Main_BookListAdapter_A.Main_BookListViewHolder_A.this, v, position, Book_Code);
+                }
+            });
+
         }
 
     }

@@ -27,6 +27,12 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/BookCodeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/Text_TitleD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
