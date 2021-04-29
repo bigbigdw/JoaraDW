@@ -18,6 +18,9 @@
     <string name="Common_UserID">소고기냠냠</string>
     <string name="Common_SeeMore">더보기</string>
     <string name="Common_Joara">조아라</string>
+    <string name="Common_Bar">|</string>
+    <string name="Common_Genre">장르</string>
+    <string name="Common_Count">1234567</string>
     <string name="NOBLESS">노블레스</string>
     <string name="PREMIUM">프리미엄</string>
     <string name="FINISH">완결</string>
