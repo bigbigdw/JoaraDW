@@ -188,9 +188,9 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            Toast.makeText(getActivity().getApplicationContext(), item.getBookCode(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail.class);
             intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
+            intent.putExtra("TOKEN",String.format("%s", USERTOKEN));
             startActivity(intent);
         });
     }

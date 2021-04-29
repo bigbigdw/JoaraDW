@@ -29,8 +29,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
-import Bigbigdw.JoaraDW.Fragment_New.New_Book_Pagination;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -39,7 +39,6 @@ public class Fav_Tab_History extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, LoginLayout;
-    String Store="";
     String USERTOKEN = "&token=";
     String STATUS = "";
 
@@ -66,19 +65,18 @@ public class Fav_Tab_History extends Fragment {
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             USERTOKEN = "&token=" + UserInfo.getString("token");
             STATUS = jsonObject.getString("status");
-            Log.d("USERINFO", "읽기 완료");
+            Log.d("Fav_Tab_History", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
+            Log.d("Fav_Tab_History", "읽기 실패");
         }
-
 
         String API = "/v1/user/historybooks.joa";
         String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
 
         if (STATUS.equals("1")) {
-            LoginLayout.setVisibility(View.GONE);
-            populateData(API, ETC, queue, Wrap, items, Cover);
+            Book_Pagination.LoginCheck(queue, USERTOKEN, LoginLayout);
+            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, Cover, "History");
             initAdapter();
             initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
         }
@@ -96,40 +94,50 @@ public class Fav_Tab_History extends Fragment {
         recyclerView.setAdapter(NewBookListAdapter);
     }
 
-    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover) {
-        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            try {
-
-
-                JSONArray flag = response.getJSONArray("books");
-
-                for (int i = 0; i < flag.length(); i++) {
-                    JSONObject jo = flag.getJSONObject(i);
-
-                    String BookImg = jo.getString("book_img");
-                    String Title = jo.getString("subject");
-                    String Writer = jo.getString("writer_name");
-                    String IsAdult = jo.getString("is_adult");
-                    String IsFinish = jo.getString("is_finish");
-                    String IsPremium = jo.getString("is_premium");
-                    String IsNobless = jo.getString("is_nobless");
-                    String Intro = jo.getString("intro");
-                    String IsFav = jo.getString("is_favorite");
-                    String ReadHistory = jo.getString("history_sortno");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
-                    Cover.setVisibility(View.GONE);
-                    Wrap.setVisibility(View.VISIBLE);
-                }
-                Log.d("setItems", "완료!");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Log.d("setItems", "에러!"));
-
-        queue.add(jsonRequest);
-    }
+//    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, String STATUS, LinearLayout LoginLayout) {
+//        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
+//
+//        Log.d("ResultURL =", ResultURL);
+//
+//        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+//            try {
+//
+//                if (response.getString("status").equals("1") && STATUS.equals("1")) {
+//
+//                    LoginLayout.setVisibility(View.GONE);
+//
+//                    JSONArray flag = response.getJSONArray("books");
+//
+//                    for (int i = 0; i < flag.length(); i++) {
+//                        JSONObject jo = flag.getJSONObject(i);
+//
+//                        String BookImg = jo.getString("book_img");
+//                        String Title = jo.getString("subject");
+//                        String Writer = jo.getString("writer_name");
+//                        String IsAdult = jo.getString("is_adult");
+//                        String IsFinish = jo.getString("is_finish");
+//                        String IsPremium = jo.getString("is_premium");
+//                        String IsNobless = jo.getString("is_nobless");
+//                        String Intro = jo.getString("intro");
+//                        String IsFav = jo.getString("is_favorite");
+//                        String ReadHistory = jo.getString("history_sortno");
+//                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, ""));
+//                        Cover.setVisibility(View.GONE);
+//                        Wrap.setVisibility(View.VISIBLE);
+//                    }
+//                } else {
+//                    LoginLayout.setVisibility(View.VISIBLE);
+//                }
+//
+//
+//                Log.d("Fav_Tab_History", "완료!");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }, error -> Log.d("Fav_Tab_History", "에러!"));
+//
+//        queue.add(jsonRequest);
+//    }
 
     static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookList_Adapter_History FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
 
@@ -154,7 +162,7 @@ public class Fav_Tab_History extends Fragment {
                         items.add(null);
                         FavBookListAdapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + USERTOKEN + "&category=0&page="+ Page[0] + "&mem_time=0";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + USERTOKEN + "&category=0&page=" + Page[0] + "&mem_time=0";
                         Log.d("ResultURL", ResultURL);
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
@@ -167,7 +175,7 @@ public class Fav_Tab_History extends Fragment {
                                 try {
                                     int MaxPage = (int) Math.ceil(response.getInt("total_cnt") / 50);
 
-                                    if(Page[0] < MaxPage + 2 ){
+                                    if (Page[0] < MaxPage + 2) {
                                         JSONArray flag = response.getJSONArray("books");
 
                                         for (int i = 0; i < flag.length(); i++) {
@@ -182,10 +190,10 @@ public class Fav_Tab_History extends Fragment {
                                             String Intro = jo.getString("intro");
                                             String IsFav = jo.getString("is_favorite");
                                             String ReadHistory = jo.getString("history_sortno");
-                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,ReadHistory,""));
+                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, ""));
                                             Wrap.setVisibility(View.VISIBLE);
                                         }
-                                        Log.d("setItems", "완료!");
+                                        Log.d("Fav_Tab_History", "완료!");
 
                                         FavBookListAdapter.notifyDataSetChanged();
                                         isLoading[0] = false;
@@ -194,7 +202,7 @@ public class Fav_Tab_History extends Fragment {
                                     e.printStackTrace();
                                 }
                             }, 2000);
-                        }, error -> Log.d("setItems", "에러!"));
+                        }, error -> Log.d("Fav_Tab_History", "에러!"));
                         queue.add(jsonRequest);
                         isLoading[0] = true;
                         Page[0]++;

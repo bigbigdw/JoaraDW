@@ -1,8 +1,6 @@
 package Bigbigdw.JoaraDW.Test;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
-import Bigbigdw.JoaraDW.Fragment_New.New_Book_Pagination;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -40,9 +38,9 @@ public class Fragment_Test_Z extends Fragment {
         Wrap = root.findViewById(R.id.Tab_NewAll);
         Cover = root.findViewById(R.id.LoadingLayout);
 
-        New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
-        New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
 
         return root;
     }

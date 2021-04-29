@@ -52,11 +52,11 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.PREMIUM);
-            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAa5c500);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.FINISH);
-            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAa5c500);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAA767676);
         } else if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_NOBLESS);
@@ -64,11 +64,11 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_PREMIUM);
-            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAF44336);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.ADULT_FINISH);
-            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAAF44336);
+            ((Main_BookListViewHolder_A) holder).UnderCoverText.setTextColor(0xAA767676);
         } else {
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.GONE);
         }

@@ -51,6 +51,7 @@ import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
@@ -134,17 +135,7 @@ public class Main extends AppCompatActivity {
             Log.d("USERINFO", "읽기 실패");
         }
 
-        if (STATUS.equals("1")) {
-            Log.d("Login", "로그인 성공");
-            Drawer_LogOut.setVisibility(View.GONE);
-            Drawer_LogIn.setVisibility(View.VISIBLE);
-            hideItem(navigationView);
-        } else {
-            Log.d("Login", "로그인 실패");
-            Drawer_LogOut.setVisibility(View.VISIBLE);
-            Drawer_LogIn.setVisibility(View.GONE);
-            hideItem(navigationView);
-        }
+        LoginCheck(queue, USERTOKEN, Drawer_LogIn, Drawer_LogOut, navigationView);
 
         AppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_Main
@@ -186,7 +177,31 @@ public class Main extends AppCompatActivity {
     }
 
 
+    void LoginCheck(RequestQueue queue, String USERTOKEN, LinearLayout Drawer_LogIn, LinearLayout Drawer_LogOut, NavigationView navigationView) {
+        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+            Log.d("Main", response.toString());
+
+            try {
+                if (response.getString("status").equals("1")) {
+                    Drawer_LogOut.setVisibility(View.GONE);
+                    Drawer_LogIn.setVisibility(View.VISIBLE);
+                    hideItem(navigationView);
+                } else {
+                    Drawer_LogOut.setVisibility(View.VISIBLE);
+                    Drawer_LogIn.setVisibility(View.GONE);
+                    hideItem(navigationView);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("Main", "완료!");
+        }, error -> Log.d("Main", "에러!"));
+
+        queue.add(jsonRequest);
+    }
 
 //    @Override
 //    public void onBackPressed() {

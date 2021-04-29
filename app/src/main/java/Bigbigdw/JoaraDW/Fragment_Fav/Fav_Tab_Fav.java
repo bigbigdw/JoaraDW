@@ -26,12 +26,10 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
-import Bigbigdw.JoaraDW.Fragment_New.New_Book_Pagination;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -77,15 +75,15 @@ public class Fav_Tab_Fav extends Fragment {
         String ETC = "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
 
         if (STATUS.equals("1")) {
-            LoginLayout.setVisibility(View.GONE);
-            New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+            Book_Pagination.LoginCheck(queue, "&token=" + USERTOKEN, LoginLayout);
+            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, Cover, "Fav");
             initAdapter();
             initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, USERTOKEN);
         }
 
         FavBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = FavBookListAdapter.getItem(position);
-            New_Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+            Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
         });
         
         return root;

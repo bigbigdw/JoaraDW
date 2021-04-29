@@ -73,13 +73,13 @@ public class New_Tab_Series extends Fragment {
         recyclerView = root.findViewById(R.id.Main_NewBookList_Series);
         Cover = root.findViewById(R.id.LoadingLayout);
 
-        New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
-        New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
 
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
-            New_Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+            Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
         });
 
         return root;

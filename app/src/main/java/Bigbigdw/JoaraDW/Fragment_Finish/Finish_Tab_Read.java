@@ -25,7 +25,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.Fragment_New.New_Book_Pagination;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -95,7 +95,7 @@ public class Finish_Tab_Read extends Fragment {
     public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_Finish Adapter, RequestQueue queue, Integer Wrap) {
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            New_Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+            Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
         });
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

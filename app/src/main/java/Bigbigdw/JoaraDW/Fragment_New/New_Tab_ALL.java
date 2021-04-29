@@ -5,11 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,13 +73,13 @@ public class New_Tab_ALL extends Fragment {
         Wrap = root.findViewById(R.id.Tab_NewAll);
         Cover = root.findViewById(R.id.LoadingLayout);
 
-        New_Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
-        New_Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
         
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
-            New_Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+            Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
         });
 
 

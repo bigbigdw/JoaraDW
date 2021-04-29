@@ -38,7 +38,7 @@
         <activity
             android:name=".Book_Detail.Book_Detail"
             android:label=""
-            android:theme="@style/Theme.JoaraDW">
+            android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
