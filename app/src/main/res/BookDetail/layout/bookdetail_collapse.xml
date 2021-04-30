@@ -17,14 +17,13 @@
             android:id="@+id/BookCoverHeader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#000000"
             android:contentDescription="@string/TODO"
-            android:scaleType="centerCrop"
-            android:src="@drawable/splash_logo2" />
+            android:scaleType="centerCrop" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,6 +43,12 @@
                     android:src="@drawable/img_bookdetailcover" />
 
             </LinearLayout>
+
+            <include
+                layout="@layout/book_detail_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,12 +85,13 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/BookDetailHeader2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#00283D"
                         android:fontFamily="@font/noto_sans_bold"
+                        android:onClick="BookDetailHeaderOff"
                         android:text="@string/Viewer_HeaderBtn2"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />

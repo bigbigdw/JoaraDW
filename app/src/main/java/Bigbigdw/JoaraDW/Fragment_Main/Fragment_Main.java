@@ -12,7 +12,6 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -73,7 +72,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     String ETC = "&page=1&offset=10";
     String ShowType = "&show_type=home";
     String Category = "&category=";
-    TextView UserNameCategory;
+    TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
 
 
@@ -147,6 +146,12 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         WrapKidamu = root.findViewById(R.id.WrapKidamu);
         WrapNOTY = root.findViewById(R.id.WrapNOTY);
         WrapPromised = root.findViewById(R.id.WrapPromised);
+        GoToHistory = root.findViewById(R.id.GoToHistory);
+        GoToFes = root.findViewById(R.id.GoToFes);
+        GoToPromised = root.findViewById(R.id.GoToPromised);
+        GoToKidamu = root.findViewById(R.id.GoToKidamu);
+        GoToNoty = root.findViewById(R.id.GoToNoty);
+
 
         Bundle bundle = new Bundle();
 
@@ -173,6 +178,37 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             NavHostFragment.findNavController(Fragment_Main.this)
                     .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
         });
+
+        GoToHistory.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 1);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_Fav, bundle);
+        });
+
+        GoToFes.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 1);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        GoToPromised.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 4);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        GoToKidamu.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 4);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
+        GoToNoty.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 3);
+            NavHostFragment.findNavController(Fragment_Main.this)
+                    .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
+        });
+
 
         return root;
     }

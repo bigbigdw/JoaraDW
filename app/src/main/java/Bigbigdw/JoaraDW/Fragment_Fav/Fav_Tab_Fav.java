@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,9 +38,10 @@ public class Fav_Tab_Fav extends Fragment {
     private Main_BookListAdapter_Fav FavBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover, LoginLayout;
+    LinearLayout Wrap, LoginLayout;
     String USERTOKEN = "";
     String STATUS = "";
+    TextView Book_Fav_CoverText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_fav_list_fav, container, false);
@@ -47,8 +49,8 @@ public class Fav_Tab_Fav extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         recyclerView = root.findViewById(R.id.Fav_FavBookList);
         Wrap = root.findViewById(R.id.Tab_Fav);
-        Cover = root.findViewById(R.id.LoadingLayout);
         LoginLayout = root.findViewById(R.id.LoginLayout);
+        Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
 
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
@@ -75,16 +77,15 @@ public class Fav_Tab_Fav extends Fragment {
         String ETC = "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
 
         if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, "&token=" + USERTOKEN, LoginLayout);
-            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, Cover, "Fav");
+            Book_Pagination.LoginCheck(queue, "&token=" + USERTOKEN, Book_Fav_CoverText);
+            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "Fav");
             initAdapter();
             initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, USERTOKEN);
+            FavBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
+                Main_BookListData item = FavBookListAdapter.getItem(position);
+                Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+            });
         }
-
-        FavBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-            Main_BookListData item = FavBookListAdapter.getItem(position);
-            Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
-        });
         
         return root;
     }

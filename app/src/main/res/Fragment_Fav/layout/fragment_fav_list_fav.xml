@@ -15,17 +15,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            layout="@layout/need_login"
+            layout="@layout/book_fav_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
             tools:visibility="gone" />
 
-        <include
-            layout="@layout/loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/Tab_Fav"

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
 public interface Book_Pagination {
 
-    static void LoginCheck(RequestQueue queue, String USERTOKEN, LinearLayout LoginLayout) {
+    static void LoginCheck(RequestQueue queue, String USERTOKEN, TextView Book_Fav_CoverText) {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
         Log.d("LoginCheck", USERTOKEN);
@@ -41,9 +42,9 @@ public interface Book_Pagination {
 
             try {
                 if (response.getString("status").equals("1")) {
-                    LoginLayout.setVisibility(View.GONE);
+                    Book_Fav_CoverText.setText("작품을 불러오는 중입니다...");
                 } else {
-                    LoginLayout.setVisibility(View.VISIBLE);
+                    Book_Fav_CoverText.setText("로그인이 필요합니다");
                 }
 
             } catch (JSONException e) {

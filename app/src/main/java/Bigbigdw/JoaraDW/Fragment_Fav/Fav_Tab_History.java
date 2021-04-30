@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -38,17 +39,18 @@ public class Fav_Tab_History extends Fragment {
     private Main_BookList_Adapter_History NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover, LoginLayout;
+    LinearLayout Wrap, LoginLayout;
     String USERTOKEN = "&token=";
     String STATUS = "";
+    TextView Book_Fav_CoverText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_fav_list_history, container, false);
         recyclerView = root.findViewById(R.id.Fav_HistoryBookList);
         Wrap = root.findViewById(R.id.Tab_History);
-        Cover = root.findViewById(R.id.LoadingLayout);
         LoginLayout = root.findViewById(R.id.LoginLayout);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
 
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
@@ -75,8 +77,8 @@ public class Fav_Tab_History extends Fragment {
         String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
 
         if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, USERTOKEN, LoginLayout);
-            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, Cover, "History");
+            Book_Pagination.LoginCheck(queue, USERTOKEN, Book_Fav_CoverText);
+            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "History");
             initAdapter();
             initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
         }

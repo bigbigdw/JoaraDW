@@ -1,14 +1,18 @@
 package Bigbigdw.JoaraDW.Book_Detail;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Detail extends AppCompatActivity {
@@ -34,9 +39,12 @@ public class Book_Detail extends AppCompatActivity {
     String TOKEN = "";
     String BookDetailURL;
     TextView BookTitle, BookType, BookTitleUnder, BookWriter, Bar, Category, BookRead, BookRecommend, BookFav, BookComment, BookIntro;
-    ImageView BookCoverHeader;
+    TextView BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody;
+    ImageView BookCoverHeader, BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg;
     AppBarLayout BookAppBar;
     FloatingActionButton BookDetailOption;
+    LinearLayout BookLabel, LoadingLayout;
+    Button BookDetailHeader2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +64,6 @@ public class Book_Detail extends AppCompatActivity {
 
         BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
 
-        Log.d("BookDetailURL", BookDetailURL);
-
         BookTitle = findViewById(R.id.BookTitle);
         BookCoverHeader = findViewById(R.id.BookCoverHeader);
         BookType = findViewById(R.id.BookType);
@@ -72,6 +78,25 @@ public class Book_Detail extends AppCompatActivity {
         BookIntro = findViewById(R.id.BookIntro);
         BookAppBar = findViewById(R.id.BookAppBar);
         BookDetailOption = findViewById(R.id.BookDetailOption);
+        BookLabel = findViewById(R.id.BookLabel);
+        BookDetailHeader2 = findViewById(R.id.BookDetailHeader2);
+
+        BookTypeBody = findViewById(R.id.BookTypeBody);
+        CategoryBody = findViewById(R.id.CategoryBody);
+        BookLabel = findViewById(R.id.BookLabel);
+        BookTitleBody = findViewById(R.id.BookTitleBody);
+        BookWriterBody = findViewById(R.id.BookWriterBody);
+        BookReadBody = findViewById(R.id.BookReadBody);
+        BookRecommendBody = findViewById(R.id.BookRecommendBody);
+        BookFavBody = findViewById(R.id.BookFavBody);
+        BookCommentBody = findViewById(R.id.BookCommentBody);
+        BarBody = findViewById(R.id.BarBody);
+
+        BookReadImg = findViewById(R.id.BookReadImg);
+        BookRecommedImg = findViewById(R.id.BookRecommedImg);
+        BookFavImg = findViewById(R.id.BookFavImg);
+        BookCommentImg = findViewById(R.id.BookCommentImg);
+        LoadingLayout= findViewById(R.id.LoadingLayout);
 
         BookAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -80,10 +105,12 @@ public class Book_Detail extends AppCompatActivity {
                 if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
                 {
                     BookDetailOption.setVisibility(View.VISIBLE);
+                    BookDetailOption.animate().alpha(1.0f);
                 }
                 else
                 {
                     BookDetailOption.setVisibility(View.GONE);
+                    BookDetailOption.animate().alpha(0.0f);
                 }
             }
         });
@@ -99,44 +126,73 @@ public class Book_Detail extends AppCompatActivity {
 
                 if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
                     BookType.setText(R.string.NOBLESS);
-                    BookType.setTextColor(0xAAa5c500);
-                    Bar.setTextColor(0xAAa5c500);
-                    Category.setTextColor(0xAAa5c500);
+                    BookTypeBody.setText(R.string.NOBLESS);
+                    BookLabel.setBackgroundColor(0xAAa5c500);
+                    BookTypeBody.setTextColor(0xAAa5c500);
+                    CategoryBody.setTextColor(0xAAa5c500);
+                    BarBody.setTextColor(0xAAa5c500);
                 } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
                     BookType.setText(R.string.PREMIUM);
-                    BookType.setTextColor(0xAA4971EF);
-                    Bar.setTextColor(0xAA4971EF);
-                    Category.setTextColor(0xAA4971EF);
+                    BookTypeBody.setText(R.string.PREMIUM);
+                    BookLabel.setBackgroundColor(0xAA4971EF);
+                    BookTypeBody.setTextColor(0xAA4971EF);
+                    CategoryBody.setTextColor(0xAA4971EF);
+                    BarBody.setTextColor(0xAA4971EF);
                 } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
                     BookType.setText(R.string.FINISH);
-                    BookType.setTextColor(0xAA767676);
-                    Bar.setTextColor(0xAA767676);
-                    Category.setTextColor(0xAA767676);
+                    BookTypeBody.setText(R.string.FINISH);
+                    BookLabel.setBackgroundColor(0xAAa5c500);
+                    BookTypeBody.setTextColor(0xAAa5c500);
+                    CategoryBody.setTextColor(0xAAa5c500);
+                    BarBody.setTextColor(0xAAa5c500);
                 } else if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
                     BookType.setText(R.string.ADULT_NOBLESS);
-                    BookType.setTextColor(0xAAF44336);
-                    Bar.setTextColor(0xAAF44336);
-                    Category.setTextColor(0xAAF44336);
+                    BookTypeBody.setText(R.string.ADULT_NOBLESS);
+                    BookLabel.setBackgroundColor(0xAAF44336);
+                    BookTypeBody.setTextColor(0xAAF44336);
+                    CategoryBody.setTextColor(0xAAF44336);
+                    BarBody.setTextColor(0xAAF44336);
                 } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
                     BookType.setText(R.string.ADULT_PREMIUM);
-                    BookType.setTextColor(0xAA4971EF);
-                    Bar.setTextColor(0xAA4971EF);
-                    Category.setTextColor(0xAA4971EF);
+                    BookTypeBody.setText(R.string.ADULT_PREMIUM);
+                    BookLabel.setBackgroundColor(0xAAF44336);
+                    BookTypeBody.setTextColor(0xAA4971EF);
+                    CategoryBody.setTextColor(0xAA4971EF);
+                    BarBody.setTextColor(0xAA4971EF);
                 } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
                     BookType.setText(R.string.ADULT_FINISH);
-                    BookType.setTextColor(0xAA767676);
-                    Bar.setTextColor(0xAA767676);
-                    Category.setTextColor(0xAA767676);
+                    BookTypeBody.setText(R.string.ADULT_FINISH);
+                    BookLabel.setBackgroundColor(0xAAF44336);
+                    BookTypeBody.setTextColor(0xAA767676);
+                    CategoryBody.setTextColor(0xAA767676);
+                    BarBody.setTextColor(0xAA767676);
+                } else {
+                    BookType.setText(R.string.FREE);
+                    BookTypeBody.setText(R.string.FREE);
                 }
 
                 BookTitleUnder.setText(book.getString("subject"));
+                BookTitleBody.setText(book.getString("subject"));
                 BookWriter.setText(book.getString("writer_name"));
+                BookWriterBody.setText(book.getString("writer_name"));
                 Category.setText(book.getString("category_ko_name"));
+                CategoryBody.setText(book.getString("category_ko_name"));
                 BookRead.setText(book.getString("cnt_page_read"));
+                BookReadBody.setText(book.getString("cnt_page_read"));
                 BookRecommend.setText(book.getString("cnt_recom"));
+                BookRecommendBody.setText(book.getString("cnt_recom"));
                 BookFav.setText(book.getString("cnt_favorite"));
+                BookFavBody.setText(book.getString("cnt_favorite"));
                 BookComment.setText(book.getString("cnt_total_comment"));
+                BookCommentBody.setText(book.getString("cnt_total_comment"));
                 BookIntro.setText(book.getString("intro"));
+
+                Bar.setVisibility(View.VISIBLE);
+                BookReadImg.setVisibility(View.VISIBLE);
+                BookRecommedImg.setVisibility(View.VISIBLE);
+                BookFavImg.setVisibility(View.VISIBLE);
+                BookCommentImg.setVisibility(View.VISIBLE);
+                LoadingLayout.setVisibility(View.GONE);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -145,6 +201,14 @@ public class Book_Detail extends AppCompatActivity {
         }, error -> Log.d("Book_Detail", "에러!"));
 
         queue.add(jsonRequest);
+    }
+
+    public void BookDetailHeaderOff(View v) {
+        BookAppBar.setExpanded(false);
+    }
+
+    public void BookDetailHeaderOn(View v) {
+        BookAppBar.setExpanded(true);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
