@@ -205,6 +205,8 @@ public interface Book_Pagination {
     static void FavToggle(RequestQueue queue, String BookCode, String TOKEN) {
         String ResultURL = HELPER.API + "/v1/user/favorite.joa";
 
+        Log.d("ResultURL", ResultURL);
+
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, ResultURL, response -> {
             Log.d("Book_Pagination", response);
         }, error -> {

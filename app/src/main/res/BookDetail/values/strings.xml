@@ -2,4 +2,5 @@
 <resources>
     <string name="Viewer_HeaderBtn1">선호작 등록하기</string>
     <string name="Viewer_HeaderBtn2">작품 보기</string>
+    <string name="Viewer_HeaderBtn3">선호작 해제하기</string>
 </resources>

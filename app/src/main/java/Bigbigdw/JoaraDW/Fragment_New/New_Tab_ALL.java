@@ -53,11 +53,10 @@ public class New_Tab_ALL extends Fragment {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             TOKEN = UserInfo.getString("token");
-            Log.d("TOKEN", TOKEN);
-            Log.d("USERINFO", "읽기 완료");
+            Log.d("New_Tab_ALL", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
+            Log.d("New_Tab_ALL", "읽기 실패");
         }
 
         if(!TOKEN.equals("")){

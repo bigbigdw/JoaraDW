@@ -1,7 +1,6 @@
 package Bigbigdw.JoaraDW.Book_Detail;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,8 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,12 +29,16 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Main.Main;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Detail extends AppCompatActivity {
@@ -38,18 +46,20 @@ public class Book_Detail extends AppCompatActivity {
     private RequestQueue queue;
     String TOKEN = "";
     String BookDetailURL;
-    TextView BookTitle, BookType, BookTitleUnder, BookWriter, Bar, Category, BookRead, BookRecommend, BookFav, BookComment, BookIntro;
-    TextView BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody;
-    ImageView BookCoverHeader, BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg;
+    TextView BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
     FloatingActionButton BookDetailOption;
-    LinearLayout BookLabel, LoadingLayout;
-    Button BookDetailHeader2;
+    String BookCode = "";
+    String BookTitleText = "";
+    Button BookDetailHeader1, BookDetailHeader3;
+    ImageView BookCover;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bookdetail);
+        setContentView(R.layout.book_detail);
         queue = Volley.newRequestQueue(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -57,33 +67,18 @@ public class Book_Detail extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String BookCode = intent.getStringExtra("BookCode");
+        BookCode = intent.getStringExtra("BookCode");
 
         TOKEN = intent.getStringExtra("TOKEN");
-        Log.d("Book_Detail", TOKEN);
 
-        BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
+        BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
 
-        BookTitle = findViewById(R.id.BookTitle);
-        BookCoverHeader = findViewById(R.id.BookCoverHeader);
-        BookType = findViewById(R.id.BookType);
-        BookTitleUnder = findViewById(R.id.BookTitleUnder);
-        BookWriter = findViewById(R.id.BookWriter);
-        Bar = findViewById(R.id.Bar);
-        Category = findViewById(R.id.Category);
-        BookRead = findViewById(R.id.BookRead);
-        BookRecommend = findViewById(R.id.BookRecommend);
-        BookFav = findViewById(R.id.BookFav);
-        BookComment = findViewById(R.id.BookComment);
-        BookIntro = findViewById(R.id.BookIntro);
+
         BookAppBar = findViewById(R.id.BookAppBar);
         BookDetailOption = findViewById(R.id.BookDetailOption);
-        BookLabel = findViewById(R.id.BookLabel);
-        BookDetailHeader2 = findViewById(R.id.BookDetailHeader2);
 
         BookTypeBody = findViewById(R.id.BookTypeBody);
         CategoryBody = findViewById(R.id.CategoryBody);
-        BookLabel = findViewById(R.id.BookLabel);
         BookTitleBody = findViewById(R.id.BookTitleBody);
         BookWriterBody = findViewById(R.id.BookWriterBody);
         BookReadBody = findViewById(R.id.BookReadBody);
@@ -91,108 +86,77 @@ public class Book_Detail extends AppCompatActivity {
         BookFavBody = findViewById(R.id.BookFavBody);
         BookCommentBody = findViewById(R.id.BookCommentBody);
         BarBody = findViewById(R.id.BarBody);
+        BookCover = findViewById(R.id.BookCover);
 
-        BookReadImg = findViewById(R.id.BookReadImg);
-        BookRecommedImg = findViewById(R.id.BookRecommedImg);
-        BookFavImg = findViewById(R.id.BookFavImg);
-        BookCommentImg = findViewById(R.id.BookCommentImg);
-        LoadingLayout= findViewById(R.id.LoadingLayout);
+        BookDetailHeader1 = findViewById(R.id.BookDetailHeader1);
+        BookDetailHeader3 = findViewById(R.id.BookDetailHeader3);
+        BookDetailIntro = findViewById(R.id.BookDetailIntro);
 
-        BookAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
-                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
-                {
-                    BookDetailOption.setVisibility(View.VISIBLE);
-                    BookDetailOption.animate().alpha(1.0f);
-                }
-                else
-                {
-                    BookDetailOption.setVisibility(View.GONE);
-                    BookDetailOption.animate().alpha(0.0f);
-                }
+        BookAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
+            {
+                BookDetailOption.setVisibility(View.VISIBLE);
+                BookDetailOption.animate().alpha(1.0f);
+            }
+            else
+            {
+                BookDetailOption.setVisibility(View.GONE);
+                BookDetailOption.animate().alpha(0.0f);
             }
         });
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
-            System.out.println(response);
+//            System.out.println(response);
             try {
                 JSONObject book = response.getJSONObject("book");
 
-                BookTitle.setText(book.getString("subject"));
                 Glide.with(this).load(book.getString("book_img"))
-                        .into(BookCoverHeader);
+                        .into(BookCover);
 
                 if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.NOBLESS);
                     BookTypeBody.setText(R.string.NOBLESS);
-                    BookLabel.setBackgroundColor(0xAAa5c500);
                     BookTypeBody.setTextColor(0xAAa5c500);
                     CategoryBody.setTextColor(0xAAa5c500);
                     BarBody.setTextColor(0xAAa5c500);
                 } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.PREMIUM);
                     BookTypeBody.setText(R.string.PREMIUM);
-                    BookLabel.setBackgroundColor(0xAA4971EF);
                     BookTypeBody.setTextColor(0xAA4971EF);
                     CategoryBody.setTextColor(0xAA4971EF);
                     BarBody.setTextColor(0xAA4971EF);
                 } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.FINISH);
                     BookTypeBody.setText(R.string.FINISH);
-                    BookLabel.setBackgroundColor(0xAAa5c500);
                     BookTypeBody.setTextColor(0xAAa5c500);
                     CategoryBody.setTextColor(0xAAa5c500);
                     BarBody.setTextColor(0xAAa5c500);
                 } else if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_NOBLESS);
                     BookTypeBody.setText(R.string.ADULT_NOBLESS);
-                    BookLabel.setBackgroundColor(0xAAF44336);
                     BookTypeBody.setTextColor(0xAAF44336);
                     CategoryBody.setTextColor(0xAAF44336);
                     BarBody.setTextColor(0xAAF44336);
                 } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_PREMIUM);
                     BookTypeBody.setText(R.string.ADULT_PREMIUM);
-                    BookLabel.setBackgroundColor(0xAAF44336);
                     BookTypeBody.setTextColor(0xAA4971EF);
                     CategoryBody.setTextColor(0xAA4971EF);
                     BarBody.setTextColor(0xAA4971EF);
                 } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_FINISH);
                     BookTypeBody.setText(R.string.ADULT_FINISH);
-                    BookLabel.setBackgroundColor(0xAAF44336);
                     BookTypeBody.setTextColor(0xAA767676);
                     CategoryBody.setTextColor(0xAA767676);
                     BarBody.setTextColor(0xAA767676);
                 } else {
-                    BookType.setText(R.string.FREE);
                     BookTypeBody.setText(R.string.FREE);
                 }
 
-                BookTitleUnder.setText(book.getString("subject"));
-                BookTitleBody.setText(book.getString("subject"));
-                BookWriter.setText(book.getString("writer_name"));
-                BookWriterBody.setText(book.getString("writer_name"));
-                Category.setText(book.getString("category_ko_name"));
-                CategoryBody.setText(book.getString("category_ko_name"));
-                BookRead.setText(book.getString("cnt_page_read"));
-                BookReadBody.setText(book.getString("cnt_page_read"));
-                BookRecommend.setText(book.getString("cnt_recom"));
-                BookRecommendBody.setText(book.getString("cnt_recom"));
-                BookFav.setText(book.getString("cnt_favorite"));
-                BookFavBody.setText(book.getString("cnt_favorite"));
-                BookComment.setText(book.getString("cnt_total_comment"));
-                BookCommentBody.setText(book.getString("cnt_total_comment"));
-                BookIntro.setText(book.getString("intro"));
 
-                Bar.setVisibility(View.VISIBLE);
-                BookReadImg.setVisibility(View.VISIBLE);
-                BookRecommedImg.setVisibility(View.VISIBLE);
-                BookFavImg.setVisibility(View.VISIBLE);
-                BookCommentImg.setVisibility(View.VISIBLE);
-                LoadingLayout.setVisibility(View.GONE);
+                BookTitleBody.setText(book.getString("subject"));
+                BookWriterBody.setText(book.getString("writer_name"));
+                CategoryBody.setText(book.getString("category_ko_name"));
+                BookReadBody.setText(book.getString("cnt_page_read"));
+                BookRecommendBody.setText(book.getString("cnt_recom"));
+                BookFavBody.setText(book.getString("cnt_favorite"));
+                BookCommentBody.setText(book.getString("cnt_total_comment"));
+                BookDetailIntro.setText(book.getString("intro"));
+                BookTitleText = book.getString("subject");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -201,18 +165,54 @@ public class Book_Detail extends AppCompatActivity {
         }, error -> Log.d("Book_Detail", "에러!"));
 
         queue.add(jsonRequest);
+
+        viewPager = findViewById(R.id.view_pager);
+        setupViewPager(viewPager);
+
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void BookDetailHeaderOff(View v) {
-        BookAppBar.setExpanded(false);
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new Detail_Tab_1(), "연재목록");
+        adapter.addFragment(new Detail_Tab_1(), "작가의 다른 작품");
+        adapter.addFragment(new Detail_Tab_1(), "추천 작품");
+        viewPager.setAdapter(adapter);
     }
 
-    public void BookDetailHeaderOn(View v) {
-        BookAppBar.setExpanded(true);
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.bookdetail_menu, menu);
         return true;
@@ -221,7 +221,7 @@ public class Book_Detail extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+            case android.R.id.home:{
                 finish();
                 return true;
             }

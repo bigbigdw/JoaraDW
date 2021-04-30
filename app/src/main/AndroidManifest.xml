@@ -42,6 +42,13 @@
 
         </activity>
 
+        <activity
+            android:name=".Book_Detail.Book_Detail_Cover"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
