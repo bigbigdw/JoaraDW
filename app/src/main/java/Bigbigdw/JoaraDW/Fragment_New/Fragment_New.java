@@ -1,11 +1,9 @@
 package Bigbigdw.JoaraDW.Fragment_New;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,12 +15,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
+import Bigbigdw.JoaraDW.BookList.New_Tab_ALL;
+import Bigbigdw.JoaraDW.BookList.New_Tab_Finished;
+import Bigbigdw.JoaraDW.BookList.New_Tab_Nobless;
+import Bigbigdw.JoaraDW.BookList.New_Tab_Premium;
+import Bigbigdw.JoaraDW.BookList.New_Tab_Series;
+import Bigbigdw.JoaraDW.BookList.New_Tab_Short;
 import Bigbigdw.JoaraDW.R;
-import Bigbigdw.JoaraDW.Test.Fragment_Test;
-import Bigbigdw.JoaraDW.Test.Fragment_Test_Z;
-import Bigbigdw.JoaraDW.Test.Test;
 
 public class Fragment_New extends Fragment {
 

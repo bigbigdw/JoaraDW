@@ -17,15 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.Fragment_New.Fragment_New;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_77FES;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_ALL;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Finished;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Kidamu;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Nobless;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Premium;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Promised;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Series;
-import Bigbigdw.JoaraDW.Fragment_New.New_Tab_Short;
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_Best  extends Fragment {

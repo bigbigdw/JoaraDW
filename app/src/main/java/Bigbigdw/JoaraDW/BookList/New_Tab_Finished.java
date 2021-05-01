@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_New;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -23,11 +23,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class New_Tab_Finished extends Fragment {
-    private Main_BookListAdapter_New NewBookListAdapter;
+    private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover;
@@ -82,7 +84,7 @@ public class New_Tab_Finished extends Fragment {
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_New(items);
+        NewBookListAdapter = new Main_BookListAdapter_C(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(NewBookListAdapter);

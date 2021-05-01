@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_New;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -23,23 +23,26 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
-public class New_Tab_Premium extends Fragment {
-    private Main_BookListAdapter_New NewBookListAdapter;
+public class New_Tab_Series extends Fragment {
+    private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover;
-    String Store="premium";
+    String Store="series";
     String TOKEN = "";
     String ETC = "";
 
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab_premium, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab_series, container, false);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String API = "/v1/book/list.joa";
+
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
             BufferedReader br = new BufferedReader(fr);
@@ -66,13 +69,14 @@ public class New_Tab_Premium extends Fragment {
         } else {
             ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&class=";
         }
-        recyclerView = root.findViewById(R.id.Main_NewBookList_Premium);
-        Wrap = root.findViewById(R.id.Tab_NewPremiumWrap);
+
+        Wrap = root.findViewById(R.id.Tab_NewSeriesWrap);
+        recyclerView = root.findViewById(R.id.Main_NewBookList_Series);
         Cover = root.findViewById(R.id.LoadingLayout);
 
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
         initAdapter();
-        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView,Store);
+        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
 
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
@@ -83,7 +87,7 @@ public class New_Tab_Premium extends Fragment {
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_New(items);
+        NewBookListAdapter = new Main_BookListAdapter_C(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(NewBookListAdapter);

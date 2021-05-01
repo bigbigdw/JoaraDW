@@ -11,15 +11,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class New_Tab_77FES extends Fragment {
-    private final Main_BookListAdapter_C NewBookListAdapter = new Main_BookListAdapter_C();
+    Main_BookListAdapter_C NewBookListAdapter;
+    private ArrayList<Main_BookListData> items = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new_tab_77fes, container, false);
+        NewBookListAdapter = new Main_BookListAdapter_C(items);
         AssetManager assetManager = getActivity().getAssets();
         NewBookList(root, assetManager, "Main_Tab_Best_77FES.json");
 

@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -140,16 +141,31 @@ public class Book_Detail_Cover extends AppCompatActivity {
 
         queue.add(jsonRequest);
 
-        Log.d("TOKEN", TOKEN);
+        LoginCheck(queue, "&token=" + TOKEN);
 
-
-        if(TOKEN.equals("&token=")){
-            BookDetailHeader1.setVisibility(View.GONE);
-        } else {
-            BookDetailHeader1.setVisibility(View.VISIBLE);
-        }
     }
 
+    void LoginCheck(RequestQueue queue, String USERTOKEN) {
+        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
+
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+            Log.d("Main", response.toString());
+
+            try {
+                if (response.getString("status").equals("1")) {
+                    BookDetailHeader1.setVisibility(View.VISIBLE);
+                } else {
+                    BookDetailHeader1.setVisibility(View.GONE);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("Main", "완료!");
+        }, error -> Log.d("Main", "에러!"));
+
+        queue.add(jsonRequest);
+    }
 
 
     public void onClickFavOn(View v) {

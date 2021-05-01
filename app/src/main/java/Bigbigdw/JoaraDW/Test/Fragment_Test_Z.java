@@ -16,13 +16,13 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.Fragment_New.Main_BookListAdapter_New;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_Test_Z extends Fragment {
-    private Main_BookListAdapter_New NewBookListAdapter;
+    private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover;
@@ -46,7 +46,7 @@ public class Fragment_Test_Z extends Fragment {
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_New(items);
+        NewBookListAdapter = new Main_BookListAdapter_C(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(NewBookListAdapter);

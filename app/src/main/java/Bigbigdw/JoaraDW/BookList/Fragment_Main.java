@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_Main;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -35,13 +35,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Fragment_Finish.Finish_BookData;
+import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
@@ -56,13 +56,12 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     private final Main_BookListAdapter_B FestivalAdapter = new Main_BookListAdapter_B();
     private final Main_BookListAdapter_B PromiseAdapter = new Main_BookListAdapter_B();
     private final Main_BookListAdapter_B KidamuAdapter = new Main_BookListAdapter_B();
-    private final Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C();
-    private final Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C();
-    private final Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C();
+
     private final Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D();
     private final Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D();
     private RequestQueue queue;
+    private ArrayList<Main_BookListData> items = new ArrayList<>();
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
@@ -97,7 +96,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             USERTOKEN = UserInfo.getString("token");
-            Category = "&token=" + UserInfo.getString("category");
+
             STATUS = jsonObject.getString("status");
             String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
             UserNameCategory.setText(usernamed);
@@ -130,15 +129,24 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             BookList_A(root, "/v1/user/historybooks.joa", "&token=" + USERTOKEN + "&mem_time=0" + ETC, R.id.Main_HistoryBookList, HistoryAdapter, queue, R.id.main_booklist_history);
             BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=" + USERTOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
         }
-
         BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
         BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN, R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
-        BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
-        BookList_B(root, assetManager, "Main_PromisedBookList.json" , R.id.Main_PromisedBookList, PromiseAdapter);
-        BookList_B(root, assetManager, "Main_KidamuBookList.json" , R.id.Main_KidamuBookList, KidamuAdapter);
+
+
+        Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C(items);
+
         BookList_C(root, "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
+
+        BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
+        BookList_B(root, assetManager, "Main_PromisedBookList.json" , R.id.Main_PromisedBookList, PromiseAdapter);
+        BookList_B(root, assetManager, "Main_KidamuBookList.json" , R.id.Main_KidamuBookList, KidamuAdapter);
+
+
+
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
@@ -242,13 +250,18 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     }
 
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
+            Log.d("TESTT", item.getBookCode());
+            Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+        });
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Finish_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(Adapter);
     }
 
     public void BookList_D(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap) {

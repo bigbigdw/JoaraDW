@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_Finish;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,19 +26,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Fragment_Finish.Finish_BookData;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
-
-public class Finish_Tab_Recommend extends Fragment {
-    private Main_BookListAdapter_Finish NewAdapter;
-    private Main_BookListAdapter_Finish NoblessAdapter;
-    private Main_BookListAdapter_Finish PremiumAdapter;
+public class Finish_Tab_New extends Fragment {
+    private Main_BookListAdapter_C NewAdapter;
+    private Main_BookListAdapter_C NoblessAdapter;
+    private Main_BookListAdapter_C PremiumAdapter;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
 
     private RequestQueue queue;
-    String FinishType = "cnt_recom";
+    String FinishType = "redate";
     LinearLayout LoadingLayout;
     NestedScrollView ContentsLayout;
     String TOKEN = "";
@@ -54,7 +56,6 @@ public class Finish_Tab_Recommend extends Fragment {
             LoadingLayout.setVisibility(View.GONE);
             ContentsLayout.setVisibility(View.VISIBLE);
         }, 500);
-
         try {
             FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
             Log.d("TEST", getActivity().getDataDir().toString());
@@ -76,10 +77,9 @@ public class Finish_Tab_Recommend extends Fragment {
             Log.d("USERINFO", "읽기 실패");
         }
 
-        NewAdapter = new Main_BookListAdapter_Finish(items);
-        NoblessAdapter = new Main_BookListAdapter_Finish(items);
-        PremiumAdapter = new Main_BookListAdapter_Finish(items);
-
+        NewAdapter = new Main_BookListAdapter_C(items);
+        NoblessAdapter = new Main_BookListAdapter_C(items);
+        PremiumAdapter = new Main_BookListAdapter_C(items);
 
         if(!TOKEN.equals("")){
             BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
@@ -94,7 +94,7 @@ public class Finish_Tab_Recommend extends Fragment {
         return root;
     }
 
-    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_Finish Adapter, RequestQueue queue, Integer Wrap) {
+    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);

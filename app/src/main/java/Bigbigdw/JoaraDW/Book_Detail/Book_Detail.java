@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.BookList.Detail_Tab_1;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.R;
@@ -48,13 +49,14 @@ public class Book_Detail extends AppCompatActivity {
     String BookDetailURL;
     TextView BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
-    FloatingActionButton BookDetailOption;
+    FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6 ;
     String BookCode = "";
     String BookTitleText = "";
     Button BookDetailHeader1, BookDetailHeader3;
-    ImageView BookCover;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    ImageView BookCover, FavON, FavOff;
+    Boolean BookDeatailTF = false;
+    String FavCheck = "";
+    LinearLayout FavWrap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +70,19 @@ public class Book_Detail extends AppCompatActivity {
 
         Intent intent = getIntent();
         BookCode = intent.getStringExtra("BookCode");
-
         TOKEN = intent.getStringExtra("TOKEN");
 
         BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
 
-
         BookAppBar = findViewById(R.id.BookAppBar);
         BookDetailOption = findViewById(R.id.BookDetailOption);
+
+        BookDetailOption1 = findViewById(R.id.BookDetailOption1);
+        BookDetailOption2 = findViewById(R.id.BookDetailOption2);
+        BookDetailOption3 = findViewById(R.id.BookDetailOption3);
+        BookDetailOption4 = findViewById(R.id.BookDetailOption4);
+        BookDetailOption5 = findViewById(R.id.BookDetailOption5);
+        BookDetailOption6 = findViewById(R.id.BookDetailOption6);
 
         BookTypeBody = findViewById(R.id.BookTypeBody);
         CategoryBody = findViewById(R.id.CategoryBody);
@@ -87,10 +94,12 @@ public class Book_Detail extends AppCompatActivity {
         BookCommentBody = findViewById(R.id.BookCommentBody);
         BarBody = findViewById(R.id.BarBody);
         BookCover = findViewById(R.id.BookCover);
-
         BookDetailHeader1 = findViewById(R.id.BookDetailHeader1);
         BookDetailHeader3 = findViewById(R.id.BookDetailHeader3);
         BookDetailIntro = findViewById(R.id.BookDetailIntro);
+        FavON = findViewById(R.id.FavON);
+        FavOff = findViewById(R.id.FavOff);
+        FavWrap = findViewById(R.id.FavWrap);
 
         BookAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
@@ -102,16 +111,34 @@ public class Book_Detail extends AppCompatActivity {
             {
                 BookDetailOption.setVisibility(View.GONE);
                 BookDetailOption.animate().alpha(0.0f);
+
+                BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
+                BookDeatailTF = false;
+
+                BookDetailOption1.setVisibility(View.GONE);
+                BookDetailOption1.animate().alpha(1.0f);
+                BookDetailOption2.setVisibility(View.GONE);
+                BookDetailOption2.animate().alpha(1.0f);
+                BookDetailOption3.setVisibility(View.GONE);
+                BookDetailOption3.animate().alpha(1.0f);
+                BookDetailOption4.setVisibility(View.GONE);
+                BookDetailOption4.animate().alpha(1.0f);
+                BookDetailOption5.setVisibility(View.GONE);
+                BookDetailOption5.animate().alpha(1.0f);
+                BookDetailOption6.setVisibility(View.GONE);
+                BookDetailOption6.animate().alpha(1.0f);
             }
         });
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
-//            System.out.println(response);
             try {
                 JSONObject book = response.getJSONObject("book");
 
                 Glide.with(this).load(book.getString("book_img"))
                         .into(BookCover);
+
+                FavCheck = book.getString("is_favorite");
+                Log.d("FavCheck", FavCheck);
 
                 if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
                     BookTypeBody.setText(R.string.NOBLESS);
@@ -147,7 +174,6 @@ public class Book_Detail extends AppCompatActivity {
                     BookTypeBody.setText(R.string.FREE);
                 }
 
-
                 BookTitleBody.setText(book.getString("subject"));
                 BookWriterBody.setText(book.getString("writer_name"));
                 CategoryBody.setText(book.getString("category_ko_name"));
@@ -166,11 +192,84 @@ public class Book_Detail extends AppCompatActivity {
 
         queue.add(jsonRequest);
 
-        viewPager = findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         setupViewPager(viewPager);
 
-        tabLayout = findViewById(R.id.tabs);
+        LoginCheck(queue, "&token=" + TOKEN);
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    void LoginCheck(RequestQueue queue, String USERTOKEN) {
+        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
+
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+            Log.d("Main", response.toString());
+
+            try {
+                if (response.getString("status").equals("1")) {
+                    FavWrap.setVisibility(View.VISIBLE);
+                } else {
+                    FavWrap.setVisibility(View.GONE);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.d("Main", "완료!");
+        }, error -> Log.d("Main", "에러!"));
+
+        queue.add(jsonRequest);
+    }
+
+    public void toggleBookDetailOption(View v) {
+        if(BookDeatailTF.equals(false) && BookDetailOption.getVisibility() == View.VISIBLE){
+            BookDetailOption.setImageResource(R.drawable.icon_detail_fold);
+            BookDeatailTF = true;
+
+            BookDetailOption1.setVisibility(View.VISIBLE);
+            BookDetailOption1.animate().alpha(1.0f);
+            BookDetailOption2.setVisibility(View.VISIBLE);
+            BookDetailOption2.animate().alpha(1.0f);
+            BookDetailOption3.setVisibility(View.VISIBLE);
+            BookDetailOption3.animate().alpha(1.0f);
+            BookDetailOption4.setVisibility(View.VISIBLE);
+            BookDetailOption4.animate().alpha(1.0f);
+            BookDetailOption5.setVisibility(View.VISIBLE);
+            BookDetailOption5.animate().alpha(1.0f);
+            BookDetailOption6.setVisibility(View.VISIBLE);
+            BookDetailOption6.animate().alpha(1.0f);
+        }else if(BookDeatailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
+            BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
+            BookDeatailTF = false;
+
+            BookDetailOption1.setVisibility(View.GONE);
+            BookDetailOption1.animate().alpha(1.0f);
+            BookDetailOption2.setVisibility(View.GONE);
+            BookDetailOption2.animate().alpha(2.0f);
+            BookDetailOption3.setVisibility(View.GONE);
+            BookDetailOption3.animate().alpha(3.0f);
+            BookDetailOption4.setVisibility(View.GONE);
+            BookDetailOption4.animate().alpha(4.0f);
+            BookDetailOption5.setVisibility(View.GONE);
+            BookDetailOption5.animate().alpha(5.0f);
+            BookDetailOption6.setVisibility(View.GONE);
+            BookDetailOption6.animate().alpha(6.0f);
+        }
+    }
+
+    public void onClickFav(View v) {
+        if(FavOff.getVisibility() == View.VISIBLE){
+            Book_Pagination.FavToggle(queue, BookCode, TOKEN);
+            Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
+            FavON.setVisibility(View.VISIBLE);
+            FavOff.setVisibility(View.GONE);
+        } else if(FavON.getVisibility() == View.VISIBLE){
+            Book_Pagination.FavToggle(queue, BookCode, TOKEN);
+            Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
+            FavON.setVisibility(View.GONE);
+            FavOff.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -1,11 +1,10 @@
-package Bigbigdw.JoaraDW.Fragment_Finish;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,13 +27,13 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnClickFinishListener {
+public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_C {
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    OnClickFinishListener listener;
+    onClickAdapterListener_C listener;
 
-    public Main_BookListAdapter_Finish(ArrayList<Main_BookListData> items) {
+    public Main_BookListAdapter_C(ArrayList<Main_BookListData> items) {
         this.listData = items;
     }
 
@@ -42,21 +41,21 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_finish, parent, false);
-            return new Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish(view, this);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_c, parent, false);
+            return new Main_BookListAdapter_C.Main_BookListViewHolder_C(view, this);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Main_BookListAdapter_Finish.LoadingViewHolder(view);
+            return new Main_BookListAdapter_C.LoadingViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish) {
-            populateItemRows((Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish) holder, position);
-        } else if (holder instanceof Main_BookListAdapter_Finish.LoadingViewHolder) {
-            showLoadingView((Main_BookListAdapter_Finish.LoadingViewHolder) holder, position);
+        if (holder instanceof Main_BookListAdapter_C.Main_BookListViewHolder_C) {
+            populateItemRows((Main_BookListAdapter_C.Main_BookListViewHolder_C) holder, position);
+        } else if (holder instanceof Main_BookListAdapter_C.LoadingViewHolder) {
+            showLoadingView((Main_BookListAdapter_C.LoadingViewHolder) holder, position);
         }
     }
 
@@ -70,9 +69,9 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
         return listData == null ? 0 : listData.size();
     }
 
-    private void showLoadingView(Main_BookListAdapter_Finish.LoadingViewHolder holder, int position) {}
+    private void showLoadingView(Main_BookListAdapter_C.LoadingViewHolder holder, int position) {}
 
-    private void populateItemRows(Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish holder, int position) {
+    private void populateItemRows(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, int position) {
         Main_BookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
@@ -115,18 +114,18 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onItemClick(Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish holder, View view, int position, String Value) {
+    public void onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, View view, int position, String Value) {
         if (listener != null) {
-            listener.onItemClick(holder, view, position, Value);
+            listener.onClickAdapter_C(holder, view, position, Value);
         }
     }
 
-    public void setOnItemClicklistener(OnClickFinishListener listener) {
+    public void setOnItemClicklistener(onClickAdapterListener_C listener) {
         this.listener = listener;
     }
 
 
-    static public class Main_BookListViewHolder_Finish extends RecyclerView.ViewHolder {
+    static public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
 
         ImageView Image;
         TextView Title;
@@ -141,7 +140,7 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
         String BookTitle,Book_Code;
         String TOKEN = "";
 
-        Main_BookListViewHolder_Finish(@NonNull View itemView, final OnClickFinishListener listener) {
+        Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_Book);
             Title = itemView.findViewById(R.id.Text_Title);
@@ -185,7 +184,7 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onItemClick(Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish.this, v, position, Book_Code);
+                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, Book_Code);
                         }
                     } else {
                         Favoff.setVisibility(View.VISIBLE);
@@ -196,7 +195,7 @@ public class Main_BookListAdapter_Finish extends RecyclerView.Adapter<RecyclerVi
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onItemClick(Main_BookListAdapter_Finish.Main_BookListViewHolder_Finish.this, v, position, Book_Code);
+                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, Book_Code);
                         }
                     }
                 });

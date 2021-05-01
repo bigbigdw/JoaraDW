@@ -16,10 +16,6 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_Tab_Fav;
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_Tab_New;
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_Tab_Read;
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_Tab_Recommend;
 import Bigbigdw.JoaraDW.Fragment_New.Fragment_New;
 import Bigbigdw.JoaraDW.R;
 

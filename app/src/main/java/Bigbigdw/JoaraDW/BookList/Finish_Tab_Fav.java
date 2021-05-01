@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_Finish;
+package Bigbigdw.JoaraDW.BookList;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,15 +25,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Fragment_Finish.Finish_BookData;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Finish_Tab_Fav extends Fragment {
-    private Main_BookListAdapter_Finish NewAdapter;
-    private Main_BookListAdapter_Finish NoblessAdapter;
-    private Main_BookListAdapter_Finish PremiumAdapter;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     private RequestQueue queue;
     String FinishType = "cnt_favorite";
@@ -75,25 +74,25 @@ public class Finish_Tab_Fav extends Fragment {
             Log.d("USERINFO", "읽기 실패");
         }
 
-        NewAdapter = new Main_BookListAdapter_Finish(items);
-        NoblessAdapter = new Main_BookListAdapter_Finish(items);
-        PremiumAdapter = new Main_BookListAdapter_Finish(items);
+        Main_BookListAdapter_C newAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C noblessAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C premiumAdapter = new Main_BookListAdapter_C(items);
 
 
         if(!TOKEN.equals("")){
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, newAdapter, queue, R.id.Finish_Tab_New);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, noblessAdapter, queue, R.id.Finish_Tab_Nobless);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, premiumAdapter, queue, R.id.Finish_Tab_Premium);
         } else {
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NewList, newAdapter, queue, R.id.Finish_Tab_New);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NoblessList, noblessAdapter, queue, R.id.Finish_Tab_Nobless);
+            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_PremiumList, premiumAdapter, queue, R.id.Finish_Tab_Premium);
         }
 
         return root;
     }
 
-    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_Finish Adapter, RequestQueue queue, Integer Wrap) {
+    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             Log.d("TESTT", item.getBookCode());

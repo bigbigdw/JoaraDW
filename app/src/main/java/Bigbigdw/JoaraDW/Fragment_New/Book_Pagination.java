@@ -1,12 +1,10 @@
 package Bigbigdw.JoaraDW.Fragment_New;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +14,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Main.Main;
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
 public interface Book_Pagination {
@@ -132,7 +129,7 @@ public interface Book_Pagination {
         queue.add(jsonRequest);
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_New NewBookListAdapter, RecyclerView recyclerView, String Store) {
+    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C NewBookListAdapter, RecyclerView recyclerView, String Store) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -204,8 +201,6 @@ public interface Book_Pagination {
 
     static void FavToggle(RequestQueue queue, String BookCode, String TOKEN) {
         String ResultURL = HELPER.API + "/v1/user/favorite.joa";
-
-        Log.d("ResultURL", ResultURL);
 
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, ResultURL, response -> {
             Log.d("Book_Pagination", response);
