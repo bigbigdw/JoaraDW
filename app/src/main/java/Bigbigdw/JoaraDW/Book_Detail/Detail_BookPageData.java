@@ -1,6 +1,6 @@
-package Bigbigdw.JoaraDW.Main;
+package Bigbigdw.JoaraDW.Book_Detail;
 
-public class Main_BookListData {
+public class Detail_BookPageData {
     String Writer;
     String Title;
     String BookImg;
@@ -16,10 +16,9 @@ public class Main_BookListData {
     String BookRecommend;
     String ReadCount;
     String BookCode;
-    String BookCategory;
     int BookBestRank;
 
-    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BestCount, String BookViewed, String BookFavCount, String BookRecommend, int BookBestRank, String ReadCount, String BookCode, String BookCategory) {
+    public Detail_BookPageData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BestCount, String BookViewed, String BookFavCount, String BookRecommend, int BookBestRank, String ReadCount, String BookCode) {
         this.Writer = Writer;
         this.Title = Title;
         this.BookImg = BookImg;
@@ -40,11 +39,6 @@ public class Main_BookListData {
         this.BookBestRank = BookBestRank;
         this.ReadCount = ReadCount;
         this.BookCode = BookCode;
-        this.BookCategory = BookCategory;
-    }
-
-    public String getBookCategory() {
-        return BookCategory;
     }
 
     public String getWriter() {

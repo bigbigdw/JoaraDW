@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_BookData;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
@@ -250,14 +249,13 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            Log.d("TESTT", item.getBookCode());
             Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
         });
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Finish_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
         recyclerView.setAdapter(Adapter);
 

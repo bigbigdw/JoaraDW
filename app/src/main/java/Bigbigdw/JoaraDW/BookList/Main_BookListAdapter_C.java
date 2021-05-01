@@ -85,25 +85,38 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         holder.Intro.setText(listData.get(position).getIntro());
         holder.BookCode.setText(listData.get(position).getBookCode());
         holder.BookFav.setText(listData.get(position).getIsFav());
+        holder.Category.setText(listData.get(position).getBookCategory());
 
         if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.NOBLESS);
             holder.TopText.setTextColor(0xAAa5c500);
+            holder.Bar.setTextColor(0xAAa5c500);
+            holder.Category.setTextColor(0xAAa5c500);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.PREMIUM);
             holder.TopText.setTextColor(0xAA4971EF);
+            holder.Bar.setTextColor(0xAA4971EF);
+            holder.Category.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.FINISH);
             holder.TopText.setTextColor(0xAA767676);
+            holder.Bar.setTextColor(0xAA767676);
+            holder.Category.setTextColor(0xAA767676);
         } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_NOBLESS);
             holder.TopText.setTextColor(0xAAF44336);
+            holder.Bar.setTextColor(0xAAF44336);
+            holder.Category.setTextColor(0xAAF44336);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_PREMIUM);
             holder.TopText.setTextColor(0xAA4971EF);
+            holder.Bar.setTextColor(0xAA4971EF);
+            holder.Category.setTextColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_FINISH);
             holder.TopText.setTextColor(0xAA767676);
+            holder.Bar.setTextColor(0xAA767676);
+            holder.Category.setTextColor(0xAA767676);
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {
@@ -140,6 +153,8 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         TextView TopText;
         TextView BookCode;
         TextView BookFav;
+        TextView Bar;
+        TextView Category;
         ImageView Favon;
         ImageView Favoff;
         CardView Img_Wrap;
@@ -160,6 +175,8 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             BookCode = itemView.findViewById(R.id.BookCodeText);
             BookFav = itemView.findViewById(R.id.TextBookFav);
             BookContentsWrapC = itemView.findViewById(R.id.BookContentsWrapC);
+            Bar = itemView.findViewById(R.id.Bar);
+            Category = itemView.findViewById(R.id.Category);
 
             try {
                 FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");

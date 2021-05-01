@@ -192,7 +192,7 @@ public class Fav_Tab_History extends Fragment {
                                             String Intro = jo.getString("intro");
                                             String IsFav = jo.getString("is_favorite");
                                             String ReadHistory = jo.getString("history_sortno");
-                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, ""));
+                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, "",""));
                                             Wrap.setVisibility(View.VISIBLE);
                                         }
                                         Log.d("Fav_Tab_History", "완료!");

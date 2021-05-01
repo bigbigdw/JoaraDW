@@ -48,7 +48,7 @@ public class Main_BookData_JSON {
                 String Intro = jo.getString("intro");
                 String IsFav = jo.getString("is_favorite");
 
-                items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",""));
+                items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"","",""));
             }
 
         } catch (IOException | JSONException e) {

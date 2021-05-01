@@ -73,12 +73,12 @@ public interface Book_Pagination {
                         String IsNobless = jo.getString("is_nobless");
                         String Intro = jo.getString("intro");
                         String IsFav = jo.getString("is_favorite");
-
+                        String BookCategory = jo.getString("category_ko_name");
                         if(Type.equals("Fav")){
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, "", ""));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, "", "",BookCategory));
                         }else {
                             String ReadHistory = jo.getString("history_sortno");
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, ""));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, "",BookCategory));
                         }
 
                         Cover.setVisibility(View.GONE);
@@ -115,8 +115,8 @@ public interface Book_Pagination {
                     String Intro = jo.getString("intro");
                     String IsFav = jo.getString("is_favorite");
                     String BookCode = jo.getString("book_code");
-
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"1",BookCode));
+                    String BookCategory = jo.getString("category_ko_name");
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"1",BookCode,BookCategory));
                     Cover.setVisibility(View.GONE);
                     Wrap.setVisibility(View.VISIBLE);
                 }
@@ -177,8 +177,8 @@ public interface Book_Pagination {
                                         String Intro = jo.getString("intro");
                                         String IsFav = jo.getString("is_favorite");
                                         String BookCode = jo.getString("book_code");
-                                        Log.d("IsFav22", IsFav);
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode));
+                                        String BookCategory = jo.getString("category_ko_name");
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
                                     Log.d("Book_Pagination", "완료!");

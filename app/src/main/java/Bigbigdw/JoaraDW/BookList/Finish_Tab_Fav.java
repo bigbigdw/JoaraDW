@@ -27,9 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
-import Bigbigdw.JoaraDW.Fragment_Finish.Finish_BookData;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -104,7 +103,7 @@ public class Finish_Tab_Fav extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Finish_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
         recyclerView.setAdapter(Adapter);
 

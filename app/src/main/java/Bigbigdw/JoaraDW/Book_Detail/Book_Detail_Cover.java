@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Book_Detail;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -43,7 +44,7 @@ public class Book_Detail_Cover extends AppCompatActivity {
     ImageView BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg;
     ImageView BookCoverHeader;
     AppBarLayout BookAppBar;
-    LinearLayout BookLabel, LoadingLayout, FavBtnWrap;
+    LinearLayout BookLabel, LoadingLayout, FavBtnWrap, BookCoverWrap;
     Button BookDetailHeader1, BookDetailHeader3, BookDetailHeader2;
     String BookTitleText = "";
     JSONObject Book;
@@ -85,7 +86,7 @@ public class Book_Detail_Cover extends AppCompatActivity {
         BookDetailHeader3 = findViewById(R.id.BookDetailHeader3);
         BookDetailHeader2 = findViewById(R.id.BookDetailHeader2);
         LoadingLayout = findViewById(R.id.LoadingLayout);
-        FavBtnWrap = findViewById(R.id.LoadingLayout);
+        BookCoverWrap = findViewById(R.id.BookCoverWrap);
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
             try {
@@ -132,6 +133,8 @@ public class Book_Detail_Cover extends AppCompatActivity {
                 BookFavImg.setVisibility(View.VISIBLE);
                 BookCommentImg.setVisibility(View.VISIBLE);
                 LoadingLayout.setVisibility(View.GONE);
+
+                BookCoverWrap.setBackgroundColor(Color.parseColor("#80000000"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
