@@ -5,8 +5,6 @@
     android:id="@+id/drawer_navigation"
     app:startDestination="@+id/Fragment_Main">
 
-
-
     <fragment
         android:id="@+id/Fragment_Main"
         android:name="Bigbigdw.JoaraDW.BookList.Fragment_Main"
@@ -18,6 +16,9 @@
         <action
             android:id="@+id/action_Fragment_Main_to_Fragment_Fav"
             app:destination="@id/Fragment_Fav" />
+        <action
+            android:id="@+id/action_Fragment_Main_to_Fragment_Detail_1"
+            app:destination="@id/Fragment_Detail_1" />
     </fragment>
 
 
@@ -26,6 +27,13 @@
         android:name="Bigbigdw.JoaraDW.Test.Fragment_Test"
         android:label=""
         tools:layout="@layout/test" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/Fragment_Detail_1"
+        android:name="Bigbigdw.JoaraDW.Book_Detail.Detail_Tab_1"
+        android:label=""
+        tools:layout="@layout/book_detail_tab_1" >
     </fragment>
 
     <fragment

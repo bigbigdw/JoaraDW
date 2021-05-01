@@ -55,8 +55,6 @@ public class New_Tab_ALL extends Fragment {
             String result = sb.toString();
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
-            TOKEN = UserInfo.getString("token");
-            Log.d("New_Tab_ALL", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d("New_Tab_ALL", "읽기 실패");

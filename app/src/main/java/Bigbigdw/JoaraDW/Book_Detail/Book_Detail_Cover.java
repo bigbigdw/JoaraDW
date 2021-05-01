@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Book_Detail;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,6 +29,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
@@ -88,9 +93,27 @@ public class Book_Detail_Cover extends AppCompatActivity {
         LoadingLayout = findViewById(R.id.LoadingLayout);
         BookCoverWrap = findViewById(R.id.BookCoverWrap);
 
+        Bundle arguments = new Bundle();
+        arguments.putString("BookCode", BookCode);
+        Detail_Tab_1 fragment = new Detail_Tab_1();
+        fragment.setArguments(arguments);
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction()
+                .commit();
+
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
             try {
                 Book = response.getJSONObject("book");
+
+                FileWriter fw;
+                try {
+                    fw = new FileWriter(getDataDir() + "/" + "chapter.json");
+                    BufferedWriter bufwr = new BufferedWriter(fw);
+                    bufwr.write(response.toString());
+                    bufwr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 Glide.with(this).load(Book.getString("book_img"))
                         .into(BookCoverHeader);

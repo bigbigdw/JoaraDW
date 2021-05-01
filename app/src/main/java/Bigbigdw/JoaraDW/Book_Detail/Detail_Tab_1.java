@@ -1,5 +1,6 @@
-package Bigbigdw.JoaraDW.Fragment_Fav;
+package Bigbigdw.JoaraDW.Book_Detail;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -7,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,33 +28,47 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Fragment_Fav.Main_BookList_Adapter_History;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
-public class Fav_Tab_History extends Fragment {
-    private Main_BookList_Adapter_History NewBookListAdapter;
+
+public class Detail_Tab_1 extends Fragment {
+    Detail_BookLIstAdapter BookChapterAdapter;
+    private ArrayList<Detail_BookPageData> items = new ArrayList<>();
+    String BookListImg;
     private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, LoginLayout;
-    String USERTOKEN = "&token=";
-    String STATUS = "";
-    TextView Book_Fav_CoverText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_fav_list_history, container, false);
-        recyclerView = root.findViewById(R.id.Fav_HistoryBookList);
-        Wrap = root.findViewById(R.id.Tab_History);
-        LoginLayout = root.findViewById(R.id.LoginLayout);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
+        View root = inflater.inflate(R.layout.book_detail_tab_1, container, false);
+        recyclerView = root.findViewById(R.id.BookDetail_1);
 
+
+        Bundle arguments = getArguments();
+        if (arguments == null) {
+            Toast.makeText(getActivity(), "Arguments is NULL", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            String BookCode = this.getArguments().getString("BookCode");
+            Toast.makeText(getActivity(), BookCode, Toast.LENGTH_SHORT).show();
+        }
+
+        populateData();
+        initAdapter();
+//        initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
+
+        return root;
+    }
+
+    void populateData() {
         try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
+            FileReader fr = new FileReader(getActivity().getDataDir() + "/chapter.json");
             BufferedReader br = new BufferedReader(fr);
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -64,36 +79,37 @@ public class Fav_Tab_History extends Fragment {
             br.close();
             String result = sb.toString();
             JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = "&token=" + UserInfo.getString("token");
-            STATUS = jsonObject.getString("status");
-            Log.d("Fav_Tab_History", "읽기 완료");
+            JSONObject BOOK = jsonObject.getJSONObject("book");
+            BookListImg = BOOK.getString("book_img");
+            JSONArray ChapterInfo = BOOK.getJSONArray("chapter");
+            Log.d("TEST", String.valueOf(ChapterInfo.length()));
+
+            for (int i = ChapterInfo.length(); i >= 0 ; i--) {
+                JSONObject jo = ChapterInfo.getJSONObject(i-1);
+
+                String ChapterTitle = jo.getString("sub_subject");
+                String BookListRecommend = jo.getString("cnt_recom");
+                String BookList_Num = String.valueOf(i);
+
+                Log.d("TEST", String.valueOf(i));
+
+                items.add(new Detail_BookPageData(BookList_Num,BookListImg,BookListRecommend,ChapterTitle));
+            }
+
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            Log.d("Fav_Tab_History", "읽기 실패");
+            Log.d("USERINFO", "읽기 실패");
         }
-
-        String API = "/v1/user/historybooks.joa";
-        String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
-
-        if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, USERTOKEN, Book_Fav_CoverText);
-            Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "History");
-            initAdapter();
-            initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
-        }
-
-        return root;
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookList_Adapter_History(items);
+        BookChapterAdapter = new Detail_BookLIstAdapter(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(NewBookListAdapter);
+        recyclerView.setAdapter(BookChapterAdapter);
     }
 
     static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookList_Adapter_History FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
@@ -169,3 +185,5 @@ public class Fav_Tab_History extends Fragment {
         });
     }
 }
+
+

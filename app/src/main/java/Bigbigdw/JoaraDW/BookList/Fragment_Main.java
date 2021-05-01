@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Book_Detail.Detail_Tab_1;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
@@ -141,8 +142,8 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
         BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
-        BookList_B(root, assetManager, "Main_PromisedBookList.json" , R.id.Main_PromisedBookList, PromiseAdapter);
-        BookList_B(root, assetManager, "Main_KidamuBookList.json" , R.id.Main_KidamuBookList, KidamuAdapter);
+        BookList_B(root, assetManager, "Main_PromisedBookList.json", R.id.Main_PromisedBookList, PromiseAdapter);
+        BookList_B(root, assetManager, "Main_KidamuBookList.json", R.id.Main_KidamuBookList, KidamuAdapter);
 
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
@@ -231,13 +232,13 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-            intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-            intent.putExtra("TOKEN",String.format("%s", USERTOKEN));
+            intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+            intent.putExtra("TOKEN", String.format("%s", USERTOKEN));
             startActivity(intent);
         });
     }
 
-    public void BookList_B(View root, AssetManager assetManager, String BookType,  Integer RecylerView, Main_BookListAdapter_B Adapter) {
+    public void BookList_B(View root, AssetManager assetManager, String BookType, Integer RecylerView, Main_BookListAdapter_B Adapter) {
         RecyclerView recyclerViewFestival = root.findViewById(RecylerView);
         LinearLayoutManager managerFestival = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewFestival.setLayoutManager(managerFestival);
@@ -261,12 +262,12 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            if(Value.equals("FAV")){
+            if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
-            } else if (Value.equals("BookDetail")){
+            } else if (Value.equals("BookDetail")) {
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-                intent.putExtra("TOKEN",String.format("%s", USERTOKEN));
+                intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN", String.format("%s", USERTOKEN));
                 startActivity(intent);
             }
         });

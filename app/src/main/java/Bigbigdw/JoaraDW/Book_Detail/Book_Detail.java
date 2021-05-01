@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
@@ -31,13 +32,17 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bigbigdw.JoaraDW.BookList.Detail_Tab_1;
+import Bigbigdw.JoaraDW.BookList.Fragment_Main;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.R;
@@ -47,7 +52,7 @@ public class Book_Detail extends AppCompatActivity {
     private RequestQueue queue;
     String TOKEN = "";
     String BookDetailURL;
-    TextView BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
+    TextView BookTitle, BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
     FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6 ;
     String BookCode = "";
@@ -100,6 +105,7 @@ public class Book_Detail extends AppCompatActivity {
         FavON = findViewById(R.id.FavON);
         FavOff = findViewById(R.id.FavOff);
         FavWrap = findViewById(R.id.FavWrap);
+        BookTitle = findViewById(R.id.BookTitle);
 
         BookAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
@@ -132,40 +138,39 @@ public class Book_Detail extends AppCompatActivity {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
             try {
-                JSONObject book = response.getJSONObject("book");
+                JSONObject BOOK = response.getJSONObject("book");
 
-                Glide.with(this).load(book.getString("book_img"))
+                Glide.with(this).load(BOOK.getString("book_img"))
                         .into(BookCover);
 
-                FavCheck = book.getString("is_favorite");
-                Log.d("FavCheck", FavCheck);
+                FavCheck = BOOK.getString("is_favorite");
 
-                if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
+                if (BOOK.getString("is_nobless").equals("TRUE") && BOOK.getString("is_adult").equals("FALSE")) {
                     BookTypeBody.setText(R.string.NOBLESS);
                     BookTypeBody.setTextColor(0xAAa5c500);
                     CategoryBody.setTextColor(0xAAa5c500);
                     BarBody.setTextColor(0xAAa5c500);
-                } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
+                } else if (BOOK.getString("is_premium").equals("TRUE") && BOOK.getString("is_adult").equals("FALSE")) {
                     BookTypeBody.setText(R.string.PREMIUM);
                     BookTypeBody.setTextColor(0xAA4971EF);
                     CategoryBody.setTextColor(0xAA4971EF);
                     BarBody.setTextColor(0xAA4971EF);
-                } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("FALSE")) {
+                } else if (BOOK.getString("is_finish").equals("TRUE") && BOOK.getString("is_adult").equals("FALSE")) {
                     BookTypeBody.setText(R.string.FINISH);
                     BookTypeBody.setTextColor(0xAAa5c500);
                     CategoryBody.setTextColor(0xAAa5c500);
                     BarBody.setTextColor(0xAAa5c500);
-                } else if (book.getString("is_nobless").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
+                } else if (BOOK.getString("is_nobless").equals("TRUE") && BOOK.getString("is_adult").equals("TRUE")) {
                     BookTypeBody.setText(R.string.ADULT_NOBLESS);
                     BookTypeBody.setTextColor(0xAAF44336);
                     CategoryBody.setTextColor(0xAAF44336);
                     BarBody.setTextColor(0xAAF44336);
-                } else if (book.getString("is_premium").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
+                } else if (BOOK.getString("is_premium").equals("TRUE") && BOOK.getString("is_adult").equals("TRUE")) {
                     BookTypeBody.setText(R.string.ADULT_PREMIUM);
                     BookTypeBody.setTextColor(0xAA4971EF);
                     CategoryBody.setTextColor(0xAA4971EF);
                     BarBody.setTextColor(0xAA4971EF);
-                } else if (book.getString("is_finish").equals("TRUE") && book.getString("is_adult").equals("TRUE")) {
+                } else if (BOOK.getString("is_finish").equals("TRUE") && BOOK.getString("is_adult").equals("TRUE")) {
                     BookTypeBody.setText(R.string.ADULT_FINISH);
                     BookTypeBody.setTextColor(0xAA767676);
                     CategoryBody.setTextColor(0xAA767676);
@@ -174,15 +179,16 @@ public class Book_Detail extends AppCompatActivity {
                     BookTypeBody.setText(R.string.FREE);
                 }
 
-                BookTitleBody.setText(book.getString("subject"));
-                BookWriterBody.setText(book.getString("writer_name"));
-                CategoryBody.setText(book.getString("category_ko_name"));
-                BookReadBody.setText(book.getString("cnt_page_read"));
-                BookRecommendBody.setText(book.getString("cnt_recom"));
-                BookFavBody.setText(book.getString("cnt_favorite"));
-                BookCommentBody.setText(book.getString("cnt_total_comment"));
-                BookDetailIntro.setText(book.getString("intro"));
-                BookTitleText = book.getString("subject");
+                BookTitle.setText(BOOK.getString("subject"));
+                BookTitleBody.setText(BOOK.getString("subject"));
+                BookWriterBody.setText(BOOK.getString("writer_name"));
+                CategoryBody.setText(BOOK.getString("category_ko_name"));
+                BookReadBody.setText(BOOK.getString("cnt_page_read"));
+                BookRecommendBody.setText(BOOK.getString("cnt_recom"));
+                BookFavBody.setText(BOOK.getString("cnt_favorite"));
+                BookCommentBody.setText(BOOK.getString("cnt_total_comment"));
+                BookDetailIntro.setText(BOOK.getString("intro"));
+                BookTitleText = BOOK.getString("subject");
 
             } catch (JSONException e) {
                 e.printStackTrace();
