@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.BookList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
@@ -80,7 +82,14 @@ public class New_Tab_Series extends Fragment {
 
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
-            Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+            if(Value.equals("FAV")){
+                Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+            } else if (Value.equals("BookDetail")){
+                Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN",String.format("%s", TOKEN));
+                startActivity(intent);
+            }
         });
 
         return root;

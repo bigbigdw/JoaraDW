@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +70,8 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         return listData == null ? 0 : listData.size();
     }
 
-    private void showLoadingView(Main_BookListAdapter_C.LoadingViewHolder holder, int position) {}
+    private void showLoadingView(Main_BookListAdapter_C.LoadingViewHolder holder, int position) {
+    }
 
     private void populateItemRows(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, int position) {
         Main_BookListData item = listData.get(position);
@@ -124,6 +126,10 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         this.listener = listener;
     }
 
+    public void setOnItemClicklistenerDetail(onClickAdapterListener_C listener) {
+        this.listener = listener;
+    }
+
 
     static public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
 
@@ -137,8 +143,9 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView Favon;
         ImageView Favoff;
         CardView Img_Wrap;
-        String BookTitle,Book_Code;
+        String BookTitle, Book_Code;
         String TOKEN = "";
+        LinearLayout BookContentsWrapC;
 
         Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
             super(itemView);
@@ -152,6 +159,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
             BookCode = itemView.findViewById(R.id.BookCodeText);
             BookFav = itemView.findViewById(R.id.TextBookFav);
+            BookContentsWrapC = itemView.findViewById(R.id.BookContentsWrapC);
 
             try {
                 FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
@@ -167,13 +175,19 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                 JSONObject jsonObject = new JSONObject(result);
                 JSONObject UserInfo = jsonObject.getJSONObject("user");
                 TOKEN = UserInfo.getString("token");
-                Log.d("USERINFO", "읽기 완료");
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
-                Log.d("USERINFO", "읽기 실패");
+                TOKEN = "";
             }
 
-            if(!TOKEN.equals("")){
+            BookContentsWrapC.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null) {
+                    listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "BookDetail");
+                }
+            });
+
+            if (!TOKEN.equals("")) {
                 Img_Wrap.setOnClickListener(v -> {
                     if (Favoff.getVisibility() == View.VISIBLE) {
                         Favoff.setVisibility(View.GONE);
@@ -184,7 +198,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, Book_Code);
+                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
                         }
                     } else {
                         Favoff.setVisibility(View.VISIBLE);
@@ -195,7 +209,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, Book_Code);
+                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
                         }
                     }
                 });

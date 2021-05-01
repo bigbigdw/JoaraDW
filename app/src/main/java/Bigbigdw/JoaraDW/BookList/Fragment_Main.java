@@ -145,8 +145,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         BookList_B(root, assetManager, "Main_PromisedBookList.json" , R.id.Main_PromisedBookList, PromiseAdapter);
         BookList_B(root, assetManager, "Main_KidamuBookList.json" , R.id.Main_KidamuBookList, KidamuAdapter);
 
-
-
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
@@ -262,6 +260,18 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         Adapter.setItems(new Finish_BookData().getData(API_URL, ETC, queue, wrap));
         Adapter.notifyDataSetChanged();
         recyclerView.setAdapter(Adapter);
+
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
+            if(Value.equals("FAV")){
+                Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+            } else if (Value.equals("BookDetail")){
+                Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN",String.format("%s", USERTOKEN));
+                startActivity(intent);
+            }
+        });
     }
 
     public void BookList_D(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap) {
