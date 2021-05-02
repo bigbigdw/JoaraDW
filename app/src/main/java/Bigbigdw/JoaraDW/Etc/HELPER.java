@@ -1,26 +1,7 @@
 package Bigbigdw.JoaraDW.Etc;
 
-import android.util.Log;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.synnapps.carouselview.CarouselView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
-
 public interface HELPER {
 
-//    String API = "https://api-dev1.joara.com:7443";
     String API = "https://api.joara.com";
     String API_KEY = "mw_8ba234e7801ba288554ca07ae44c7";
     String VER = "2.6.3";

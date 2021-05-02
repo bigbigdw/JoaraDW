@@ -20,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
@@ -32,19 +31,15 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bigbigdw.JoaraDW.BookList.Fragment_Main;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Detail extends AppCompatActivity {
@@ -54,7 +49,7 @@ public class Book_Detail extends AppCompatActivity {
     String BookDetailURL;
     TextView BookTitle, BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
-    FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6 ;
+    FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6;
     String BookCode = "";
     String BookTitleText = "";
     Button BookDetailHeader1, BookDetailHeader3;
@@ -62,6 +57,7 @@ public class Book_Detail extends AppCompatActivity {
     Boolean BookDeatailTF = false;
     String FavCheck = "";
     LinearLayout FavWrap;
+    JSONObject BOOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,14 +103,17 @@ public class Book_Detail extends AppCompatActivity {
         FavWrap = findViewById(R.id.FavWrap);
         BookTitle = findViewById(R.id.BookTitle);
 
+        JOARADW myApp = (JOARADW) getApplicationContext();
+        myApp.setBookCode(BookCode);
+        myApp.setToken(TOKEN);
+        myApp.setAPI_URL(BookDetailURL);
+
+
         BookAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
-            {
+            if (Math.abs(verticalOffset) - appBarLayout.getTotalScrollRange() == 0) {
                 BookDetailOption.setVisibility(View.VISIBLE);
                 BookDetailOption.animate().alpha(1.0f);
-            }
-            else
-            {
+            } else {
                 BookDetailOption.setVisibility(View.GONE);
                 BookDetailOption.animate().alpha(0.0f);
 
@@ -229,7 +228,7 @@ public class Book_Detail extends AppCompatActivity {
     }
 
     public void toggleBookDetailOption(View v) {
-        if(BookDeatailTF.equals(false) && BookDetailOption.getVisibility() == View.VISIBLE){
+        if (BookDeatailTF.equals(false) && BookDetailOption.getVisibility() == View.VISIBLE) {
             BookDetailOption.setImageResource(R.drawable.icon_detail_fold);
             BookDeatailTF = true;
 
@@ -245,7 +244,7 @@ public class Book_Detail extends AppCompatActivity {
             BookDetailOption5.animate().alpha(1.0f);
             BookDetailOption6.setVisibility(View.VISIBLE);
             BookDetailOption6.animate().alpha(1.0f);
-        }else if(BookDeatailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
+        } else if (BookDeatailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
             BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
             BookDeatailTF = false;
 
@@ -265,12 +264,12 @@ public class Book_Detail extends AppCompatActivity {
     }
 
     public void onClickFav(View v) {
-        if(FavOff.getVisibility() == View.VISIBLE){
+        if (FavOff.getVisibility() == View.VISIBLE) {
             Book_Pagination.FavToggle(queue, BookCode, TOKEN);
             Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
             FavON.setVisibility(View.VISIBLE);
             FavOff.setVisibility(View.GONE);
-        } else if(FavON.getVisibility() == View.VISIBLE){
+        } else if (FavON.getVisibility() == View.VISIBLE) {
             Book_Pagination.FavToggle(queue, BookCode, TOKEN);
             Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
             FavON.setVisibility(View.GONE);
@@ -325,8 +324,8 @@ public class Book_Detail extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
+        switch (item.getItemId()) {
+            case android.R.id.home: {
                 finish();
                 return true;
             }

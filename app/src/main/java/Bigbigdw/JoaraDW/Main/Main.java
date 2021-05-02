@@ -187,17 +187,17 @@ public class Main extends AppCompatActivity {
                 if (response.getString("status").equals("1")) {
                     Drawer_LogOut.setVisibility(View.GONE);
                     Drawer_LogIn.setVisibility(View.VISIBLE);
-                    hideItem(navigationView);
+                    Log.d("Main", "로그인!");
                 } else {
                     Drawer_LogOut.setVisibility(View.VISIBLE);
                     Drawer_LogIn.setVisibility(View.GONE);
-                    hideItem(navigationView);
+                    Log.d("Main", "로그아웃!");
                 }
+                hideItem(navigationView, response.getString("status").equals("1"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.d("Main", "완료!");
         }, error -> Log.d("Main", "에러!"));
 
         queue.add(jsonRequest);
@@ -238,10 +238,10 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void hideItem(NavigationView navigationView)
+    private void hideItem(NavigationView navigationView, boolean check)
     {
         Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.Menu_Logined).setVisible(STATUS.equals("1"));
+        nav_Menu.findItem(R.id.Menu_Logined).setVisible(check);
     }
 
     @Override
