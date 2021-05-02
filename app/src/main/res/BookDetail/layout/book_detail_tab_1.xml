@@ -15,14 +15,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            layout="@layout/loading"
+            layout="@layout/blank"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             tools:visibility="gone" />
 
+        <include
+            layout="@layout/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
         <LinearLayout
-            android:id="@+id/Tab_NewAll"
+            android:id="@+id/TabWrap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -30,7 +37,7 @@
             tools:visibility="visible">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/BookDetail_1"
+                android:id="@+id/BookDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

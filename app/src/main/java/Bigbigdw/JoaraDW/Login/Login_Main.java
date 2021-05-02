@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -39,6 +40,7 @@ public class Login_Main extends AppCompatActivity {
     ImageView LOGO;
     RequestQueue queue;
     Button LoginBtn;
+    String TOKEN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,10 +114,8 @@ public class Login_Main extends AppCompatActivity {
             BufferedWriter bufwr = new BufferedWriter(fw);
             bufwr.write(response);
             bufwr.close();
-            Log.d("USERINFO", "쓰기 완료");
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d("USERINFO", "쓰기 실패");
         }
     }
 
@@ -130,11 +130,16 @@ public class Login_Main extends AppCompatActivity {
             final StringRequest stringRequest = new StringRequest(Request.Method.POST, ResultURL, response -> {
                 try {
                     JSONObject reader = new JSONObject(response);
-                    JSONObject userInfo = reader.getJSONObject("user");
-                    String UserName = userInfo.getString("nickname");
+                    JSONObject UserInfo = reader.getJSONObject("user");
+                    String UserName = UserInfo.getString("nickname");
                     String filename = getDataDir() + "/";
 
                     WriteJson(filename, response);
+
+                    TOKEN = UserInfo.getString("token");
+                    JOARADW myApp = (JOARADW) getApplicationContext();
+                    myApp.setToken(TOKEN);
+
                     Toast.makeText(getApplicationContext(), "환영합니다!" + " " + UserName + "님!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getApplicationContext(), Main.class);

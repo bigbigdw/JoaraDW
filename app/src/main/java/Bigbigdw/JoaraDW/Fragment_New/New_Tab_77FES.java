@@ -23,7 +23,7 @@ public class New_Tab_77FES extends Fragment {
     private ArrayList<Main_BookListData> items = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab_77fes, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
         NewBookListAdapter = new Main_BookListAdapter_C(items);
         AssetManager assetManager = getActivity().getAssets();
         NewBookList(root, assetManager, "Main_Tab_Best_77FES.json");
@@ -32,7 +32,7 @@ public class New_Tab_77FES extends Fragment {
     }
 
     public void NewBookList(View root, AssetManager assetManager, String BookType){
-        RecyclerView recyclerView = root.findViewById(R.id.Main_New77FES);
+        RecyclerView recyclerView = root.findViewById(R.id.Main_NewBookList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(NewBookListAdapter);

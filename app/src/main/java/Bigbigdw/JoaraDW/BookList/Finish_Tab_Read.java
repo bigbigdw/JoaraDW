@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
@@ -57,40 +58,20 @@ public class Finish_Tab_Read extends Fragment {
             ContentsLayout.setVisibility(View.VISIBLE);
         }, 500);
 
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            Log.d("TEST", getActivity().getDataDir().toString());
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
-            }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            TOKEN = UserInfo.getString("token");
-            Log.d("USERINFO", "읽기 완료");
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
+        JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
+        if(myApp.GetTokenJSON() == null){
+            TOKEN = "";
+        }else {
+            TOKEN = myApp.GetTokenJSON();
         }
 
         NewAdapter = new Main_BookListAdapter_C(items);
         NoblessAdapter = new Main_BookListAdapter_C(items);
         PremiumAdapter = new Main_BookListAdapter_C(items);
 
-        if(!TOKEN.equals("")){
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
-        } else {
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
-            BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1", R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
-        }
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
 
         return root;
     }

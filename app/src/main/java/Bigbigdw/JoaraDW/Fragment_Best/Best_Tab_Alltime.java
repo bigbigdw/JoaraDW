@@ -58,10 +58,6 @@ public class Best_Tab_Alltime extends Fragment {
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_FinishList, FinishAdapter, queue, R.id.Best_Tab_Finish);
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1", R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
 
-
-
-
-
         return root;
     }
 
@@ -72,9 +68,7 @@ public class Best_Tab_Alltime extends Fragment {
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
         Adapter.setItems(new Best_BookData().getData(API_URL, ETC, queue, wrap));
-        Log.d("TEST", "불림!");
         Adapter.notifyDataSetChanged();
-
     }
 
 

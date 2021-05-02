@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -33,45 +34,33 @@ public class New_Tab_Premium extends Fragment {
     private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover;
+    LinearLayout Wrap, Cover, Blank;
     String Store="premium";
     String TOKEN = "";
     String ETC = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab_premium, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String API = "/v1/book/list.joa";
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
-            }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            TOKEN = UserInfo.getString("token");
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
+
+        JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
+        if(myApp.GetTokenJSON() == null){
+            TOKEN = "";
+        }else {
+            TOKEN = myApp.GetTokenJSON();
         }
 
-        if(!TOKEN.equals("")){
-            ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
-        } else {
-            ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&class=";
-        }
-        recyclerView = root.findViewById(R.id.Main_NewBookList_Premium);
-        Wrap = root.findViewById(R.id.Tab_NewPremiumWrap);
+
+        ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
+
+        recyclerView = root.findViewById(R.id.Main_NewBookList);
+        Wrap = root.findViewById(R.id.TabWrap);
         Cover = root.findViewById(R.id.LoadingLayout);
+        Blank = root.findViewById(R.id.BlankLayout);
 
-        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
         Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView,Store);
 

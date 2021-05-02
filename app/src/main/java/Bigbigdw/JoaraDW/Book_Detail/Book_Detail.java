@@ -37,6 +37,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.BookList.Detail_Tab_2;
+import Bigbigdw.JoaraDW.BookList.Detail_Tab_3;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
@@ -57,7 +59,6 @@ public class Book_Detail extends AppCompatActivity {
     Boolean BookDeatailTF = false;
     String FavCheck = "";
     LinearLayout FavWrap;
-    JSONObject BOOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,8 +211,6 @@ public class Book_Detail extends AppCompatActivity {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            Log.d("Main", response.toString());
-
             try {
                 if (response.getString("status").equals("1")) {
                     FavWrap.setVisibility(View.VISIBLE);
@@ -221,7 +220,6 @@ public class Book_Detail extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.d("Main", "완료!");
         }, error -> Log.d("Main", "에러!"));
 
         queue.add(jsonRequest);
@@ -280,8 +278,8 @@ public class Book_Detail extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Detail_Tab_1(), "연재목록");
-        adapter.addFragment(new Detail_Tab_1(), "작가의 다른 작품");
-        adapter.addFragment(new Detail_Tab_1(), "추천 작품");
+        adapter.addFragment(new Detail_Tab_2(), "작가의 다른 작품");
+        adapter.addFragment(new Detail_Tab_3(), "추천 작품");
         viewPager.setAdapter(adapter);
     }
 

@@ -95,12 +95,19 @@ public interface Book_Pagination {
     }
 
 
-    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover) {
+    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, LinearLayout Blank) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 JSONArray flag = response.getJSONArray("books");
+                Log.d("LENGTH", String.valueOf(flag.length()));
+
+                if(flag.length() == 0){
+                    Blank.setVisibility(View.VISIBLE);
+                } else {
+                    Blank.setVisibility(View.GONE);
+                }
 
                 for (int i = 0; i < flag.length(); i++) {
                     JSONObject jo = flag.getJSONObject(i);

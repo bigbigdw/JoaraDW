@@ -25,11 +25,11 @@ public class Fragment_Test_Z extends Fragment {
     private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
-    LinearLayout Wrap, Cover;
+    LinearLayout Wrap, Cover, Blank;
     String Store="nobless";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab_all, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String API = "/v1/book/list.joa";
@@ -37,8 +37,9 @@ public class Fragment_Test_Z extends Fragment {
         recyclerView = root.findViewById(R.id.Main_NewBookList);
         Wrap = root.findViewById(R.id.Tab_NewAll);
         Cover = root.findViewById(R.id.LoadingLayout);
+        Blank = root.findViewById(R.id.BlankLayout);
 
-        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
         Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
 

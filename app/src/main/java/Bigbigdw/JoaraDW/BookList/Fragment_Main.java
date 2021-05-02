@@ -71,7 +71,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     String STATUS = "";
     String ETC = "&page=1&offset=10";
     String ShowType = "&show_type=home";
-    String Category = "&category=";
     TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
 
@@ -96,11 +95,9 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             USERTOKEN = UserInfo.getString("token");
-
             STATUS = jsonObject.getString("status");
             String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
             UserNameCategory.setText(usernamed);
-            Log.d("USERINFO", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d("USERINFO", "읽기 실패");

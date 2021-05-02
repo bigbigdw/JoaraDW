@@ -2,7 +2,6 @@ package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
@@ -30,7 +23,8 @@ import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
-public class New_Tab_ALL extends Fragment {
+
+public class Detail_Tab_2 extends Fragment {
     private Main_BookListAdapter_C NewBookListAdapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
@@ -38,24 +32,25 @@ public class New_Tab_ALL extends Fragment {
     String Store="";
     String TOKEN = "";
     String ETC = "";
+    String BOOKCODE = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
+        View root = inflater.inflate(R.layout.book_detail_tab_2, container, false);
 
         JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
-
+        BOOKCODE = myApp.getBookCode();
         if(myApp.GetTokenJSON() == null){
             TOKEN = "";
         }else {
             TOKEN = myApp.GetTokenJSON();
         }
 
-        ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
+        ETC = "&book_code=" + BOOKCODE + "&token=" + TOKEN + "&offset=25";
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String API = "/v1/book/list.joa";
+        String API = "/v1/book/other.joa";
 
-        recyclerView = root.findViewById(R.id.Main_NewBookList);
+        recyclerView = root.findViewById(R.id.BookDetail);
         Wrap = root.findViewById(R.id.TabWrap);
         Cover = root.findViewById(R.id.LoadingLayout);
         Blank = root.findViewById(R.id.BlankLayout);

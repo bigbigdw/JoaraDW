@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Etc;
 
+
 public interface HELPER {
 
     String API = "https://api.joara.com";
