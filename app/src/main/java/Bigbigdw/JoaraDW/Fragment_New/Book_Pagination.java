@@ -32,8 +32,6 @@ public interface Book_Pagination {
     static void LoginCheck(RequestQueue queue, String USERTOKEN, TextView Book_Fav_CoverText) {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
-        Log.d("LoginCheck", USERTOKEN);
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             Log.d("LoginCheck", response.toString());
 

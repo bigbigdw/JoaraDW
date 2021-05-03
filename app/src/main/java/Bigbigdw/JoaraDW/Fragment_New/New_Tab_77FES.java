@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,11 +22,21 @@ import Bigbigdw.JoaraDW.R;
 public class New_Tab_77FES extends Fragment {
     Main_BookListAdapter_C NewBookListAdapter;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
+    LinearLayout Blank, Cover, Wrap;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
         NewBookListAdapter = new Main_BookListAdapter_C(items);
         AssetManager assetManager = getActivity().getAssets();
+
+        Wrap = root.findViewById(R.id.TabWrap);
+        Cover = root.findViewById(R.id.LoadingLayout);
+        Blank = root.findViewById(R.id.BlankLayout);
+
+        Wrap.setVisibility(View.VISIBLE);
+        Cover.setVisibility(View.GONE);
+        Blank.setVisibility(View.GONE);
+
         NewBookList(root, assetManager, "Main_Tab_Best_77FES.json");
 
         return root;

@@ -28,13 +28,13 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickBookDetailListener {
+public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickBookDetailListener {
     ArrayList<Detail_BookPageData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     onClickBookDetailListener listener;
 
-    public Detail_BookLIstAdapter(ArrayList<Detail_BookPageData> items) {
+    public Detail_BookListAdapter(ArrayList<Detail_BookPageData> items) {
         this.listData = items;
     }
 
@@ -43,20 +43,20 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_detail_booklist, parent, false);
-            return new Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder(view, this);
+            return new Detail_BookListAdapter.Detail_BookList_ViewHolder(view, this);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Detail_BookLIstAdapter.LoadingViewHolder(view);
+            return new Detail_BookListAdapter.LoadingViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder) {
-            populateItemRows((Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder) holder, position);
-        } else if (holder instanceof Detail_BookLIstAdapter.LoadingViewHolder) {
-            showLoadingView((Detail_BookLIstAdapter.LoadingViewHolder) holder, position);
+        if (holder instanceof Detail_BookListAdapter.Detail_BookList_ViewHolder) {
+            populateItemRows((Detail_BookListAdapter.Detail_BookList_ViewHolder) holder, position);
+        } else if (holder instanceof Detail_BookListAdapter.LoadingViewHolder) {
+            showLoadingView((Detail_BookListAdapter.LoadingViewHolder) holder, position);
         }
     }
 
@@ -70,10 +70,10 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return listData == null ? 0 : listData.size();
     }
 
-    private void showLoadingView(Detail_BookLIstAdapter.LoadingViewHolder holder, int position) {
+    private void showLoadingView(Detail_BookListAdapter.LoadingViewHolder holder, int position) {
     }
 
-    private void populateItemRows(Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder holder, int position) {
+    private void populateItemRows(Detail_BookListAdapter.Detail_BookList_ViewHolder holder, int position) {
         Detail_BookPageData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
@@ -83,11 +83,12 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.Title.setText(listData.get(position).getBookChapter());
         holder.BookList.setText(listData.get(position).getBookListNum());
         holder.BookListRecommend.setText(listData.get(position).getBookListRecommend());
+        holder.BookCid.setText(listData.get(position).getCid());
 
     }
 
     @Override
-    public void onClickBookList(Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder holder, View view, int position, String Value) {
+    public void onClickBookList(Detail_BookListAdapter.Detail_BookList_ViewHolder holder, View view, int position, String Value) {
         if (listener != null) {
             listener.onClickBookList(holder, view, position, Value);
         }
@@ -97,7 +98,7 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         this.listener = listener;
     }
 
-    static public class Detail_BookLIst_ViewHolder extends RecyclerView.ViewHolder {
+    static public class Detail_BookList_ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView Image;
         TextView Title;
@@ -105,14 +106,16 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView BookListRecommend;
         String TOKEN;
         LinearLayout Img_Wrap;
+        TextView BookCid;
 
-        Detail_BookLIst_ViewHolder(@NonNull View itemView, final onClickBookDetailListener listener) {
+        Detail_BookList_ViewHolder(@NonNull View itemView, final onClickBookDetailListener listener) {
             super(itemView);
             Image = itemView.findViewById(R.id.BookListImg);
             Title = itemView.findViewById(R.id.ChapterTitle);
             BookListRecommend = itemView.findViewById(R.id.BookListRecommend);
             BookList = itemView.findViewById(R.id.BookListNum);
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
+            BookCid = itemView.findViewById(R.id.Cid);
 
             try {
                 FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
@@ -136,7 +139,7 @@ public class Detail_BookLIstAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             Img_Wrap.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (listener != null) {
-                    listener.onClickBookList(Detail_BookLIstAdapter.Detail_BookLIst_ViewHolder.this, v, position, "BookDetail");
+                    listener.onClickBookList(Detail_BookListAdapter.Detail_BookList_ViewHolder.this, v, position, "BookDetail");
                 }
             });
 

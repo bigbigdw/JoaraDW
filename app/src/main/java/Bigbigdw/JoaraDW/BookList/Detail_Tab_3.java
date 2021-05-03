@@ -25,7 +25,7 @@ import Bigbigdw.JoaraDW.R;
 
 
 public class Detail_Tab_3 extends Fragment {
-    private Main_BookListAdapter_C NewBookListAdapter;
+    private Main_BookListAdapter_C Adapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
@@ -57,10 +57,9 @@ public class Detail_Tab_3 extends Fragment {
 
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
-        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
 
-        NewBookListAdapter.setOnItemClicklistenerDetail((holder, view, position, Value) -> {
-            Main_BookListData item = NewBookListAdapter.getItem(position);
+        Adapter.setOnItemClicklistenerDetail((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
             intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
             intent.putExtra("TOKEN",String.format("%s", TOKEN));
@@ -68,8 +67,8 @@ public class Detail_Tab_3 extends Fragment {
         });
 
 
-        NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-            Main_BookListData item = NewBookListAdapter.getItem(position);
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
             if(Value.equals("FAV")){
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")){
@@ -84,10 +83,10 @@ public class Detail_Tab_3 extends Fragment {
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_C(items);
+        Adapter = new Main_BookListAdapter_C(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        NewBookListAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(NewBookListAdapter);
+        Adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(Adapter);
     }
 }

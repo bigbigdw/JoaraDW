@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Book_Detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,12 +25,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Book_Viewer.Book_Viewer;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Detail_Tab_1 extends Fragment {
-    Detail_BookLIstAdapter BookChapterAdapter;
+    Detail_BookListAdapter Adapter;
     private ArrayList<Detail_BookPageData> items = new ArrayList<>();
     String BookListImg, BOOKCODE, TOKEN, BookDetailURL;
     private RecyclerView recyclerView;
@@ -51,6 +53,15 @@ public class Detail_Tab_1 extends Fragment {
         populateData();
         initAdapter();
 
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Detail_BookPageData item = Adapter.getItem(position);
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Viewer.class);
+            intent.putExtra("Cid",String.format("%s", item.getCid()));
+            intent.putExtra("TOKEN",String.format("%s", TOKEN));
+            intent.putExtra("BOOKCODE",String.format("%s", BOOKCODE));
+            startActivity(intent);
+        });
+
         return root;
     }
 
@@ -69,9 +80,10 @@ public class Detail_Tab_1 extends Fragment {
 
                     String ChapterTitle = jo.getString("sub_subject");
                     String BookListRecommend = jo.getString("cnt_recom");
+                    String BookCid = jo.getString("cid");
                     String BookList_Num = String.valueOf(i+1);
 
-                    items.add(new Detail_BookPageData(BookList_Num, BookListImg, BookListRecommend, ChapterTitle));
+                    items.add(new Detail_BookPageData(BookList_Num, BookListImg, BookListRecommend, ChapterTitle,BookCid));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -82,7 +94,7 @@ public class Detail_Tab_1 extends Fragment {
     }
 
     private void initAdapter() {
-        BookChapterAdapter = new Detail_BookLIstAdapter(items);
+        Adapter = new Detail_BookListAdapter(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
@@ -90,7 +102,7 @@ public class Detail_Tab_1 extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(BookChapterAdapter);
+        recyclerView.setAdapter(Adapter);
     }
 }
 

@@ -32,8 +32,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/TODO"
                 android:onClick="onClickFav"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/booktest" />
+                android:scaleType="fitXY" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
