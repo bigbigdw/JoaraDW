@@ -22,8 +22,10 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -161,6 +163,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         String BookTitle, Book_Code;
         String TOKEN = "";
         LinearLayout BookContentsWrapC;
+        JSONObject GETUSERINFO;
 
         Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
             super(itemView);
@@ -178,21 +181,11 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             Bar = itemView.findViewById(R.id.Bar);
             Category = itemView.findViewById(R.id.Category);
 
+            GETUSERINFO = Config.GETUSERINFO();
             try {
-                FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
-                BufferedReader br = new BufferedReader(fr);
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
-                while (line != null) {
-                    sb.append(line).append("\n");
-                    line = br.readLine();
-                }
-                br.close();
-                String result = sb.toString();
-                JSONObject jsonObject = new JSONObject(result);
-                JSONObject UserInfo = jsonObject.getJSONObject("user");
+                JSONObject UserInfo = GETUSERINFO.getJSONObject("user");
                 TOKEN = UserInfo.getString("token");
-            } catch (IOException | JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
                 TOKEN = "";
             }

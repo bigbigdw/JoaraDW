@@ -53,6 +53,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
@@ -70,6 +71,7 @@ public class Main extends AppCompatActivity {
     RequestQueue queue;
     TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon, UserName;
     boolean IsFirstPage = true;
+    JSONObject GETUSERINFO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,20 +104,10 @@ public class Main extends AppCompatActivity {
             startActivity(intentSplash);
         }
 
+        GETUSERINFO = Config.GETUSERINFO();
         try {
-            FileReader fr = new FileReader(getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
-            }
-            br.close();
-            String result = sb.toString();//
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            STATUS = jsonObject.getString("status");
+            JSONObject UserInfo = GETUSERINFO.getJSONObject("user");
+            STATUS = GETUSERINFO.getString("status");
             USERTOKEN = "&token=" + UserInfo.getString("token");
             String mana = UserInfo.getString("mana");
             Mana.setText(mana);
@@ -129,10 +121,8 @@ public class Main extends AppCompatActivity {
             Manuscript_Coupon.setText(manuscript_coupon);
             String support_coupon = UserInfo.getString("support_coupon");
             Support_Coupon.setText(support_coupon);
-            Log.d("USERINFO", "읽기 완료");
-        } catch (IOException | JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
         }
 
         LoginCheck(queue, USERTOKEN, Drawer_LogIn, Drawer_LogOut, navigationView);
