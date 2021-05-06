@@ -106,21 +106,23 @@ public class Main extends AppCompatActivity {
 
         GETUSERINFO = Config.GETUSERINFO();
         try {
-            JSONObject UserInfo = GETUSERINFO.getJSONObject("user");
-            STATUS = GETUSERINFO.getString("status");
-            USERTOKEN = "&token=" + UserInfo.getString("token");
-            String mana = UserInfo.getString("mana");
-            Mana.setText(mana);
-            String expire_cash = UserInfo.getString("expire_cash");
-            Coupon.setText(expire_cash);
-            String cash = UserInfo.getString("cash");
-            Cash.setText(cash);
-            String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
-            UserName.setText(usernamed);
-            String manuscript_coupon = UserInfo.getString("manuscript_coupon");
-            Manuscript_Coupon.setText(manuscript_coupon);
-            String support_coupon = UserInfo.getString("support_coupon");
-            Support_Coupon.setText(support_coupon);
+            if(GETUSERINFO != null){
+                JSONObject UserInfo = GETUSERINFO.getJSONObject("user");
+                STATUS = GETUSERINFO.getString("status");
+                USERTOKEN = "&token=" + UserInfo.getString("token");
+                String mana = UserInfo.getString("mana");
+                Mana.setText(mana);
+                String expire_cash = UserInfo.getString("expire_cash");
+                Coupon.setText(expire_cash);
+                String cash = UserInfo.getString("cash");
+                Cash.setText(cash);
+                String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+                UserName.setText(usernamed);
+                String manuscript_coupon = UserInfo.getString("manuscript_coupon");
+                Manuscript_Coupon.setText(manuscript_coupon);
+                String support_coupon = UserInfo.getString("support_coupon");
+                Support_Coupon.setText(support_coupon);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

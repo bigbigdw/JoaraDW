@@ -51,4 +51,26 @@ public class JOARADW extends Application {
     public String getAPI_URL() {
         return API_URL;
     }
+
+    public String GetTokenJSON() {
+        try {
+            FileReader fr = new FileReader(getDataDir() + "/userInfo.json");
+            BufferedReader br = new BufferedReader(fr);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            while (line != null) {
+                sb.append(line).append("\n");
+                line = br.readLine();
+            }
+            br.close();
+            String result = sb.toString();
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject UserInfo = jsonObject.getJSONObject("user");
+            TOKEN = UserInfo.getString("token");
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.d("USERINFO", "읽기 실패");
+        }
+        return TOKEN;
+    }
 }
