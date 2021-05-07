@@ -19,10 +19,7 @@
         <activity
             android:name=".Main.Main"
             android:theme="@style/Theme.JoaraDW.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -55,6 +52,16 @@
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 
+        </activity>
+
+        <activity
+            android:name=".BookList.Book_Page_Etc"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

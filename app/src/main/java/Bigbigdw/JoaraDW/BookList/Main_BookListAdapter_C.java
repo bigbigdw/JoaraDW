@@ -1,6 +1,5 @@
 package Bigbigdw.JoaraDW.BookList;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,9 @@ import com.bumptech.glide.Glide;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -161,6 +158,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         String BookTitle, Book_Code;
         String TOKEN = "";
         LinearLayout BookContentsWrapC;
+        JSONObject GETUSERINFO;
 
         Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
             super(itemView);
@@ -178,23 +176,17 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             Bar = itemView.findViewById(R.id.Bar);
             Category = itemView.findViewById(R.id.Category);
 
-            try {
-                FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
-                BufferedReader br = new BufferedReader(fr);
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
-                while (line != null) {
-                    sb.append(line).append("\n");
-                    line = br.readLine();
+            GETUSERINFO = Config.GETUSERINFO();
+            if(Config.GETUSERINFO() != null){
+                GETUSERINFO = Config.GETUSERINFO();
+                JSONObject UserInfo;
+                try {
+                    UserInfo = GETUSERINFO.getJSONObject("user");
+                    TOKEN = UserInfo.getString("token");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    TOKEN = "";
                 }
-                br.close();
-                String result = sb.toString();
-                JSONObject jsonObject = new JSONObject(result);
-                JSONObject UserInfo = jsonObject.getJSONObject("user");
-                TOKEN = UserInfo.getString("token");
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-                TOKEN = "";
             }
 
             BookContentsWrapC.setOnClickListener(v -> {

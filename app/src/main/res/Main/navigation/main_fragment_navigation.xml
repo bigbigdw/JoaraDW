@@ -40,7 +40,11 @@
         android:id="@+id/Fragment_More"
         android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_More"
         android:label=""
-        tools:layout="@layout/fragment_main_more" />
+        tools:layout="@layout/fragment_main_more" >
+        <action
+            android:id="@+id/action_Fragment_More_to_Fragment_New"
+            app:destination="@id/Fragment_New" />
+    </fragment>
 
     <fragment
         android:id="@+id/Fragment_New"

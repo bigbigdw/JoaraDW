@@ -28,15 +28,12 @@ import com.synnapps.carouselview.ImageListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
-import Bigbigdw.JoaraDW.Book_Detail.Detail_Tab_1;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
@@ -73,6 +70,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     String ShowType = "&show_type=home";
     TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
+    JSONObject GETUSERINFO = null;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -81,26 +79,20 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
         UserNameCategory = root.findViewById(R.id.UserNameCategory);
 
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
+        System.out.println(Config.GETUSERINFO());
+
+        if(Config.GETUSERINFO() != null){
+            GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                USERTOKEN = UserInfo.getString("token");
+                STATUS = GETUSERINFO.getString("status");
+                String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+                UserNameCategory.setText(usernamed);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = UserInfo.getString("token");
-            STATUS = jsonObject.getString("status");
-            String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
-            UserNameCategory.setText(usernamed);
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
         }
 
 

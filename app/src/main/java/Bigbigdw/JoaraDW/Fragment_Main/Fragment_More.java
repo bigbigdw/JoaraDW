@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Fragment_Main;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Queue;
 
+import Bigbigdw.JoaraDW.BookList.Fragment_Main;
+import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_More extends Fragment {
@@ -33,6 +37,8 @@ public class Fragment_More extends Fragment {
     private final Main_More_Aadapter EventAdapter = new Main_More_Aadapter();
     private RequestQueue queue;
     LinearLayout NoticeList, EventList;
+    Bundle bundle;
+    LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +50,37 @@ public class Fragment_More extends Fragment {
 
         NoticeAdapter(root, queue, NoticeList);
         EventAdapter(root, queue, EventList);
+
+        Wrap77Fes = root.findViewById(R.id.Wrap77Fes);
+        WrapKidamu = root.findViewById(R.id.WrapKidamu);
+        WrapNOTY = root.findViewById(R.id.WrapNOTY);
+        WrapPromised = root.findViewById(R.id.WrapPromised);
+
+        bundle = new Bundle();
+
+        Wrap77Fes.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 1);
+            NavHostFragment.findNavController(Fragment_More.this)
+                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+        });
+
+        WrapKidamu.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 2);
+            NavHostFragment.findNavController(Fragment_More.this)
+                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+        });
+
+        WrapNOTY.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 3);
+            NavHostFragment.findNavController(Fragment_More.this)
+                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+        });
+
+        WrapPromised.setOnClickListener(v -> {
+            bundle.putInt("TabNum", 4);
+            NavHostFragment.findNavController(Fragment_More.this)
+                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+        });
 
         return root;
     }
