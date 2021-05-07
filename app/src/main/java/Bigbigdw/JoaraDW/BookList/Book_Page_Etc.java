@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,11 @@ public class Book_Page_Etc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_detail_tab_2);
+        setContentView(R.layout.booklist_etc);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         JOARADW myApp = (JOARADW) this.getApplicationContext();
 
@@ -47,7 +52,7 @@ public class Book_Page_Etc extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String API = "/v1/book/list.joa";
 
-        recyclerView = findViewById(R.id.Main_NewBookList);
+        recyclerView = findViewById(R.id.BookDetail);
         Wrap = findViewById(R.id.TabWrap);
         Cover = findViewById(R.id.LoadingLayout);
         Blank = findViewById(R.id.BlankLayout);
