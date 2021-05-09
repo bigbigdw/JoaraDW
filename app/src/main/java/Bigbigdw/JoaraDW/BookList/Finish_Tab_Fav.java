@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
@@ -55,11 +56,16 @@ public class Finish_Tab_Fav extends Fragment {
             ContentsLayout.setVisibility(View.VISIBLE);
         }, 500);
 
-        JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
-        if(myApp.GetTokenJSON() == null){
-            TOKEN = "";
-        }else {
-            TOKEN = myApp.GetTokenJSON();
+        if(Config.GETUSERINFO() != null){
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
+            }
         }
 
         Main_BookListAdapter_C newAdapter = new Main_BookListAdapter_C(items);
@@ -83,7 +89,7 @@ public class Finish_Tab_Fav extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
         Adapter.notifyDataSetChanged();
         recyclerView.setAdapter(Adapter);
 

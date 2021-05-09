@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/Main_Best_Best"
                     android:textColor="#002635"

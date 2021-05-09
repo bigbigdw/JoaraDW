@@ -33,7 +33,6 @@ public interface Book_Pagination {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            Log.d("LoginCheck", response.toString());
 
             try {
                 if (response.getString("status").equals("1")) {
@@ -45,7 +44,6 @@ public interface Book_Pagination {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.d("LoginCheck", "완료!");
         }, error -> Log.d("LoginCheck", "에러!"));
 
         queue.add(jsonRequest);

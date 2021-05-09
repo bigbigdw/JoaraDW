@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,13 +24,13 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_C {
+public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_Best{
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    onClickAdapterListener_C listener;
+    onClickAdapterListener_Best listener;
 
-    public Main_BookListAdapter_C(ArrayList<Main_BookListData> items) {
+    public Main_BookListAdapter_Best(ArrayList<Main_BookListData> items) {
         this.listData = items;
     }
 
@@ -39,20 +38,20 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_c, parent, false);
-            return new Main_BookListAdapter_C.Main_BookListViewHolder_C(view, this);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_best, parent, false);
+            return new Main_BookListAdapter_Best.Main_BookListViewHolder_Best(view, this);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Main_BookListAdapter_C.LoadingViewHolder(view);
+            return new Main_BookListAdapter_Best.LoadingViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof Main_BookListAdapter_C.Main_BookListViewHolder_C) {
-            populateItemRows((Main_BookListAdapter_C.Main_BookListViewHolder_C) holder, position);
-        } else if (holder instanceof Main_BookListAdapter_C.LoadingViewHolder) {
-            showLoadingView((Main_BookListAdapter_C.LoadingViewHolder) holder, position);
+        if (holder instanceof Main_BookListAdapter_Best.Main_BookListViewHolder_Best) {
+            populateItemRows((Main_BookListAdapter_Best.Main_BookListViewHolder_Best) holder, position);
+        } else if (holder instanceof Main_BookListAdapter_Best.LoadingViewHolder) {
+            showLoadingView((Main_BookListAdapter_Best.LoadingViewHolder) holder, position);
         }
     }
 
@@ -66,114 +65,106 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         return listData == null ? 0 : listData.size();
     }
 
-    private void showLoadingView(Main_BookListAdapter_C.LoadingViewHolder holder, int position) {
+    private void showLoadingView(Main_BookListAdapter_Best.LoadingViewHolder holder, int position) {
     }
 
-    private void populateItemRows(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, int position) {
+    private void populateItemRows(Main_BookListAdapter_Best.Main_BookListViewHolder_Best holder, int position) {
         Main_BookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
-                .into(holder.Image);
+                .into((holder).Image);
+
+        holder.BestRankImage.setImageResource(listData.get(position).getBookBestRank());
 
         holder.Title.setText(listData.get(position).getTitle());
         holder.Writer.setText(listData.get(position).getWriter());
         holder.Intro.setText(listData.get(position).getIntro());
+
+        holder.BestCount.setText(listData.get(position).getBestCount());
+        holder.BestViewCount.setText(listData.get(position).getBookViewed());
+        holder.BestFav.setText(listData.get(position).getBookFavCount());
+        holder.BestRecommend.setText(listData.get(position).getBookRecommend());
         holder.BookCode.setText(listData.get(position).getBookCode());
-        holder.BookFav.setText(listData.get(position).getIsFav());
         holder.Category.setText(listData.get(position).getBookCategory());
 
         if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.NOBLESS);
-            holder.TopText.setTextColor(0xAAa5c500);
-            holder.Bar.setTextColor(0xAAa5c500);
-            holder.Category.setTextColor(0xAAa5c500);
+            holder.BookLabel.setBackgroundColor(0xAAa5c500);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.PREMIUM);
-            holder.TopText.setTextColor(0xAA4971EF);
-            holder.Bar.setTextColor(0xAA4971EF);
-            holder.Category.setTextColor(0xAA4971EF);
+            holder.BookLabel.setBackgroundColor(0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
             holder.TopText.setText(R.string.FINISH);
-            holder.TopText.setTextColor(0xAA767676);
-            holder.Bar.setTextColor(0xAA767676);
-            holder.Category.setTextColor(0xAA767676);
+            holder.BookLabel.setBackgroundColor(0xAAa5c500);
         } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_NOBLESS);
-            holder.TopText.setTextColor(0xAAF44336);
-            holder.Bar.setTextColor(0xAAF44336);
-            holder.Category.setTextColor(0xAAF44336);
+            holder.BookLabel.setBackgroundColor(0xAAF44336);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_PREMIUM);
-            holder.TopText.setTextColor(0xAA4971EF);
-            holder.Bar.setTextColor(0xAA4971EF);
-            holder.Category.setTextColor(0xAA4971EF);
+            holder.BookLabel.setBackgroundColor(0xAAF44336);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             holder.TopText.setText(R.string.ADULT_FINISH);
-            holder.TopText.setTextColor(0xAA767676);
-            holder.Bar.setTextColor(0xAA767676);
-            holder.Category.setTextColor(0xAA767676);
+            holder.BookLabel.setBackgroundColor(0xAAF44336);
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {
-            holder.Favon.setVisibility(View.VISIBLE);
-            holder.Favoff.setVisibility(View.GONE);
+            holder.FavWrap.setVisibility(View.VISIBLE);
         } else {
-            holder.Favoff.setVisibility(View.VISIBLE);
-            holder.Favon.setVisibility(View.GONE);
+            holder.FavWrap.setVisibility(View.GONE);
         }
     }
 
-    @Override
-    public void onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, View view, int position, String Value) {
-        if (listener != null) {
-            listener.onClickAdapter_C(holder, view, position, Value);
-        }
-    }
-
-    public void setOnItemClicklistener(onClickAdapterListener_C listener) {
+    public void setOnItemClicklistener(onClickAdapterListener_Best listener) {
         this.listener = listener;
     }
 
-    static public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
+    @Override
+    public void onClickAdapter_Best(Main_BookListViewHolder_Best holder, View view, int position, String Value) {
+        if (listener != null) {
+            listener.onClickAdapter_Best(holder, view, position, Value);
+        }
+    }
+
+    static class Main_BookListViewHolder_Best extends RecyclerView.ViewHolder {
 
         ImageView Image;
+        ImageView BestRankImage;
         TextView Title;
         TextView Writer;
         TextView Intro;
-        TextView TopText;
-        TextView BookCode;
-        TextView BookFav;
-        TextView Bar;
-        TextView Category;
-        ImageView Favon;
-        ImageView Favoff;
-        CardView Img_Wrap;
-        String BookTitle, Book_Code;
+        TextView BestCount;
+        TextView BestViewCount;
+        TextView BestFav;
+        TextView BestRecommend;
         String TOKEN = "";
-        LinearLayout BookContentsWrapC;
         JSONObject GETUSERINFO;
+        LinearLayout BestWrap, FavWrap, BookLabel;
+        String BookTitle, Book_Code;
+        TextView BookCode, TopText, Bar,Category;
 
-        Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
+        Main_BookListViewHolder_Best(@NonNull View itemView, final onClickAdapterListener_Best listener) {
             super(itemView);
-            Image = itemView.findViewById(R.id.Img_Book);
-            Title = itemView.findViewById(R.id.Text_Title);
-            Intro = itemView.findViewById(R.id.Text_Intro);
-            Writer = itemView.findViewById(R.id.Text_Writer);
+            BestRankImage = itemView.findViewById(R.id.BestRankImg);
+            Image = itemView.findViewById(R.id.Img_BookBest);
+            Title = itemView.findViewById(R.id.Text_Title_Best);
+            Writer = itemView.findViewById(R.id.Text_Writer_Best);
             TopText = itemView.findViewById(R.id.TopText);
-            Favon = itemView.findViewById(R.id.FavON);
-            Favoff = itemView.findViewById(R.id.FavOff);
-            Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
-            BookCode = itemView.findViewById(R.id.BookCodeText);
-            BookFav = itemView.findViewById(R.id.TextBookFav);
-            BookContentsWrapC = itemView.findViewById(R.id.BookContentsWrapC);
             Bar = itemView.findViewById(R.id.Bar);
             Category = itemView.findViewById(R.id.Category);
+            BestCount = itemView.findViewById(R.id.Text_BestCount);
+            BestViewCount = itemView.findViewById(R.id.Text_BestViewed);
+            BestFav = itemView.findViewById(R.id.Text_BestFav);
+            BestRecommend = itemView.findViewById(R.id.Text_BestRecommend);
+            BestWrap = itemView.findViewById(R.id.BestWrap);
+            FavWrap = itemView.findViewById(R.id.FavWrap);
+            Intro = itemView.findViewById(R.id.Text_Intro_Best);
+            BookCode = itemView.findViewById(R.id.BookCodeText);
+            BookLabel = itemView.findViewById(R.id.BookLabel);
+
 
             GETUSERINFO = Config.GETUSERINFO();
-
-
-            if(Config.GETUSERINFO() != null) {
+            if(Config.GETUSERINFO() != null){
                 GETUSERINFO = Config.GETUSERINFO();
                 JSONObject UserInfo;
                 try {
@@ -185,41 +176,39 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                 }
             }
 
-            BookContentsWrapC.setOnClickListener(v -> {
+            BestWrap.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (listener != null) {
-                    listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "BookDetail");
+                    listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "BookDetail");
                 }
             });
 
             if (!TOKEN.equals("")) {
-                Img_Wrap.setOnClickListener(v -> {
-                    if (Favoff.getVisibility() == View.VISIBLE) {
-                        Favoff.setVisibility(View.GONE);
-                        Favon.setVisibility(View.VISIBLE);
+                Image.setOnClickListener(v -> {
+                    if (FavWrap.getVisibility() == View.GONE) {
+                        FavWrap.setVisibility(View.VISIBLE);
                         BookTitle = Title.getText().toString();
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
+                            listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "FAV");
                         }
                     } else {
-                        Favoff.setVisibility(View.VISIBLE);
-                        Favon.setVisibility(View.GONE);
+                        FavWrap.setVisibility(View.GONE);
                         BookTitle = Title.getText().toString();
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
                                 Toast.LENGTH_SHORT).show();
                         int position = getAdapterPosition();
                         if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
+                            listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "FAV");
                         }
                     }
                 });
             } else {
-                Img_Wrap.setOnClickListener(v -> {
+                Image.setOnClickListener(v -> {
                     Toast.makeText(itemView.getContext(), "선호작을 등록하려면 로그인이 필요합니다",
                             Toast.LENGTH_SHORT).show();
                 });
@@ -236,7 +225,6 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-
     public void setItems(ArrayList<Main_BookListData> items) {
         this.listData = items;
     }
@@ -244,4 +232,5 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
     public Main_BookListData getItem(int position) {
         return listData.get(position);
     }
+
 }

@@ -238,7 +238,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
         Adapter.notifyDataSetChanged();
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
@@ -260,15 +260,11 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     }
 
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
-            Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
-        });
         RecyclerView recyclerView = root.findViewById(RecylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
         Adapter.notifyDataSetChanged();
         recyclerView.setAdapter(Adapter);
 
@@ -291,7 +287,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
         Adapter.notifyDataSetChanged();
     }
 

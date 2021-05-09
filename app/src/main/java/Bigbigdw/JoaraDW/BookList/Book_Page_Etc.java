@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
@@ -26,7 +30,7 @@ import Bigbigdw.JoaraDW.R;
 
 public class Book_Page_Etc extends AppCompatActivity {
 
-    private Main_BookListAdapter_C NewBookListAdapter;
+    private Main_BookListAdapter_C Adapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
@@ -45,12 +49,16 @@ public class Book_Page_Etc extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        JOARADW myApp = (JOARADW) this.getApplicationContext();
-
-        if(myApp.GetTokenJSON() == null){
-            TOKEN = "";
-        }else {
-            TOKEN = myApp.GetTokenJSON();
+        if(Config.GETUSERINFO() != null){
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
+            }
         }
 
         Intent PageIntent = getIntent();
@@ -72,10 +80,10 @@ public class Book_Page_Etc extends AppCompatActivity {
 
         Book_Pagination.populateData(API_URL, ETC_URL + "&page=1", queue, Wrap, items, Cover, Blank);
         initAdapter();
-        Book_Pagination.ScrollListener(API_URL, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC_URL);
+        Book_Pagination.ScrollListener(API_URL, queue, Wrap, items, Adapter, recyclerView, ETC_URL);
 
-        NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-            Main_BookListData item = NewBookListAdapter.getItem(position);
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
             if(Value.equals("FAV")){
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")){
@@ -88,11 +96,11 @@ public class Book_Page_Etc extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_C(items);
+        Adapter = new Main_BookListAdapter_C(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        NewBookListAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(NewBookListAdapter);
+        Adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(Adapter);
     }
 
     @Override

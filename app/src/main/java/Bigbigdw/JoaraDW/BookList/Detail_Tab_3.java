@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -39,10 +43,17 @@ public class Detail_Tab_3 extends Fragment {
 
         JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
         BOOKCODE = myApp.getBookCode();
-        if(myApp.GetTokenJSON() == null){
-            TOKEN = "";
-        }else {
-            TOKEN = myApp.GetTokenJSON();
+
+        if(Config.GETUSERINFO() != null){
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
+            }
         }
 
         ETC = "&recommend_type=book_code&offset=50" + "&token=" + TOKEN + "&book_code=" + BOOKCODE + "&model_type=all&chapter_cnt=1&finish=&adult=";
@@ -57,15 +68,6 @@ public class Detail_Tab_3 extends Fragment {
 
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
-
-        Adapter.setOnItemClicklistenerDetail((holder, view, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-            intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-            intent.putExtra("TOKEN",String.format("%s", TOKEN));
-            startActivity(intent);
-        });
-
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);

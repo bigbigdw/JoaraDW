@@ -31,6 +31,7 @@
     <string name="FREE">무료</string>
     <string name="USERNAME">유저이름</string>
     <string name="BookCount">화</string>
+    <string name="FAV">선호작 완료</string>
     <!-- 푸터 -->
     <string name="Footer_Section1">사업자 정보확인</string>
     <string name="Footer_Section2">이용약관</string>

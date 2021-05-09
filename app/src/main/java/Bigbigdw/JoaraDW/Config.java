@@ -1,7 +1,13 @@
 package Bigbigdw.JoaraDW;
 
+import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,9 +16,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Bigbigdw.JoaraDW.Etc.HELPER;
+
 public class Config {
 
     private static JSONObject JSONObject;
+    String LoginStatus;
+    RequestQueue queue;
 
     //유저 정보 가져오기
     public static JSONObject GETUSERINFO() {

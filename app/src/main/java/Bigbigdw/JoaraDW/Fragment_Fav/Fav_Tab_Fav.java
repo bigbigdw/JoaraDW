@@ -69,7 +69,6 @@ public class Fav_Tab_Fav extends Fragment {
             JSONObject UserInfo = jsonObject.getJSONObject("user");
             USERTOKEN = UserInfo.getString("token");
             STATUS = jsonObject.getString("status");
-            Log.d("USERINFO", "읽기 완료");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d("USERINFO", "읽기 실패");

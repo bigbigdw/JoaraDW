@@ -173,17 +173,23 @@ public class Main extends AppCompatActivity {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            Log.d("Main", response.toString());
 
             try {
                 if (response.getString("status").equals("1")) {
                     Drawer_LogOut.setVisibility(View.GONE);
                     Drawer_LogIn.setVisibility(View.VISIBLE);
-                    Log.d("Main", "로그인!");
                 } else {
                     Drawer_LogOut.setVisibility(View.VISIBLE);
                     Drawer_LogIn.setVisibility(View.GONE);
-                    Log.d("Main", "로그아웃!");
+
+                    FileWriter fw = null;
+                    try {
+                        fw = new FileWriter(getDataDir() + "/" + "userInfo.json");
+                        BufferedWriter bufwr = new BufferedWriter(fw);
+                        bufwr.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 hideItem(navigationView, response.getString("status").equals("1"));
 
@@ -270,29 +276,26 @@ public class Main extends AppCompatActivity {
         alBuilder.setMessage("로그아웃하시겠습니까?");
 
         // "예" 버튼을 누르면 실행되는 리스너
-        alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // 파일의 경로 + 파일명
-                String filePath = filename + "userInfo.json";
-                File deleteFile = new File(filePath);
-                // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-                if (deleteFile.exists()) {
-                    // 파일을 삭제합니다.
-                    deleteFile.delete();
-                    Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                    Log.d("Logout", "파일 삭제 성공");
-                    Intent intent = new Intent(getApplicationContext(), Main.class);
-                    intent.putExtra("IsFirstPage", false);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivityIfNeeded(intent, 0);
-                    finish();
-                    startActivity(getIntent());
-                } else {
-                    Log.d("Logout", "파일이 없음");
-                }
-                finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
+        alBuilder.setPositiveButton("예", (dialog, which) -> {
+            // 파일의 경로 + 파일명
+            String filePath = filename + "userInfo.json";
+            File deleteFile = new File(filePath);
+            // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+            if (deleteFile.exists()) {
+                // 파일을 삭제합니다.
+                deleteFile.delete();
+                Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                Log.d("Logout", "파일 삭제 성공");
+                Intent intent = new Intent(getApplicationContext(), Main.class);
+                intent.putExtra("IsFirstPage", false);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(intent, 0);
+                finish();
+                startActivity(getIntent());
+            } else {
+                Log.d("Logout", "파일이 없음");
             }
+            finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
         });
         // "아니오" 버튼을 누르면 실행되는 리스너
         alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {

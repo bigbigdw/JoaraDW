@@ -16,6 +16,10 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.BookList.Best_Tab_Alltime;
+import Bigbigdw.JoaraDW.BookList.Best_Tab_Monthly;
+import Bigbigdw.JoaraDW.BookList.Best_Tab_Today;
+import Bigbigdw.JoaraDW.BookList.Best_Tab_Weekly;
 import Bigbigdw.JoaraDW.Fragment_New.Fragment_New;
 import Bigbigdw.JoaraDW.R;
 

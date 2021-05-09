@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -46,11 +47,16 @@ public class New_Tab_Series extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String API = "/v1/book/list.joa";
 
-        JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
-        if (myApp.GetTokenJSON() == null) {
-            TOKEN = "";
-        } else {
-            TOKEN = myApp.GetTokenJSON();
+        if(Config.GETUSERINFO() != null){
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
+            }
         }
 
         ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
