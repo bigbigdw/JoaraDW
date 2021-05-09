@@ -162,10 +162,12 @@ public class Fav_Tab_Fav extends Fragment {
                                         String IsNobless = jo.getString("is_nobless");
                                         String Intro = jo.getString("intro");
                                         String IsFav = jo.getString("is_favorite");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"","",""));
+                                        String BookCode = jo.getString("book_code");
+                                        String BookCategory = jo.getString("category_ko_name");
+
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
-                                    Log.d("setItems", "완료!");
 
                                     Adapter.notifyDataSetChanged();
                                     isLoading[0] = false;

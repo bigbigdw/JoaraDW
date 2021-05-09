@@ -92,7 +92,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoBest.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 전체 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
@@ -101,7 +101,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoNobless.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 노블레스 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 노블레스 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=nobless&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
@@ -110,7 +110,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoPremium.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 프리미엄 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 프리미엄 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=premium&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
@@ -119,7 +119,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoFree.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 무료 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 무료 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=series&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
@@ -128,7 +128,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoNew.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 신규 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 신규 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=lately&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
@@ -137,7 +137,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoFinish.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 완결 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 완결 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN));
@@ -146,7 +146,7 @@ public class Best_Tab_Weekly extends Fragment {
 
         GotoNoblessClassic.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "전체 주간 노블레스클래식 베스트"));
+            intent.putExtra("Title", String.format("%s", "주간 노블레스클래식 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
             intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN));

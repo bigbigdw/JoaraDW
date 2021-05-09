@@ -88,7 +88,7 @@ public class Finish_Tab_Recommend extends Fragment {
 
         GoToAll.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "추천 완결작 전체 "));
+            intent.putExtra("Title", String.format("%s", "추천 순 전체 완결"));
             intent.putExtra("TYPE", String.format("%s", "FINISH"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
@@ -97,7 +97,7 @@ public class Finish_Tab_Recommend extends Fragment {
 
         GotoNobless.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "추천 노블레스 완결작"));
+            intent.putExtra("Title", String.format("%s", "추천 순 노블레스 완결"));
             intent.putExtra("TYPE", String.format("%s", "FINISH"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
@@ -106,7 +106,7 @@ public class Finish_Tab_Recommend extends Fragment {
 
         GotoPremium.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "추천 프리미엄 완결작"));
+            intent.putExtra("Title", String.format("%s", "추천 순 프리미엄 완결"));
             intent.putExtra("TYPE", String.format("%s", "FINISH"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
