@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
@@ -39,6 +40,7 @@ public class Best_Tab_Monthly extends Fragment {
     NestedScrollView ContentsLayout;
     JSONObject GETUSERINFO = null;
     String USERTOKEN = "";
+    TextView GotoBest, GotoNobless, GotoPremium, GotoFree, GotoNew, GotoFinish, GotoNoblessClassic;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +66,14 @@ public class Best_Tab_Monthly extends Fragment {
             }
         }
 
+        GotoBest = root.findViewById(R.id.GotoBest);
+        GotoNobless = root.findViewById(R.id.GotoNobless);
+        GotoPremium = root.findViewById(R.id.GotoPremium);
+        GotoFree = root.findViewById(R.id.GotoFree);
+        GotoNew = root.findViewById(R.id.GotoNew);
+        GotoFinish = root.findViewById(R.id.GotoFinish);
+        GotoNoblessClassic = root.findViewById(R.id.GotoNoblessClassic);
+
         Main_BookListAdapter_Best AllAdapter = new Main_BookListAdapter_Best(items);
         Main_BookListAdapter_Best NoblessAdapter = new Main_BookListAdapter_Best(items);
         Main_BookListAdapter_Best PremiumAdapter = new Main_BookListAdapter_Best(items);
@@ -79,6 +89,69 @@ public class Best_Tab_Monthly extends Fragment {
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=lately&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_SeriesList, SeriesAdapter, queue, R.id.Best_Tab_Series);
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_FinishList, FinishAdapter, queue, R.id.Best_Tab_Finish);
         BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
+
+        GotoBest.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoNobless.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 노블레스 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=nobless&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoPremium.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 프리미엄 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=premium&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoFree.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 무료 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=series&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoNew.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 신규 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=lately&orderby=cnt_best&offset=100&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoFinish.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 완결 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
+
+        GotoNoblessClassic.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "전체 월간 노블레스클래식 베스트"));
+            intent.putExtra("TYPE", String.format("%s", "BEST"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN));
+            startActivity(intent);
+        });
 
         return root;
     }

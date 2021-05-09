@@ -66,7 +66,7 @@ public class New_Tab_Series extends Fragment {
         Cover = root.findViewById(R.id.LoadingLayout);
         Blank = root.findViewById(R.id.BlankLayout);
 
-        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
         initAdapter();
         Book_Pagination.ScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC);
 

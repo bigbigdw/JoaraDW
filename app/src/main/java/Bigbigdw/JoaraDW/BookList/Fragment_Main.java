@@ -126,7 +126,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C(items);
         Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C(items);
         Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C(items);
-        BookList_C(root, "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
+        BookList_C(root, "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award" + ETC + "ShowType", R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
@@ -209,7 +209,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "취향 저격"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/recommend_list_api.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code="));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code=&offset=50"));
             startActivity(intent);
         });
 
@@ -217,7 +217,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "수상작"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book" + "&page=1&offset=50" + ShowType));
             startActivity(intent);
         });
 
@@ -225,7 +225,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "천만 인증"));
             intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
-            intent.putExtra("ETC_URL", String.format("&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType));
+            intent.putExtra("ETC_URL", String.format("&token=" + USERTOKEN + "&section_mode=page_read_book" + "&page=1&offset=50" + ShowType));
             startActivity(intent);
         });
 

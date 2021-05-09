@@ -72,8 +72,20 @@ public class Main_BookData {
                         BookBestRank = R.drawable.icon_best_1;
                     } else if (i == 1){
                         BookBestRank = R.drawable.icon_best_2;
-                    } else {
+                    } else if (i == 2) {
                         BookBestRank = R.drawable.icon_best_3;
+                    } else if (i == 3) {
+                        BookBestRank = R.drawable.icon_best_4;
+                    } else if (i == 4) {
+                        BookBestRank = R.drawable.icon_best_5;
+                    } else if (i == 5) {
+                        BookBestRank = R.drawable.icon_best_6;
+                    } else if (i == 6) {
+                        BookBestRank = R.drawable.icon_best_7;
+                    } else if (i == 7) {
+                        BookBestRank = R.drawable.icon_best_8;
+                    } else  {
+                        BookBestRank = R.drawable.icon_best_9;
                     }
 
                     items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank,"",BookCode,BookCategory));

@@ -26,6 +26,7 @@ import java.util.Map;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
+import Bigbigdw.JoaraDW.R;
 
 public interface Book_Pagination {
 
@@ -91,10 +92,12 @@ public interface Book_Pagination {
     }
 
 
-    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, LinearLayout Blank) {
+    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, LinearLayout Blank, String Type) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+            String BestCount = "";
+
             try {
                 JSONArray flag = response.getJSONArray("books");
                 Log.d("LENGTH", String.valueOf(flag.length()));
@@ -119,7 +122,40 @@ public interface Book_Pagination {
                     String IsFav = jo.getString("is_favorite");
                     String BookCode = jo.getString("book_code");
                     String BookCategory = jo.getString("category_ko_name");
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"1",BookCode,BookCategory));
+
+                    String BestViewed = jo.getString("cnt_page_read");
+                    String BestFav = jo.getString("cnt_favorite");
+                    String BestRecommend = jo.getString("cnt_recom");
+
+                    if(Type.equals("BEST")){
+                        BestCount = jo.getString("cnt_best");
+                    } else {
+                        BestCount = "";
+                    }
+
+                    Integer BookBestRank = 0;
+
+                    if(i == 0){
+                        BookBestRank = R.drawable.icon_best_1;
+                    } else if (i == 1){
+                        BookBestRank = R.drawable.icon_best_2;
+                    } else if (i == 2) {
+                        BookBestRank = R.drawable.icon_best_3;
+                    } else if (i == 3) {
+                        BookBestRank = R.drawable.icon_best_4;
+                    } else if (i == 4) {
+                        BookBestRank = R.drawable.icon_best_5;
+                    } else if (i == 5) {
+                        BookBestRank = R.drawable.icon_best_6;
+                    } else if (i == 6) {
+                        BookBestRank = R.drawable.icon_best_7;
+                    } else if (i == 7) {
+                        BookBestRank = R.drawable.icon_best_8;
+                    } else if  (i == 8) {
+                        BookBestRank = R.drawable.icon_best_9;
+                    } 
+
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank,"1",BookCode,BookCategory));
                     Cover.setVisibility(View.GONE);
                     Wrap.setVisibility(View.VISIBLE);
                 }

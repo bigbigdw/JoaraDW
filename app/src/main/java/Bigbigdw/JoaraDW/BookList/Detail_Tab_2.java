@@ -66,7 +66,7 @@ public class Detail_Tab_2 extends Fragment {
         Cover = root.findViewById(R.id.LoadingLayout);
         Blank = root.findViewById(R.id.BlankLayout);
 
-        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
+        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
         initAdapter();
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {

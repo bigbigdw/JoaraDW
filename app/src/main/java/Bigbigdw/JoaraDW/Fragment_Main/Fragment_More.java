@@ -114,7 +114,7 @@ public class Fragment_More extends Fragment {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "취향 저격"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/recommend_list_api.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code="));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code=&offset=50"));
             startActivity(intent);
         });
 
@@ -122,7 +122,7 @@ public class Fragment_More extends Fragment {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "추천 소설"));
             intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=20"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=50"));
             startActivity(intent);
         });
 
@@ -130,7 +130,7 @@ public class Fragment_More extends Fragment {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "수상작"));
             intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=20"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=50"));
             startActivity(intent);
         });
 
@@ -138,7 +138,7 @@ public class Fragment_More extends Fragment {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "천만 인증"));
             intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=20"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=50"));
             startActivity(intent);
         });
 
