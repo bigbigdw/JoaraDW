@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
@@ -46,6 +47,7 @@ public class Finish_Tab_Recommend extends Fragment {
     LinearLayout LoadingLayout;
     NestedScrollView ContentsLayout;
     String TOKEN = "";
+    TextView GoToAll, GotoPremium, GotoNobless;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -79,6 +81,37 @@ public class Finish_Tab_Recommend extends Fragment {
         BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
         BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
         BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
+
+        GoToAll = root.findViewById(R.id.GoToAll);
+        GotoPremium = root.findViewById(R.id.GotoPremium);
+        GotoNobless = root.findViewById(R.id.GotoNobless);
+
+        GoToAll.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "추천 완결작 전체 "));
+            intent.putExtra("TYPE", String.format("%s", "FINISH"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
+            startActivity(intent);
+        });
+
+        GotoNobless.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "추천 노블레스 완결작"));
+            intent.putExtra("TYPE", String.format("%s", "FINISH"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
+            startActivity(intent);
+        });
+
+        GotoPremium.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "추천 프리미엄 완결작"));
+            intent.putExtra("TYPE", String.format("%s", "FINISH"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
+            startActivity(intent);
+        });
 
         return root;
     }

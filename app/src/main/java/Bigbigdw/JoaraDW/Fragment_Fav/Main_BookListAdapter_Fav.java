@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -78,6 +79,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
         holder.Title.setText(listData.get(position).getTitle());
         holder.Writer.setText(listData.get(position).getWriter());
         holder.Intro.setText(listData.get(position).getIntro());
+        holder.BookCode.setText(listData.get(position).getBookCode());
 
         if (listData.get(position).getIsFav().equals("TRUE")) {
             holder.Favon.setVisibility(View.VISIBLE);
@@ -106,7 +108,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
         TextView Intro;
         ImageView Favon;
         ImageView Favoff;
-        LinearLayout Img_Wrap;
+        LinearLayout Fav_Wrap, Img_Wrap;
         String BookTitle,Book_Code;
         TextView BookCode;
 
@@ -118,10 +120,18 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
             Writer = itemView.findViewById(R.id.Text_WriterFav);
             Favon = itemView.findViewById(R.id.Icon_FavOn);
             Favoff = itemView.findViewById(R.id.Icon_FavOff);
+            Fav_Wrap = itemView.findViewById(R.id.Fav_Wrap);
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
             BookCode = itemView.findViewById(R.id.BookCodeText);
 
             Img_Wrap.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null) {
+                    listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, "BookDetail");
+                }
+            });
+
+            Fav_Wrap.setOnClickListener(v -> {
                 if (Favoff.getVisibility() == View.VISIBLE) {
                     Favoff.setVisibility(View.GONE);
                     Favon.setVisibility(View.VISIBLE);
@@ -131,7 +141,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
                             Toast.LENGTH_SHORT).show();
                     int position = getAdapterPosition();
                     if (listener != null) {
-                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, Book_Code);
+                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, "FAV");
                     }
                 } else {
                     Favoff.setVisibility(View.VISIBLE);
@@ -142,7 +152,7 @@ public class Main_BookListAdapter_Fav extends RecyclerView.Adapter<RecyclerView.
                             Toast.LENGTH_SHORT).show();
                     int position = getAdapterPosition();
                     if (listener != null) {
-                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, Book_Code);
+                        listener.onItemClick(Main_BookListAdapter_Fav.Main_BookListViewHolder_New.this, v, position, "FAV");
                     }
                 }
             });

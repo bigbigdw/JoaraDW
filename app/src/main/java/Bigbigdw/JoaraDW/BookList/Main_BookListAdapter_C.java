@@ -113,6 +113,11 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             holder.TopText.setTextColor(0xAA767676);
             holder.Bar.setTextColor(0xAA767676);
             holder.Category.setTextColor(0xAA767676);
+        } else {
+            holder.TopText.setText(R.string.FREE);
+            holder.TopText.setTextColor(0xAA000000);
+            holder.Bar.setTextColor(0xAA000000);
+            holder.Category.setTextColor(0xAA000000);
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {

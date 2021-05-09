@@ -39,7 +39,6 @@ import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
-import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -54,9 +53,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     private final Main_BookListAdapter_B PromiseAdapter = new Main_BookListAdapter_B();
     private final Main_BookListAdapter_B KidamuAdapter = new Main_BookListAdapter_B();
 
-    private final Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D();
-    private final Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D();
-    private final Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D();
     private RequestQueue queue;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
 
@@ -130,6 +126,9 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
         BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
+        Main_BookListAdapter_D NoblessTodayBestAdapter = new Main_BookListAdapter_D(items);
+        Main_BookListAdapter_D PremiumToadyBestAdapter = new Main_BookListAdapter_D(items);
+        Main_BookListAdapter_D CouponToadyBestAdapter = new Main_BookListAdapter_D(items);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
@@ -289,6 +288,14 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         LinearLayout wrap = root.findViewById(Wrap);
         Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
         Adapter.notifyDataSetChanged();
+
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+            intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+            intent.putExtra("TOKEN", String.format("%s", USERTOKEN));
+            startActivity(intent);
+        });
     }
 
     public void BookList_A_WebToon(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, RequestQueue queue, Integer Wrap) {

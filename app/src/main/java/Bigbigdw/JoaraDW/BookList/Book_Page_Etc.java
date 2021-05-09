@@ -29,7 +29,6 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Page_Etc extends AppCompatActivity {
-
     private Main_BookListAdapter_C Adapter;
     private Main_BookListAdapter_Best BestAdapter;
     private RecyclerView recyclerView;
@@ -72,7 +71,6 @@ public class Book_Page_Etc extends AppCompatActivity {
 
         if(PageIntent.getStringExtra("TYPE") != null){
             TYPE = PageIntent.getStringExtra("TYPE");
-            Log.d("TYPE", TYPE);
         } else {
             TYPE = "";
         }
@@ -87,13 +85,16 @@ public class Book_Page_Etc extends AppCompatActivity {
 
         Book_Pagination.populateData(API_URL, ETC_URL + "&page=1", queue, Wrap, items, Cover, Blank, TYPE);
         initAdapter();
-//        Book_Pagination.ScrollListener(API_URL, queue, Wrap, items, Adapter, recyclerView, ETC_URL);
+
+        if(TYPE.equals("FINISH")){
+            Book_Pagination.ScrollListener(API_URL, queue, Wrap, items, Adapter, recyclerView, ETC_URL);
+        }
 
     }
 
     private void initAdapter() {
         if (TYPE.equals("BEST")) {
-            Main_BookListAdapter_Best BestAdapter = new Main_BookListAdapter_Best(items);
+            BestAdapter = new Main_BookListAdapter_Best(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             BestAdapter.notifyDataSetChanged();
@@ -111,7 +112,7 @@ public class Book_Page_Etc extends AppCompatActivity {
                 }
             });
         } else {
-            Main_BookListAdapter_C Adapter = new Main_BookListAdapter_C(items);
+            Adapter = new Main_BookListAdapter_C(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             Adapter.notifyDataSetChanged();

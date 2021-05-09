@@ -70,12 +70,18 @@ public interface Book_Pagination {
                         String IsNobless = jo.getString("is_nobless");
                         String Intro = jo.getString("intro");
                         String IsFav = jo.getString("is_favorite");
+                        String BookCode = jo.getString("book_code");
                         String BookCategory = jo.getString("category_ko_name");
+                        String BestViewed = jo.getString("cnt_page_read");
+                        String BestFav = jo.getString("cnt_favorite");
+                        String BestRecommend = jo.getString("cnt_recom");
+
+
                         if(Type.equals("Fav")){
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, "", "",BookCategory));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", BestViewed, BestFav, BestRecommend, 0, "", BookCode,BookCategory));
                         }else {
                             String ReadHistory = jo.getString("history_sortno");
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "", "", "", 0, ReadHistory, "",BookCategory));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", BestViewed, BestFav, BestRecommend, 0, ReadHistory, BookCode,BookCategory));
                         }
 
                         Cover.setVisibility(View.GONE);
@@ -168,7 +174,7 @@ public interface Book_Pagination {
         queue.add(jsonRequest);
     }
 
-    static void ScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C NewBookListAdapter, RecyclerView recyclerView, String ETC) {
+    static void ScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C Adpater, RecyclerView recyclerView, String ETC) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -188,11 +194,11 @@ public interface Book_Pagination {
                 if (!isLoading[0]) {
                     if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
 
-                        items.add(null);
-                        NewBookListAdapter.notifyItemInserted(items.size() - 1);
-
                         String ResultURL = HELPER.API + API + HELPER.ETC + ETC + "&page=" + Page[0];
                         Log.d("ScrollListener",ResultURL);
+
+                        items.add(null);
+                        Adpater.notifyItemInserted(items.size() - 1);
 
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
@@ -200,7 +206,7 @@ public interface Book_Pagination {
                             handler.postDelayed(() -> {
                                 items.remove(items.size() - 1);
                                 int scrollPosition = items.size();
-                                NewBookListAdapter.notifyItemRemoved(scrollPosition);
+                                Adpater.notifyItemRemoved(scrollPosition);
 
                                 try {
                                     JSONArray flag = response.getJSONArray("books");
@@ -222,7 +228,7 @@ public interface Book_Pagination {
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
 
-                                    NewBookListAdapter.notifyDataSetChanged();
+                                    Adpater.notifyDataSetChanged();
                                     isLoading[0] = false;
                                 } catch (JSONException e) {
                                     e.printStackTrace();

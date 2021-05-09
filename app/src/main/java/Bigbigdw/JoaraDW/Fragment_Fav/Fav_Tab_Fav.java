@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.Fragment_Fav;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -31,24 +32,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class Fav_Tab_Fav extends Fragment {
-    private Main_BookListAdapter_Fav FavBookListAdapter;
+    private Main_BookListAdapter_Fav Adapter;
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, LoginLayout;
     String USERTOKEN = "";
     String STATUS = "";
     TextView Book_Fav_CoverText;
+    RequestQueue queue;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_fav_list_fav, container, false);
 
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(getActivity());
         recyclerView = root.findViewById(R.id.Fav_FavBookList);
         Wrap = root.findViewById(R.id.Tab_Fav);
         LoginLayout = root.findViewById(R.id.LoginLayout);
@@ -81,10 +85,19 @@ public class Fav_Tab_Fav extends Fragment {
             Book_Pagination.LoginCheck(queue, "&token=" + USERTOKEN, Book_Fav_CoverText);
             Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "Fav");
             initAdapter();
-            initScrollListener(API, queue, Wrap, items, FavBookListAdapter, recyclerView, USERTOKEN);
-            FavBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-                Main_BookListData item = FavBookListAdapter.getItem(position);
-                Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+            initScrollListener(API, queue, Wrap, items, Adapter, recyclerView, USERTOKEN);
+
+            Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+                Main_BookListData item = Adapter.getItem(position);
+                if (Value.equals("FAV")) {
+                    Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+                } else if (Value.equals("BookDetail")) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), Book_Detail.class);
+                    intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+                    Log.d("BookCode", item.getBookCode());
+                    intent.putExtra("TOKEN", String.format("%s", USERTOKEN));
+                    startActivity(intent);
+                }
             });
         }
         
@@ -92,16 +105,17 @@ public class Fav_Tab_Fav extends Fragment {
     }
 
     private void initAdapter() {
-        FavBookListAdapter = new Main_BookListAdapter_Fav(items);
+        Adapter = new Main_BookListAdapter_Fav(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(FavBookListAdapter);
+        recyclerView.setAdapter(Adapter);
+
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
+    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav Adapter, RecyclerView recyclerView, String USERTOKEN) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -122,7 +136,7 @@ public class Fav_Tab_Fav extends Fragment {
                     if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
 
                         items.add(null);
-                        FavBookListAdapter.notifyItemInserted(items.size() - 1);
+                        Adapter.notifyItemInserted(items.size() - 1);
 
                         String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page="+ Page[0] + "&query=&mem_time=0";
 
@@ -132,7 +146,7 @@ public class Fav_Tab_Fav extends Fragment {
                             handler.postDelayed(() -> {
                                 items.remove(items.size() - 1);
                                 int scrollPosition = items.size();
-                                FavBookListAdapter.notifyItemRemoved(scrollPosition);
+                                Adapter.notifyItemRemoved(scrollPosition);
 
                                 try {
                                     JSONArray flag = response.getJSONArray("books");
@@ -153,7 +167,7 @@ public class Fav_Tab_Fav extends Fragment {
                                     }
                                     Log.d("setItems", "완료!");
 
-                                    FavBookListAdapter.notifyDataSetChanged();
+                                    Adapter.notifyDataSetChanged();
                                     isLoading[0] = false;
                                 } catch (JSONException e) {
                                     e.printStackTrace();

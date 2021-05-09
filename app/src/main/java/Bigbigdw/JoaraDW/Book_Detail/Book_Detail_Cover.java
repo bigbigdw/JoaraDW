@@ -93,6 +93,7 @@ public class Book_Detail_Cover extends AppCompatActivity {
 
         Bundle arguments = new Bundle();
         arguments.putString("BookCode", BookCode);
+
         Detail_Tab_1 fragment = new Detail_Tab_1();
         fragment.setArguments(arguments);
         FragmentManager fm = getFragmentManager();
