@@ -68,7 +68,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     String STATUS = "";
     String ETC = "&page=1&offset=10";
     String ShowType = "&show_type=home";
-    TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty;
+    TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty, BookSnipe, UserPicked, BookRecommend;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
     JSONObject GETUSERINFO = null;
 
@@ -79,9 +79,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
         UserNameCategory = root.findViewById(R.id.UserNameCategory);
 
-        System.out.println(Config.GETUSERINFO());
-
-        if(Config.GETUSERINFO() != null){
+        if (Config.GETUSERINFO() != null) {
             GETUSERINFO = Config.GETUSERINFO();
             JSONObject UserInfo;
             try {
@@ -118,21 +116,19 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             BookList_A(root, "/v1/user/historybooks.joa", "&token=" + USERTOKEN + "&mem_time=0" + ETC, R.id.Main_HistoryBookList, HistoryAdapter, queue, R.id.main_booklist_history);
             BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=" + USERTOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter, queue, R.id.main_booklist_hobby);
         }
-        BookList_A(root, "/v1/home/list.joa", USERTOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
+        BookList_A(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
         BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", USERTOKEN, R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
-
-
-        Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C(items);
-
-        BookList_C(root, "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
-        BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
-        BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
         BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
         BookList_B(root, assetManager, "Main_PromisedBookList.json", R.id.Main_PromisedBookList, PromiseAdapter);
         BookList_B(root, assetManager, "Main_KidamuBookList.json", R.id.Main_KidamuBookList, KidamuAdapter);
+
+        Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C(items);
+        Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C(items);
+        BookList_C(root, "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
+        BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
+        BookList_C(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + ETC + ShowType, R.id.Main_NoblessTodayBestList, NoblessTodayBestAdapter, queue, R.id.main_nobelsstodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
@@ -205,6 +201,33 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
                     .navigate(R.id.action_Fragment_Main_to_Fragment_New, bundle);
         });
 
+        BookSnipe = root.findViewById(R.id.BookSnipe);
+        UserPicked = root.findViewById(R.id.UserPicked);
+        BookRecommend = root.findViewById(R.id.BookRecommend);
+
+        BookSnipe.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "취향 저격"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/recommend_list_api.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code="));
+            startActivity(intent);
+        });
+
+        UserPicked.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "수상작"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType));
+            startActivity(intent);
+        });
+
+        BookRecommend.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "천만 인증"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
+            intent.putExtra("ETC_URL", String.format("&token=" + USERTOKEN + "&section_mode=page_read_book" + ETC + ShowType));
+            startActivity(intent);
+        });
 
         return root;
     }

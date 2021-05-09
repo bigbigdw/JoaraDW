@@ -51,12 +51,7 @@ public class Main_BookData {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Main_BookData", "에러!");
-            }
-        });
+        }, error -> Log.d("Main_BookData", "에러!"));
         queue.add(jsonRequest);
         return items;
     }

@@ -2,6 +2,7 @@ package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +32,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Queue;
 
+import Bigbigdw.JoaraDW.BookList.Book_Page_Etc;
 import Bigbigdw.JoaraDW.BookList.Fragment_Main;
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -38,7 +46,9 @@ public class Fragment_More extends Fragment {
     private RequestQueue queue;
     LinearLayout NoticeList, EventList;
     Bundle bundle;
-    LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
+    String USERTOKEN = "";
+    JSONObject GETUSERINFO = null;
+    LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised, WrapBookSnipe, WrapRecommend, WrapAward, WrapMillion, GotoBlog, GotoFaceBook, GotoInstagram;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,10 +61,28 @@ public class Fragment_More extends Fragment {
         NoticeAdapter(root, queue, NoticeList);
         EventAdapter(root, queue, EventList);
 
+        if(Config.GETUSERINFO() != null){
+            GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                USERTOKEN = UserInfo.getString("token");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         Wrap77Fes = root.findViewById(R.id.Wrap77Fes);
         WrapKidamu = root.findViewById(R.id.WrapKidamu);
         WrapNOTY = root.findViewById(R.id.WrapNOTY);
         WrapPromised = root.findViewById(R.id.WrapPromised);
+        WrapBookSnipe = root.findViewById(R.id.WrapBookSnipe);
+        WrapRecommend = root.findViewById(R.id.WrapRecommend);
+        WrapAward = root.findViewById(R.id.WrapAward);
+        WrapMillion = root.findViewById(R.id.WrapMillion);
+        GotoBlog = root.findViewById(R.id.GotoBlog);
+        GotoFaceBook = root.findViewById(R.id.GotoFaceBook);
+        GotoInstagram = root.findViewById(R.id.GotoInstagram);
 
         bundle = new Bundle();
 
@@ -80,6 +108,53 @@ public class Fragment_More extends Fragment {
             bundle.putInt("TabNum", 4);
             NavHostFragment.findNavController(Fragment_More.this)
                     .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+        });
+
+        WrapBookSnipe.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "취향 저격"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/recommend_list_api.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code="));
+            startActivity(intent);
+        });
+
+        WrapRecommend.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "추천 소설"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=20"));
+            startActivity(intent);
+        });
+
+        WrapAward.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "수상작"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=20"));
+            startActivity(intent);
+        });
+
+        WrapMillion.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+            intent.putExtra("Title", String.format("%s", "천만 인증"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
+            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=20"));
+            startActivity(intent);
+        });
+
+        GotoBlog.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.blog.naver.com/joarablog"));
+            startActivity(intent);
+        });
+
+        GotoFaceBook.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Joara.page/"));
+            startActivity(intent);
+        });
+
+        GotoInstagram.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/joara_official/"));
+            startActivity(intent);
         });
 
         return root;

@@ -2,7 +2,10 @@ package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -26,14 +30,16 @@ public class Book_Page_Etc extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
-    String Store="";
     String TOKEN = "";
-    String ETC = "";
+    String Title, ETC_URL, API_URL;
+    TextView BookTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.booklist_etc);
+
+        BookTitle = findViewById(R.id.BookTitle);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,34 +53,32 @@ public class Book_Page_Etc extends AppCompatActivity {
             TOKEN = myApp.GetTokenJSON();
         }
 
-        ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
+        Intent PageIntent = getIntent();
+        Title = PageIntent.getStringExtra("Title");
+        BookTitle.setText(Title);
+        API_URL = PageIntent.getStringExtra("API_URL");
+        ETC_URL = PageIntent.getStringExtra("ETC_URL");
+
+        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC_URL;
+
+        Log.d("ETC", ResultURL);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String API = "/v1/book/list.joa";
 
         recyclerView = findViewById(R.id.BookDetail);
         Wrap = findViewById(R.id.TabWrap);
         Cover = findViewById(R.id.LoadingLayout);
         Blank = findViewById(R.id.BlankLayout);
 
-        Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
+        Book_Pagination.populateData(API_URL, ETC_URL + "&page=1", queue, Wrap, items, Cover, Blank);
         initAdapter();
-        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
-
-        NewBookListAdapter.setOnItemClicklistenerDetail((holder, view, position, Value) -> {
-            Main_BookListData item = NewBookListAdapter.getItem(position);
-            Intent intent = new Intent(this.getApplicationContext(), Book_Detail_Cover.class);
-            intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-            intent.putExtra("TOKEN",String.format("%s", TOKEN));
-            startActivity(intent);
-        });
-
+        Book_Pagination.ScrollListener(API_URL, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC_URL);
 
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
             if(Value.equals("FAV")){
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-            } else if (Value.equals("")){
+            } else if (Value.equals("BookDetail")){
                 Intent intent = new Intent(this.getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
                 intent.putExtra("TOKEN",String.format("%s", TOKEN));
@@ -89,5 +93,16 @@ public class Book_Page_Etc extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         NewBookListAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(NewBookListAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

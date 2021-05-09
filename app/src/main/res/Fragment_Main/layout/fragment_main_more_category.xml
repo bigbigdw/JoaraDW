@@ -146,6 +146,7 @@
             android:layout_marginBottom="28dp">
 
             <LinearLayout
+                android:id="@+id/WrapBookSnipe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -173,6 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/WrapRecommend"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -200,6 +202,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/WrapAward"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -228,6 +231,7 @@
 
 
             <LinearLayout
+                android:id="@+id/WrapMillion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -375,6 +379,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/GotoBlog"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -402,6 +407,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/GotoFaceBook"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -429,6 +435,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/GotoInstagram"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

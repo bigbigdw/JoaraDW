@@ -134,7 +134,7 @@ public interface Book_Pagination {
         queue.add(jsonRequest);
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C NewBookListAdapter, RecyclerView recyclerView, String Store) {
+    static void ScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C NewBookListAdapter, RecyclerView recyclerView, String ETC) {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -157,7 +157,8 @@ public interface Book_Pagination {
                         items.add(null);
                         NewBookListAdapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + "&store=" + Store + "&orderby=redate&offset=25&page=" + Page[0] + "&class=";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + ETC + "&page=" + Page[0];
+                        Log.d("ScrollListener",ResultURL);
 
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
@@ -186,7 +187,6 @@ public interface Book_Pagination {
                                         items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
-                                    Log.d("Book_Pagination", "완료!");
 
                                     NewBookListAdapter.notifyDataSetChanged();
                                     isLoading[0] = false;

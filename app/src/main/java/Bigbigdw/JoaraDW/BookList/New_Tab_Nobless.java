@@ -36,7 +36,7 @@ public class New_Tab_Nobless extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
-    String Store="nobless";
+    String Store = "nobless";
     String TOKEN = "";
     String ETC = "";
 
@@ -47,9 +47,9 @@ public class New_Tab_Nobless extends Fragment {
         String API = "/v1/book/list.joa";
 
         JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
-        if(myApp.GetTokenJSON() == null){
+        if (myApp.GetTokenJSON() == null) {
             TOKEN = "";
-        }else {
+        } else {
             TOKEN = myApp.GetTokenJSON();
         }
 
@@ -62,16 +62,16 @@ public class New_Tab_Nobless extends Fragment {
 
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
-        Book_Pagination.initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, Store);
+        Book_Pagination.ScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC);
 
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
-            if(Value.equals("FAV")){
+            if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-            } else if (Value.equals("BookDetail")){
+            } else if (Value.equals("BookDetail")) {
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-                intent.putExtra("TOKEN",String.format("%s", TOKEN));
+                intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN", String.format("%s", TOKEN));
                 startActivity(intent);
             }
         });
