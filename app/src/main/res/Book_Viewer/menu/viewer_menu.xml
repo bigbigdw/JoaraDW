@@ -5,13 +5,13 @@
 
     <item
         android:id="@+id/action_settingss"
-        android:icon="@drawable/toolbar_search"
+        android:icon="@drawable/toolbar_coupon"
         android:title="@string/TODO"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settingss2"
-        android:icon="@drawable/toolbar_search"
+        android:icon="@drawable/toolbar_survey"
         android:title="@string/TODO"
         app:showAsAction="ifRoom" />
 

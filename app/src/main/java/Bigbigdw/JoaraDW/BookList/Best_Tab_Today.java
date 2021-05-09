@@ -148,7 +148,7 @@ public class Best_Tab_Today extends Fragment {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
             intent.putExtra("Title", String.format("%s", "투데이 노블레스클래식 베스트"));
             intent.putExtra("TYPE", String.format("%s", "BEST"));
-            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
+            intent.putExtra("API_URL", String.format("%s", "/v1/best/book.joa"));
             intent.putExtra("ETC_URL", String.format("%s", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN));
             startActivity(intent);
         });

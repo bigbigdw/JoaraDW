@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Viewer_Bottom1">설정</string>
+    <string name="Viewer_Bottom2">추천</string>
+    <string name="Viewer_Bottom3">선호작</string>
+    <string name="Viewer_Bottom4">댓글</string>
+    <string name="Viewer_Bottom5">공유</string>
+</resources>

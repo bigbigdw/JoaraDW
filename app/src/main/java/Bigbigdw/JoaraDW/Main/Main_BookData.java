@@ -27,7 +27,6 @@ public class Main_BookData {
     public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, String Type) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 int Length;
