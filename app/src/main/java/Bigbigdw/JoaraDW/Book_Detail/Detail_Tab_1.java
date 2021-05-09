@@ -59,6 +59,7 @@ public class Detail_Tab_1 extends Fragment {
             intent.putExtra("Cid",String.format("%s", item.getCid()));
             intent.putExtra("TOKEN",String.format("%s", TOKEN));
             intent.putExtra("BOOKCODE",String.format("%s", BOOKCODE));
+            intent.putExtra("SORTNO",String.format("%s", item.getBookListNum()));
             startActivity(intent);
         });
 
@@ -71,13 +72,11 @@ public class Detail_Tab_1 extends Fragment {
                 JSONObject BOOK = response.getJSONObject("book");
                 JSONArray ChapterInfo = BOOK.getJSONArray("chapter");
                 BookListImg = BOOK.getString("book_img");
-
                 LoadingLayout.setVisibility(View.GONE);
                 TabWrap.setVisibility(View.VISIBLE);
 
                 for (int i = 0; i < ChapterInfo.length(); i++) {
                     JSONObject jo = ChapterInfo.getJSONObject(i);
-
                     String ChapterTitle = jo.getString("sub_subject");
                     String BookListRecommend = jo.getString("cnt_recom");
                     String BookCid = jo.getString("cid");

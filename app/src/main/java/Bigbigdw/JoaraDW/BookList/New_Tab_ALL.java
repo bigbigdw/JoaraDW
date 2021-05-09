@@ -70,7 +70,6 @@ public class New_Tab_ALL extends Fragment {
         initAdapter();
         Book_Pagination.ScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC);
 
-
         NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = NewBookListAdapter.getItem(position);
             if (Value.equals("FAV")) {

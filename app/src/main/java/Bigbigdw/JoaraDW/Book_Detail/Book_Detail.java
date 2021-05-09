@@ -73,19 +73,16 @@ public class Book_Detail extends AppCompatActivity {
         Intent intent = getIntent();
         BookCode = intent.getStringExtra("BookCode");
         TOKEN = intent.getStringExtra("TOKEN");
-
         BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
 
         BookAppBar = findViewById(R.id.BookAppBar);
         BookDetailOption = findViewById(R.id.BookDetailOption);
-
         BookDetailOption1 = findViewById(R.id.BookDetailOption1);
         BookDetailOption2 = findViewById(R.id.BookDetailOption2);
         BookDetailOption3 = findViewById(R.id.BookDetailOption3);
         BookDetailOption4 = findViewById(R.id.BookDetailOption4);
         BookDetailOption5 = findViewById(R.id.BookDetailOption5);
         BookDetailOption6 = findViewById(R.id.BookDetailOption6);
-
         BookTypeBody = findViewById(R.id.BookTypeBody);
         CategoryBody = findViewById(R.id.CategoryBody);
         BookTitleBody = findViewById(R.id.BookTitleBody);
@@ -117,10 +114,8 @@ public class Book_Detail extends AppCompatActivity {
             } else {
                 BookDetailOption.setVisibility(View.GONE);
                 BookDetailOption.animate().alpha(0.0f);
-
                 BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
                 BookDeatailTF = false;
-
                 BookDetailOption1.setVisibility(View.GONE);
                 BookDetailOption1.animate().alpha(1.0f);
                 BookDetailOption2.setVisibility(View.GONE);
@@ -179,7 +174,7 @@ public class Book_Detail extends AppCompatActivity {
                     BookTypeBody.setText(R.string.FREE);
                 }
 
-                BookTitle.setText(BOOK.getString("subject"));
+//              BookTitle.setText(BOOK.getString("subject"));
                 BookTitleBody.setText(BOOK.getString("subject"));
                 BookWriterBody.setText(BOOK.getString("writer_name"));
                 CategoryBody.setText(BOOK.getString("category_ko_name"));
@@ -193,7 +188,6 @@ public class Book_Detail extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.d("Book_Detail", "완료!");
         }, error -> Log.d("Book_Detail", "에러!"));
 
         queue.add(jsonRequest);
@@ -229,7 +223,6 @@ public class Book_Detail extends AppCompatActivity {
         if (BookDeatailTF.equals(false) && BookDetailOption.getVisibility() == View.VISIBLE) {
             BookDetailOption.setImageResource(R.drawable.icon_detail_fold);
             BookDeatailTF = true;
-
             BookDetailOption1.setVisibility(View.VISIBLE);
             BookDetailOption1.animate().alpha(1.0f);
             BookDetailOption2.setVisibility(View.VISIBLE);
@@ -242,10 +235,10 @@ public class Book_Detail extends AppCompatActivity {
             BookDetailOption5.animate().alpha(1.0f);
             BookDetailOption6.setVisibility(View.VISIBLE);
             BookDetailOption6.animate().alpha(1.0f);
+
         } else if (BookDeatailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
             BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
             BookDeatailTF = false;
-
             BookDetailOption1.setVisibility(View.GONE);
             BookDetailOption1.animate().alpha(1.0f);
             BookDetailOption2.setVisibility(View.GONE);

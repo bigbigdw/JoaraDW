@@ -52,14 +52,13 @@ import Bigbigdw.JoaraDW.R;
 public class Book_Viewer extends AppCompatActivity {
 
     private RequestQueue queue;
-    String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, RESULT;
+    String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, SortNO;
     TextView ViewerText;
     JSONArray Data;
     private ArrayList<Detail_BookPageData> items = new ArrayList<>();
 
     private String iv;
     private Key keySpec;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +75,17 @@ public class Book_Viewer extends AppCompatActivity {
         CID = intent.getStringExtra("Cid");
         TOKEN = intent.getStringExtra("TOKEN");
         BookCode = intent.getStringExtra("BOOKCODE");
+        SortNO = intent.getStringExtra("SORTNO");
         queue = Volley.newRequestQueue(this);
 
-        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN;
+        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
             try {
+
                 JSONObject CHAPTER = response.getJSONObject("chapter");
                 CrptedContents = CHAPTER.getString("content");
                 ViewerText.setText(CrptedContents);
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
