@@ -242,7 +242,7 @@ public class Main extends AppCompatActivity {
 //                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 //                startActivityIfNeeded(intent, 0);
                 finishAffinity();
-                startActivity(getIntent());
+                startActivity(intent);
                 System.exit(0);
             } else {
                 Log.d("Logout", "파일이 없음");
