@@ -35,7 +35,7 @@ public class Main_BookData_Webtoon {
                         String BookImg = jo.getString("webtoon_img");
                         String Title = jo.getString("webtoon_title");
 
-                        items.add(new Main_BookListData("", Title, BookImg, "", "", "", "","","","","","","",0,"","",""));
+                        items.add(new Main_BookListData("", Title, BookImg, "", "", "","","","","","","",0,"","",""));
                     }
 
                     Wrap.setVisibility(View.VISIBLE);

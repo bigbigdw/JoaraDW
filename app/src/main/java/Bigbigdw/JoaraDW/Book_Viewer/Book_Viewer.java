@@ -79,6 +79,7 @@ public class Book_Viewer extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
+        Log.d("Book_Viewer", API_URL);
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
             try {
@@ -97,7 +98,7 @@ public class Book_Viewer extends AppCompatActivity {
         final JsonObjectRequest CryptKey = new JsonObjectRequest(Request.Method.GET, CryptKey_URL, null, response -> {
             try {
                 Data = response.getJSONArray("data");
-                Log.d("DATA", Data.toString());
+                Log.d("Book_Viewer", Data.toString());
                 Data.getString(1);
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -57,6 +58,7 @@ import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
+import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 
@@ -64,13 +66,11 @@ import Bigbigdw.JoaraDW.R;
 public class Main extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
     private Popup Popup;
-    String USERTOKEN = "";
-    String STATUS = "";
-    LinearLayout Drawer_LogOut;
-    LinearLayout Drawer_LogIn;
+    boolean IsFirstPage = true;
+    String USERTOKEN = "", STATUS = "";
+    LinearLayout Drawer_LogOut, Drawer_LogIn;
     RequestQueue queue;
     TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon, UserName;
-    boolean IsFirstPage = true;
     JSONObject GETUSERINFO;
 
     @Override
@@ -168,12 +168,11 @@ public class Main extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
-
     void LoginCheck(RequestQueue queue, String USERTOKEN, LinearLayout Drawer_LogIn, LinearLayout Drawer_LogOut, NavigationView navigationView) {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
+        JOARADW myApp = (JOARADW) getApplicationContext();
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-
             try {
                 if (response.getString("status").equals("1")) {
                     Drawer_LogOut.setVisibility(View.GONE);
@@ -181,15 +180,7 @@ public class Main extends AppCompatActivity {
                 } else {
                     Drawer_LogOut.setVisibility(View.VISIBLE);
                     Drawer_LogIn.setVisibility(View.GONE);
-
-                    FileWriter fw = null;
-                    try {
-                        fw = new FileWriter(getDataDir() + "/" + "userInfo.json");
-                        BufferedWriter bufwr = new BufferedWriter(fw);
-                        bufwr.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Config.DeleteJSON();
                 }
                 hideItem(navigationView, response.getString("status").equals("1"));
 
@@ -201,20 +192,12 @@ public class Main extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        Toast.makeText(getApplicationContext(), "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
-//        finish();
-//    }
-
     public static void setCheckable(BottomNavigationView navView, boolean checkable) {
         final Menu menu = navView.getMenu();
         for (int i = 0; i < menu.size(); i++) {
             menu.getItem(i).setCheckable(checkable);
         }
     }
-
-    //추가된 소스, ToolBar에 menu.xml을 인플레이트함
 
     public boolean onCreateOptionsMenu(Menu menu) {
         //return super.onCreateOptionsMenu(menu);
@@ -223,16 +206,8 @@ public class Main extends AppCompatActivity {
         return true;
     }
 
-    //추가된 소스, ToolBar에 추가된 항목의 select 이벤트를 처리하는 함수
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
-//        if (item.getItemId() == R.id.action_settings) {
-//            Toast.makeText(getApplicationContext(), "환경설정 버튼 클릭됨", Toast.LENGTH_LONG).show();
-//            return true;
-//        } else {
-//            Toast.makeText(getApplicationContext(), "나머지 버튼 클릭됨", Toast.LENGTH_LONG).show();
-//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -271,41 +246,31 @@ public class Main extends AppCompatActivity {
 
     void DeleteSignedInfo(String filename) {
 
-        // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
         alBuilder.setMessage("로그아웃하시겠습니까?");
 
-        // "예" 버튼을 누르면 실행되는 리스너
         alBuilder.setPositiveButton("예", (dialog, which) -> {
-            // 파일의 경로 + 파일명
             String filePath = filename + "userInfo.json";
             File deleteFile = new File(filePath);
-            // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
             if (deleteFile.exists()) {
-                // 파일을 삭제합니다.
                 deleteFile.delete();
                 Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                Log.d("Logout", "파일 삭제 성공");
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 intent.putExtra("IsFirstPage", false);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(intent, 0);
-                finish();
-                startActivity(getIntent());
+                finishAffinity();
+                startActivity(intent);
+                System.exit(0);
             } else {
                 Log.d("Logout", "파일이 없음");
             }
-            finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
+            finish();
         });
-        // "아니오" 버튼을 누르면 실행되는 리스너
-        alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return; // 아무런 작업도 하지 않고 돌아간다
-            }
+        alBuilder.setNegativeButton("아니오", (dialog, which) -> {
+            return;
         });
-//        alBuilder.setTitle("로그아웃");
-        alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
+        alBuilder.show();
 
     }
 
@@ -324,11 +289,8 @@ public class Main extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> {
 
-            }
         });
         queue.add(jsonRequest);
     }

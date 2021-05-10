@@ -78,10 +78,10 @@ public interface Book_Pagination {
 
 
                         if(Type.equals("Fav")){
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", BestViewed, BestFav, BestRecommend, 0, "", BookCode,BookCategory));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,  BestViewed, BestFav, BestRecommend, 0, "", BookCode,BookCategory));
                         }else {
                             String ReadHistory = jo.getString("history_sortno");
-                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", BestViewed, BestFav, BestRecommend, 0, ReadHistory, BookCode,BookCategory));
+                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,  BestViewed, BestFav, BestRecommend, 0, ReadHistory, BookCode,BookCategory));
                         }
 
                         Cover.setVisibility(View.GONE);
@@ -102,7 +102,6 @@ public interface Book_Pagination {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            String BestCount = "";
 
             try {
                 JSONArray flag = response.getJSONArray("books");
@@ -133,12 +132,6 @@ public interface Book_Pagination {
                     String BestFav = jo.getString("cnt_favorite");
                     String BestRecommend = jo.getString("cnt_recom");
 
-                    if(Type.equals("BEST")){
-                        BestCount = jo.getString("cnt_best");
-                    } else {
-                        BestCount = "";
-                    }
-
                     Integer BookBestRank = 0;
 
                     if(i == 0){
@@ -161,7 +154,7 @@ public interface Book_Pagination {
                         BookBestRank = R.drawable.icon_best_9;
                     } 
 
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank,"1",BookCode,BookCategory));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestViewed,BestFav,BestRecommend,BookBestRank,"1",BookCode,BookCategory));
                     Cover.setVisibility(View.GONE);
                     Wrap.setVisibility(View.VISIBLE);
                 }
@@ -224,7 +217,7 @@ public interface Book_Pagination {
                                         String IsFav = jo.getString("is_favorite");
                                         String BookCode = jo.getString("book_code");
                                         String BookCategory = jo.getString("category_ko_name");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode,BookCategory));
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
 

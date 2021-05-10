@@ -177,6 +177,14 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/Text_Writer_Best"
                 android:layout_width="wrap_content"
@@ -188,32 +196,6 @@
                 android:text="@string/Common_BookWriter"
                 android:textColor="#000000"
                 android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
-                android:text="@string/Main_Best_BestCount"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/Text_BestCount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/noto_sans_bold"
-                android:text="@string/Main_Best_Num"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                android:textStyle="bold" />
 
         </LinearLayout>
 

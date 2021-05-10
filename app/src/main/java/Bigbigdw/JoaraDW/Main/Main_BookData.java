@@ -26,11 +26,9 @@ public class Main_BookData {
 
     public ArrayList<Main_BookListData> getData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, String Type) {
         String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 int Length;
-                String BestCount = "";
 
                 JSONArray flag = response.getJSONArray("books");
 
@@ -59,12 +57,6 @@ public class Main_BookData {
                     String BestFav = jo.getString("cnt_favorite");
                     String BestRecommend = jo.getString("cnt_recom");
 
-                    if(Type.equals("BEST")){
-                        BestCount = jo.getString("cnt_best");
-                    } else {
-                        BestCount = "";
-                    }
-
                     Integer BookBestRank = 0;
 
                     if(i == 0){
@@ -87,12 +79,13 @@ public class Main_BookData {
                         BookBestRank = R.drawable.icon_best_9;
                     }
 
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestCount,BestViewed,BestFav,BestRecommend,BookBestRank,"",BookCode,BookCategory));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestViewed,BestFav,BestRecommend,BookBestRank,"",BookCode,BookCategory));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                Wrap.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override

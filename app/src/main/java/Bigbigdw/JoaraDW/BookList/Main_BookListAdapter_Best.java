@@ -81,7 +81,6 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         holder.Writer.setText(listData.get(position).getWriter());
         holder.Intro.setText(listData.get(position).getIntro());
 
-        holder.BestCount.setText(listData.get(position).getBestCount());
         holder.BestViewCount.setText(listData.get(position).getBookViewed());
         holder.BestFav.setText(listData.get(position).getBookFavCount());
         holder.BestRecommend.setText(listData.get(position).getBookRecommend());
@@ -133,7 +132,6 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         TextView Title;
         TextView Writer;
         TextView Intro;
-        TextView BestCount;
         TextView BestViewCount;
         TextView BestFav;
         TextView BestRecommend;
@@ -152,7 +150,6 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
             TopText = itemView.findViewById(R.id.TopText);
             Bar = itemView.findViewById(R.id.Bar);
             Category = itemView.findViewById(R.id.Category);
-            BestCount = itemView.findViewById(R.id.Text_BestCount);
             BestViewCount = itemView.findViewById(R.id.Text_BestViewed);
             BestFav = itemView.findViewById(R.id.Text_BestFav);
             BestRecommend = itemView.findViewById(R.id.Text_BestRecommend);

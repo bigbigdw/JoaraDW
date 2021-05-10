@@ -25,7 +25,6 @@ import Bigbigdw.JoaraDW.R;
 
 public class Splash extends Activity {
     RequestQueue queue;
-    JSONObject GETUSERINFO;
     String TOKEN = "";
 
     @Override
@@ -35,39 +34,18 @@ public class Splash extends Activity {
 
         queue = Volley.newRequestQueue(this);
 
-        if(Config.GETUSERINFO() != null){
-            GETUSERINFO = Config.GETUSERINFO();
-            JSONObject UserInfo;
-            try {
-                UserInfo = GETUSERINFO.getJSONObject("user");
-                TOKEN = UserInfo.getString("token");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                TOKEN = "";
-            }
-        }
-
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + "&token=" + TOKEN;
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
             try {
                 if (!response.getString("status").equals("1")) {
-                    FileWriter fw = null;
-                    try {
-                        fw = new FileWriter(getDataDir() + "/" + "userInfo.json");
-                        BufferedWriter bufwr = new BufferedWriter(fw);
-                        bufwr.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Config.DeleteJSON();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.d("Main", "에러!"));
-
+        }, error -> Log.d("Splash", "에러!"));
         queue.add(jsonRequest);
-
         startLoading();
     }
 
@@ -75,6 +53,5 @@ public class Splash extends Activity {
         Handler handler = new Handler();
         handler.postDelayed(this::finish, 2000);
     }
-
 
 }

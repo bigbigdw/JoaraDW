@@ -361,7 +361,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("onDestroyView", "파괴!");
         MainBanner.removeAllViews();
         MainBannerURLs = new ArrayList<>();
     }

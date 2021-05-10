@@ -10,7 +10,6 @@ public class Main_BookListData {
     String IsNobless;
     String Intro;
     String IsFav;
-    String BestCount;
     String BookViewed;
     String BookFavCount;
     String BookRecommend;
@@ -19,7 +18,7 @@ public class Main_BookListData {
     String BookCategory;
     int BookBestRank;
 
-    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BestCount, String BookViewed, String BookFavCount, String BookRecommend, int BookBestRank, String ReadCount, String BookCode, String BookCategory) {
+    public Main_BookListData(String Writer, String Title, String BookImg, String IsAdult, String IsFinish, String IsPremium, String IsNobless, String Intro, String IsFav, String BookViewed, String BookFavCount, String BookRecommend, int BookBestRank, String ReadCount, String BookCode, String BookCategory) {
         this.Writer = Writer;
         this.Title = Title;
         this.BookImg = BookImg;
@@ -33,7 +32,6 @@ public class Main_BookListData {
         this.IsNobless = IsNobless;
         this.Intro = Intro;
         this.IsFav = IsFav;
-        this.BestCount = BestCount;
         this.BookViewed = BookViewed;
         this.BookFavCount = BookFavCount;
         this.BookRecommend = BookRecommend;
@@ -81,10 +79,6 @@ public class Main_BookListData {
 
     public String getIsFav() {
         return IsFav;
-    }
-
-    public String getBestCount() {
-        return BestCount;
     }
 
     public String getBookViewed() {

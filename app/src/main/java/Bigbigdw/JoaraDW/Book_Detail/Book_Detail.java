@@ -235,7 +235,6 @@ public class Book_Detail extends AppCompatActivity {
             BookDetailOption5.animate().alpha(1.0f);
             BookDetailOption6.setVisibility(View.VISIBLE);
             BookDetailOption6.animate().alpha(1.0f);
-
         } else if (BookDeatailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
             BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
             BookDeatailTF = false;

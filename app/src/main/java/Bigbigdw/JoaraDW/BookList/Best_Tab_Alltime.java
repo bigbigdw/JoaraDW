@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
+import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -82,13 +83,13 @@ public class Best_Tab_Alltime extends Fragment {
         Main_BookListAdapter_Best FinishAdapter = new Main_BookListAdapter_Best(items);
         Main_BookListAdapter_Best NoblessClassicAdapter = new Main_BookListAdapter_Best(items);
 
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_AllList, AllAdapter, queue, R.id.Best_Tab_All);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_NoblessList, NoblessAdapter, queue, R.id.Best_Tab_Nobless);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=premium&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_PremiumList, PremiumAdapter, queue, R.id.Best_Tab_Premium);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=series&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_FreeList, FreeAdapter, queue, R.id.Best_Tab_Free);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=lately&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_SeriesList, SeriesAdapter, queue, R.id.Best_Tab_Series);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_FinishList, FinishAdapter, queue, R.id.Best_Tab_Finish);
-        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=25&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
+        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_AllList, AllAdapter, queue, R.id.Best_Tab_All);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_NoblessList, NoblessAdapter, queue, R.id.Best_Tab_Nobless);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=premium&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_PremiumList, PremiumAdapter, queue, R.id.Best_Tab_Premium);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=series&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_FreeList, FreeAdapter, queue, R.id.Best_Tab_Free);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=lately&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_SeriesList, SeriesAdapter, queue, R.id.Best_Tab_Series);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=finish&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_FinishList, FinishAdapter, queue, R.id.Best_Tab_Finish);
+//        BookBest(root, "/v1/best/book.joa", "&best=" + BestType + "&store=nobless_classic&orderby=cnt_best&offset=20&page=1" + "&token=" + USERTOKEN, R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
 
         GotoBest.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
@@ -162,8 +163,11 @@ public class Best_Tab_Alltime extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap, "BEST"));
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap, "BEST_REALTIME"));
         Adapter.notifyDataSetChanged();
+
+        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
+        Log.d("ResultURL", ResultURL);
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);

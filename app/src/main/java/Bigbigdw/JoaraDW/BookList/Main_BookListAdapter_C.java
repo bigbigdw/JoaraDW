@@ -1,5 +1,6 @@
 package Bigbigdw.JoaraDW.BookList;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,17 +143,8 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
 
     static public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
 
-        ImageView Image;
-        TextView Title;
-        TextView Writer;
-        TextView Intro;
-        TextView TopText;
-        TextView BookCode;
-        TextView BookFav;
-        TextView Bar;
-        TextView Category;
-        ImageView Favon;
-        ImageView Favoff;
+        ImageView Image, Favon, Favoff;
+        TextView Title, Writer, Intro, TopText, BookCode, BookFav, Bar, Category;
         CardView Img_Wrap;
         String BookTitle, Book_Code;
         String TOKEN = "";

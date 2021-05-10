@@ -165,7 +165,7 @@ public class Fav_Tab_Fav extends Fragment {
                                         String BookCode = jo.getString("book_code");
                                         String BookCategory = jo.getString("category_ko_name");
 
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","","",0,"",BookCode,BookCategory));
+                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
 
