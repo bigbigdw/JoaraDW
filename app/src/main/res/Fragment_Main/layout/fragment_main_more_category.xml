@@ -3,11 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="40dp"
-    android:onClick="GotoKidamu">
+    android:layout_marginBottom="40dp">
 
     <TableLayout
-        android:id="@+id/FillingItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
@@ -27,7 +25,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:onClick="GotoFes77"
                 android:orientation="vertical">
 
                 <ImageView
@@ -84,7 +81,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:onClick="GotoNOTY"
                 android:orientation="vertical">
 
                 <ImageView
@@ -111,10 +107,8 @@
                 android:id="@+id/WrapPromised"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:layout_weight="1"
                 android:gravity="center"
-                android:onClick="GotoPromised"
                 android:orientation="vertical">
 
                 <ImageView
