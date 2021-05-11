@@ -105,7 +105,6 @@ public interface Book_Pagination {
 
             try {
                 JSONArray flag = response.getJSONArray("books");
-                Log.d("LENGTH", String.valueOf(flag.length()));
 
                 if(flag.length() == 0){
                     Blank.setVisibility(View.VISIBLE);

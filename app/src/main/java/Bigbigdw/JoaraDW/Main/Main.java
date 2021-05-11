@@ -132,8 +132,6 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/api/info/index.joa" + HELPER.ETC + "&category=22%2C2&menu_ver=43", null, response -> {
             try {
                 JSONArray BannerArray = response.getJSONArray("banner");
@@ -152,7 +150,6 @@ public class Main extends AppCompatActivity {
 
     void LoginCheck(RequestQueue queue, String USERTOKEN, LinearLayout Drawer_LogIn, LinearLayout Drawer_LogOut, NavigationView navigationView) {
         String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
-        JOARADW myApp = (JOARADW) getApplicationContext();
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
@@ -238,9 +235,6 @@ public class Main extends AppCompatActivity {
                 deleteFile.delete();
                 Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Main.class);
-//                intent.putExtra("IsFirstPage", false);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//                startActivityIfNeeded(intent, 0);
                 finishAffinity();
                 startActivity(intent);
                 System.exit(0);

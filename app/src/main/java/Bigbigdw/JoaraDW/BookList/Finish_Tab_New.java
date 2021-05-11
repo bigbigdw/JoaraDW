@@ -78,9 +78,9 @@ public class Finish_Tab_New extends Fragment {
         NoblessAdapter = new Main_BookListAdapter_C(items);
         PremiumAdapter = new Main_BookListAdapter_C(items);
 
-        BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
-        BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
-        BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, NewAdapter, queue, R.id.Finish_Tab_New);
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, NoblessAdapter, queue, R.id.Finish_Tab_Nobless);
+        BookFinish(root, "/v1/book/list.joa", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, PremiumAdapter, queue, R.id.Finish_Tab_Premium);
 
         GoToAll = root.findViewById(R.id.GoToAll);
         GotoPremium = root.findViewById(R.id.GotoPremium);

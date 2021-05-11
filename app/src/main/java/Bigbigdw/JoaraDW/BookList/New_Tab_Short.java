@@ -61,8 +61,8 @@ public class New_Tab_Short extends Fragment {
 
         ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=short";
 
-        recyclerView = root.findViewById(R.id.TabWrap);
         Wrap = root.findViewById(R.id.TabWrap);
+        recyclerView = root.findViewById(R.id.Main_NewBookList);
         Cover = root.findViewById(R.id.LoadingLayout);
         Blank = root.findViewById(R.id.BlankLayout);
 
