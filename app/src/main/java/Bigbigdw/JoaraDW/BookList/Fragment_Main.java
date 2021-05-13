@@ -58,9 +58,12 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     CarouselView MainBanner;
     List<String> MainBannerURLs = new ArrayList<>();
-    List<String> MainBannerMidURLs = new ArrayList<>();
     CarouselView MainBannerMid;
-    String TOKEN = "", STATUS = "", ETC = "&page=1&offset=10", ShowType = "&show_type=home";
+    List<String> MainBannerMidURLs = new ArrayList<>();
+    String TOKEN = "&token=";
+    String STATUS = "";
+    String ETC = "&page=1&offset=10";
+    String ShowType = "&show_type=home";
     TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty, BookSnipe, UserPicked, BookRecommend;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
     JSONObject GETUSERINFO = null;
@@ -140,27 +143,17 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         bundle = new Bundle();
 
         Wrap77Fes.setOnClickListener(v -> GotoMore(1, R.id.action_Fragment_Main_to_Fragment_New));
-
         WrapKidamu.setOnClickListener(v -> GotoMore(2, R.id.action_Fragment_Main_to_Fragment_New));
-
         WrapNOTY.setOnClickListener(v -> GotoMore(3, R.id.action_Fragment_Main_to_Fragment_New));
-
         WrapPromised.setOnClickListener(v -> GotoMore(4, R.id.action_Fragment_Main_to_Fragment_New));
-
         GoToHistory.setOnClickListener(v -> GotoMore(1, R.id.action_Fragment_Main_to_Fragment_Fav));
-
         GoToFes.setOnClickListener(v -> GotoMore(1, R.id.action_Fragment_Main_to_Fragment_New));
-
         GoToPromised.setOnClickListener(v -> GotoMore(4, R.id.action_Fragment_Main_to_Fragment_New));
-
         GoToKidamu.setOnClickListener(v -> GotoMore(2, R.id.action_Fragment_Main_to_Fragment_New));
-
         GoToNoty.setOnClickListener(v -> GotoMore(3, R.id.action_Fragment_Main_to_Fragment_New));
 
         BookSnipe.setOnClickListener(v -> GotoActivity("취향 저격", "/v1/book/recommend_list_api.joa", "&token=" + TOKEN + "&book_code=&offset=50"));
-
         UserPicked.setOnClickListener(v -> GotoActivity("수상작", "/v1/book/list.joa", "&token=" + TOKEN + "&section_mode=page_read_book" + "&page=1&offset=50" + ShowType));
-
         BookRecommend.setOnClickListener(v -> GotoActivity("천만 인증", "/v1/home/list.joa", "&token=" + TOKEN + "&section_mode=page_read_book" + "&page=1&offset=50" + ShowType));
 
         return root;
@@ -176,7 +169,13 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     }
 
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
-        BookList.BookList_C(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
+        RecyclerView recyclerView = root.findViewById(RecylerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        LinearLayout wrap = root.findViewById(Wrap);
+        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
+        Adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(Adapter);
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
