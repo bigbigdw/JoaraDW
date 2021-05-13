@@ -1,5 +1,7 @@
 package Bigbigdw.JoaraDW.BookList;
 
+import android.view.View;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,7 +19,7 @@ import Bigbigdw.JoaraDW.Etc.HELPER;
 
 interface Main_BannerAPI {
 
-    static void SetBanner(CarouselView MainBanner, List<String> MainBannerURLs, RequestQueue queue, String USERTOKEN, String ETC) {
+    static void SetBanner(CarouselView Banner, List<String> BannerURLs, RequestQueue queue, String USERTOKEN, String ETC) {
         String ResultURL = HELPER.API + "/v1/banner/home_banner.joa" + HELPER.ETC + USERTOKEN + ETC;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
@@ -26,19 +28,18 @@ interface Main_BannerAPI {
                 for (int i = 0; i < BannerArray.length(); i++) {
                     JSONObject jo = BannerArray.getJSONObject(i);
                     String imgfile = jo.getString("imgfile");
-                    String[] BannerUrl = new String[MainBannerURLs.size()];
-                    MainBannerURLs.toArray(BannerUrl);
-                    MainBannerURLs.add(imgfile);
+                    String[] BannerUrl = new String[BannerURLs.size()];
+                    BannerURLs.toArray(BannerUrl);
+                    BannerURLs.add(imgfile);
                 }
-                MainBanner.setPageCount(MainBannerURLs.size());
+                Banner.setPageCount(BannerURLs.size());
+                Banner.setSlideInterval(4000);
+                Banner.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> {
 
-            }
         });
         queue.add(jsonRequest);
     }

@@ -17,3 +17,7 @@ interface onClickAdapterListener_D {
 interface onClickAdapterListener_Best {
     void onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best holder, View view, int position, String Value);
 }
+
+//interface onClickAdapterListener_ALL {
+//    void onClickAdapter(Main_BookListAdapter.Main_BookListViewHolder holder, View view, int position, String Value);
+//}

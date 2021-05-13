@@ -44,8 +44,6 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
         ((Main_BookListViewHolder_A) holder).Title.setText(listData.get(position).getTitle());
         ((Main_BookListViewHolder_A) holder).Writer.setText(listData.get(position).getWriter());
 
-
-
         if(listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")){
             ((Main_BookListViewHolder_A) holder).UnderCover.setVisibility(View.VISIBLE);
             ((Main_BookListViewHolder_A) holder).UnderCoverText.setText(R.string.NOBLESS);
@@ -124,7 +122,7 @@ public class Main_BookListAdapter_A extends RecyclerView.Adapter<RecyclerView.Vi
             Img_Wrap.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (listener != null) {
-                    listener.onClickAdapter_A(Main_BookListAdapter_A.Main_BookListViewHolder_A.this, v, position, Book_Code);
+                    listener.onClickAdapter_A(Main_BookListAdapter_A.Main_BookListViewHolder_A.this, v, position, "BookDetail");
                 }
             });
 

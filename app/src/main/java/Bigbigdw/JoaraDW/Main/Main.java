@@ -118,7 +118,6 @@ public class Main extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, AppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
 
@@ -142,9 +141,7 @@ public class Main extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> {
-            Popup.hide();
-        });
+        }, error -> Popup.hide());
         queue.add(jsonRequest);
     }
 
@@ -179,7 +176,6 @@ public class Main extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
         return true;
@@ -224,34 +220,24 @@ public class Main extends AppCompatActivity {
     }
 
     void DeleteSignedInfo(String filename) {
-
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
         alBuilder.setMessage("로그아웃하시겠습니까?");
-
         alBuilder.setPositiveButton("예", (dialog, which) -> {
-            String filePath = filename + "userInfo.json";
-            File deleteFile = new File(filePath);
-            if (deleteFile.exists()) {
-                deleteFile.delete();
-                Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Main.class);
-                finishAffinity();
-                startActivity(intent);
-                System.exit(0);
-            } else {
-                Log.d("Logout", "파일이 없음");
-            }
+            Config.DeleteJSON();
+            Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), Main.class);
+            finishAffinity();
+            startActivity(intent);
+            System.exit(0);
             finish();
         });
         alBuilder.setNegativeButton("아니오", (dialog, which) -> {
-            return;
         });
         alBuilder.show();
 
     }
 
     public void onClickLogout(View v) {
-
         String LogoutURL = "/v1/user/deauth.joa";
         String filename = getDataDir() + "/";
 
