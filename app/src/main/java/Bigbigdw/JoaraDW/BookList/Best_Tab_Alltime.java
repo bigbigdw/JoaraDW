@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +26,7 @@ import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
-import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;

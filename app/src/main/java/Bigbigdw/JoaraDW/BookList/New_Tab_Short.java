@@ -2,7 +2,6 @@ package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +18,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.JOARADW;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 

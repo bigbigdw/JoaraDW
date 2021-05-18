@@ -40,7 +40,7 @@ import java.util.List;
 import Bigbigdw.JoaraDW.BookList.Detail_Tab_2;
 import Bigbigdw.JoaraDW.BookList.Detail_Tab_3;
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.R;
 

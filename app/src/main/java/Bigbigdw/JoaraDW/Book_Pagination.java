@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.Fragment_New;
+package Bigbigdw.JoaraDW;
 
 import android.os.Handler;
 import android.util.Log;

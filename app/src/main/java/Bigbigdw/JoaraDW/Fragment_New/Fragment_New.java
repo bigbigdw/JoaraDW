@@ -26,15 +26,13 @@ import Bigbigdw.JoaraDW.R;
 
 public class Fragment_New extends Fragment {
 
-    private TabLayout Fragment_NewTab;
-    private ViewPager viewPager;
     int TabNum = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new, container, false);
 
         Bundle bundle = this.getArguments();
-        viewPager = root.findViewById(R.id.view_pager);
+        ViewPager viewPager = root.findViewById(R.id.view_pager);
         setupViewPager(viewPager);
 
         if (bundle != null) {
@@ -42,8 +40,8 @@ public class Fragment_New extends Fragment {
             viewPager.setCurrentItem(TabNum);
         }
 
-        Fragment_NewTab = root.findViewById(R.id.Fragment_NewTab);
-        Fragment_NewTab.setupWithViewPager(viewPager);
+        TabLayout fragment_NewTab = root.findViewById(R.id.Fragment_NewTab);
+        fragment_NewTab.setupWithViewPager(viewPager);
 
 
         return root;

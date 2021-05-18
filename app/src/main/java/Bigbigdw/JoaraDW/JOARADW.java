@@ -1,14 +1,12 @@
 package Bigbigdw.JoaraDW;
 
 import android.app.Application;
-import android.util.Log;
+import android.content.Intent;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.android.volley.RequestQueue;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
 public class JOARADW extends Application {
 
@@ -51,5 +49,4 @@ public class JOARADW extends Application {
     public String getAPI_URL() {
         return API_URL;
     }
-
 }

@@ -3,7 +3,6 @@ package Bigbigdw.JoaraDW.BookList;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -34,10 +31,7 @@ import java.util.List;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
-import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
-import Bigbigdw.JoaraDW.Main.Main_BookData;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
@@ -57,13 +51,10 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     private ArrayList<Main_BookListData> items = new ArrayList<>();
 
     CarouselView MainBanner;
-    List<String> MainBannerURLs = new ArrayList<>();
     CarouselView MainBannerMid;
+    List<String> MainBannerURLs = new ArrayList<>();
     List<String> MainBannerMidURLs = new ArrayList<>();
-    String TOKEN = "&token=";
-    String STATUS = "";
-    String ETC = "&page=1&offset=10";
-    String ShowType = "&show_type=home";
+    String TOKEN = "", STATUS = "", ETC = "&page=1&offset=10", ShowType = "&show_type=home";
     TextView UserNameCategory, GoToHistory, GoToFes, GoToPromised, GoToKidamu, GoToNoty, BookSnipe, UserPicked, BookRecommend;
     LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised;
     JSONObject GETUSERINFO = null;
@@ -90,6 +81,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         GoToKidamu = root.findViewById(R.id.GoToKidamu);
         GoToNoty = root.findViewById(R.id.GoToNoty);
 
+
         if (Config.GETUSERINFO() != null) {
             GETUSERINFO = Config.GETUSERINFO();
             JSONObject UserInfo;
@@ -104,7 +96,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
             }
         }
 
-
         AssetManager assetManager = getActivity().getAssets();
         queue = Volley.newRequestQueue(getActivity());
 
@@ -113,12 +104,11 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         MainBanner.setImageListener(imageListener);
         MainBannerMid.setImageListener(imageListenerMid);
 
-
         if (STATUS.equals("1")) {
-            BookList_A(root, "/v1/user/historybooks.joa", "&token=" + TOKEN + "&mem_time=0" + ETC, R.id.Main_HistoryBookList, HistoryAdapter,  R.id.main_booklist_history);
-            BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=" + TOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter,  R.id.main_booklist_hobby);
+            BookList_A(root, "/v1/user/historybooks.joa", "&token=" + TOKEN + "&mem_time=0" + ETC, R.id.Main_HistoryBookList, HistoryAdapter, R.id.main_booklist_history);
+            BookList_A(root, "/v1/book/recommend_list_api.joa", "&token=" + TOKEN + "&book_code=", R.id.Main_HobbyBookList, HobbyAdapter, R.id.main_booklist_hobby);
         }
-        BookList.BookList_A(root, "/v1/home/list.joa", "&token=" + TOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, queue, R.id.main_booklist_mdnovel);
+        BookList_A(root, "/v1/home/list.joa", "&token=" + TOKEN + "&page=1&section_mode=recommend_book" + ETC, R.id.Main_MDNovelList, MDNovelAdapter, R.id.main_booklist_mdnovel);
         BookList.BookList_A_WebToon(root, "/v1/home/webtoon_list.joa", TOKEN, R.id.Main_MDWebtoonList, MDWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
 
         BookList.BookList_B(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, FestivalAdapter);
@@ -128,7 +118,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         Main_BookListAdapter_C UserPickedAdapter = new Main_BookListAdapter_C(items);
         Main_BookListAdapter_C NotyAdapter = new Main_BookListAdapter_C(items);
         Main_BookListAdapter_C RecommendAdapter = new Main_BookListAdapter_C(items);
-        BookList_C(root, "/v1/book/list.joa", "&token=" + TOKEN + "&section_mode=contest_free_award" + ETC + "ShowType", R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
+        BookList_C(root, "/v1/book/list.joa", "&token=" + TOKEN + "&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_UserPickedList, UserPickedAdapter, queue, R.id.main_booklist_userpicked);
         BookList_C(root, "/v1/home/list.joa", "&token=" + TOKEN + "1&section_mode=contest_free_award" + ETC + ShowType, R.id.Main_NotyList, NotyAdapter, queue, R.id.main_booklist_noty);
         BookList_C(root, "/v1/home/list.joa", "&token=" + TOKEN + "&section_mode=page_read_book" + ETC + ShowType, R.id.Main_RecommendedList, RecommendAdapter, queue, R.id.main_booklist_recommeded);
 
@@ -161,34 +151,25 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     public void BookList_A(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, Integer Wrap) {
         BookList.BookList_A(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
-
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            AdapterListener(item, Value);
+            AdapterListener(item, Value, Book_Detail_Cover.class);
         });
     }
 
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
-        RecyclerView recyclerView = root.findViewById(RecylerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap,""));
-        Adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(Adapter);
-
+        BookList.BookList_C(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            AdapterListener(item, Value);
+            AdapterListener(item, Value, Book_Detail_Cover.class);
         });
     }
 
     public void BookList_D(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap) {
         BookList.BookList_D(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
-
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            AdapterListener(item, Value);
+            AdapterListener(item, Value, Book_Detail_Cover.class);
         });
     }
 
@@ -206,11 +187,11 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
                 .navigate(Nav, bundle);
     }
 
-    public void AdapterListener(Main_BookListData item, String Value) {
+    public void AdapterListener(Main_BookListData item, String Value, Class TYPE) {
         if (Value.equals("FAV")) {
             Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
         } else if (Value.equals("BookDetail")) {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+            Intent intent = new Intent(requireContext().getApplicationContext(), TYPE);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
             intent.putExtra("TOKEN", String.format("%s", TOKEN));
             startActivity(intent);

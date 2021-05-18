@@ -15,13 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +31,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
-import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 

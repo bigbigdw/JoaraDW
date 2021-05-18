@@ -2,7 +2,6 @@ package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,30 +18,35 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.JOARADW;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class New_Tab_ALL extends Fragment {
-    private Main_BookListAdapter_C NewBookListAdapter;
-    private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private Main_BookListAdapter_C Adapter;
+    private final ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
     String Store = "";
-    String TOKEN = "";
-    String ETC = "";
+    String TOKEN = "", ETC = "";
     JSONObject GETUSERINFO;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String API = "/v1/book/list.joa";
+        RecyclerView recyclerView = root.findViewById(R.id.Main_NewBookList);
+        Wrap = root.findViewById(R.id.TabWrap);
+        Cover = root.findViewById(R.id.LoadingLayout);
+        Blank = root.findViewById(R.id.BlankLayout);
+        Adapter = new Main_BookListAdapter_C(items);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+
+        ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
 
         if(Config.GETUSERINFO() != null){
             GETUSERINFO = Config.GETUSERINFO();
@@ -56,22 +60,12 @@ public class New_Tab_ALL extends Fragment {
             }
         }
 
-        ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + "&class=";
-
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String API = "/v1/book/list.joa";
-
-        recyclerView = root.findViewById(R.id.Main_NewBookList);
-        Wrap = root.findViewById(R.id.TabWrap);
-        Cover = root.findViewById(R.id.LoadingLayout);
-        Blank = root.findViewById(R.id.BlankLayout);
-
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
-        initAdapter();
-        Book_Pagination.ScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, ETC);
+        BookList.initAdapter_C(recyclerView, linearLayoutManager, Adapter);
+        Book_Pagination.ScrollListener(API, queue, Wrap, items, Adapter, recyclerView, ETC);
 
-        NewBookListAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-            Main_BookListData item = NewBookListAdapter.getItem(position);
+        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Main_BookListData item = Adapter.getItem(position);
             if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")) {
@@ -83,13 +77,5 @@ public class New_Tab_ALL extends Fragment {
         });
 
         return root;
-    }
-
-    private void initAdapter() {
-        NewBookListAdapter = new Main_BookListAdapter_C(items);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        NewBookListAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(NewBookListAdapter);
     }
 }

@@ -30,8 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
-import Bigbigdw.JoaraDW.Login.Login_Main;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 

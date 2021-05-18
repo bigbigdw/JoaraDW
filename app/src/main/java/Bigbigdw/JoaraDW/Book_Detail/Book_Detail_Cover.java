@@ -33,7 +33,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.Fragment_New.Book_Pagination;
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.R;
 
 
