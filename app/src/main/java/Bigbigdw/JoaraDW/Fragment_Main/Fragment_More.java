@@ -37,18 +37,17 @@ import Bigbigdw.JoaraDW.BookList.Fragment_Main;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Main.Main;
+import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.R;
 
 public class Fragment_More extends Fragment {
 
     private final Main_More_Aadapter NoticeAdapter = new Main_More_Aadapter();
     private final Main_More_Aadapter EventAdapter = new Main_More_Aadapter();
-    private RequestQueue queue;
-    LinearLayout NoticeList, EventList;
+    LinearLayout NoticeList, EventList, Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised, WrapBookSnipe, WrapRecommend, WrapAward, WrapMillion, GotoBlog, GotoFaceBook, GotoInstagram;
     Bundle bundle;
     String USERTOKEN = "";
     JSONObject GETUSERINFO = null;
-    LinearLayout Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised, WrapBookSnipe, WrapRecommend, WrapAward, WrapMillion, GotoBlog, GotoFaceBook, GotoInstagram;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +55,18 @@ public class Fragment_More extends Fragment {
         View root = inflater.inflate(R.layout.fragment_main_more, container, false);
         NoticeList = root.findViewById(R.id.NoticeList);
         EventList = root.findViewById(R.id.EventList);
-        queue = Volley.newRequestQueue(getActivity());
+        Wrap77Fes = root.findViewById(R.id.Wrap77Fes);
+        WrapKidamu = root.findViewById(R.id.WrapKidamu);
+        WrapNOTY = root.findViewById(R.id.WrapNOTY);
+        WrapPromised = root.findViewById(R.id.WrapPromised);
+        WrapBookSnipe = root.findViewById(R.id.WrapBookSnipe);
+        WrapRecommend = root.findViewById(R.id.WrapRecommend);
+        WrapAward = root.findViewById(R.id.WrapAward);
+        WrapMillion = root.findViewById(R.id.WrapMillion);
+        GotoBlog = root.findViewById(R.id.GotoBlog);
+        GotoFaceBook = root.findViewById(R.id.GotoFaceBook);
+        GotoInstagram = root.findViewById(R.id.GotoInstagram);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         NoticeAdapter(root, queue, NoticeList);
         EventAdapter(root, queue, EventList);
@@ -72,93 +82,44 @@ public class Fragment_More extends Fragment {
             }
         }
 
-        Wrap77Fes = root.findViewById(R.id.Wrap77Fes);
-        WrapKidamu = root.findViewById(R.id.WrapKidamu);
-        WrapNOTY = root.findViewById(R.id.WrapNOTY);
-        WrapPromised = root.findViewById(R.id.WrapPromised);
-        WrapBookSnipe = root.findViewById(R.id.WrapBookSnipe);
-        WrapRecommend = root.findViewById(R.id.WrapRecommend);
-        WrapAward = root.findViewById(R.id.WrapAward);
-        WrapMillion = root.findViewById(R.id.WrapMillion);
-        GotoBlog = root.findViewById(R.id.GotoBlog);
-        GotoFaceBook = root.findViewById(R.id.GotoFaceBook);
-        GotoInstagram = root.findViewById(R.id.GotoInstagram);
-
         bundle = new Bundle();
 
-        Wrap77Fes.setOnClickListener(v -> {
-            bundle.putInt("TabNum", 1);
-            NavHostFragment.findNavController(Fragment_More.this)
-                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
-        });
+        Wrap77Fes.setOnClickListener(v -> GotoFragment_New(1));
+        WrapKidamu.setOnClickListener(v -> GotoFragment_New(2));
+        WrapNOTY.setOnClickListener(v -> GotoFragment_New(3));
+        WrapPromised.setOnClickListener(v -> GotoFragment_New(4));
 
-        WrapKidamu.setOnClickListener(v -> {
-            bundle.putInt("TabNum", 2);
-            NavHostFragment.findNavController(Fragment_More.this)
-                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
-        });
+        WrapBookSnipe.setOnClickListener(v -> GotoBookPage("취향 저격", "/v1/book/recommend_list_api.joa", "&token=" + USERTOKEN + "&book_code=&offset=50"));
+        WrapRecommend.setOnClickListener(v -> GotoBookPage("추천 소설", "/v1/home/list.joa", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=50"));
+        WrapAward.setOnClickListener(v -> GotoBookPage("수상작", "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=50"));
+        WrapMillion.setOnClickListener(v -> GotoBookPage("천만 인증", "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=50"));
 
-        WrapNOTY.setOnClickListener(v -> {
-            bundle.putInt("TabNum", 3);
-            NavHostFragment.findNavController(Fragment_More.this)
-                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
-        });
-
-        WrapPromised.setOnClickListener(v -> {
-            bundle.putInt("TabNum", 4);
-            NavHostFragment.findNavController(Fragment_More.this)
-                    .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
-        });
-
-        WrapBookSnipe.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "취향 저격"));
-            intent.putExtra("API_URL", String.format("%s", "/v1/book/recommend_list_api.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&book_code=&offset=50"));
-            startActivity(intent);
-        });
-
-        WrapRecommend.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "추천 소설"));
-            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=50"));
-            startActivity(intent);
-        });
-
-        WrapAward.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "수상작"));
-            intent.putExtra("API_URL", String.format("%s", "/v1/book/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=50"));
-            startActivity(intent);
-        });
-
-        WrapMillion.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
-            intent.putExtra("Title", String.format("%s", "천만 인증"));
-            intent.putExtra("API_URL", String.format("%s", "/v1/home/list.joa"));
-            intent.putExtra("ETC_URL", String.format("%s", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=50"));
-            startActivity(intent);
-        });
-
-        GotoBlog.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.blog.naver.com/joarablog"));
-            startActivity(intent);
-        });
-
-        GotoFaceBook.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Joara.page/"));
-            startActivity(intent);
-        });
-
-        GotoInstagram.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/joara_official/"));
-            startActivity(intent);
-        });
+        GotoBlog.setOnClickListener(v -> GotoURL("https://m.blog.naver.com/joarablog"));
+        GotoFaceBook.setOnClickListener(v -> GotoURL("https://www.facebook.com/Joara.page/"));
+        GotoInstagram.setOnClickListener(v -> GotoURL("https://www.instagram.com/joara_official/"));
 
         return root;
     }
+
+    public void GotoFragment_New(int TabNum){
+        bundle.putInt("TabNum", TabNum);
+        NavHostFragment.findNavController(Fragment_More.this)
+                .navigate(R.id.action_Fragment_More_to_Fragment_New, bundle);
+    }
+
+    public void GotoBookPage(String Title, String API_URL, String ETC_URL){
+        Intent intent = new Intent(requireContext().getApplicationContext(), Book_Page_Etc.class);
+        intent.putExtra("Title", String.format("%s", Title));
+        intent.putExtra("API_URL", String.format("%s", API_URL));
+        intent.putExtra("ETC_URL", String.format("%s", ETC_URL));
+        startActivity(intent);
+    }
+
+    public void GotoURL(String URL){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+        startActivity(intent);
+    }
+
 
     public void NoticeAdapter(View root, RequestQueue queue, LinearLayout NoticeList)
     {

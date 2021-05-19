@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Best_Tab1">실시간</string>
+    <string name="Best_Tab2">투데이</string>
+    <string name="Best_Tab3">주간</string>
+    <string name="Best_Tab4">월간</string>
+</resources>

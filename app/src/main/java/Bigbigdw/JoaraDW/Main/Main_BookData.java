@@ -29,16 +29,21 @@ public class Main_BookData {
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
                 int Length;
+                int BookBestRank = 0;
+                int initNum = 0;
+                String isBuff = null;
 
                 JSONArray flag = response.getJSONArray("books");
 
-                if(Type.equals("BEST")){
-                    Length = Math.min(flag.length(), 3);
+                if (Type.equals("BEST")) {
+                    Length = Math.min(flag.length(), 5);
+                    initNum = 2;
+//                    Length = Math.min(flag.length(), 3);
                 } else {
                     Length = flag.length();
                 }
 
-                for (int i = 0; i < Length; i++) {
+                for (int i = initNum; i < Length; i++) {
                     JSONObject jo = flag.getJSONObject(i);
 
                     String BookImg = jo.getString("book_img");
@@ -52,34 +57,31 @@ public class Main_BookData {
                     String IsFav = jo.getString("is_favorite");
                     String BookCode = jo.getString("book_code");
                     String BookCategory = jo.getString("category_ko_name");
-
                     String BestViewed = jo.getString("cnt_page_read");
                     String BestFav = jo.getString("cnt_favorite");
                     String BestRecommend = jo.getString("cnt_recom");
 
-                    Integer BookBestRank = 0;
-
-                    if(i == 0){
+                    if (i == initNum) {
                         BookBestRank = R.drawable.icon_best_1;
-                    } else if (i == 1){
+                    } else if (i == initNum + 1) {
                         BookBestRank = R.drawable.icon_best_2;
-                    } else if (i == 2) {
+                    } else if (i == initNum + 2) {
                         BookBestRank = R.drawable.icon_best_3;
-                    } else if (i == 3) {
+                    } else if (i == initNum + 3) {
                         BookBestRank = R.drawable.icon_best_4;
-                    } else if (i == 4) {
+                    } else if (i == initNum + 4) {
                         BookBestRank = R.drawable.icon_best_5;
-                    } else if (i == 5) {
+                    } else if (i == initNum + 5) {
                         BookBestRank = R.drawable.icon_best_6;
-                    } else if (i == 6) {
+                    } else if (i == initNum + 6) {
                         BookBestRank = R.drawable.icon_best_7;
-                    } else if (i == 7) {
+                    } else if (i == initNum + 7) {
                         BookBestRank = R.drawable.icon_best_8;
-                    } else  {
+                    } else {
                         BookBestRank = R.drawable.icon_best_9;
                     }
 
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestViewed,BestFav,BestRecommend,BookBestRank,"",BookCode,BookCategory));
+                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, BestViewed, BestFav, BestRecommend, BookBestRank, "", BookCode, BookCategory));
                     Wrap.setVisibility(View.VISIBLE);
                 }
 

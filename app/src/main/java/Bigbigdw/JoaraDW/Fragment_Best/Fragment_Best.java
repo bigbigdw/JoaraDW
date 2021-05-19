@@ -1,11 +1,13 @@
 package Bigbigdw.JoaraDW.Fragment_Best;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -13,66 +15,50 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import Bigbigdw.JoaraDW.BookList.Best_Tab_Alltime;
-import Bigbigdw.JoaraDW.BookList.Best_Tab_Monthly;
-import Bigbigdw.JoaraDW.BookList.Best_Tab_Today;
-import Bigbigdw.JoaraDW.BookList.Best_Tab_Weekly;
-import Bigbigdw.JoaraDW.Fragment_New.Fragment_New;
+import Bigbigdw.JoaraDW.BookList.Best_Tab;
 import Bigbigdw.JoaraDW.R;
+import Bigbigdw.JoaraDW.databinding.FragmentBestBinding;
 
 public class Fragment_Best  extends Fragment {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private FragmentBestBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_best, container, false);
-        viewPager = root.findViewById(R.id.view_pager);
-        setupViewPager(viewPager);
-        tabLayout = root.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        binding = FragmentBestBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        Fragment_Best.SectionsPagerAdapter sectionsPagerAdapter = new Fragment_Best.SectionsPagerAdapter(getContext(), getChildFragmentManager());
+        ViewPager viewPager = binding.viewPager;
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout Fragment_BestTab = binding.tabs;
+        Fragment_BestTab.setupWithViewPager(viewPager);
 
         return root;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        Fragment_Best.ViewPagerAdapter adapter = new Fragment_Best.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new Best_Tab_Alltime(), "실시간");
-        adapter.addFragment(new Best_Tab_Today(), "투데이");
-        adapter.addFragment(new Best_Tab_Weekly(), "주간");
-        adapter.addFragment(new Best_Tab_Monthly(), "월간");
-        viewPager.setAdapter(adapter);
-    }
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public  class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        private final int[] TAB_TITLES = new int[]{R.string.Best_Tab1, R.string.Best_Tab2, R.string.Best_Tab3, R.string.Best_Tab4};
+        private final Context mContext;
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        public SectionsPagerAdapter(Context context, FragmentManager fm) {
+            super(fm);
+            mContext = context;
         }
 
-        @NonNull
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            return Best_Tab.newInstance(position + 1);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mContext.getResources().getString(TAB_TITLES[position]);
         }
 
         @Override
         public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            return TAB_TITLES.length;
         }
     }
 }

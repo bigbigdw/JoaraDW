@@ -36,7 +36,7 @@ public class Finish_Tab extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private Bigbigdw.JoaraDW.Main.Tab_ViewModel Tab_ViewModel;
     private RequestQueue queue;
-    String FinishType = "redate", TOKEN = "", APIURL = "/v1/book/list.joa";
+    String FinishType = "redate", TOKEN = "", API_URL = "/v1/book/list.joa", ETC_URL = "&category=0&offset=10&page=1&store=finish&orderby=";
     LinearLayout LoadingLayout;
     NestedScrollView ContentsLayout;
     TextView GoToAll, GotoPremium, GotoNobless;
@@ -77,7 +77,7 @@ public class Finish_Tab extends Fragment {
             ContentsLayout.setVisibility(View.VISIBLE);
         }, 500);
 
-        if(Config.GETUSERINFO() != null){
+        if (Config.GETUSERINFO() != null) {
             JSONObject GETUSERINFO = Config.GETUSERINFO();
             JSONObject UserInfo;
             try {
@@ -108,14 +108,14 @@ public class Finish_Tab extends Fragment {
                     FinishType = "cnt_recom";
                     break;
             }
-            BookFinish(root, APIURL, "&category=0&store=finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NewList, newAdapter, queue, R.id.Finish_Tab_New);
-            BookFinish(root, APIURL, "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, noblessAdapter, queue, R.id.Finish_Tab_Nobless);
-            BookFinish(root, APIURL, "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=10&page=1" + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, premiumAdapter, queue, R.id.Finish_Tab_Premium);
+            BookFinish(root, API_URL, ETC_URL + FinishType + "&token=" + TOKEN, R.id.Finish_Tab_NewList, newAdapter, queue, R.id.Finish_Tab_New);
+            BookFinish(root, API_URL, ETC_URL + FinishType + "&token=" + TOKEN, R.id.Finish_Tab_NoblessList, noblessAdapter, queue, R.id.Finish_Tab_Nobless);
+            BookFinish(root, API_URL, ETC_URL + FinishType + "&token=" + TOKEN, R.id.Finish_Tab_PremiumList, premiumAdapter, queue, R.id.Finish_Tab_Premium);
         });
 
-        GoToAll.setOnClickListener(v -> GotoActivity("최신작 전체 완결", "&category=0&store=finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
-        GotoNobless.setOnClickListener(v -> GotoActivity("최신작 노블레스 완결", "&category=0&store=nobless_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
-        GotoPremium.setOnClickListener(v -> GotoActivity("최신작 프리미엄 완결", "&category=0&store=premium_finish&orderby=" + FinishType + "&offset=25&page=1" + "&token=" + TOKEN));
+        GoToAll.setOnClickListener(v -> GotoActivity("최신작 전체 완결", ETC_URL + FinishType + "&token=" + TOKEN));
+        GotoNobless.setOnClickListener(v -> GotoActivity("최신작 노블레스 완결", ETC_URL + FinishType + "&token=" + TOKEN));
+        GotoPremium.setOnClickListener(v -> GotoActivity("최신작 프리미엄 완결", ETC_URL + FinishType + "&token=" + TOKEN));
 
         return root;
     }
@@ -125,12 +125,12 @@ public class Finish_Tab extends Fragment {
 
         Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            if(Value.equals("FAV")){
+            if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-            } else if (Value.equals("BookDetail")){
+            } else if (Value.equals("BookDetail")) {
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
-                intent.putExtra("TOKEN",String.format("%s", TOKEN));
+                intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN", String.format("%s", TOKEN));
                 startActivity(intent);
             }
         });
@@ -149,6 +149,5 @@ public class Finish_Tab extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d("onDestroyView", "파괴!");
     }
 }
