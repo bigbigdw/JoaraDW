@@ -3,4 +3,8 @@
 <resources>
     <string name="Finish_All">전체</string>
     <string name="Finish_Top20">Top20</string>
+    <string name="Finish_Tab1">최신</string>
+    <string name="Finish_Tab2">조회</string>
+    <string name="Finish_Tab3">선호작</string>
+    <string name="Finish_Tab4">추천</string>
 </resources>

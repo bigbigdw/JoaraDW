@@ -1,11 +1,11 @@
 <resources>
-    <string name="tab_text_1">전체</string>
-    <string name="tab_text_2">77FES</string>
-    <string name="tab_text_3">기다무</string>
-    <string name="tab_text_4">노블성실</string>
-    <string name="tab_text_5">노블레스</string>
-    <string name="tab_text_6">프리미엄</string>
-    <string name="tab_text_7">무료</string>
-    <string name="tab_text_8">완결</string>
-    <string name="tab_text_9">단편</string>
+    <string name="New_Tab1">전체</string>
+    <string name="New_Tab2">77FES</string>
+    <string name="New_Tab3">기다무</string>
+    <string name="New_Tab4">노블성실</string>
+    <string name="New_Tab5">노블레스</string>
+    <string name="New_Tab6">프리미엄</string>
+    <string name="New_Tab7">무료</string>
+    <string name="New_Tab8">완결</string>
+    <string name="New_Tab9">단편</string>
 </resources>

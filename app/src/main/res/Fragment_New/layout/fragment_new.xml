@@ -12,13 +12,14 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/Fragment_NewTab"
+            android:id="@+id/NewTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00283D"
             app:itemBackground="@android:color/transparent"
             app:itemIconTint="@color/drawer_item"
             app:itemTextColor="@color/drawer_item"
+            app:tabGravity="start"
             app:tabIndicatorColor="#A5C500"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="#A5C500"

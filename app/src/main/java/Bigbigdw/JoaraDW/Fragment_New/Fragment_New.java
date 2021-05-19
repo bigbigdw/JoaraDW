@@ -17,16 +17,23 @@ import com.google.android.material.tabs.TabLayout;
 
 import Bigbigdw.JoaraDW.BookList.New_Tab;
 import Bigbigdw.JoaraDW.R;
+import Bigbigdw.JoaraDW.databinding.FragmentMainBinding;
+import Bigbigdw.JoaraDW.databinding.FragmentNewBinding;
 
 public class Fragment_New extends Fragment {
-
     int TabNum = 0;
+    private FragmentNewBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new, container, false);
 
-        ViewPager viewPager = root.findViewById(R.id.view_pager);
-        TabLayout fragment_NewTab = root.findViewById(R.id.Fragment_NewTab);
+        binding = FragmentNewBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getChildFragmentManager());
+        ViewPager viewPager = binding.viewPager;
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout Fragment_NewTab = binding.NewTab;
+        Fragment_NewTab.setupWithViewPager(viewPager);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -34,16 +41,13 @@ public class Fragment_New extends Fragment {
             viewPager.setCurrentItem(TabNum);
         }
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getFragmentManager());
-        viewPager.setAdapter(sectionsPagerAdapter);
-        fragment_NewTab.setupWithViewPager(viewPager);
 
         return root;
     }
 
     public static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4, R.string.tab_text_5, R.string.tab_text_6, R.string.tab_text_7, R.string.tab_text_8, R.string.tab_text_9};
+        private final int[] TAB_TITLES = new int[]{R.string.New_Tab1, R.string.New_Tab2, R.string.New_Tab3, R.string.New_Tab4, R.string.New_Tab5, R.string.New_Tab6, R.string.New_Tab7, R.string.New_Tab8, R.string.New_Tab9};
         private final Context mContext;
 
         public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -67,4 +71,5 @@ public class Fragment_New extends Fragment {
             return TAB_TITLES.length;
         }
     }
+
 }

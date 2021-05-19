@@ -2,12 +2,10 @@ package Bigbigdw.JoaraDW.BookList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
-import Bigbigdw.JoaraDW.Fragment_New.Fragment_New_ViewModel;
+import Bigbigdw.JoaraDW.Main.Tab_ViewModel;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -36,7 +34,7 @@ public class New_Tab extends Fragment {
     private Main_BookListAdapter_C Adapter;
     private final ArrayList<Main_BookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private Fragment_New_ViewModel Fragment_New_ViewModel;
+    private Tab_ViewModel Tab_ViewModel;
     LinearLayout Wrap, Cover, Blank;
     String Store = "";
     String TOKEN = "", ETC = "", CLASS = "&class=";
@@ -54,12 +52,12 @@ public class New_Tab extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fragment_New_ViewModel = new ViewModelProvider(this).get(Fragment_New_ViewModel.class);
+        Tab_ViewModel = new ViewModelProvider(this).get(Tab_ViewModel.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Fragment_New_ViewModel.setIndex(index);
+        Tab_ViewModel.setIndex(index);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +83,7 @@ public class New_Tab extends Fragment {
             }
         }
 
-        Fragment_New_ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        Tab_ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String TabNum) {
                 if (TabNum.equals("TAB1")) {
@@ -108,7 +106,6 @@ public class New_Tab extends Fragment {
                     CLASS = "&class=short";
                 }
                 ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + CLASS;
-                Log.d("ETC", ETC);
                 Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
                 BookList.initAdapter_C(recyclerView, linearLayoutManager, Adapter);
                 Book_Pagination.ScrollListener(API, queue, Wrap, items, Adapter, recyclerView, ETC);
@@ -128,8 +125,10 @@ public class New_Tab extends Fragment {
             }
         });
 
+
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
