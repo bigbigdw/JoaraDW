@@ -38,7 +38,7 @@ public class Fragment_Finish extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Fragment_New.ViewPagerAdapter adapter = new Fragment_New.ViewPagerAdapter(getChildFragmentManager());
+        Fragment_Finish.ViewPagerAdapter adapter = new Fragment_Finish.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Finish_Tab_New(), "최신");
         adapter.addFragment(new Finish_Tab_Read(), "조회");
         adapter.addFragment(new Finish_Tab_Fav(), "선호작");

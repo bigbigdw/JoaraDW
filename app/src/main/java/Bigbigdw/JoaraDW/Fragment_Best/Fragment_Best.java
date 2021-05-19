@@ -38,7 +38,7 @@ public class Fragment_Best  extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Fragment_New.ViewPagerAdapter adapter = new Fragment_New.ViewPagerAdapter(getChildFragmentManager());
+        Fragment_Best.ViewPagerAdapter adapter = new Fragment_Best.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Best_Tab_Alltime(), "실시간");
         adapter.addFragment(new Best_Tab_Today(), "투데이");
         adapter.addFragment(new Best_Tab_Weekly(), "주간");
