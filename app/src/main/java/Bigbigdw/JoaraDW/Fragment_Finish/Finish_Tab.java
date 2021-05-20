@@ -1,9 +1,8 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_Finish;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +23,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Fragment_Main.Book_Page_Etc;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
+import Bigbigdw.JoaraDW.Etc.BookList;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.Main.Tab_ViewModel;
 import Bigbigdw.JoaraDW.R;
@@ -123,14 +125,14 @@ public class Finish_Tab extends Fragment {
     public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         BookList.BookList_C(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
 
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
-            if (Value.equals("FAV")) {
+            if(Value.equals("FAV")){
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-            } else if (Value.equals("BookDetail")) {
+            } else if (Value.equals("BookDetail")){
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
-                intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
-                intent.putExtra("TOKEN", String.format("%s", TOKEN));
+                intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
+                intent.putExtra("TOKEN",String.format("%s", TOKEN));
                 startActivity(intent);
             }
         });

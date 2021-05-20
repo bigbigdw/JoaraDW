@@ -24,15 +24,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Config;
+import Bigbigdw.JoaraDW.Etc.BookList;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickBookDetailListener {
+public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<Detail_BookPageData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    onClickBookDetailListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position, String Value);
+    }
+
+    private Detail_BookListAdapter.OnItemClickListener Listener = null;
+
+    public void setOnItemClickListener(Detail_BookListAdapter.OnItemClickListener listener) {
+        this.Listener = listener;
+    }
+
 
     public Detail_BookListAdapter(ArrayList<Detail_BookPageData> items) {
         this.listData = items;
@@ -43,10 +56,10 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_detail_booklist, parent, false);
-            return new Detail_BookListAdapter.Detail_BookList_ViewHolder(view, this);
+            return new Detail_BookListAdapter.Detail_BookList_ViewHolder(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Detail_BookListAdapter.LoadingViewHolder(view);
+            return new LoadingViewHolder(view);
         }
     }
 
@@ -87,28 +100,16 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
-    @Override
-    public void onClickBookList(Detail_BookListAdapter.Detail_BookList_ViewHolder holder, View view, int position, String Value) {
-        if (listener != null) {
-            listener.onClickBookList(holder, view, position, Value);
-        }
-    }
 
-    public void setOnItemClicklistener(onClickBookDetailListener listener) {
-        this.listener = listener;
-    }
-
-    static public class Detail_BookList_ViewHolder extends RecyclerView.ViewHolder {
+    public class Detail_BookList_ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView Image;
-        TextView Title;
-        TextView BookList;
-        TextView BookListRecommend;
         String TOKEN;
         LinearLayout Img_Wrap;
-        TextView BookCid;
+        TextView BookCid, Title, BookList, BookListRecommend;
+        JSONObject GETUSERINFO;
 
-        Detail_BookList_ViewHolder(@NonNull View itemView, final onClickBookDetailListener listener) {
+        Detail_BookList_ViewHolder(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.BookListImg);
             Title = itemView.findViewById(R.id.ChapterTitle);
@@ -117,41 +118,33 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
             BookCid = itemView.findViewById(R.id.Cid);
 
-            try {
-                FileReader fr = new FileReader("/data/user/0/Bigbigdw.JoaraDW" + "/userInfo.json");
-                BufferedReader br = new BufferedReader(fr);
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
-                while (line != null) {
-                    sb.append(line).append("\n");
-                    line = br.readLine();
+            if(Config.GETUSERINFO() != null) {
+                GETUSERINFO = Config.GETUSERINFO();
+                JSONObject UserInfo;
+                try {
+                    UserInfo = GETUSERINFO.getJSONObject("user");
+                    TOKEN = UserInfo.getString("token");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    TOKEN = "";
                 }
-                br.close();
-                String result = sb.toString();
-                JSONObject jsonObject = new JSONObject(result);
-                JSONObject UserInfo = jsonObject.getJSONObject("user");
-                TOKEN = UserInfo.getString("token");
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-                TOKEN = "";
             }
 
             Img_Wrap.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                if (listener != null) {
-                    listener.onClickBookList(Detail_BookListAdapter.Detail_BookList_ViewHolder.this, v, position, "BookDetail");
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    Listener.onItemClick(v, pos, "BookDetail");
                 }
             });
 
         }
     }
 
-    private class LoadingViewHolder extends RecyclerView.ViewHolder {
-        private ProgressBar progressBar;
+    private static class LoadingViewHolder extends RecyclerView.ViewHolder {
 
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            ProgressBar progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 

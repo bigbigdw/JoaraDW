@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Etc;
 
 import android.content.res.AssetManager;
 import android.view.View;
@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 
-import java.util.ArrayList;
-
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookData;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Main_BookData_Webtoon;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
-import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
 
 public interface BookList {

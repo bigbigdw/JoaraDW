@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +14,23 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_D extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_D {
+public class Main_BookListAdapter_D extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
-    onClickAdapterListener_D listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position, String Value);
+    }
+
+    private Main_BookListAdapter_D.OnItemClickListener Listener = null;
+
+    public void setOnItemClickListener(Main_BookListAdapter_D.OnItemClickListener listener) {
+        this.Listener = listener;
+    }
 
     public Main_BookListAdapter_D(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -34,7 +41,7 @@ public class Main_BookListAdapter_D extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_d, parent, false);
-            return new Main_BookListAdapter_D.Main_BookListViewHolder_D(view, listener);
+            return new Main_BookListAdapter_D.Main_BookListViewHolder_D(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
             return new Main_BookListAdapter_D.LoadingViewHolder(view);
@@ -52,6 +59,7 @@ public class Main_BookListAdapter_D extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_TYPE_LOADING = 1;
         return listData.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
@@ -74,34 +82,23 @@ public class Main_BookListAdapter_D extends RecyclerView.Adapter<RecyclerView.Vi
         holder.Writer.setText(listData.get(position).getWriter());
     }
 
-    @Override
-    public void onClickAdapter_D(Main_BookListAdapter_D.Main_BookListViewHolder_D holder, View view, int position, String Value) {
-        if (listener != null) {
-            listener.onClickAdapter_D(holder, view, position, Value);
-        }
-    }
 
-    public void setOnItemClicklistener(onClickAdapterListener_D listener) {
-        this.listener = listener;
-    }
-
-
-    static class Main_BookListViewHolder_D extends RecyclerView.ViewHolder {
+    public class Main_BookListViewHolder_D extends RecyclerView.ViewHolder {
 
         ImageView Image;
         TextView Title;
         TextView Writer;
 
-        Main_BookListViewHolder_D(@NonNull View itemView , final onClickAdapterListener_D listener) {
+        Main_BookListViewHolder_D(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_BookD);
             Title = itemView.findViewById(R.id.Text_TitleD);
             Writer = itemView.findViewById(R.id.Text_WriterD);
 
             Image.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                if (listener != null) {
-                    listener.onClickAdapter_D(Main_BookListAdapter_D.Main_BookListViewHolder_D.this, v, position, "BookDetail");
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    Listener.onItemClick(v, pos, "BookDetail");
                 }
             });
         }

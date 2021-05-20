@@ -59,7 +59,7 @@
         </activity>
 
         <activity
-            android:name=".BookList.Book_Page_Etc"
+            android:name=".Fragment_Main.Book_Page_Etc"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 

@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Book_Detail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
@@ -33,16 +34,18 @@ public class Detail_Tab_3 extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
-    String Store="";
-    String TOKEN = "";
-    String ETC = "";
-    String BOOKCODE;
+    String TOKEN = "" , ETC = "" , BOOKCODE, API = "/v1/book/recommend_list_api.joa";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.book_detail_tab_2, container, false);
 
         JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
         BOOKCODE = myApp.getBookCode();
+
+        recyclerView = root.findViewById(R.id.BookDetail);
+        Wrap = root.findViewById(R.id.TabWrap);
+        Cover = root.findViewById(R.id.LoadingLayout);
+        Blank = root.findViewById(R.id.BlankLayout);
 
         if(Config.GETUSERINFO() != null){
             JSONObject GETUSERINFO = Config.GETUSERINFO();
@@ -59,17 +62,11 @@ public class Detail_Tab_3 extends Fragment {
         ETC = "&recommend_type=book_code&offset=50" + "&token=" + TOKEN + "&book_code=" + BOOKCODE + "&model_type=all&chapter_cnt=1&finish=&adult=";
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String API = "/v1/book/recommend_list_api.joa";
-
-        recyclerView = root.findViewById(R.id.BookDetail);
-        Wrap = root.findViewById(R.id.TabWrap);
-        Cover = root.findViewById(R.id.LoadingLayout);
-        Blank = root.findViewById(R.id.BlankLayout);
 
         Book_Pagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
         initAdapter();
 
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             if(Value.equals("FAV")){
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);

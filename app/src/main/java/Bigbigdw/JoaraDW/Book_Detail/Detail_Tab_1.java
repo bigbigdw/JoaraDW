@@ -25,17 +25,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Book_Viewer.Book_Viewer;
 import Bigbigdw.JoaraDW.JOARADW;
+import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
 public class Detail_Tab_1 extends Fragment {
-    Detail_BookListAdapter Adapter;
     private ArrayList<Detail_BookPageData> items = new ArrayList<>();
-    String BookListImg, BOOKCODE, TOKEN, BookDetailURL;
     private RecyclerView recyclerView;
     private RequestQueue queue;
+    Detail_BookListAdapter Adapter;
+    String BookListImg, BOOKCODE, TOKEN, BookDetailURL;
     LinearLayout LoadingLayout, TabWrap;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class Detail_Tab_1 extends Fragment {
         populateData();
         initAdapter();
 
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Detail_BookPageData item = Adapter.getItem(position);
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Viewer.class);
             intent.putExtra("Cid",String.format("%s", item.getCid()));

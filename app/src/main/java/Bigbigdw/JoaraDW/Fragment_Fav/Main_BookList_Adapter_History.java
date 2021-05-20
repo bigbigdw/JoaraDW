@@ -23,7 +23,6 @@ import Bigbigdw.JoaraDW.R;
 public class Main_BookList_Adapter_History extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
 
     public Main_BookList_Adapter_History(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -37,7 +36,7 @@ public class Main_BookList_Adapter_History extends RecyclerView.Adapter<Recycler
             return new Main_BookList_Adapter_History.Main_BookListViewHolder_New(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Main_BookList_Adapter_History.LoadingViewHolder(view);
+            return new LoadingViewHolder(view);
         }
     }
 
@@ -53,6 +52,7 @@ public class Main_BookList_Adapter_History extends RecyclerView.Adapter<Recycler
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_TYPE_LOADING = 1;
         return listData.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
@@ -97,12 +97,11 @@ public class Main_BookList_Adapter_History extends RecyclerView.Adapter<Recycler
         }
     }
 
-    private class LoadingViewHolder extends RecyclerView.ViewHolder {
-        private ProgressBar progressBar;
+    private static class LoadingViewHolder extends RecyclerView.ViewHolder {
 
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            ProgressBar progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 }

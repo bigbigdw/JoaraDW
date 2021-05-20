@@ -1,6 +1,5 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Main;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +21,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Config;
-import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_C {
+public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
-    onClickAdapterListener_C listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position, String Value);
+    }
+
+    private Main_BookListAdapter_C.OnItemClickListener Listener = null;
+
+    public void setOnItemClickListener(Main_BookListAdapter_C.OnItemClickListener listener) {
+        this.Listener = listener;
+    }
 
     public Main_BookListAdapter_C(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -41,10 +47,10 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_c, parent, false);
-            return new Main_BookListAdapter_C.Main_BookListViewHolder_C(view, this);
+            return new Main_BookListAdapter_C.Main_BookListViewHolder_C(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Main_BookListAdapter_C.LoadingViewHolder(view);
+            return new LoadingViewHolder(view);
         }
     }
 
@@ -59,6 +65,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_TYPE_LOADING = 1;
         return listData.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
@@ -84,41 +91,24 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         holder.BookFav.setText(listData.get(position).getIsFav());
         holder.Category.setText(listData.get(position).getBookCategory());
 
+        TextView TopText = holder.TopText;
+        TextView Bar = holder.Bar;
+        TextView Category = holder.Category;
+
         if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.NOBLESS);
-            holder.TopText.setTextColor(0xAAa5c500);
-            holder.Bar.setTextColor(0xAAa5c500);
-            holder.Category.setTextColor(0xAAa5c500);
+            TextSetting(R.string.NOBLESS, 0xAAa5c500, TopText, Bar, Category);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.PREMIUM);
-            holder.TopText.setTextColor(0xAA4971EF);
-            holder.Bar.setTextColor(0xAA4971EF);
-            holder.Category.setTextColor(0xAA4971EF);
+            TextSetting(R.string.PREMIUM, 0xAA4971EF, TopText, Bar, Category);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.FINISH);
-            holder.TopText.setTextColor(0xAA767676);
-            holder.Bar.setTextColor(0xAA767676);
-            holder.Category.setTextColor(0xAA767676);
+            TextSetting(R.string.FINISH, 0xAA767676, TopText, Bar, Category);
         } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_NOBLESS);
-            holder.TopText.setTextColor(0xAAF44336);
-            holder.Bar.setTextColor(0xAAF44336);
-            holder.Category.setTextColor(0xAAF44336);
+            TextSetting(R.string.ADULT_NOBLESS, 0xAAF44336, TopText, Bar, Category);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_PREMIUM);
-            holder.TopText.setTextColor(0xAA4971EF);
-            holder.Bar.setTextColor(0xAA4971EF);
-            holder.Category.setTextColor(0xAA4971EF);
+            TextSetting(R.string.ADULT_PREMIUM, 0xAA4971EF, TopText, Bar, Category);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_FINISH);
-            holder.TopText.setTextColor(0xAA767676);
-            holder.Bar.setTextColor(0xAA767676);
-            holder.Category.setTextColor(0xAA767676);
+            TextSetting(R.string.ADULT_FINISH, 0xAA767676, TopText, Bar, Category);
         } else {
-            holder.TopText.setText(R.string.FREE);
-            holder.TopText.setTextColor(0xAA000000);
-            holder.Bar.setTextColor(0xAA000000);
-            holder.Category.setTextColor(0xAA000000);
+            TextSetting(R.string.FREE, 0xAA000000, TopText, Bar, Category);
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {
@@ -130,28 +120,23 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    @Override
-    public void onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C holder, View view, int position, String Value) {
-        if (listener != null) {
-            listener.onClickAdapter_C(holder, view, position, Value);
-        }
+    public void TextSetting(int Title, int Color, TextView TopText, TextView Bar, TextView Category) {
+        TopText.setText(Title);
+        TopText.setTextColor(Color);
+        Bar.setTextColor(Color);
+        Category.setTextColor(Color);
     }
 
-    public void setOnItemClicklistener(onClickAdapterListener_C listener) {
-        this.listener = listener;
-    }
-
-    static public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
+    public class Main_BookListViewHolder_C extends RecyclerView.ViewHolder {
 
         ImageView Image, Favon, Favoff;
         TextView Title, Writer, Intro, TopText, BookCode, BookFav, Bar, Category;
         CardView Img_Wrap;
-        String BookTitle, Book_Code;
-        String TOKEN = "";
+        String BookTitle, Book_Code, TOKEN = "";
         LinearLayout BookContentsWrapC;
         JSONObject GETUSERINFO;
 
-        Main_BookListViewHolder_C(@NonNull View itemView, final onClickAdapterListener_C listener) {
+        Main_BookListViewHolder_C(@NonNull View itemView) {
             super(itemView);
             Image = itemView.findViewById(R.id.Img_Book);
             Title = itemView.findViewById(R.id.Text_Title);
@@ -167,9 +152,6 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             Bar = itemView.findViewById(R.id.Bar);
             Category = itemView.findViewById(R.id.Category);
 
-            GETUSERINFO = Config.GETUSERINFO();
-
-
             if(Config.GETUSERINFO() != null) {
                 GETUSERINFO = Config.GETUSERINFO();
                 JSONObject UserInfo;
@@ -183,9 +165,9 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
             }
 
             BookContentsWrapC.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                if (listener != null) {
-                    listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "BookDetail");
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    Listener.onItemClick(v, pos, "BookDetail");
                 }
             });
 
@@ -198,10 +180,6 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
                                 Toast.LENGTH_SHORT).show();
-                        int position = getAdapterPosition();
-                        if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
-                        }
                     } else {
                         Favoff.setVisibility(View.VISIBLE);
                         Favon.setVisibility(View.GONE);
@@ -209,10 +187,10 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
                                 Toast.LENGTH_SHORT).show();
-                        int position = getAdapterPosition();
-                        if (listener != null) {
-                            listener.onClickAdapter_C(Main_BookListAdapter_C.Main_BookListViewHolder_C.this, v, position, "FAV");
-                        }
+                    }
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Listener.onItemClick(v, pos, "FAV");
                     }
                 });
             } else {
@@ -224,12 +202,11 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    private class LoadingViewHolder extends RecyclerView.ViewHolder {
-        private ProgressBar progressBar;
+    private static class LoadingViewHolder extends RecyclerView.ViewHolder {
 
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            ProgressBar progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 

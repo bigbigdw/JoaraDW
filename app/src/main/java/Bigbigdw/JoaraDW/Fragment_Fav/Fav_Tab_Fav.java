@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -41,8 +43,7 @@ public class Fav_Tab_Fav extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, LoginLayout;
-    String USERTOKEN = "";
-    String STATUS = "";
+    String STATUS = "", TOKEN = "", API = "/v1/user/favorite.joa";
     TextView Book_Fav_CoverText;
     RequestQueue queue;
 
@@ -55,44 +56,35 @@ public class Fav_Tab_Fav extends Fragment {
         LoginLayout = root.findViewById(R.id.LoginLayout);
         Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
 
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
+        if (Config.GETUSERINFO() != null) {
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+                STATUS = GETUSERINFO.getString("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
             }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = UserInfo.getString("token");
-            STATUS = jsonObject.getString("status");
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("USERINFO", "읽기 실패");
         }
 
-        String API = "/v1/user/favorite.joa";
-        String ETC = "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
+        String ETC = "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
 
         if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, "&token=" + USERTOKEN, Book_Fav_CoverText);
+            Book_Pagination.LoginCheck(queue, "&token=" + TOKEN, Book_Fav_CoverText);
             Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "Fav");
             initAdapter();
-            initScrollListener(API, queue, Wrap, items, Adapter, recyclerView, USERTOKEN);
+            initScrollListener();
 
-            Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Adapter.setOnItemClickListener((v, position, Value) -> {
                 Main_BookListData item = Adapter.getItem(position);
                 if (Value.equals("FAV")) {
-                    Book_Pagination.FavToggle(queue, item.getBookCode(), USERTOKEN);
+                    Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
                 } else if (Value.equals("BookDetail")) {
                     Intent intent = new Intent(getActivity().getApplicationContext(), Book_Detail.class);
                     intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
-                    Log.d("BookCode", item.getBookCode());
-                    intent.putExtra("TOKEN", String.format("%s", USERTOKEN));
+                    intent.putExtra("TOKEN", String.format("%s", TOKEN));
                     startActivity(intent);
                 }
             });
@@ -109,10 +101,9 @@ public class Fav_Tab_Fav extends Fragment {
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
-
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_Fav Adapter, RecyclerView recyclerView, String USERTOKEN) {
+    public void initScrollListener() {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -135,7 +126,7 @@ public class Fav_Tab_Fav extends Fragment {
                         items.add(null);
                         Adapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + USERTOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page="+ Page[0] + "&query=&mem_time=0";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page="+ Page[0] + "&query=&mem_time=0";
 
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 

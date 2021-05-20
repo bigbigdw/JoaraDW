@@ -32,6 +32,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.R;
@@ -40,16 +41,12 @@ import Bigbigdw.JoaraDW.R;
 public class Book_Detail_Cover extends AppCompatActivity {
 
     private RequestQueue queue;
-    String TOKEN = "";
-    String BookDetailURL;
-    String BookCode = "";
+    String STATUS = "", TOKEN = "", BookDetailURL, BookCode = "", BookTitleText = "";
     TextView BookType, BookTitleUnder, BookWriter, Bar, Category, BookRead, BookRecommend, BookFav, BookComment, BookIntro;
-    ImageView BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg;
-    ImageView BookCoverHeader;
+    ImageView BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg, BookCoverHeader;
     AppBarLayout BookAppBar;
-    LinearLayout BookLabel, LoadingLayout, FavBtnWrap, BookCoverWrap;
+    LinearLayout BookLabel, LoadingLayout, BookCoverWrap;
     Button BookDetailHeader1, BookDetailHeader3, BookDetailHeader2;
-    String BookTitleText = "";
     JSONObject Book;
 
     @Override
@@ -104,37 +101,21 @@ public class Book_Detail_Cover extends AppCompatActivity {
             try {
                 Book = response.getJSONObject("book");
 
-                FileWriter fw;
-                try {
-                    fw = new FileWriter(getDataDir() + "/" + "chapter.json");
-                    BufferedWriter bufwr = new BufferedWriter(fw);
-                    bufwr.write(response.toString());
-                    bufwr.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 Glide.with(this).load(Book.getString("book_img"))
                         .into(BookCoverHeader);
 
                 if (Book.getString("is_nobless").equals("TRUE") && Book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.NOBLESS);
-                    BookLabel.setBackgroundColor(0xAAa5c500);
+                    TextColor(R.string.NOBLESS, 0xAAa5c500);
                 } else if (Book.getString("is_premium").equals("TRUE") && Book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.PREMIUM);
-                    BookLabel.setBackgroundColor(0xAA4971EF);
+                    TextColor(R.string.PREMIUM, 0xAA4971EF);
                 } else if (Book.getString("is_finish").equals("TRUE") && Book.getString("is_adult").equals("FALSE")) {
-                    BookType.setText(R.string.FINISH);
-                    BookLabel.setBackgroundColor(0xAAa5c500);
+                    TextColor(R.string.FINISH, 0xAAa5c500);
                 } else if (Book.getString("is_nobless").equals("TRUE") && Book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_NOBLESS);
-                    BookLabel.setBackgroundColor(0xAAF44336);
+                    TextColor(R.string.ADULT_NOBLESS, 0xAAF44336);
                 } else if (Book.getString("is_premium").equals("TRUE") && Book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_PREMIUM);
-                    BookLabel.setBackgroundColor(0xAAF44336);
+                    TextColor(R.string.ADULT_PREMIUM, 0xAAF44336);
                 } else if (Book.getString("is_finish").equals("TRUE") && Book.getString("is_adult").equals("TRUE")) {
-                    BookType.setText(R.string.ADULT_FINISH);
-                    BookLabel.setBackgroundColor(0xAAF44336);
+                    TextColor(R.string.ADULT_FINISH, 0xAAF44336);
                 } else {
                     BookType.setText(R.string.FREE);
                 }
@@ -166,18 +147,15 @@ public class Book_Detail_Cover extends AppCompatActivity {
 
         queue.add(jsonRequest);
 
-        LoginCheck(queue, "&token=" + TOKEN);
-
-    }
-
-    void LoginCheck(RequestQueue queue, String USERTOKEN) {
-        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
-            Log.d("Main", response.toString());
-
+        if (Config.GETUSERINFO() != null) {
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
             try {
-                if (response.getString("status").equals("1")) {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+                STATUS = GETUSERINFO.getString("status");
+
+                if (STATUS.equals("1")) {
                     BookDetailHeader1.setVisibility(View.VISIBLE);
                 } else {
                     BookDetailHeader1.setVisibility(View.GONE);
@@ -185,13 +163,15 @@ public class Book_Detail_Cover extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                TOKEN = "";
             }
-            Log.d("Main", "완료!");
-        }, error -> Log.d("Main", "에러!"));
-
-        queue.add(jsonRequest);
+        }
     }
 
+    public void TextColor(int Text, int Color) {
+        BookType.setText(Text);
+        BookLabel.setBackgroundColor(Color);
+    }
 
     public void onClickFavOn(View v) {
         Book_Pagination.FavToggle(queue, BookCode, TOKEN);
@@ -222,11 +202,9 @@ public class Book_Detail_Cover extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
-                finish();
-                return true;
-            }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

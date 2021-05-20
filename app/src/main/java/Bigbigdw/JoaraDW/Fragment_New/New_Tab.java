@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_New;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
+import Bigbigdw.JoaraDW.Etc.BookList;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookData_JSON;
 import Bigbigdw.JoaraDW.Main.Tab_ViewModel;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
@@ -128,7 +130,7 @@ public class New_Tab extends Fragment {
         BookList.initAdapter_C(recyclerView, linearLayoutManager, Adapter);
         Book_Pagination.ScrollListener(API, queue, Wrap, items, Adapter, recyclerView, ETC);
 
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);

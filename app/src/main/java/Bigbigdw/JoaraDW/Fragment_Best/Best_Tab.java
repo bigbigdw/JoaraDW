@@ -1,9 +1,8 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_Best;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Fragment_Main.Book_Page_Etc;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
@@ -153,7 +153,7 @@ public class Best_Tab extends Fragment {
         Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap, "BEST"));
         Adapter.notifyDataSetChanged();
 
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             if (Value.equals("FAV")) {
                 Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);

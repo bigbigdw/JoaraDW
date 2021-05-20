@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Fragment_Main"
-        android:name="Bigbigdw.JoaraDW.BookList.Fragment_Main"
+        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main"
         android:label=""
         tools:layout="@layout/fragment_main">
         <action

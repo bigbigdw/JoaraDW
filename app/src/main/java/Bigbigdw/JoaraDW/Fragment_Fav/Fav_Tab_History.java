@@ -29,19 +29,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 public class Fav_Tab_History extends Fragment {
-    private Main_BookList_Adapter_History NewBookListAdapter;
-    private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    Main_BookList_Adapter_History Adapter;
+    RecyclerView recyclerView;
+    private final ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, LoginLayout;
-    String USERTOKEN = "&token=";
-    String STATUS = "";
+    String TOKEN = "&token=", API = "/v1/user/historybooks.joa", STATUS = "";
     TextView Book_Fav_CoverText;
+    RequestQueue queue;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_fav_list_history, container, false);
@@ -51,51 +52,42 @@ public class Fav_Tab_History extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
 
-        try {
-            FileReader fr = new FileReader(getActivity().getDataDir() + "/userInfo.json");
-            BufferedReader br = new BufferedReader(fr);
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line).append("\n");
-                line = br.readLine();
+        if (Config.GETUSERINFO() != null) {
+            JSONObject GETUSERINFO = Config.GETUSERINFO();
+            JSONObject UserInfo;
+            try {
+                UserInfo = GETUSERINFO.getJSONObject("user");
+                TOKEN = UserInfo.getString("token");
+                STATUS = GETUSERINFO.getString("status");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                TOKEN = "";
             }
-            br.close();
-            String result = sb.toString();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject UserInfo = jsonObject.getJSONObject("user");
-            USERTOKEN = "&token=" + UserInfo.getString("token");
-            STATUS = jsonObject.getString("status");
-            Log.d("Fav_Tab_History", "읽기 완료");
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            Log.d("Fav_Tab_History", "읽기 실패");
         }
 
-        String API = "/v1/user/historybooks.joa";
-        String ETC = USERTOKEN + "&category=0&page=1&mem_time=0";
+        String ETC = TOKEN + "&category=0&page=1&mem_time=0";
 
         if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, USERTOKEN, Book_Fav_CoverText);
+            Book_Pagination.LoginCheck(queue, TOKEN, Book_Fav_CoverText);
             Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "History");
             initAdapter();
-            initScrollListener(API, queue, Wrap, items, NewBookListAdapter, recyclerView, USERTOKEN);
+            initScrollListener();
         }
 
         return root;
     }
 
     private void initAdapter() {
-        NewBookListAdapter = new Main_BookList_Adapter_History(items);
+        Adapter = new Main_BookList_Adapter_History(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(NewBookListAdapter);
+        recyclerView.setAdapter(Adapter);
     }
 
-    static void initScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookList_Adapter_History FavBookListAdapter, RecyclerView recyclerView, String USERTOKEN) {
+    public void initScrollListener() {
 
         final boolean[] isLoading = {false};
         final int[] Page = {2};
@@ -116,17 +108,16 @@ public class Fav_Tab_History extends Fragment {
                     if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
 
                         items.add(null);
-                        FavBookListAdapter.notifyItemInserted(items.size() - 1);
+                        Adapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + USERTOKEN + "&category=0&page=" + Page[0] + "&mem_time=0";
-                        Log.d("ResultURL", ResultURL);
+                        String ResultURL = HELPER.API + API + HELPER.ETC + TOKEN + "&category=0&page=" + Page[0] + "&mem_time=0";
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
                             Handler handler = new Handler();
                             handler.postDelayed(() -> {
                                 items.remove(items.size() - 1);
                                 int scrollPosition = items.size();
-                                FavBookListAdapter.notifyItemRemoved(scrollPosition);
+                                Adapter.notifyItemRemoved(scrollPosition);
 
                                 try {
                                     int MaxPage = (int) Math.ceil(response.getInt("total_cnt") / 50);
@@ -149,9 +140,7 @@ public class Fav_Tab_History extends Fragment {
                                             items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "",  "", 0, ReadHistory, "",""));
                                             Wrap.setVisibility(View.VISIBLE);
                                         }
-                                        Log.d("Fav_Tab_History", "완료!");
-
-                                        FavBookListAdapter.notifyDataSetChanged();
+                                        Adapter.notifyDataSetChanged();
                                         isLoading[0] = false;
                                     }
                                 } catch (JSONException e) {

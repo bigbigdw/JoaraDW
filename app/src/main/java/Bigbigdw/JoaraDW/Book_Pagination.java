@@ -24,9 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
-import Bigbigdw.JoaraDW.BookList.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
-import Bigbigdw.JoaraDW.R;
 
 public interface Book_Pagination {
 

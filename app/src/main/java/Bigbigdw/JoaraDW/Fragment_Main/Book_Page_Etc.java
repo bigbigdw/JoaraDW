@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
+import Bigbigdw.JoaraDW.Fragment_Best.Main_BookListAdapter_Best;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -29,11 +31,9 @@ public class Book_Page_Etc extends AppCompatActivity {
     private Main_BookListAdapter_C Adapter;
     private Main_BookListAdapter_Best BestAdapter;
     private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<Main_BookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
-    String TOKEN = "";
-    String Title, ETC_URL, API_URL;
-    String TYPE = "";
+    String TOKEN = "", Title, ETC_URL, API_URL , TYPE = "";
     TextView BookTitle;
     RequestQueue queue;
 
@@ -43,6 +43,10 @@ public class Book_Page_Etc extends AppCompatActivity {
         setContentView(R.layout.booklist_etc);
 
         BookTitle = findViewById(R.id.BookTitle);
+        recyclerView = findViewById(R.id.BookDetail);
+        Wrap = findViewById(R.id.TabWrap);
+        Cover = findViewById(R.id.LoadingLayout);
+        Blank = findViewById(R.id.BlankLayout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,12 +78,6 @@ public class Book_Page_Etc extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        recyclerView = findViewById(R.id.BookDetail);
-
-        Wrap = findViewById(R.id.TabWrap);
-        Cover = findViewById(R.id.LoadingLayout);
-        Blank = findViewById(R.id.BlankLayout);
-
         Book_Pagination.populateData(API_URL, ETC_URL + "&page=1", queue, Wrap, items, Cover, Blank, TYPE);
         initAdapter();
 
@@ -97,16 +95,9 @@ public class Book_Page_Etc extends AppCompatActivity {
             BestAdapter.notifyDataSetChanged();
             recyclerView.setAdapter(BestAdapter);
 
-            BestAdapter.setOnItemClicklistener((holder, view, position, Value) -> {
-                Main_BookListData item = BestAdapter.getItem(position);
-                if (Value.equals("FAV")) {
-                    Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-                } else if (Value.equals("BookDetail")) {
-                    Intent intent = new Intent(this.getApplicationContext(), Book_Detail_Cover.class);
-                    intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
-                    intent.putExtra("TOKEN", String.format("%s", TOKEN));
-                    startActivity(intent);
-                }
+            BestAdapter.setOnItemClickListener((v, position, Value) -> {
+                Main_BookListData item = Adapter.getItem(position);
+                AdapterListener(item, Value);
             });
         } else {
             Adapter = new Main_BookListAdapter_C(items);
@@ -115,17 +106,21 @@ public class Book_Page_Etc extends AppCompatActivity {
             Adapter.notifyDataSetChanged();
             recyclerView.setAdapter(Adapter);
 
-            Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+            Adapter.setOnItemClickListener((v, position, Value) -> {
                 Main_BookListData item = Adapter.getItem(position);
-                if (Value.equals("FAV")) {
-                    Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
-                } else if (Value.equals("BookDetail")) {
-                    Intent intent = new Intent(this.getApplicationContext(), Book_Detail_Cover.class);
-                    intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
-                    intent.putExtra("TOKEN", String.format("%s", TOKEN));
-                    startActivity(intent);
-                }
+                AdapterListener(item, Value);
             });
+        }
+    }
+
+    public void AdapterListener(Main_BookListData item, String Value) {
+        if (Value.equals("FAV")) {
+            Book_Pagination.FavToggle(queue, item.getBookCode(), TOKEN);
+        } else if (Value.equals("BookDetail")) {
+            Intent intent = new Intent(this.getApplicationContext().getApplicationContext(), Book_Detail_Cover.class);
+            intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+            intent.putExtra("TOKEN", String.format("%s", TOKEN));
+            startActivity(intent);
         }
     }
 

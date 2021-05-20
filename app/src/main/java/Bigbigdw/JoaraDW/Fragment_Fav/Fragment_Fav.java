@@ -21,15 +21,13 @@ import Bigbigdw.JoaraDW.R;
 
 
 public class Fragment_Fav extends Fragment {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     int TabNum = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_fav, container, false);
-        viewPager = root.findViewById(R.id.view_pager);
+        ViewPager viewPager = root.findViewById(R.id.view_pager);
         setupViewPager(viewPager);
-        tabLayout = root.findViewById(R.id.tabs);
+        TabLayout tabLayout = root.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         Bundle bundle = this.getArguments();
@@ -42,13 +40,13 @@ public class Fragment_Fav extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Fragment_Fav.ViewPagerAdapter adapter = new Fragment_Fav.ViewPagerAdapter(getChildFragmentManager());
+        Fragment_Fav.ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Fav_Tab_Fav(), "선호 작품");
         adapter.addFragment(new Fav_Tab_History(), "이어보기");
         viewPager.setAdapter(adapter);
     }
 
-    public  class ViewPagerAdapter extends FragmentPagerAdapter {
+    public static class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 

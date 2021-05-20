@@ -15,7 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import Bigbigdw.JoaraDW.BookList.Finish_Tab;
 import Bigbigdw.JoaraDW.R;
 import Bigbigdw.JoaraDW.databinding.FragmentFinishBinding;
 

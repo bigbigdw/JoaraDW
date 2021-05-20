@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_Main;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -29,10 +29,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bigbigdw.JoaraDW.Etc.BookList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover;
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Book_Pagination;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_A;
 import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_B;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_C;
+import Bigbigdw.JoaraDW.Main.Main_BookListAdapter_D;
 import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
@@ -48,10 +52,9 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
     private final Main_BookListAdapter_B KidamuAdapter = new Main_BookListAdapter_B();
 
     private RequestQueue queue;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<Main_BookListData> items = new ArrayList<>();
 
-    CarouselView MainBanner;
-    CarouselView MainBannerMid;
+    CarouselView MainBanner, MainBannerMid;
     List<String> MainBannerURLs = new ArrayList<>();
     List<String> MainBannerMidURLs = new ArrayList<>();
     String TOKEN = "", STATUS = "", ETC = "&page=1&offset=10", ShowType = "&show_type=home";
@@ -129,7 +132,6 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
         BookList_D(root, "/v1/home/list.joa", "&token=" + TOKEN + "&section_mode=todaybest&store=premium&orderby=cnt_best" + ETC + ShowType, R.id.Main_PremiumTodayBestList, PremiumToadyBestAdapter, queue, R.id.main_premiumtodaybest);
         BookList_D(root, "/v1/home/list.joa", "&token=" + TOKEN + "&section_mode=support_coupon&orderby=cnt_best" + ETC + ShowType, R.id.Main_CouponTodayBestList, CouponToadyBestAdapter, queue, R.id.main_coupontodaybest);
 
-
         bundle = new Bundle();
 
         Wrap77Fes.setOnClickListener(v -> GotoMore(1, R.id.action_Fragment_Main_to_Fragment_New));
@@ -151,7 +153,8 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     public void BookList_A(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_A Adapter, Integer Wrap) {
         BookList.BookList_A(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             AdapterListener(item, Value, Book_Detail_Cover.class);
         });
@@ -159,7 +162,8 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     public void BookList_C(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
         BookList.BookList_C(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             AdapterListener(item, Value, Book_Detail_Cover.class);
         });
@@ -167,7 +171,8 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     public void BookList_D(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_D Adapter, RequestQueue queue, Integer Wrap) {
         BookList.BookList_D(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
-        Adapter.setOnItemClicklistener((holder, view, position, Value) -> {
+
+        Adapter.setOnItemClickListener((v, position, Value) -> {
             Main_BookListData item = Adapter.getItem(position);
             AdapterListener(item, Value, Book_Detail_Cover.class);
         });
@@ -183,7 +188,7 @@ public class Fragment_Main extends Fragment implements Main_BannerAPI {
 
     public void GotoMore(int Num, int Nav) {
         bundle.putInt("TabNum", Num);
-        NavHostFragment.findNavController(Bigbigdw.JoaraDW.BookList.Fragment_Main.this)
+        NavHostFragment.findNavController(Fragment_Main.this)
                 .navigate(Nav, bundle);
     }
 

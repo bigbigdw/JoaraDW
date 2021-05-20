@@ -1,4 +1,4 @@
-package Bigbigdw.JoaraDW.BookList;
+package Bigbigdw.JoaraDW.Fragment_Best;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +24,19 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
-public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements onClickAdapterListener_Best{
+public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     ArrayList<Main_BookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
-    onClickAdapterListener_Best listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position, String Value);
+    }
+
+    private Main_BookListAdapter_Best.OnItemClickListener Listener = null;
+
+    public void setOnItemClickListener(Main_BookListAdapter_Best.OnItemClickListener listener) {
+        this.Listener = listener;
+    }
 
     public Main_BookListAdapter_Best(ArrayList<Main_BookListData> items) {
         this.listData = items;
@@ -39,10 +47,10 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_best, parent, false);
-            return new Main_BookListAdapter_Best.Main_BookListViewHolder_Best(view, this);
+            return new Main_BookListAdapter_Best.Main_BookListViewHolder_Best(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);
-            return new Main_BookListAdapter_Best.LoadingViewHolder(view);
+            return new LoadingViewHolder(view);
         }
     }
 
@@ -57,6 +65,7 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_TYPE_LOADING = 1;
         return listData.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
@@ -87,24 +96,21 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         holder.BookCode.setText(listData.get(position).getBookCode());
         holder.Category.setText(listData.get(position).getBookCategory());
 
+        TextView TopText = holder.TopText;
+        LinearLayout BookLabel = holder.BookLabel;
+
         if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.NOBLESS);
-            holder.BookLabel.setBackgroundColor(0xAAa5c500);
+            TextSetting(TopText, BookLabel, R.string.NOBLESS, 0xAAa5c500);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.PREMIUM);
-            holder.BookLabel.setBackgroundColor(0xAA4971EF);
+            TextSetting(TopText, BookLabel, R.string.PREMIUM, 0xAA4971EF);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("FALSE")) {
-            holder.TopText.setText(R.string.FINISH);
-            holder.BookLabel.setBackgroundColor(0xAAa5c500);
+            TextSetting(TopText, BookLabel, R.string.FINISH, 0xAAa5c500);
         } else if (listData.get(position).getIsNobless().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_NOBLESS);
-            holder.BookLabel.setBackgroundColor(0xAAF44336);
+            TextSetting(TopText, BookLabel, R.string.ADULT_NOBLESS, 0xAAF44336);
         } else if (listData.get(position).getIsPremium().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_PREMIUM);
-            holder.BookLabel.setBackgroundColor(0xAAF44336);
+            TextSetting(TopText, BookLabel, R.string.ADULT_PREMIUM, 0xAAF44336);
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
-            holder.TopText.setText(R.string.ADULT_FINISH);
-            holder.BookLabel.setBackgroundColor(0xAAF44336);
+            TextSetting(TopText, BookLabel, R.string.ADULT_FINISH, 0xAAF44336);
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {
@@ -114,34 +120,20 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public void setOnItemClicklistener(onClickAdapterListener_Best listener) {
-        this.listener = listener;
+    public void TextSetting(TextView TopText, LinearLayout BookLabel, int Title, int Color) {
+        TopText.setText(Title);
+        BookLabel.setBackgroundColor(Color);
     }
 
-    @Override
-    public void onClickAdapter_Best(Main_BookListViewHolder_Best holder, View view, int position, String Value) {
-        if (listener != null) {
-            listener.onClickAdapter_Best(holder, view, position, Value);
-        }
-    }
+    public class Main_BookListViewHolder_Best extends RecyclerView.ViewHolder {
 
-    static class Main_BookListViewHolder_Best extends RecyclerView.ViewHolder {
-
-        ImageView Image;
-        ImageView BestRankImage;
-        TextView Title;
-        TextView Writer;
-        TextView Intro;
-        TextView BestViewCount;
-        TextView BestFav;
-        TextView BestRecommend;
-        String TOKEN = "";
+        ImageView Image, BestRankImage;
+        TextView Title, Writer, Intro, BestViewCount, BestFav, BestRecommend, BookCode, TopText, Bar,Category;
+        String TOKEN = "", BookTitle, Book_Code;
         JSONObject GETUSERINFO;
         LinearLayout BestWrap, FavWrap, BookLabel;
-        String BookTitle, Book_Code;
-        TextView BookCode, TopText, Bar,Category;
 
-        Main_BookListViewHolder_Best(@NonNull View itemView, final onClickAdapterListener_Best listener) {
+        Main_BookListViewHolder_Best(@NonNull View itemView) {
             super(itemView);
             BestRankImage = itemView.findViewById(R.id.BestRankImg);
             Image = itemView.findViewById(R.id.Img_BookBest);
@@ -174,9 +166,9 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
             }
 
             BestWrap.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                if (listener != null) {
-                    listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "BookDetail");
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    Listener.onItemClick(v, pos, "BookDetail");
                 }
             });
 
@@ -188,20 +180,16 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'이(가) 선호작에 등록되었습니다",
                                 Toast.LENGTH_SHORT).show();
-                        int position = getAdapterPosition();
-                        if (listener != null) {
-                            listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "FAV");
-                        }
                     } else {
                         FavWrap.setVisibility(View.GONE);
                         BookTitle = Title.getText().toString();
                         Book_Code = BookCode.getText().toString();
                         Toast.makeText(itemView.getContext(), "'" + BookTitle + "'을(를) 선호작에서 해제하였습니다",
                                 Toast.LENGTH_SHORT).show();
-                        int position = getAdapterPosition();
-                        if (listener != null) {
-                            listener.onClickAdapter_Best(Main_BookListAdapter_Best.Main_BookListViewHolder_Best.this, v, position, "FAV");
-                        }
+                    }
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Listener.onItemClick(v, pos, "FAV");
                     }
                 });
             } else {
@@ -213,12 +201,11 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    private class LoadingViewHolder extends RecyclerView.ViewHolder {
-        private ProgressBar progressBar;
+    private static class LoadingViewHolder extends RecyclerView.ViewHolder {
 
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            ProgressBar progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 
