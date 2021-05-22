@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Book_Viewer;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -32,19 +33,17 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import Bigbigdw.JoaraDW.Book_Detail.Detail_BookPageData;
+import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Viewer extends AppCompatActivity {
 
-    private RequestQueue queue;
     String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, SortNO;
     TextView ViewerText;
     JSONArray Data;
-    private ArrayList<Detail_BookPageData> items = new ArrayList<>();
-
-    private String iv;
-    private Key keySpec;
+    private final ArrayList<Detail_BookPageData> items = new ArrayList<>();
+    JSONObject ViwerJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,29 +61,13 @@ public class Book_Viewer extends AppCompatActivity {
         TOKEN = intent.getStringExtra("TOKEN");
         BookCode = intent.getStringExtra("BOOKCODE");
         SortNO = intent.getStringExtra("SORTNO");
-        queue = Volley.newRequestQueue(this);
-
-        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
-        Log.d("Book_Viewer", API_URL);
-
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
-            try {
-
-                JSONObject CHAPTER = response.getJSONObject("chapter");
-                CrptedContents = CHAPTER.getString("content");
-                ViewerText.setText(CrptedContents);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Log.d("Book_Pagination", "에러!"));
-        queue.add(jsonRequest);
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         CryptKey_URL = HELPER.API + "/v1/book/chapter_valid.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0";
 
         final JsonObjectRequest CryptKey = new JsonObjectRequest(Request.Method.GET, CryptKey_URL, null, response -> {
             try {
                 Data = response.getJSONArray("data");
-                Log.d("Book_Viewer", Data.toString());
                 Data.getString(1);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -92,27 +75,31 @@ public class Book_Viewer extends AppCompatActivity {
         }, error -> Log.d("Book_Pagination", "에러!"));
         queue.add(CryptKey);
 
+        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
+
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
+            try {
+                JSONObject CHAPTER = response.getJSONObject("chapter");
+                CrptedContents = CHAPTER.getString("content");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Log.d("Book_Pagination", "에러!"));
+        queue.add(jsonRequest);
+
+        AssetManager assetManager = getAssets();
+
+        ViwerJSON = Config.GETFAKEVIEWER(assetManager);
         try {
-            AES256Chiper.AES_Decode("복호화!");
-            Log.d("복호화!", AES256Chiper.AES_Decode("복호화!"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
+            String Result = ViwerJSON.getString("books");
+            ViewerText.setText(Result);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
     }
+
+
 
 
     public boolean onCreateOptionsMenu(Menu menu) {

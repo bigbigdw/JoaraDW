@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -20,12 +21,15 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import Bigbigdw.JoaraDW.Etc.HELPER;
 
 public class Config {
 
     private static JSONObject JSONObject;
+    String jsonData;
 
     //유저 정보 가져오기
     public static JSONObject GETUSERINFO() {
@@ -44,6 +48,29 @@ public class Config {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             Log.d("USERINFO", "읽기 실패");
+        }
+        return JSONObject;
+    }
+
+    //뷰어
+    public static JSONObject GETFAKEVIEWER(AssetManager assetManager) {
+        try {
+            InputStream is = assetManager.open("ViewerContents.json");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+
+            StringBuilder buffer = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                buffer.append(line).append("\n");
+                line = reader.readLine();
+            }
+
+            String result = buffer.toString();
+            JSONObject = new JSONObject(result);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            Log.d("GETFAKEVIEWER", "읽기 실패");
         }
         return JSONObject;
     }

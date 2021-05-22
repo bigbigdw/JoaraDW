@@ -50,7 +50,6 @@ public class Book_Detail extends AppCompatActivity {
     TextView BookTitle, BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
     FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6;
-    Button BookDetailHeader1, BookDetailHeader3;
     ImageView BookCover, FavON, FavOff;
     Boolean BookDetailTF = false;
     LinearLayout FavWrap;
@@ -88,8 +87,6 @@ public class Book_Detail extends AppCompatActivity {
         BookCommentBody = findViewById(R.id.BookCommentBody);
         BarBody = findViewById(R.id.BarBody);
         BookCover = findViewById(R.id.BookCover);
-        BookDetailHeader1 = findViewById(R.id.BookDetailHeader1);
-        BookDetailHeader3 = findViewById(R.id.BookDetailHeader3);
         BookDetailIntro = findViewById(R.id.BookDetailIntro);
         FavON = findViewById(R.id.FavON);
         FavOff = findViewById(R.id.FavOff);
@@ -173,11 +170,10 @@ public class Book_Detail extends AppCompatActivity {
                 STATUS = GETUSERINFO.getString("status");
 
                 if (STATUS.equals("1")) {
-                    BookDetailHeader1.setVisibility(View.VISIBLE);
+                    FavWrap.setVisibility(View.VISIBLE);
                 } else {
-                    BookDetailHeader1.setVisibility(View.GONE);
+                    FavWrap.setVisibility(View.GONE);
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
                 TOKEN = "";
