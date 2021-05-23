@@ -58,7 +58,7 @@ public class Detail_Tab_3_Data {
                         break;
                 }
 
-                if(Value.equals("NOTICE_PAGE") || Value.equals("SETTING_PAGE") || Value.equals("SURVEY_PAGE") || Value.equals("SURVEY_PAGE")){
+                if(Value.equals("NOTICE_PAGE") || Value.equals("SETTING_PAGE") || Value.equals("SURVEY_PAGE")){
                     JSONLength = JSONArray.length();
                 }
 
