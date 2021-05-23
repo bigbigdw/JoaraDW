@@ -13,8 +13,8 @@
     android:paddingBottom="16dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="41dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="15dp"
         app:cardCornerRadius="6dp">
 
@@ -29,8 +29,9 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -88,23 +89,31 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/noto_sans"
                     android:maxLines="1"
+                    android:text="@string/BookCount"
                     android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:text="@string/BookCount"/>
+                    android:textSize="16sp" />
             </LinearLayout>
 
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="21dp"
-                android:layout_height="21dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="4dp"
                 android:adjustViewBounds="true"
@@ -128,9 +137,40 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="4dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/TODO"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/icon_main_more_7" />
+
+            <TextView
+                android:id="@+id/BookListComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:breakStrategy="high_quality"
+                android:ellipsize="end"
+                android:fontFamily="@font/noto_sans"
+                android:maxLines="2"
+                android:text="@string/Main_Best_Num"
+                android:textAlignment="textEnd"
+                android:textColor="#A5C500"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
-
-
 
 
 </LinearLayout>

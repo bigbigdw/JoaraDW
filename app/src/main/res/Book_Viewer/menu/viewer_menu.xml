@@ -10,8 +10,8 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_settingss2"
-        android:icon="@drawable/toolbar_survey"
+        android:id="@+id/action_share"
+        android:icon="@drawable/icon_share"
         android:title="@string/TODO"
         app:showAsAction="ifRoom" />
 

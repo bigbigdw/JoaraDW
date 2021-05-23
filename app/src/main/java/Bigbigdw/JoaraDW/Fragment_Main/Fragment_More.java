@@ -30,7 +30,7 @@ public class Fragment_More extends Fragment {
     private final Main_More_Aadapter EventAdapter = new Main_More_Aadapter();
     LinearLayout NoticeList, EventList, Wrap77Fes, WrapKidamu, WrapNOTY, WrapPromised, WrapBookSnipe, WrapRecommend, WrapAward, WrapMillion, GotoBlog, GotoFaceBook, GotoInstagram;
     Bundle bundle;
-    String USERTOKEN = "";
+    String TOKEN = "";
     JSONObject GETUSERINFO = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,7 +60,7 @@ public class Fragment_More extends Fragment {
             JSONObject UserInfo;
             try {
                 UserInfo = GETUSERINFO.getJSONObject("user");
-                USERTOKEN = UserInfo.getString("token");
+                TOKEN = UserInfo.getString("token");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -73,10 +73,10 @@ public class Fragment_More extends Fragment {
         WrapNOTY.setOnClickListener(v -> GotoFragment_New(3));
         WrapPromised.setOnClickListener(v -> GotoFragment_New(4));
 
-        WrapBookSnipe.setOnClickListener(v -> GotoBookPage("취향 저격", "/v1/book/recommend_list_api.joa", "&token=" + USERTOKEN + "&book_code=&offset=50"));
-        WrapRecommend.setOnClickListener(v -> GotoBookPage("추천 소설", "/v1/home/list.joa", "&token=" + USERTOKEN + "&page=1&section_mode=recommend_book&offset=50"));
-        WrapAward.setOnClickListener(v -> GotoBookPage("수상작", "/v1/book/list.joa", "&token=" + USERTOKEN + "&section_mode=contest_free_award&offset=50"));
-        WrapMillion.setOnClickListener(v -> GotoBookPage("천만 인증", "/v1/home/list.joa", "&token=" + USERTOKEN + "&section_mode=page_read_book&offset=50"));
+        WrapBookSnipe.setOnClickListener(v -> GotoBookPage("취향 저격", "/v1/book/recommend_list_api.joa", "&token=" + TOKEN + "&book_code=&offset=50"));
+        WrapRecommend.setOnClickListener(v -> GotoBookPage("추천 소설", "/v1/home/list.joa", "&token=" + TOKEN + "&page=1&section_mode=recommend_book&offset=50"));
+        WrapAward.setOnClickListener(v -> GotoBookPage("수상작", "/v1/book/list.joa", "&token=" + TOKEN + "&section_mode=contest_free_award&offset=50"));
+        WrapMillion.setOnClickListener(v -> GotoBookPage("천만 인증", "/v1/home/list.joa", "&token=" + TOKEN + "&section_mode=page_read_book&offset=50"));
 
         GotoBlog.setOnClickListener(v -> GotoURL("https://m.blog.naver.com/joarablog"));
         GotoFaceBook.setOnClickListener(v -> GotoURL("https://www.facebook.com/Joara.page/"));

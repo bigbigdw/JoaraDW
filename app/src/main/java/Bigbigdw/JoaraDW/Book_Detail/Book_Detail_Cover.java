@@ -46,7 +46,7 @@ public class Book_Detail_Cover extends AppCompatActivity {
     ImageView BookReadImg, BookRecommedImg, BookFavImg, BookCommentImg, BookCoverHeader;
     AppBarLayout BookAppBar;
     LinearLayout BookLabel, LoadingLayout, BookCoverWrap;
-    Button BookDetailHeader1, BookDetailHeader3, BookDetailHeader2;
+    Button BookDetailHeader2;
     JSONObject Book;
 
     @Override
@@ -82,8 +82,6 @@ public class Book_Detail_Cover extends AppCompatActivity {
         BookRecommedImg = findViewById(R.id.BookRecommedImg);
         BookFavImg = findViewById(R.id.BookFavImg);
         BookCommentImg = findViewById(R.id.BookCommentImg);
-        BookDetailHeader1 = findViewById(R.id.BookDetailHeader1);
-        BookDetailHeader3 = findViewById(R.id.BookDetailHeader3);
         BookDetailHeader2 = findViewById(R.id.BookDetailHeader2);
         LoadingLayout = findViewById(R.id.LoadingLayout);
         BookCoverWrap = findViewById(R.id.BookCoverWrap);
@@ -120,6 +118,8 @@ public class Book_Detail_Cover extends AppCompatActivity {
                     BookType.setText(R.string.FREE);
                 }
 
+                String isFavorate = Book.getString("is_favorite");
+
                 BookTitleUnder.setText(Book.getString("subject"));
                 BookWriter.setText(Book.getString("writer_name"));
                 Category.setText(Book.getString("category_ko_name"));
@@ -155,12 +155,6 @@ public class Book_Detail_Cover extends AppCompatActivity {
                 TOKEN = UserInfo.getString("token");
                 STATUS = GETUSERINFO.getString("status");
 
-                if (STATUS.equals("1")) {
-                    BookDetailHeader1.setVisibility(View.VISIBLE);
-                } else {
-                    BookDetailHeader1.setVisibility(View.GONE);
-                }
-
             } catch (JSONException e) {
                 e.printStackTrace();
                 TOKEN = "";
@@ -171,20 +165,6 @@ public class Book_Detail_Cover extends AppCompatActivity {
     public void TextColor(int Text, int Color) {
         BookType.setText(Text);
         BookLabel.setBackgroundColor(Color);
-    }
-
-    public void onClickFavOn(View v) {
-        Book_Pagination.FavToggle(queue, BookCode, TOKEN);
-        BookDetailHeader1.setVisibility(View.GONE);
-        BookDetailHeader3.setVisibility(View.VISIBLE);
-        Toast.makeText(getApplicationContext(), "'" + BookTitleText + "' 이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onClickFavOff(View v) {
-        Book_Pagination.FavToggle(queue, BookCode, TOKEN);
-        BookDetailHeader1.setVisibility(View.VISIBLE);
-        BookDetailHeader3.setVisibility(View.GONE);
-        Toast.makeText(getApplicationContext(), "'" + BookTitleText + "' 이(가) 선호작에서 해제되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
     public void BookDetailHeaderOff(View v) {
@@ -207,5 +187,10 @@ public class Book_Detail_Cover extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

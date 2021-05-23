@@ -28,6 +28,16 @@ public class Main_More_Aadapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         ((Main_More_ViewHolder) holder).Contents.setText(listData.get(position).getContents());
         ((Main_More_ViewHolder) holder).Date.setText(listData.get(position).getStartDate());
+
+        ((Main_More_ViewHolder) holder).SortNo.setText(listData.get(position).getBookSortNo());
+        if(((Main_More_ViewHolder) holder).SortNo != null){
+            ((Main_More_ViewHolder) holder).SortNo.setVisibility(View.VISIBLE);
+        }
+
+        ((Main_More_ViewHolder) holder).BookSurveyStatus.setText(listData.get(position).getBookSurveyFinish());
+        if(((Main_More_ViewHolder) holder).BookSurveyStatus != null){
+            ((Main_More_ViewHolder) holder).BookSurveyStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -41,13 +51,14 @@ public class Main_More_Aadapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     static class Main_More_ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Contents;
-        TextView Date;
+        TextView Contents, Date, SortNo, BookSurveyStatus;
 
         Main_More_ViewHolder(@NonNull View itemView) {
             super(itemView);
             Contents = itemView.findViewById(R.id.Contents);
             Date = itemView.findViewById(R.id.Date);
+            SortNo = itemView.findViewById(R.id.BookSortNo);
+            BookSurveyStatus = itemView.findViewById(R.id.BookSurveyStatus);
         }
 
     }

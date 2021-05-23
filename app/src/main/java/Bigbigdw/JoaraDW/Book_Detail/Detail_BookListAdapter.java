@@ -97,6 +97,7 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.BookList.setText(listData.get(position).getBookListNum());
         holder.BookListRecommend.setText(listData.get(position).getBookListRecommend());
         holder.BookCid.setText(listData.get(position).getCid());
+        holder.BookListComment.setText(listData.get(position).getBookListComment());
 
     }
 
@@ -106,7 +107,7 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ImageView Image;
         String TOKEN;
         LinearLayout Img_Wrap;
-        TextView BookCid, Title, BookList, BookListRecommend;
+        TextView BookCid, Title, BookList, BookListRecommend, BookListComment;
         JSONObject GETUSERINFO;
 
         Detail_BookList_ViewHolder(@NonNull View itemView) {
@@ -114,6 +115,7 @@ public class Detail_BookListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             Image = itemView.findViewById(R.id.BookListImg);
             Title = itemView.findViewById(R.id.ChapterTitle);
             BookListRecommend = itemView.findViewById(R.id.BookListRecommend);
+            BookListComment = itemView.findViewById(R.id.BookListComment);
             BookList = itemView.findViewById(R.id.BookListNum);
             Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
             BookCid = itemView.findViewById(R.id.Cid);

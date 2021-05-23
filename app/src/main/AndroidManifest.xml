@@ -62,7 +62,12 @@
             android:name=".Fragment_Main.Book_Page_Etc"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
 
+        <activity
+            android:name=".Book_Detail.Book_Detail_SubPage"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <meta-data

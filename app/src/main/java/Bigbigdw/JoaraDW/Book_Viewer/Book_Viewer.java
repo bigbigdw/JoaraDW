@@ -42,7 +42,6 @@ public class Book_Viewer extends AppCompatActivity {
     String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, SortNO;
     TextView ViewerText;
     JSONArray Data;
-    private final ArrayList<Detail_BookPageData> items = new ArrayList<>();
     JSONObject ViwerJSON;
 
     @Override
@@ -117,5 +116,10 @@ public class Book_Viewer extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

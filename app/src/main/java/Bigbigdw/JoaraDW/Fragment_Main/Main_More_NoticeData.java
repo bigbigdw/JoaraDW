@@ -29,7 +29,7 @@ public class Main_More_NoticeData {
                     String Title = jo.getString("title");
                     String StartDate = jo.getString("created");
                     String Date = StartDate.substring(2,4) + '.' + StartDate.substring(4,6) + '.' + StartDate.substring(6,8);
-                    items.add(new Main_More_ListData(Title, Date));
+                    items.add(new Main_More_ListData(Title, Date,"",""));
                     NoticeList.setVisibility(View.VISIBLE);
                 }
 
@@ -43,8 +43,6 @@ public class Main_More_NoticeData {
         queue.add(jsonRequest);
         return items;
     }
-
-    ;
 }
 
 

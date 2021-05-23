@@ -49,7 +49,7 @@ public class Fav_Tab_History extends Fragment {
         recyclerView = root.findViewById(R.id.Fav_HistoryBookList);
         Wrap = root.findViewById(R.id.Tab_History);
         LoginLayout = root.findViewById(R.id.LoginLayout);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(getActivity());
         Book_Fav_CoverText = root.findViewById(R.id.Book_Fav_CoverText);
 
         if (Config.GETUSERINFO() != null) {
@@ -65,10 +65,10 @@ public class Fav_Tab_History extends Fragment {
             }
         }
 
-        String ETC = TOKEN + "&category=0&page=1&mem_time=0";
+        String ETC = "&token=" + TOKEN + "&category=0&page=1&mem_time=0";
 
         if (STATUS.equals("1")) {
-            Book_Pagination.LoginCheck(queue, TOKEN, Book_Fav_CoverText);
+            Book_Pagination.LoginCheck(queue, "&token=" + TOKEN, Book_Fav_CoverText);
             Book_Pagination.populateDataFav(API, ETC, queue, Wrap, items, LoginLayout, "History");
             initAdapter();
             initScrollListener();
@@ -110,7 +110,8 @@ public class Fav_Tab_History extends Fragment {
                         items.add(null);
                         Adapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + TOKEN + "&category=0&page=" + Page[0] + "&mem_time=0";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + TOKEN + "&category=0&page=" + Page[0] + "&mem_time=0";
+//                        Log.d("ResultURL",ResultURL);
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
                             Handler handler = new Handler();

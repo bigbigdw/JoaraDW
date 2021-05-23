@@ -4,14 +4,16 @@ public class Detail_BookPageData {
     String BookListNum;
     String BookImg;
     String BookListRecommend;
+    String BookListComment;
     String BookChapter;
     String Cid;
 
-    public Detail_BookPageData(String BookListNum, String BookImg, String BookListRecommend, String BookChapter, String Cid) {
+    public Detail_BookPageData(String BookListNum, String BookImg, String BookListRecommend, String BookChapter, String Cid, String BookListComment) {
         this.BookListNum = BookListNum;
         this.BookChapter = BookChapter;
         this.BookImg = BookImg;
         this.BookListRecommend = BookListRecommend;
+        this.BookListComment = BookListComment;
         this.Cid = Cid;
     }
 
@@ -29,5 +31,8 @@ public class Detail_BookPageData {
     }
     public String getCid() {
         return Cid;
+    }
+    public String getBookListComment() {
+        return BookListComment;
     }
 }

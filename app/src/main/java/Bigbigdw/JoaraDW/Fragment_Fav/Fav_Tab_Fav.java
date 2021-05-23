@@ -69,7 +69,7 @@ public class Fav_Tab_Fav extends Fragment {
             }
         }
 
-        String ETC = "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page=1&query=&mem_time=0";
+        String ETC = "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookmark&page=1&query=&mem_time=0";
 
         if (STATUS.equals("1")) {
             Book_Pagination.LoginCheck(queue, "&token=" + TOKEN, Book_Fav_CoverText);
@@ -126,7 +126,7 @@ public class Fav_Tab_Fav extends Fragment {
                         items.add(null);
                         Adapter.notifyItemInserted(items.size() - 1);
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookdate&page="+ Page[0] + "&query=&mem_time=0";
+                        String ResultURL = HELPER.API + API + HELPER.ETC + "&token=" + TOKEN + "&category=all&store=&class=&offset=10&orderby=bookmark&page="+ Page[0] + "&query=&mem_time=0";
 
                         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 

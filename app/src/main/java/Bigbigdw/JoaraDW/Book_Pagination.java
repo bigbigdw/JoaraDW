@@ -29,8 +29,8 @@ import Bigbigdw.JoaraDW.Main.Main_BookListData;
 
 public interface Book_Pagination {
 
-    static void LoginCheck(RequestQueue queue, String USERTOKEN, TextView Book_Fav_CoverText) {
-        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
+    static void LoginCheck(RequestQueue queue, String TOKEN, TextView Book_Fav_CoverText) {
+        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + TOKEN;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
 
@@ -54,7 +54,6 @@ public interface Book_Pagination {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
             try {
-
                     JSONArray flag = response.getJSONArray("books");
 
                     for (int i = 0; i < flag.length(); i++) {
@@ -86,8 +85,6 @@ public interface Book_Pagination {
                         Cover.setVisibility(View.GONE);
                         Wrap.setVisibility(View.VISIBLE);
                     }
-
-                Log.d("Book_Pagination", "완료!");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

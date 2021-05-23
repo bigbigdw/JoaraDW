@@ -3,4 +3,16 @@
     <string name="Viewer_HeaderBtn1">선호작 등록하기</string>
     <string name="Viewer_HeaderBtn2">작품 보기</string>
     <string name="Viewer_HeaderBtn3">선호작 해제하기</string>
+    <string name="BookDetail_RecommedBook">비슷한 작품 보기</string>
+    <string name="BookDetail_Tab3_Icon1">후원자 보기</string>
+    <string name="BookDetail_Tab3_Icon2">후원 쿠폰</string>
+    <string name="BookDetail_Tab3_Icon3">작품 서평</string>
+    <string name="BookDetail_Tab3_Icon4">작품 설정</string>
+    <string name="BookDetail_Tab3_Icon5">뷰어 설정</string>
+    <string name="BookDetail_Tab3_Icon6">작품 신고</string>
+    <string name="BookDetail_Tab3_Icon7">전체 댓글</string>
+    <string name="BookDetail_Tab3_List2">작가 공지</string>
+    <string name="BookDetail_Tab3_List1">작품 설정</string>
+    <string name="BookDetail_Tab3_List3">작품 설문</string>
+    <string name="Book_Notice">작품 공지</string>
 </resources>

@@ -35,7 +35,7 @@ public class Main_More_EventData {
                     String Title = jo.getString("title");
                     String StartDate = jo.getString("s_date");
                     String Date = StartDate.substring(2,4) + '.' + StartDate.substring(4,6) + '.' + StartDate.substring(6,8);
-                    items.add(new Main_More_ListData(Title, Date));
+                    items.add(new Main_More_ListData(Title, Date, "",""));
                     EventList.setVisibility(View.VISIBLE);
                     Log.d("EVENT", "성공!");
                 }

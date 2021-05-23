@@ -49,7 +49,6 @@ public class Book_Detail extends AppCompatActivity {
     String STATUS = "", TOKEN = "", BookDetailURL, BookCode = "", BookTitleText = "", FavCheck = "";
     TextView BookTitle, BookTypeBody, CategoryBody, BookTitleBody, BookWriterBody, BookReadBody, BookRecommendBody, BookFavBody, BookCommentBody, BarBody, BookDetailIntro;
     AppBarLayout BookAppBar;
-    FloatingActionButton BookDetailOption, BookDetailOption1, BookDetailOption2, BookDetailOption3, BookDetailOption4, BookDetailOption5, BookDetailOption6;
     ImageView BookCover, FavON, FavOff;
     Boolean BookDetailTF = false;
     LinearLayout FavWrap;
@@ -70,13 +69,6 @@ public class Book_Detail extends AppCompatActivity {
         BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
 
         BookAppBar = findViewById(R.id.BookAppBar);
-        BookDetailOption = findViewById(R.id.BookDetailOption);
-        BookDetailOption1 = findViewById(R.id.BookDetailOption1);
-        BookDetailOption2 = findViewById(R.id.BookDetailOption2);
-        BookDetailOption3 = findViewById(R.id.BookDetailOption3);
-        BookDetailOption4 = findViewById(R.id.BookDetailOption4);
-        BookDetailOption5 = findViewById(R.id.BookDetailOption5);
-        BookDetailOption6 = findViewById(R.id.BookDetailOption6);
         BookTypeBody = findViewById(R.id.BookTypeBody);
         CategoryBody = findViewById(R.id.CategoryBody);
         BookTitleBody = findViewById(R.id.BookTitleBody);
@@ -98,24 +90,6 @@ public class Book_Detail extends AppCompatActivity {
         myApp.setBookCode(BookCode);
         myApp.setToken(TOKEN);
         myApp.setAPI_URL(BookDetailURL);
-
-        BookAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (Math.abs(verticalOffset) - appBarLayout.getTotalScrollRange() == 0) {
-                BookDetailOption.setVisibility(View.VISIBLE);
-                BookDetailOption.animate().alpha(1.0f);
-            } else {
-                BookDetailOption.setVisibility(View.GONE);
-                BookDetailOption.animate().alpha(0.0f);
-                BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
-                BookDetailTF = false;
-                toggleOption(BookDetailOption1);
-                toggleOption(BookDetailOption2);
-                toggleOption(BookDetailOption3);
-                toggleOption(BookDetailOption4);
-                toggleOption(BookDetailOption5);
-                toggleOption(BookDetailOption6);
-            }
-        });
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
             try {
@@ -152,6 +126,16 @@ public class Book_Detail extends AppCompatActivity {
                 BookDetailIntro.setText(BOOK.getString("intro"));
                 BookTitleText = BOOK.getString("subject");
 
+                String isFavorate = BOOK.getString("is_favorite");
+
+                if(isFavorate.equals("TRUE")){
+                    FavON.setVisibility(View.VISIBLE);
+                    FavOff.setVisibility(View.GONE);
+                } else {
+                    FavON.setVisibility(View.GONE);
+                    FavOff.setVisibility(View.VISIBLE);
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -182,22 +166,6 @@ public class Book_Detail extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-    public void toggleBookDetailOption(View v) {
-        if (BookDetailTF.equals(false) && BookDetailOption.getVisibility() == View.VISIBLE) {
-            BookDetailOption.setImageResource(R.drawable.icon_detail_fold);
-            BookDetailTF = true;
-        } else if (BookDetailTF.equals(true) && BookDetailOption.getVisibility() == View.VISIBLE) {
-            BookDetailOption.setImageResource(R.drawable.icon_detail_extened);
-            BookDetailTF = false;
-        }
-        toggleOption(BookDetailOption1);
-        toggleOption(BookDetailOption2);
-        toggleOption(BookDetailOption3);
-        toggleOption(BookDetailOption4);
-        toggleOption(BookDetailOption5);
-        toggleOption(BookDetailOption6);
     }
 
     public void toggleOption(FloatingActionButton FloatingActionButton) {
@@ -235,7 +203,7 @@ public class Book_Detail extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Detail_Tab_1(), "연재목록");
         adapter.addFragment(new Detail_Tab_2(), "작가의 다른 작품");
-        adapter.addFragment(new Detail_Tab_3(), "추천 작품");
+        adapter.addFragment(new Detail_Tab_3(), "작품 게시판");
         viewPager.setAdapter(adapter);
     }
 

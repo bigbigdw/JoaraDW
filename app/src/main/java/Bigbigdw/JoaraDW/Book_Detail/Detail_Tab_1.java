@@ -81,10 +81,11 @@ public class Detail_Tab_1 extends Fragment {
                     JSONObject jo = ChapterInfo.getJSONObject(i);
                     String ChapterTitle = jo.getString("sub_subject");
                     String BookListRecommend = jo.getString("cnt_recom");
+                    String BookListComment = jo.getString("cnt_comment");
                     String BookCid = jo.getString("cid");
                     String BookList_Num = String.valueOf(i+1);
 
-                    items.add(new Detail_BookPageData(BookList_Num, BookListImg, BookListRecommend, ChapterTitle,BookCid));
+                    items.add(new Detail_BookPageData(BookList_Num, BookListImg, BookListRecommend, ChapterTitle,BookCid, BookListComment));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
