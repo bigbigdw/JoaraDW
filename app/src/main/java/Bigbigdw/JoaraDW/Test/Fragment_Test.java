@@ -31,7 +31,7 @@ import Bigbigdw.JoaraDW.R;
 public class Fragment_Test extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tab_new_test, container, false);
+        View root = inflater.inflate(R.layout.test, container, false);
         return root;
     }
 }

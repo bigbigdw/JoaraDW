@@ -11,11 +11,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +45,7 @@ import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Viewer extends AppCompatActivity {
-
+    private AppBarConfiguration AppBarConfiguration;
     String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, SortNO;
     TextView ViewerText;
     JSONArray Data;
@@ -51,9 +58,8 @@ public class Book_Viewer extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ViewerText = findViewById(R.id.ViewerText);
+//        ViewerText = findViewById(R.id.ViewerText);
 
         Intent intent = getIntent();
         CID = intent.getStringExtra("Cid");
@@ -64,58 +70,59 @@ public class Book_Viewer extends AppCompatActivity {
 
         CryptKey_URL = HELPER.API + "/v1/book/chapter_valid.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0";
 
-        final JsonObjectRequest CryptKey = new JsonObjectRequest(Request.Method.GET, CryptKey_URL, null, response -> {
-            try {
-                Data = response.getJSONArray("data");
-                Data.getString(1);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Log.d("Book_Pagination", "에러!"));
-        queue.add(CryptKey);
+        DrawerLayout drawer = findViewById(R.id.viewer_drawer);
+        NavigationView navigationView = findViewById(R.id.viewer_navigation);
 
-        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
+        AppBarConfiguration = new AppBarConfiguration.Builder(R.id.Fragment_Viewer).setDrawerLayout(drawer).build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, AppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
-            try {
-                JSONObject CHAPTER = response.getJSONObject("chapter");
-                CrptedContents = CHAPTER.getString("content");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Log.d("Book_Pagination", "에러!"));
-        queue.add(jsonRequest);
-
-        AssetManager assetManager = getAssets();
-
-        ViwerJSON = Config.GETFAKEVIEWER(assetManager);
-        try {
-            String Result = ViwerJSON.getString("books");
-            ViewerText.setText(Result);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        final JsonObjectRequest CryptKey = new JsonObjectRequest(Request.Method.GET, CryptKey_URL, null, response -> {
+//            try {
+//                Data = response.getJSONArray("data");
+//                Data.getString(1);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }, error -> Log.d("Book_Pagination", "에러!"));
+//        queue.add(CryptKey);
+//
+//        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
+//
+//        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
+//            try {
+//                JSONObject CHAPTER = response.getJSONObject("chapter");
+//                CrptedContents = CHAPTER.getString("content");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }, error -> Log.d("Book_Pagination", "에러!"));
+//        queue.add(jsonRequest);
+//
+//        AssetManager assetManager = getAssets();
+//
+//        ViwerJSON = Config.GETFAKEVIEWER(assetManager);
+//        try {
+//            String Result = ViwerJSON.getString("books");
+//            ViewerText.setText(Result);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
-
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, AppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.viewer_menu, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                finish();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
