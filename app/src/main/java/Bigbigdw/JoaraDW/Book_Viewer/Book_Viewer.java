@@ -1,12 +1,12 @@
 package Bigbigdw.JoaraDW.Book_Viewer;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +16,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,28 +32,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
+import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
 import Bigbigdw.JoaraDW.Book_Detail.Detail_BookPageData;
-import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Viewer extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
-    String CID, TOKEN, API_URL, BookCode, CryptKey_URL, CrptedContents, SortNO;
-    TextView ViewerText;
-    JSONArray Data;
-    JSONObject ViwerJSON;
+    Viewer_DrawerAdpater Adapter;
+    private final ArrayList<Detail_BookPageData> items = new ArrayList<>();
+    private RecyclerView recyclerView;
+    String CID, TOKEN, BookCode, CryptKey_URL, SortNO, BookDetailURL;
+    TextView Text_Title, Text_Writer, Text_Intro;
+    ImageView Img_Book;
+    View drawerContents;
+    RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +58,12 @@ public class Book_Viewer extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        ViewerText = findViewById(R.id.ViewerText);
-
         Intent intent = getIntent();
         CID = intent.getStringExtra("Cid");
         TOKEN = intent.getStringExtra("TOKEN");
         BookCode = intent.getStringExtra("BOOKCODE");
         SortNO = intent.getStringExtra("SORTNO");
-        RequestQueue queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
         CryptKey_URL = HELPER.API + "/v1/book/chapter_valid.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0";
 
@@ -78,38 +75,78 @@ public class Book_Viewer extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, AppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-//        final JsonObjectRequest CryptKey = new JsonObjectRequest(Request.Method.GET, CryptKey_URL, null, response -> {
-//            try {
-//                Data = response.getJSONArray("data");
-//                Data.getString(1);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }, error -> Log.d("Book_Pagination", "에러!"));
-//        queue.add(CryptKey);
-//
-//        API_URL = HELPER.API + "/v1/book/chapter.joa" + HELPER.ETC + "&book_code=" + BookCode + "&cid=" + CID + "&token=" + TOKEN + "&sortno=" + SortNO;
-//
-//        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, API_URL, null, response -> {
-//            try {
-//                JSONObject CHAPTER = response.getJSONObject("chapter");
-//                CrptedContents = CHAPTER.getString("content");
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }, error -> Log.d("Book_Pagination", "에러!"));
-//        queue.add(jsonRequest);
-//
-//        AssetManager assetManager = getAssets();
-//
-//        ViwerJSON = Config.GETFAKEVIEWER(assetManager);
-//        try {
-//            String Result = ViwerJSON.getString("books");
-//            ViewerText.setText(Result);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        drawerContents = navigationView.getHeaderView(0);
 
+        Text_Title = drawerContents.findViewById(R.id.Text_Title);
+        Text_Writer = drawerContents.findViewById(R.id.Text_Writer);
+        Text_Intro = drawerContents.findViewById(R.id.Text_Intro);
+        Img_Book = drawerContents.findViewById(R.id.Img_Book);
+        recyclerView = drawerContents.findViewById(R.id.BookChapterList);
+
+        BookDetailURL = HELPER.API + "/v1/book/detail.joa" + HELPER.ETC + "&token=" + TOKEN + "&category=0&book_code=" + BookCode + "&promotion_code=";
+
+        final JsonObjectRequest bookDetail = new JsonObjectRequest(Request.Method.GET, BookDetailURL, null, response -> {
+            try {
+
+                Adapter = new Viewer_DrawerAdpater(items);
+
+                JSONObject BOOK = response.getJSONObject("book");
+                Text_Title.setText(BOOK.getString("subject"));
+                Text_Writer.setText(BOOK.getString("writer_name"));
+                Text_Intro.setText(BOOK.getString("intro"));
+                String BookImg = BOOK.getString("book_img");
+                Glide.with(this).load(BOOK.getString("book_img"))
+                        .into(Img_Book);
+
+                JSONArray ChapterInfo = BOOK.getJSONArray("chapter");
+
+                for (int i = 0; i < ChapterInfo.length(); i++) {
+                    JSONObject jo = ChapterInfo.getJSONObject(i);
+                    String ChapterTitle = jo.getString("sub_subject");
+                    String BookListRecommend = jo.getString("cnt_recom");
+                    String BookListComment = jo.getString("cnt_comment");
+                    String BookCid = jo.getString("cid");
+                    String BookList_Num = String.valueOf(i+1);
+
+                    items.add(new Detail_BookPageData(BookList_Num, BookImg, BookListRecommend, ChapterTitle,BookCid, BookListComment));
+                }
+                initAdapter();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Log.d("Book_Pagination", "에러!"));
+        queue.add(bookDetail);
+    }
+
+    private void initAdapter() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(Adapter);
+        Adapter.notifyDataSetChanged();
+
+        Adapter.setOnItemClickListener((v, position, Value) -> {
+            Detail_BookPageData item = Adapter.getItem(position);
+            Intent intentViewer = new Intent(this.getApplicationContext(), Book_Viewer.class);
+            intentViewer.putExtra("Cid",String.format("%s", item.getCid()));
+            intentViewer.putExtra("TOKEN",String.format("%s", TOKEN));
+            intentViewer.putExtra("BOOKCODE",String.format("%s", BookCode));
+            intentViewer.putExtra("SORTNO",String.format("%s", item.getBookListNum()));
+            intentViewer.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intentViewer);
+        });
+    }
+
+    public void onClickGoDetail(View v) {
+        Intent intent = new Intent(getApplicationContext(), Book_Detail.class);
+        intent.putExtra("BookCode",String.format("%s", BookCode));
+        intent.putExtra("TOKEN",String.format("%s", TOKEN));
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
     @Override

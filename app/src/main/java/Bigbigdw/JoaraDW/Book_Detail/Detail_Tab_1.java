@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Book_Viewer.Book_Viewer;
@@ -33,7 +34,7 @@ import Bigbigdw.JoaraDW.R;
 
 
 public class Detail_Tab_1 extends Fragment {
-    private ArrayList<Detail_BookPageData> items = new ArrayList<>();
+    private final ArrayList<Detail_BookPageData> items = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequestQueue queue;
     Detail_BookListAdapter Adapter;
@@ -46,11 +47,11 @@ public class Detail_Tab_1 extends Fragment {
         LoadingLayout = root.findViewById(R.id.LoadingLayout);
         TabWrap = root.findViewById(R.id.TabWrap);
 
-        JOARADW myApp = (JOARADW) getActivity().getApplicationContext();
+        JOARADW myApp = (JOARADW) requireActivity().getApplicationContext();
         BOOKCODE = myApp.getBookCode();
         TOKEN = myApp.getToken();
         BookDetailURL = myApp.getAPI_URL();
-        queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(requireActivity());
 
         populateData();
         initAdapter();

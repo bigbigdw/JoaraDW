@@ -219,7 +219,7 @@ public class Main extends AppCompatActivity {
         finish();
     }
 
-    void DeleteSignedInfo(String filename) {
+    void DeleteSignedInfo() {
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
         alBuilder.setMessage("로그아웃하시겠습니까?");
         alBuilder.setPositiveButton("예", (dialog, which) -> {
@@ -246,7 +246,7 @@ public class Main extends AppCompatActivity {
                 JSONObject reader = new JSONObject(response);
                 STATUS = reader.getString("status");
                 if (STATUS.equals("1")) {
-                    DeleteSignedInfo(filename);
+                    DeleteSignedInfo();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

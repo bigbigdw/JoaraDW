@@ -17,7 +17,7 @@
         android:id="@+id/Fragment_Viewer"
         android:name="Bigbigdw.JoaraDW.Book_Viewer.Fragment_Viewer"
         android:label=""
-        tools:layout="@layout/test" >
+        tools:layout="@layout/fragment_viewer" >
     </fragment>
 
 </navigation>

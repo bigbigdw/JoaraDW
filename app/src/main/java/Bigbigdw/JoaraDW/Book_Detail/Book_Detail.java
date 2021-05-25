@@ -168,16 +168,6 @@ public class Book_Detail extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void toggleOption(FloatingActionButton FloatingActionButton) {
-        if ((BookDetailTF.equals(false))) {
-            FloatingActionButton.setVisibility(View.GONE);
-            FloatingActionButton.animate().alpha(1.0f);
-        } else if ((BookDetailTF.equals(true))) {
-            FloatingActionButton.setVisibility(View.VISIBLE);
-            FloatingActionButton.animate().alpha(1.0f);
-        }
-    }
-
     public void textColor(int Text, int Color) {
         BookTypeBody.setText(Text);
         BookTypeBody.setTextColor(Color);
