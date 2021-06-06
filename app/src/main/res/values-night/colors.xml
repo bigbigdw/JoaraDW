@@ -7,4 +7,5 @@
     <color name="Contents_Text1">#A5C500</color>
     <color name="Contents_Text2">#F9F9F9</color>
     <color name="Contents_Text3">#ffffff</color>
+    <color name="PrimaryColor">#A5C500</color>
 </resources>

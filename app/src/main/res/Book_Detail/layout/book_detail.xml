@@ -2,7 +2,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,7 +20,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="#00283d"
+                app:contentScrim="@color/ActionBar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <FrameLayout
@@ -33,7 +32,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:background="#00283d"
+                        app:contentScrim="@color/ActionBar"
                         android:orientation="vertical" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +44,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="55dp"
-                            android:background="#f9f9f9"
+                            android:background="@color/Contents"
                             android:orientation="vertical"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -58,7 +57,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:background="#FFFFFF"
+                                android:background="@color/Contents"
                                 android:orientation="horizontal"
                                 android:paddingStart="16dp"
                                 android:paddingTop="16dp"
@@ -84,7 +83,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:background="#00283d"
+                    android:background="@color/ActionBar"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -100,7 +99,7 @@
                     android:maxEms="10"
                     android:maxLines="1"
                     android:text="@string/BookDetail"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_collapseMode="pin" />
@@ -111,7 +110,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
+            android:textColor="@color/Contents"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -119,7 +118,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00283D"
+                android:background="@color/ActionBar"
                 app:itemBackground="@android:color/transparent"
                 app:itemIconTint="@color/drawer_item"
                 app:itemTextColor="@color/drawer_item"
@@ -143,7 +142,7 @@
                         android:id="@+id/view_pager"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
+                        android:background="@color/Contents"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

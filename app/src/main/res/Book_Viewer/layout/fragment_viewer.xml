@@ -27,7 +27,8 @@
                 android:layout_marginTop="71dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="71dp"
-                android:text="@string/ADULT_NOBLESS" />
+                android:text="@string/ADULT_NOBLESS"
+                android:textColor="#000000" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

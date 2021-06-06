@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import Bigbigdw.JoaraDW.Book_Detail.Book_Detail;
 import Bigbigdw.JoaraDW.Book_Detail.Detail_BookPageData;
 import Bigbigdw.JoaraDW.Etc.HELPER;
+import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 
 public class Book_Viewer extends AppCompatActivity {
@@ -161,6 +163,12 @@ public class Book_Viewer extends AppCompatActivity {
         intent.putExtra("TOKEN", String.format("%s", TOKEN));
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+    }
+
+    public void onClickViewerSetting(View v) {
+        Intent intent = new Intent(getApplicationContext(), Viewer_Setting.class);
+        startActivityIfNeeded(intent, 0);
+        finish();
     }
 
     @Override
