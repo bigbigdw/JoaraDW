@@ -95,7 +95,7 @@ public class Book_Detail extends AppCompatActivity {
             try {
                 JSONObject BOOK = response.getJSONObject("book");
 
-                Glide.with(this).load(BOOK.getString("book_img"))
+                Glide.with(this).load(BOOK.getString("book_img")).fitCenter()
                         .into(BookCover);
 
                 FavCheck = BOOK.getString("is_favorite");

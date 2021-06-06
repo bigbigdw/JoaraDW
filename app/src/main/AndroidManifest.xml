@@ -15,14 +15,15 @@
         <activity
             android:name=".Etc.Splash"
             android:theme="@style/Theme.JoaraDW">
-        </activity>
-        <activity
-            android:name=".Main.Main"
-            android:theme="@style/Theme.JoaraDW.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Main.Main"
+            android:theme="@style/Theme.JoaraDW.NoActionBar">
+
         </activity>
 
         <activity
@@ -55,7 +56,6 @@
             android:name=".Book_Viewer.Book_Viewer"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
-
         </activity>
 
         <activity

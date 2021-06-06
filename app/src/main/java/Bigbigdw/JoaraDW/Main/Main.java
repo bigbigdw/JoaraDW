@@ -79,12 +79,13 @@ public class Main extends AppCompatActivity {
         Support_Coupon = nav_header_view.findViewById(R.id.Support_Coupon);
         UserName = nav_header_view.findViewById(R.id.UserName);
 
-        Intent intent = getIntent();
-        IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
-        if (IsFirstPage) {
-            Intent intentSplash = new Intent(this, Splash.class);
-            startActivity(intentSplash);
-        }
+//        Intent intent = getIntent();
+//        IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
+//        if (IsFirstPage) {
+//            Intent intentSplash = new Intent(this, Splash.class);
+//            startActivity(intentSplash);
+//        }
+
 
         GETUSERINFO = Config.GETUSERINFO();
         try {

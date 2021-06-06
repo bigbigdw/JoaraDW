@@ -2,8 +2,8 @@
 <resources>
     <string name="Viewer_Bottom1">설정</string>
     <string name="Viewer_Bottom2">추천</string>
-    <string name="Viewer_Bottom3">선호작</string>
-    <string name="Viewer_Bottom4">댓글</string>
-    <string name="Viewer_Bottom5">공유</string>
+    <string name="Viewer_Bottom3">댓글</string>
+    <string name="Viewer_Bottom4">이전</string>
+    <string name="Viewer_Bottom5">다음</string>
     <string name="Viewwer_Detail">작품 상세 보기</string>
 </resources>

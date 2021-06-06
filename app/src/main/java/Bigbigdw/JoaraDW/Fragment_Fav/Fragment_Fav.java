@@ -40,7 +40,7 @@ public class Fragment_Fav extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Fragment_Fav.ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Fav_Tab_Fav(), "선호 작품");
         adapter.addFragment(new Fav_Tab_History(), "이어보기");
         viewPager.setAdapter(adapter);

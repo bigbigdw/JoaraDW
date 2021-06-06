@@ -108,7 +108,7 @@ public class Main_BookListAdapter_C extends RecyclerView.Adapter<RecyclerView.Vi
         } else if (listData.get(position).getIsFinish().equals("TRUE") && listData.get(position).getIsAdult().equals("TRUE")) {
             TextSetting(R.string.ADULT_FINISH, 0xAA767676, TopText, Bar, Category);
         } else {
-            TextSetting(R.string.FREE, 0xAA000000, TopText, Bar, Category);
+            TopText.setText("무료");
         }
 
         if (listData.get(position).getIsFav().equals("TRUE")) {

@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ActionBar_Font">#FFFFFFFF</color>
+    <color name="ActionBar">#003D16</color>
+    <color name="Contents">#ffffff</color>
+    <color name="Contents_BG">#F9F9F9</color>
+    <color name="Contents_Text1">#A5C500</color>
+    <color name="Contents_Text2">#002635</color>
+    <color name="Contents_Text3">#000000</color>
 </resources>

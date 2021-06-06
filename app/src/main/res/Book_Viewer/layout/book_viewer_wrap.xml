@@ -89,7 +89,7 @@
                     android:layout_height="25dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/ic_viewerbottom_3" />
+                    app:srcCompat="@drawable/ic_viewerbottom_4" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                     android:layout_height="25dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/ic_viewerbottom_4" />
+                    app:srcCompat="@drawable/ic_viewerbottom_6" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                     android:layout_height="25dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/TODO"
-                    app:srcCompat="@drawable/ic_viewerbottom_5" />
+                    app:srcCompat="@drawable/ic_viewerbottom_7" />
 
                 <Space
                     android:layout_width="match_parent"

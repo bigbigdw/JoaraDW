@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#FFFFFF"
+            android:background="@color/Contents"
             android:orientation="horizontal"
             android:paddingStart="16dp"
             android:paddingTop="9dp"
@@ -40,7 +40,7 @@
                     android:layout_marginEnd="4dp"
                     android:fontFamily="@font/noto_sans_bold"
                     android:text="@string/Main_BookList_UserPicked1"
-                    android:textColor="#A5C500"
+                    android:textColor="@color/Contents_Text1"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/Main_BookList_UserPicked2"
-                    android:textColor="#002635"
+                    android:textColor="@color/Contents_Text2"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Common_SeeMore"
-                android:textColor="#002635" />
+                android:textColor="@color/Contents_Text2"/>
 
         </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:id="@+id/Main_UserPickedList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@color/Contents"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="0dp"

@@ -1,6 +1,7 @@
 package Bigbigdw.JoaraDW.Etc;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 
 import Bigbigdw.JoaraDW.Config;
+import Bigbigdw.JoaraDW.Main.Main;
 import Bigbigdw.JoaraDW.R;
 
 public class Splash extends Activity {
@@ -38,12 +40,11 @@ public class Splash extends Activity {
             }
         }, error -> Log.d("Splash", "에러!"));
         queue.add(jsonRequest);
-        startLoading();
+        new android.os.Handler().postDelayed(
+                () -> {
+                    Intent intent = new Intent(this, Main.class);
+                    startActivity(intent);
+                },
+                2000);
     }
-
-    private void startLoading() {
-        Handler handler = new Handler();
-        handler.postDelayed(this::finish, 2000);
-    }
-
 }

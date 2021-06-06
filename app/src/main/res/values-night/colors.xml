@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ActionBar_Font">#ffffff</color>
+    <color name="ActionBar">#00283d</color>
+    <color name="Contents">#333333</color>
+    <color name="Contents_BG">#181818</color>
+    <color name="Contents_Text1">#A5C500</color>
+    <color name="Contents_Text2">#F9F9F9</color>
+    <color name="Contents_Text3">#ffffff</color>
+</resources>

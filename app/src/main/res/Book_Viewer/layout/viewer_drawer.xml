@@ -130,11 +130,17 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
+        <include
+            layout="@layout/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/BookChapterList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:visibility="gone" />
 
     </LinearLayout>
 </LinearLayout>
