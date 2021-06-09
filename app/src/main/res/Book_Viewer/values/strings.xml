@@ -23,9 +23,16 @@
     <string name="Viewwer_Setting_Option041">들여쓰기를 적용합니다</string>
     <string name="Viewwer_Setting_Option042">들여쓰기를 해제합니다</string>
     <string name="Viewwer_Setting_Option05">스크롤</string>
+    <string name="Viewwer_Setting_Option051">상하</string>
+    <string name="Viewwer_Setting_Option052">좌우</string>
+    <string name="Viewwer_Setting_Option053">스크롤</string>
     <string name="Viewwer_Setting_Option06">연속 보기</string>
+    <string name="Viewwer_Setting_Option061">연속 보기를 적용합니다</string>
+    <string name="Viewwer_Setting_Option062">연속 보기를 해제합니다</string>
     <string name="Viewwer_Setting_Option07">버튼 이동</string>
+    <string name="Viewwer_Setting_Option071">볼륨버튼으로 스크롤을 제어합니다</string>
+    <string name="Viewwer_Setting_Option072">볼륨버튼으로 스크롤을 제어하지 않습니다</string>
     <string name="Viewwer_Setting_Option08">배경 색</string>
-    <string name="Viewwer_Setting_Option09">배경 색</string>
+    <string name="Viewwer_Setting_Option09">글자 색</string>
     <string name="Viewwer_Setting_Option10">테마</string>
 </resources>

@@ -40,11 +40,12 @@ public class Splash extends Activity {
             }
         }, error -> Log.d("Splash", "에러!"));
         queue.add(jsonRequest);
-        new android.os.Handler().postDelayed(
-                () -> {
-                    Intent intent = new Intent(this, Main.class);
-                    startActivity(intent);
-                },
-                2000);
+        startLoading();
     }
+
+    private void startLoading() {
+        Handler handler = new Handler();
+        handler.postDelayed(this::finish, 2000);
+    }
+
 }
