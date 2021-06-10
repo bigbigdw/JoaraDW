@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
+    id "org.sonarqube" version "3.0"
 }
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -37,6 +37,16 @@ android {
                 srcDirs 'src\\main\\assets', 'src\\main\\assets\\Login2'
             }
         }
+    }
+}
+
+apply plugin: 'org.sonarqube'
+sonarqube {
+    properties {
+        property "sonar.host.url", "http://localhost:9000/"
+        property "sonar.projectKey", "JOARADW"
+        property "sonar.sources", "src/main/java"
+        property "sonar.login", "150a45dd039649f462ec42c49a78dc987f34687b"
     }
 }
 
