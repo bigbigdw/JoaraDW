@@ -133,8 +133,8 @@ public class Best_Tab extends Fragment {
             BookBest(root, API_URL, "&best=" + BestType + "&store=nobless_classic" + ETC_URL + "&token=" + TOKEN, R.id.Best_Tab_NoblessClassicList, NoblessClassicAdapter, queue, R.id.Best_Tab_NoblessClassic);
 
             GotoBest.setOnClickListener(v -> GotoPage(TabName + " 전체 베스트", "&best=" + BestType + "&store=" + ETC_URL + "&token=" + TOKEN));
-            GotoNobless.setOnClickListener(v -> GotoPage(TabName + " 노블레스 베스트", "&best=" + BestType + "&store=nobless" + ETC_URL + "&token=" + TOKEN));
-            GotoPremium.setOnClickListener(v -> GotoPage(TabName + " 프리미엄 베스트", "&best=" + BestType + "&store=premium" + ETC_URL + "&token=" + TOKEN));
+            GotoNobless.setOnClickListener(v -> GotoPage(TabName + "노블레스 베스트", "&best=" + BestType + "&store=nobless" + ETC_URL + "&token=" + TOKEN));
+            GotoPremium.setOnClickListener(v -> GotoPage(TabName + "프리미엄 베스트", "&best=" + BestType + "&store=premium" + ETC_URL + "&token=" + TOKEN));
             GotoFree.setOnClickListener(v -> GotoPage(TabName + " 무료 베스트", "&best=" + BestType + "&store=series" + ETC_URL + "&token=" + TOKEN));
             GotoNew.setOnClickListener(v -> GotoPage(TabName + " 무료 베스트", "&best=" + BestType + "&store=lately" + ETC_URL + "&token=" + TOKEN));
             GotoFinish.setOnClickListener(v -> GotoPage(TabName + " 무료 베스트", "&best=" + BestType + "&store=finish" + ETC_URL + "&token=" + TOKEN));
