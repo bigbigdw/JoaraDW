@@ -1,0 +1,30 @@
+
+‹
+java:S1319V"pThe type of the "items" object should be an interface such as "List" rather than the implementation "ArrayList".(ú¬ÀÒşÿÿÿÿ
+a
+java:S11929"FDefine a constant instead of duplicating this literal "FALSE" 3 times.(ÈÍéûÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¼ÛëÑ
+g	java:S101^"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¡ööçùÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç—‰¥
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÿ±¬üÿÿÿÿ
+k	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìŞªøÿÿÿÿ
+f	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äğ¶°
+f	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äğ¶°
+f	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äğ¶°
+f	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äğ¶°
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(à¸Ü]
+h	java:S116"SRename this field "Listener" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áñ­‡
+c	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äğ¶°
+?
+java:S1659a"$Declare "Writer" on a separate line.(¸úÎ—øÿÿÿÿ
+G
+java:S1659a",Declare "UnderCoverText" on a separate line.(¸úÎ—øÿÿÿÿ
+A
+java:S1659a"&Declare "BookCode" on a separate line.(¸úÎ—øÿÿÿÿ
+e	java:S116`"PRename this field "Image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ©¦¨
+j	java:S116a"PRename this field "Title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸úÎ—øÿÿÿÿ
+k	java:S116a"QRename this field "Writer" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸úÎ—øÿÿÿÿ
+s	java:S116a"YRename this field "UnderCoverText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸úÎ—øÿÿÿÿ
+m	java:S116a"SRename this field "BookCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸úÎ—øÿÿÿÿ
+o	java:S116b"URename this field "UnderCover" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÔ»ùÿÿÿÿ
+g	java:S116c"SRename this field "Img_Wrap" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Q

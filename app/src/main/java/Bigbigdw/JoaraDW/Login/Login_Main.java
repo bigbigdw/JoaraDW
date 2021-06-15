@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -137,8 +136,8 @@ public class Login_Main extends AppCompatActivity {
                     WriteJson(filename, response);
 
                     TOKEN = UserInfo.getString("token");
-                    JOARADW myApp = (JOARADW) getApplicationContext();
-                    myApp.setToken(TOKEN);
+                    JOARADW userInfo = (JOARADW) getApplicationContext();
+                    userInfo.setTOKEN(TOKEN);
 
                     Toast.makeText(getApplicationContext(), "환영합니다!" + " " + UserName + "님!", Toast.LENGTH_SHORT).show();
 

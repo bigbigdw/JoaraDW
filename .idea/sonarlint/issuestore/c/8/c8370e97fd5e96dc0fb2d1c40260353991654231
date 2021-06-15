@@ -1,0 +1,61 @@
+
+]
+java:S1192L"HDefine a constant instead of duplicating this literal "&token=" 4 times.(ÎØç@
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨›íüÿÿÿÿ
+f	java:S117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¿Ì
+k	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ù‰ùÿÿÿÿ
+k	java:S117^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊàŒıÿÿÿÿ
+k	java:S117^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊàŒıÿÿÿÿ
+k	java:S117^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊàŒıÿÿÿÿ
+f	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹±ô
+k	java:S117l"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÆ›¯ÿÿÿÿÿ
+f	java:S117v"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( è®
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Œ½åÛıÿÿÿÿ
+B
+java:S1659"'Declare "EventList" on a separate line.(Èß˜Âúÿÿÿÿ
+B
+java:S1659"'Declare "Wrap77Fes" on a separate line.(Èß˜Âúÿÿÿÿ
+C
+java:S1659"(Declare "WrapKidamu" on a separate line.(Èß˜Âúÿÿÿÿ
+A
+java:S1659"&Declare "WrapNOTY" on a separate line.(Èß˜Âúÿÿÿÿ
+E
+java:S1659"*Declare "WrapPromised" on a separate line.(Èß˜Âúÿÿÿÿ
+F
+java:S1659"+Declare "WrapBookSnipe" on a separate line.(Èß˜Âúÿÿÿÿ
+F
+java:S1659"+Declare "WrapRecommend" on a separate line.(Èß˜Âúÿÿÿÿ
+B
+java:S1659"'Declare "WrapAward" on a separate line.(Èß˜Âúÿÿÿÿ
+D
+java:S1659")Declare "WrapMillion" on a separate line.(Èß˜Âúÿÿÿÿ
+A
+java:S1659"&Declare "GotoBlog" on a separate line.(Èß˜Âúÿÿÿÿ
+E
+java:S1659"*Declare "GotoFaceBook" on a separate line.(Èß˜Âúÿÿÿÿ
+F
+java:S1659"+Declare "GotoInstagram" on a separate line.(Èß˜Âúÿÿÿÿ
+r	java:S116"XRename this field "NoticeAdapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Ô­Åûÿÿÿÿ
+k	java:S116"WRename this field "EventAdapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áéì!
+o	java:S116"URename this field "NoticeList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+n	java:S116"TRename this field "EventList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+n	java:S116"TRename this field "Wrap77Fes" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+o	java:S116"URename this field "WrapKidamu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+m	java:S116"SRename this field "WrapNOTY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+q	java:S116"WRename this field "WrapPromised" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+r	java:S116"XRename this field "WrapBookSnipe" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+r	java:S116"XRename this field "WrapRecommend" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+n	java:S116"TRename this field "WrapAward" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+p	java:S116"VRename this field "WrapMillion" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+m	java:S116"SRename this field "GotoBlog" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+q	java:S116"WRename this field "GotoFaceBook" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+r	java:S116"XRename this field "GotoInstagram" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èß˜Âúÿÿÿÿ
+e	java:S116!"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¡
+p	java:S116""VRename this field "GETUSERINFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷Ÿ­Äüÿÿÿÿ
+U
+java:S1161$":Add the "@Override" annotation above this method signature(î•Éğûÿÿÿÿ
+h	java:S100X"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ù‰ùÿÿÿÿ
+h	java:S100^"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊàŒıÿÿÿÿ
+c	java:S100f"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹±ô
+h	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÆ›¯ÿÿÿÿÿ
+c	java:S100v"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( è®

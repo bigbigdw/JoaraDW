@@ -1,0 +1,62 @@
+
+[
+java:S1192D"FDefine a constant instead of duplicating this literal "TOKEN" 3 times.(ÃìĞ
+g	java:S101."MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(«ò¥­ùÿÿÿÿ
+k	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹§²öûÿÿÿÿ
+f	java:S117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬‚£
+k	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©†ÎÒşÿÿÿÿ
+k	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ÿñüúÿÿÿÿ
+f	java:S117t"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í®÷Ú
+k	java:S117u"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óÎ¸Ëüÿÿÿÿ
+k	java:S117v"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïîš–üÿÿÿÿ
+k	java:S117w"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀŸêªÿÿÿÿÿ
+g	java:S117”"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿìˆå
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Š¥•ÿÿÿÿÿ
+L
+java:S1128"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
+y
+java:S1128"^Remove this unused import 'com.google.android.material.bottomnavigation.BottomNavigationView'.(ºØÇÿÿÿÿÿ
+Y
+java:S1128+">Remove this unused import 'Bigbigdw.JoaraDW.Login.Login_Main'.(½ãëùÿÿÿÿ
+9
+java:S16593"#Declare "TOKEN" on a separate line.(„Úê‡
+<
+java:S16593"&Declare "BookCode" on a separate line.(„Úê‡
+@
+java:S16593"*Declare "CryptKey_URL" on a separate line.(„Úê‡
+:
+java:S16593"$Declare "SortNO" on a separate line.(„Úê‡
+A
+java:S16593"+Declare "BookDetailURL" on a separate line.(„Úê‡
+D
+java:S16594")Declare "Text_Writer" on a separate line.(»Äîªûÿÿÿÿ
+C
+java:S16594"(Declare "Text_Intro" on a separate line.(»Äîªûÿÿÿÿ
+F
+java:S16598"+Declare "LoadingLayout" on a separate line.(‰×‘ßøÿÿÿÿ
+s	java:S116/"^Rename this field "AppBarConfiguration" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çÂ£ş
+l	java:S1160"RRename this field "Adapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ×­úÿÿÿÿ
+c	java:S1163"NRename this field "CID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+e	java:S1163"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+h	java:S1163"SRename this field "BookCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+l	java:S1163"WRename this field "CryptKey_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+f	java:S1163"QRename this field "SortNO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+m	java:S1163"XRename this field "BookDetailURL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Úê‡
+o	java:S1164"URename this field "Text_Title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Äîªûÿÿÿÿ
+p	java:S1164"VRename this field "Text_Writer" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Äîªûÿÿÿÿ
+o	java:S1164"URename this field "Text_Intro" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Äîªûÿÿÿÿ
+m	java:S1165"SRename this field "Img_Book" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„•ì ÿÿÿÿÿ
+l	java:S1168"RRename this field "TabWrap" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰×‘ßøÿÿÿÿ
+r	java:S1168"XRename this field "LoadingLayout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰×‘ßøÿÿÿÿ
+R
+java:S1874P"7Remove this use of "setDrawerLayout"; it is deprecated.(—¹µíÿÿÿÿÿ
+E
+java:S1874a"/Remove this use of "Handler"; it is deprecated.(’Ú©Š
+?
+java:S1172 "(Remove this unused method parameter "v".(‰œØ¤
+?
+java:S1172¨"(Remove this unused method parameter "v".(¨‹–
+Q
+java:S1161µ":Add the "@Override" annotation above this method signature(Ôö§ó
+?
+java:S1185¼"(Remove this method to simply inherit it.(ÍÙ÷¢

@@ -1,0 +1,73 @@
+
+‹
+java:S1319)"pThe type of the "items" object should be an interface such as "List" rather than the implementation "ArrayList".(˜ƒÍ¨ùÿÿÿÿ
+Œ
+java:S1319Ö"pThe type of the "items" object should be an interface such as "List" rather than the implementation "ArrayList".(ú¬ÀÒşÿÿÿÿ
+a
+java:S1192b"FDefine a constant instead of duplicating this literal "FALSE" 3 times.(ÈÍéûÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¹Ø³µ
+c	java:S101‚"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öÚÕÍ
+f	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç—‰¥
+k	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ñ¿¶ıÿÿÿÿ
+k	java:S117^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÆı¶ùÿÿÿÿ
+f	java:S117_"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úòñ
+f	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ß†
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¿Ì
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(à¸Ü]
+—
+java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Š„×Ã
+n	java:S116"YRename this field "VIEW_TYPE_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Éàå÷
+m	java:S116#"SRename this field "Listener" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÒ“ùÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(Éàå÷
+<
+java:S1172M"&Remove these unused method parameters.(Š„×Ã
+c	java:S100{"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µÚ
+?
+java:S1659„"#Declare "Favon" on a separate line.(ŞÎƒğùÿÿÿÿ
+@
+java:S1659„"$Declare "Favoff" on a separate line.(ŞÎƒğùÿÿÿÿ
+@
+java:S1659…"$Declare "Writer" on a separate line.(™Ä–ÿıÿÿÿÿ
+?
+java:S1659…"#Declare "Intro" on a separate line.(™Ä–ÿıÿÿÿÿ
+A
+java:S1659…"%Declare "TopText" on a separate line.(™Ä–ÿıÿÿÿÿ
+B
+java:S1659…"&Declare "BookCode" on a separate line.(™Ä–ÿıÿÿÿÿ
+A
+java:S1659…"%Declare "BookFav" on a separate line.(™Ä–ÿıÿÿÿÿ
+=
+java:S1659…"!Declare "Bar" on a separate line.(™Ä–ÿıÿÿÿÿ
+B
+java:S1659…"&Declare "Category" on a separate line.(™Ä–ÿıÿÿÿÿ
+>
+java:S1659‡"'Declare "Book_Code" on a separate line.(¬“É›
+:
+java:S1659‡"#Declare "TOKEN" on a separate line.(¬“É›
+k	java:S116„"PRename this field "Image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎƒğùÿÿÿÿ
+k	java:S116„"PRename this field "Favon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎƒğùÿÿÿÿ
+l	java:S116„"QRename this field "Favoff" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎƒğùÿÿÿÿ
+k	java:S116…"PRename this field "Title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+l	java:S116…"QRename this field "Writer" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+k	java:S116…"PRename this field "Intro" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+m	java:S116…"RRename this field "TopText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+n	java:S116…"SRename this field "BookCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+m	java:S116…"RRename this field "BookFav" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+i	java:S116…"NRename this field "Bar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+n	java:S116…"SRename this field "Category" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ä–ÿıÿÿÿÿ
+h	java:S116†"SRename this field "Img_Wrap" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Q
+j	java:S116‡"TRename this field "BookTitle" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬“É›
+j	java:S116‡"TRename this field "Book_Code" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬“É›
+f	java:S116‡"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬“É›
+r	java:S116ˆ"\Rename this field "BookContentsWrapC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â¨½Í
+q	java:S116‰"VRename this field "GETUSERINFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÔ¿äÿÿÿÿÿ
+H
+java:S1602Å",Remove useless curly braces around statement(ßÔ¹õøÿÿÿÿ
+G
+java:S1481Ñ"0Remove this unused "progressBar" local variable.(©òêÌ

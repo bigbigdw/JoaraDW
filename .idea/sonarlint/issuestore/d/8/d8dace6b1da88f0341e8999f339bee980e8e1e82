@@ -1,0 +1,46 @@
+
+c
+java:S1192q"HDefine a constant instead of duplicating this literal "&token=" 6 times.(¤ŠÒºúÿÿÿÿ
+g	java:S101$"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨İ½ëûÿÿÿÿ
+f	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í‰Ç
+f	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¿Ì
+k	java:S117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“œ©åúÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+g	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿìˆå
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ïõÂñüÿÿÿÿ
+j
+java:S1450("TRemove the "queue" field and declare it as a local variable in the relevant methods.(®¤œé
+9
+java:S1659)"#Declare "TOKEN" on a separate line.(¸°ç‰
+;
+java:S1659)"%Declare "API_URL" on a separate line.(¸°ç‰
+;
+java:S1659)"%Declare "ETC_URL" on a separate line.(¸°ç‰
+D
+java:S1659,")Declare "GotoPremium" on a separate line.(·€Òˆøÿÿÿÿ
+D
+java:S1659,")Declare "GotoNobless" on a separate line.(·€Òˆøÿÿÿÿ
+r	java:S116'"XRename this field "Tab_ViewModel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨á¶…ùÿÿÿÿ
+j	java:S116)"URename this field "FinishType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰
+e	java:S116)"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰
+g	java:S116)"RRename this field "API_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰
+g	java:S116)"RRename this field "ETC_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰
+l	java:S116*"XRename this field "LoadingLayout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—òÅ:
+n	java:S116+"YRename this field "ContentsLayout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á£Êº
+l	java:S116,"RRename this field "GoToAll" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ
+p	java:S116,"VRename this field "GotoPremium" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ
+p	java:S116,"VRename this field "GotoNobless" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ
+U
+java:S1161A":Add the "@Override" annotation above this method signature(î•Éğûÿÿÿÿ
+E
+java:S1874L"/Remove this use of "Handler"; it is deprecated.(’Ú©Š
+h	java:S100}"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô¢Äøÿÿÿÿ
+i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ
+?
+java:S1185˜"(Remove this method to simply inherit it.(±íòÑ

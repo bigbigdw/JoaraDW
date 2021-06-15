@@ -24,12 +24,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import Bigbigdw.JoaraDW.Book_Pagination;
 import Bigbigdw.JoaraDW.Book_Viewer.Book_Viewer;
 import Bigbigdw.JoaraDW.JOARADW;
-import Bigbigdw.JoaraDW.Main.Main_BookListData;
 import Bigbigdw.JoaraDW.R;
 
 
@@ -49,7 +46,7 @@ public class Detail_Tab_1 extends Fragment {
 
         JOARADW myApp = (JOARADW) requireActivity().getApplicationContext();
         BOOKCODE = myApp.getBookCode();
-        TOKEN = myApp.getToken();
+        TOKEN = myApp.getTOKEN();
         BookDetailURL = myApp.getAPI_URL();
         queue = Volley.newRequestQueue(requireActivity());
 

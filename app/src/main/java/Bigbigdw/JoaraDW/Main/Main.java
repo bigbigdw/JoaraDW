@@ -33,14 +33,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import Bigbigdw.JoaraDW.Config;
 import Bigbigdw.JoaraDW.Etc.HELPER;
 import Bigbigdw.JoaraDW.Etc.Popup;
 import Bigbigdw.JoaraDW.Etc.Splash;
-import Bigbigdw.JoaraDW.JOARADW;
 import Bigbigdw.JoaraDW.Login.Login_Main;
 import Bigbigdw.JoaraDW.R;
 

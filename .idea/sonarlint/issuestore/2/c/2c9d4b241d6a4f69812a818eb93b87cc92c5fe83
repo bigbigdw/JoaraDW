@@ -1,0 +1,13 @@
+
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ñãÑÃùÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾õÃÏ
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(«óÜi
+q
+java:S1450"VRemove the "binding" field and declare it as a local variable in the relevant methods.(˜Ó‰Ôûÿÿÿÿ
+U
+java:S1161":Add the "@Override" annotation above this method signature(ÿ£º¡ÿÿÿÿÿ
+j	java:S116'"URename this field "TAB_TITLES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â‘«ì
+W
+java:S1874%"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(Ä§õŽùÿÿÿÿ
+Q
+java:S1874+"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(‘í›\
