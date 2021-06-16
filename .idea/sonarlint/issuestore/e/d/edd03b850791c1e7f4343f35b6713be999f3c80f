@@ -1,12 +1,12 @@
 
 ~
 java:S4165!"cRemove this useless assignment; "Intro" already holds the assigned value along all execution paths.(Ôî‡óýÿÿÿÿ
-y
-java:S4165""cRemove this useless assignment; "IsFav" already holds the assigned value along all execution paths.(á³óý
 }
 java:S4165"gRemove this useless assignment; "IsPremium" already holds the assigned value along all execution paths.(è—ð©
 }
 java:S4165 "gRemove this useless assignment; "IsNobless" already holds the assigned value along all execution paths.(‡Ø›Á
+y
+java:S4165""cRemove this useless assignment; "IsFav" already holds the assigned value along all execution paths.(á³óý
 \	java:S107"BConstructor has 16 parameters, which is greater than 7 authorized.(ÖÛÉàûÿÿÿÿ
 g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(öžÎ×úÿÿÿÿ
 k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÛÉàûÿÿÿÿ

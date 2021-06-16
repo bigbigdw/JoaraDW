@@ -1,0 +1,26 @@
+
+f	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Åıµ
+k	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Š¯›şÿÿÿÿ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎŞÉÄ
+k	java:S1175"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷—ÈËÿÿÿÿÿ
+f	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŞÁ×
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰í©…
+H
+java:S1128"3Remove this unused import 'android.content.Intent'.(³ğ‹G
+R
+java:S1128"<Remove this unused import 'com.android.volley.RequestQueue'.(¹şÌ×
+f
+java:S1128"KRemove this unused import 'Bigbigdw.JoaraDW.Book_Detail.Book_Detail_Cover'.(·Ô©úüÿÿÿÿ
+_
+java:S1128	"DRemove this unused import 'Bigbigdw.JoaraDW.Main.Main_BookListData'.(Ì£Ş¸üÿÿÿÿ
+h	java:S116"SRename this field "BOOKCODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â§ìÒ
+j	java:S116"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£º£«ûÿÿÿÿ
+l	java:S116"RRename this field "API_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Ù®ùşÿÿÿÿ
+o	java:S116"URename this field "USERSTATUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û°ãÙûÿÿÿÿ
+m	java:S116"SRename this field "UserName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú¦õ¨ùÿÿÿÿ
+>
+java:S1185"(Remove this method to simply inherit it.(Î¢È
+=
+java:S1185"(Remove this method to simply inherit it.(ˆâ¾
+h	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷—ÈËÿÿÿÿÿ
+h	java:S1009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íÍÏşÿÿÿÿ

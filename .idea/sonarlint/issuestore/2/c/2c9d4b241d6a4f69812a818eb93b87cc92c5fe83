@@ -7,7 +7,5 @@ java:S1450"VRemove the "binding" field and declare it as a local variable in t
 U
 java:S1161":Add the "@Override" annotation above this method signature(ÿ£º¡ÿÿÿÿÿ
 j	java:S116'"URename this field "TAB_TITLES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â‘«ì
-W
-java:S1874%"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(Ä§õŽùÿÿÿÿ
 Q
 java:S1874+"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(‘í›\

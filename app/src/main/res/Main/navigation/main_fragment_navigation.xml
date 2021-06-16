@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Fragment_Main"
-        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_Main"
+        android:name="bigbigdw.joaradw.fragment_main.FragmentInterfaceMain"
         android:label=""
         tools:layout="@layout/fragment_main">
         <action
@@ -24,21 +24,21 @@
 
     <fragment
         android:id="@+id/Fragment_Test"
-        android:name="Bigbigdw.JoaraDW.Test.Fragment_Test"
+        android:name="bigbigdw.joaradw.Test.Fragment_Test"
         android:label=""
         tools:layout="@layout/test" >
     </fragment>
 
     <fragment
         android:id="@+id/Fragment_Detail_1"
-        android:name="Bigbigdw.JoaraDW.Book_Detail.Detail_Tab_1"
+        android:name="bigbigdw.joaradw.Book_Detail.Detail_Tab_1"
         android:label=""
         tools:layout="@layout/book_detail_tab_1" >
     </fragment>
 
     <fragment
         android:id="@+id/Fragment_More"
-        android:name="Bigbigdw.JoaraDW.Fragment_Main.Fragment_More"
+        android:name="bigbigdw.joaradw.fragment_main.FragmentMore"
         android:label=""
         tools:layout="@layout/fragment_main_more" >
         <action
@@ -48,26 +48,26 @@
 
     <fragment
         android:id="@+id/Fragment_New"
-        android:name="Bigbigdw.JoaraDW.Fragment_New.Fragment_New"
+        android:name="bigbigdw.joaradw.Fragment_New.Fragment_New"
         android:label=""
         tools:layout="@layout/fragment_new" >
     </fragment>
 
     <fragment
         android:id="@+id/Fragment_Best"
-        android:name="Bigbigdw.JoaraDW.Fragment_Best.Fragment_Best"
+        android:name="bigbigdw.joaradw.Fragment_Best.Fragment_Best"
         android:label=""
         tools:layout="@layout/fragment_best" />
 
     <fragment
         android:id="@+id/Fragment_Finish"
-        android:name="Bigbigdw.JoaraDW.Fragment_Finish.Fragment_Finish"
+        android:name="bigbigdw.joaradw.Fragment_Finish.Fragment_Finish"
         android:label=""
         tools:layout="@layout/fragment_best" />
 
     <fragment
         android:id="@+id/Fragment_Fav"
-        android:name="Bigbigdw.JoaraDW.Fragment_Fav.Fragment_Fav"
+        android:name="bigbigdw.joaradw.Fragment_Fav.Fragment_Fav"
         android:label=""
         tools:layout="@layout/fragment_best" />
 

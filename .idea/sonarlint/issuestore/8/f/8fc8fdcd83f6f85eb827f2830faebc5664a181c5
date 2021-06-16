@@ -1,27 +1,29 @@
 
+e
+java:S2095;"OUse try-with-resources or close this "InputStreamReader" in a "finally" clause.(Ü¥­Ó
 b
-java:S2095<"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(„—ðô
+java:S2095&"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
 ^
 java:S2095%"HUse try-with-resources or close this "FileReader" in a "finally" clause.(¥¾°«
 b
-java:S2095&"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
-e
-java:S2095;"OUse try-with-resources or close this "InputStreamReader" in a "finally" clause.(Ü¥­Ó
+java:S2095<"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(„—ðô
 d
 java:S2095:"IUse try-with-resources or close this "InputStream" in a "finally" clause.(ÆÂïÏüÿÿÿÿ
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰í©…
-_
-java:S1128"IRemove this unused import 'com.android.volley.toolbox.JsonObjectRequest'.(Ã¦¿¾
 J
 java:S1128"4Remove this unused import 'android.content.Context'.(©Ê‰è
 S
 java:S1128"8Remove this unused import 'android.widget.LinearLayout'.(çîšçúÿÿÿÿ
 m
 java:S1128"RRemove this unused import 'com.google.android.material.navigation.NavigationView'.(Û²òÿÿÿÿÿ
-R
-java:S1128"<Remove this unused import 'com.android.volley.RequestQueue'.(¹þÌ×
 T
 java:S1128">Remove this unused import 'com.android.volley.toolbox.Volley'.(¢‰Ò¶
+I
+java:S1128".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ
+_
+java:S1128"IRemove this unused import 'com.android.volley.toolbox.JsonObjectRequest'.(Ã¦¿¾
+R
+java:S1128"<Remove this unused import 'com.android.volley.RequestQueue'.(¹þÌ×
 S
 java:S1128"8Remove this unused import 'Bigbigdw.JoaraDW.Etc.HELPER'.(Ù•Ýƒøÿÿÿÿ
 M
@@ -29,8 +31,6 @@ java:S1128
 "7Remove this unused import 'com.android.volley.Request'.(Å½ä
 E
 java:S1128"0Remove this unused import 'android.util.Base64'.(ìÔ×[
-I
-java:S1128".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ
 k
 java:S3008"URename this field "JSONObject" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( °¿´
 h	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÄÎ±ýÿÿÿÿ

@@ -8,14 +8,14 @@
 
     <fragment
         android:id="@+id/Fragment_Test"
-        android:name="Bigbigdw.JoaraDW.Test.Fragment_Test"
+        android:name="bigbigdw.joaradw.Test.Fragment_Test"
         android:label=""
         tools:layout="@layout/test" >
     </fragment>
 
     <fragment
         android:id="@+id/Fragment_Viewer"
-        android:name="Bigbigdw.JoaraDW.Book_Viewer.Fragment_Viewer"
+        android:name="bigbigdw.joaradw.Book_Viewer.Fragment_Viewer"
         android:label=""
         tools:layout="@layout/fragment_viewer" >
     </fragment>

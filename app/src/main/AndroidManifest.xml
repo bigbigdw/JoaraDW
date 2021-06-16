@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="Bigbigdw.JoaraDW">
+    package="bigbigdw.joaradw">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name=".JOARADW"
+        android:name="bigbigdw.joaradw.JOARADW"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,12 +13,12 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
-            android:name=".Etc.Splash"
+            android:name="bigbigdw.joaradw.etc.Splash"
             android:theme="@style/Theme.JoaraDW">
 
         </activity>
         <activity
-            android:name=".Main.Main"
+            android:name="bigbigdw.joaradw.main.Main"
             android:theme="@style/Theme.JoaraDW.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,51 +27,51 @@
         </activity>
 
         <activity
-            android:name=".Test.Test"
+            android:name="bigbigdw.joaradw.Test.Test"
             android:theme="@style/Theme.JoaraDW">
 
         </activity>
 
         <activity
-            android:name=".Login.Login_Main"
+            android:name="bigbigdw.joaradw.Login.Login_Main"
             android:theme="@style/Theme.JoaraDW">
 
         </activity>
 
         <activity
-            android:name=".Book_Detail.Book_Detail"
+            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
         <activity
-            android:name=".Book_Detail.Book_Detail_Cover"
+            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail_Cover"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
         <activity
-            android:name=".Book_Viewer.Book_Viewer"
+            android:name="bigbigdw.joaradw.Book_Viewer.Book_Viewer"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name=".Fragment_Main.Book_Page_Etc"
+            android:name="bigbigdw.joaradw.fragment_main.BookPageEtc"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name=".Book_Detail.Book_Detail_SubPage"
+            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail_SubPage"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name=".Book_Viewer.Viewer_Setting"
+            android:name="bigbigdw.joaradw.Book_Viewer.Viewer_Setting"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>

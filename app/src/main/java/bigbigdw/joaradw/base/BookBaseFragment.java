@@ -1,0 +1,116 @@
+package bigbigdw.joaradw.base;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+
+import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
+import bigbigdw.joaradw.BookPagination;
+import bigbigdw.joaradw.Config;
+import bigbigdw.joaradw.etc.BookList;
+import bigbigdw.joaradw.fragment_main.BookPageEtc;
+import bigbigdw.joaradw.main.MainBookListAdapterA;
+import bigbigdw.joaradw.main.Main_BookListAdapter_C;
+import bigbigdw.joaradw.main.Main_BookListAdapter_D;
+import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.JOARADW;
+
+public class BookBaseFragment extends Fragment {
+
+    String token = "";
+    String status = "";
+    String userName;
+    Bundle bundle;
+
+    public void checkToken() {
+        if (Config.getuserinfo() != null) {
+            JSONObject getUserInfo = Config.getuserinfo();
+            JSONObject userInfo;
+            try {
+                userInfo = getUserInfo.getJSONObject("user");
+                token = userInfo.getString("token");
+                status = getUserInfo.getString("status");
+                userName = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+
+                JOARADW app = (JOARADW) requireActivity().getApplicationContext();
+                app.setUserstatus(status);
+                app.setToken(token);
+                app.setUserName(userName);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void bookListA(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterA adapter, Integer wrap) {
+        RequestQueue queue = Volley.newRequestQueue(requireActivity());
+        BookList.bookListA(root, apiUrl, etc, recylerView, adapter, queue, wrap);
+        adapter.setOnItemClickListener((v, position, value) -> {
+            Main_BookListData item = adapter.getItem(position);
+            adapterListener(item, value, queue);
+        });
+    }
+
+    public void bookListC(View root, String apiUrl, String etc, Integer recylerView, Main_BookListAdapter_C adapter, Integer wrap) {
+        RequestQueue queue2 = Volley.newRequestQueue(requireActivity());
+        BookList.bookListC(root, apiUrl, etc, recylerView, adapter, queue2, wrap);
+        adapter.setOnItemClickListener((v, position, value) -> {
+            Main_BookListData item = adapter.getItem(position);
+            adapterListener(item, value, queue2);
+        });
+    }
+
+    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, Main_BookListAdapter_D adapter, Integer wrap) {
+        RequestQueue queue3 = Volley.newRequestQueue(requireActivity());
+        BookList.bookListD(root, apiUrl, etc, recylerView, adapter, queue3, wrap);
+        adapter.setOnItemClickListener((v, position, value) -> {
+            Main_BookListData item = adapter.getItem(position);
+            adapterListener(item, value, queue3);
+        });
+    }
+
+    public void adapterListener(Main_BookListData item, String value, RequestQueue queue) {
+        if (value.equals("FAV")) {
+            BookPagination.FavToggle(queue, item.getBookCode(), token);
+        } else if (value.equals("BookDetail")) {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+            intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
+            intent.putExtra("token", String.format("%s", token));
+            startActivity(intent);
+        }
+    }
+
+    public void goToBookPageEtc(String title, String apiUrl, String etcURL) {
+        Intent intent = new Intent(requireContext().getApplicationContext(), BookPageEtc.class);
+        intent.putExtra("Title", String.format("%s", title));
+        intent.putExtra("API_URL", String.format("%s", apiUrl));
+        intent.putExtra("ETC_URL", String.format("%s", etcURL));
+        startActivity(intent);
+    }
+
+    public void gotoMore(int num, int nav, Fragment fragment) {
+        bundle = new Bundle();
+        bundle.putInt("TabNum", num);
+        NavHostFragment.findNavController(fragment)
+                .navigate(nav, bundle);
+    }
+
+    public void gotoURL(String url){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
+
+
+}

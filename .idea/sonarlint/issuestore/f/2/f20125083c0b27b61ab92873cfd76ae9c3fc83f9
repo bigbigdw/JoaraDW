@@ -1,0 +1,70 @@
+
+b
+java:S1192\"GDefine a constant instead of duplicating this literal "status" 4 times.(•ªœüÿÿÿÿ
+k	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷†ÌËüÿÿÿÿ
+f	java:S117["QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øÓ¢ö
+f	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö—ØÙ
+k	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ…Ö©ÿÿÿÿÿ
+f	java:S117h"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô„Ñ‘
+f	java:S117‡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦œH
+g	java:S117“"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹´·Ç
+g	java:S117“"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹´·Ç
+g	java:S117“"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹´·Ç
+g	java:S117”"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°ş®‡
+l	java:S117¾"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ÆÃ‹ùÿÿÿÿ
+g	java:S117ğ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿˜¬‘
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(à¸Ü]
+?
+java:S1604É"(Make this anonymous inner class a lambda(©Ñ˜Ï
+?
+java:S1604Ï"(Make this anonymous inner class a lambda(¨¹ÿÂ
+:
+java:S16592"$Declare "STATUS" on a separate line.(ã‰ºˆ
+@
+java:S16593"*Declare "Drawer_LogIn" on a separate line.(¨¡¶
+:
+java:S16595"$Declare "Coupon" on a separate line.(£Ê½í
+8
+java:S16595""Declare "Cash" on a separate line.(£Ê½í
+E
+java:S16595"/Declare "Manuscript_Coupon" on a separate line.(£Ê½í
+B
+java:S16595",Declare "Support_Coupon" on a separate line.(£Ê½í
+<
+java:S16595"&Declare "UserName" on a separate line.(£Ê½í
+s	java:S116/"^Rename this field "AppBarConfiguration" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çÂ£ş
+j	java:S1160"PRename this field "Popup" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë¨ú•şÿÿÿÿ
+k	java:S1161"VRename this field "IsFirstPage" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§İÏ£
+i	java:S1162"TRename this field "USERTOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã‰ºˆ
+f	java:S1162"QRename this field "STATUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã‰ºˆ
+m	java:S1163"XRename this field "Drawer_LogOut" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¡¶
+l	java:S1163"WRename this field "Drawer_LogIn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¡¶
+d	java:S1165"ORename this field "Mana" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+f	java:S1165"QRename this field "Coupon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+d	java:S1165"ORename this field "Cash" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+q	java:S1165"\Rename this field "Manuscript_Coupon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+n	java:S1165"YRename this field "Support_Coupon" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+h	java:S1165"SRename this field "UserName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Ê½í
+p	java:S1166"VRename this field "GETUSERINFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÔ¿äÿÿÿÿÿ
+p	java:S116É"ZRename this field "BtnLeftListener" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©Ñ˜Ï
+q	java:S116Ï"[Rename this field "BtnRightListener" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¹ÿÂ
+d	java:S100“"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹´·Ç
+Q
+java:S1161±":Add the "@Override" annotation above this method signature(Ôö§ó
+?
+java:S1185¸"(Remove this method to simply inherit it.(ñ”Ò
+Q
+java:S1161¸":Add the "@Override" annotation above this method signature(ñ”Ò
+?
+java:S1172Õ"(Remove this unused method parameter "v".(¶ÅÓ¾
+i	java:S100İ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±¹¡şÿÿÿÿ
+D
+java:S1172ï"(Remove this unused method parameter "v".(Ô£©üÿÿÿÿ
+S
+java:S1854ñ"<Remove this useless assignment to local variable "filename".(ğùı
+=
+java:S1075ñ"&Remove this hard-coded path-delimiter.(ğùı
+?
+java:S1185„"(Remove this method to simply inherit it.(ÍÙ÷¢
+D
+java:S1481ñ"-Remove this unused "filename" local variable.(ğùı

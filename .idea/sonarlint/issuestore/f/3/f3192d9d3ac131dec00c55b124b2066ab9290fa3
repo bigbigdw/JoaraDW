@@ -7,6 +7,4 @@ k	java:S116"QRename this field "TabNum" to match the regular expression '^[a-
 U
 java:S1161":Add the "@Override" annotation above this method signature(ÿ£º¡ÿÿÿÿÿ
 R
-java:S18741"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(Å˜ý
-R
 java:S18746"<Remove this use of "FragmentPagerAdapter"; it is deprecated.(ó²–Ñ
