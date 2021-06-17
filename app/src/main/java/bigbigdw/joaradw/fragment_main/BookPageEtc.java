@@ -19,18 +19,17 @@ import java.util.Objects;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Fragment_Best.Main_BookListAdapter_Best;
 import bigbigdw.joaradw.base.BookBaseAcitivy;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class BookPageEtc extends BookBaseAcitivy {
-    private Main_BookListAdapter_C adapter;
+    private MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
-    private final ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
     LinearLayout cover;
     LinearLayout blank;
-    String token = "";
     String title;
     String etcUrl;
     String apiUrl;
@@ -69,11 +68,11 @@ public class BookPageEtc extends BookBaseAcitivy {
 
         queue = Volley.newRequestQueue(this);
 
-        BookPagination.populateData(apiUrl, etcUrl + "&page=1", queue, wrap, items, cover, blank, type);
+        BookPagination.populateData(apiUrl, etcUrl + "&page=1", queue, wrap, items, cover, blank);
         initAdapter();
 
         if(type.equals("FINISH")){
-            BookPagination.ScrollListener(apiUrl, queue, wrap, items, adapter, recyclerView, etcUrl);
+            BookPagination.scrollListener(apiUrl, queue, wrap, items, adapter, recyclerView, etcUrl);
         }
 
     }
@@ -87,18 +86,18 @@ public class BookPageEtc extends BookBaseAcitivy {
             recyclerView.setAdapter(bestAdapter);
 
             bestAdapter.setOnItemClickListener((v, position, value) -> {
-                Main_BookListData item = adapter.getItem(position);
+                MainBookListData item = adapter.getItem(position);
                 adapterListener(item, value, queue);
             });
         } else {
-            adapter = new Main_BookListAdapter_C(items);
+            adapter = new MainBookListAdapterC(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             adapter.notifyDataSetChanged();
             recyclerView.setAdapter(adapter);
 
             adapter.setOnItemClickListener((v, position, value) -> {
-                Main_BookListData item = adapter.getItem(position);
+                MainBookListData item = adapter.getItem(position);
                 adapterListener(item, value, queue);
             });
         }

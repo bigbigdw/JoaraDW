@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 
-import bigbigdw.joaradw.main.Main_BookListAdapter_D;
+import bigbigdw.joaradw.main.MainBookListAdapterD;
 import bigbigdw.joaradw.main.MainBookListAdapterA;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookData;
-import bigbigdw.joaradw.main.Main_BookData_JSON;
-import bigbigdw.joaradw.main.Main_BookData_Webtoon;
-import bigbigdw.joaradw.main.Main_BookListAdapter_B;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookData;
+import bigbigdw.joaradw.main.MainBookDataJSON;
+import bigbigdw.joaradw.main.MainBookDataWebtoon;
+import bigbigdw.joaradw.main.MainBookListAdapterB;
 
 
 public interface BookList {
@@ -26,25 +26,25 @@ public interface BookList {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         LinearLayout wrap = root.findViewById(integer);
-        adapter.setItems(new Main_BookData().getData(apiUrl, etc, queue, wrap, ""));
+        adapter.setItems(new MainBookData().getData(apiUrl, etc, queue, wrap, ""));
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListB(View root, AssetManager assetManager, String bookType, Integer recylerView, Main_BookListAdapter_B adapter) {
+    static void bookListB(View root, AssetManager assetManager, String bookType, Integer recylerView, MainBookListAdapterB adapter) {
         RecyclerView recyclerView = root.findViewById(recylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        adapter.setItems(new Main_BookData_JSON().getData(assetManager, bookType));
+        adapter.setItems(new MainBookDataJSON().getData(assetManager, bookType));
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListC(View root, String apiUrl, String etc, Integer recylerview, Main_BookListAdapter_C adapter, RequestQueue queue, Integer integer) {
+    static void bookListC(View root, String apiUrl, String etc, Integer recylerview, MainBookListAdapterC adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         LinearLayout wrap = root.findViewById(integer);
-        adapter.setItems(new Main_BookData().getData(apiUrl, etc, queue, wrap, ""));
+        adapter.setItems(new MainBookData().getData(apiUrl, etc, queue, wrap, ""));
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
@@ -55,21 +55,21 @@ public interface BookList {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         LinearLayout wrap = root.findViewById(integer);
-        adapter.setItems(new Main_BookData_Webtoon().getData(apiUrl, etc, queue, wrap));
+        adapter.setItems(new MainBookDataWebtoon().getData(apiUrl, etc, queue, wrap));
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListD(View root, String apiUrl, String etc, Integer recylerview, Main_BookListAdapter_D adapter, RequestQueue queue, Integer integer) {
+    static void bookListD(View root, String apiUrl, String etc, Integer recylerview, MainBookListAdapterD adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         LinearLayout wrap = root.findViewById(integer);
-        adapter.setItems(new Main_BookData().getData(apiUrl, etc, queue, wrap,""));
+        adapter.setItems(new MainBookData().getData(apiUrl, etc, queue, wrap,""));
         adapter.notifyDataSetChanged();
     }
 
-    static void initAdapterC(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, Main_BookListAdapter_C adapter) {
+    static void initAdapterC(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, MainBookListAdapterC adapter) {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);

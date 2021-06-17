@@ -28,15 +28,15 @@ import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookListData;
-import bigbigdw.joaradw.main.Tab_ViewModel;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.R;
 
 public class Finish_Tab extends Fragment {
-    private final ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private bigbigdw.joaradw.main.Tab_ViewModel Tab_ViewModel;
+    private TabViewModel TabViewModel;
     private RequestQueue queue;
     String FinishType = "redate", TOKEN = "", API_URL = "/v1/book/list.joa", ETC_URL = "&category=0&offset=10&page=1&store=finish&orderby=";
     LinearLayout LoadingLayout;
@@ -54,12 +54,12 @@ public class Finish_Tab extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Tab_ViewModel = new ViewModelProvider(this).get(Tab_ViewModel.class);
+        TabViewModel = new ViewModelProvider(this).get(TabViewModel.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Tab_ViewModel.setIndex(index);
+        TabViewModel.setIndex(index);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -91,11 +91,11 @@ public class Finish_Tab extends Fragment {
             }
         }
 
-        Main_BookListAdapter_C newAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C noblessAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C premiumAdapter = new Main_BookListAdapter_C(items);
+        MainBookListAdapterC newAdapter = new MainBookListAdapterC(items);
+        MainBookListAdapterC noblessAdapter = new MainBookListAdapterC(items);
+        MainBookListAdapterC premiumAdapter = new MainBookListAdapterC(items);
 
-        Tab_ViewModel.getText().observe(getViewLifecycleOwner(), TabNum -> {
+        TabViewModel.getText().observe(getViewLifecycleOwner(), TabNum -> {
             switch (TabNum) {
                 case "TAB1":
                     FinishType = "redate";
@@ -122,13 +122,13 @@ public class Finish_Tab extends Fragment {
         return root;
     }
 
-    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, Main_BookListAdapter_C Adapter, RequestQueue queue, Integer Wrap) {
+    public void BookFinish(View root, String API_URL, String ETC, Integer RecylerView, MainBookListAdapterC Adapter, RequestQueue queue, Integer Wrap) {
         BookList.bookListC(root, API_URL, ETC, RecylerView, Adapter, queue, Wrap);
 
         Adapter.setOnItemClickListener((v, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
+            MainBookListData item = Adapter.getItem(position);
             if(Value.equals("FAV")){
-                BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")){
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode",String.format("%s", item.getBookCode()));

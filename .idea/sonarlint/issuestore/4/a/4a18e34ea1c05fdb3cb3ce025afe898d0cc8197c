@@ -1,0 +1,15 @@
+
+Ü
+java:S13193"pThe type of the "items" object should be an interface such as "List" rather than the implementation "ArrayList".(Ç”„ç
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(„∞ÿÍˇˇˇˇˇ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(∞–Ã∂
+8
+java:S16599""Declare "Date" on a separate line.(ä¥¨ñ
+:
+java:S16599"$Declare "SortNo" on a separate line.(ä¥¨ñ
+D
+java:S16599".Declare "BookSurveyStatus" on a separate line.(ä¥¨ñ
+h	java:S1169"SRename this field "Contents" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä¥¨ñ
+d	java:S1169"ORename this field "Date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä¥¨ñ
+f	java:S1169"QRename this field "SortNo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä¥¨ñ
+p	java:S1169"[Rename this field "BookSurveyStatus" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä¥¨ñ

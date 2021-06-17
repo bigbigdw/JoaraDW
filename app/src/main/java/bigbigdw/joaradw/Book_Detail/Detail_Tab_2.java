@@ -22,16 +22,16 @@ import java.util.ArrayList;
 
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class Detail_Tab_2 extends Fragment {
-    private Main_BookListAdapter_C Adapter;
+    private MainBookListAdapterC Adapter;
     private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private ArrayList<MainBookListData> items = new ArrayList<>();
     LinearLayout Wrap, Cover, Blank;
     String TOKEN = "" , ETC = "", BOOKCODE = "", API = "/v1/book/other.joa";
 
@@ -62,13 +62,13 @@ public class Detail_Tab_2 extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-        BookPagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
+        BookPagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         initAdapter();
 
         Adapter.setOnItemClickListener((v, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
+            MainBookListData item = Adapter.getItem(position);
             if(Value.equals("FAV")){
-                BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")){
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode",String.format("%s", item.getBookCode()));
@@ -81,7 +81,7 @@ public class Detail_Tab_2 extends Fragment {
     }
 
     private void initAdapter() {
-        Adapter = new Main_BookListAdapter_C(items);
+        Adapter = new MainBookListAdapterC(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         Adapter.notifyDataSetChanged();

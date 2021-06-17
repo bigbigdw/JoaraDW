@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/Fragment_Test"
-        android:name="bigbigdw.joaradw.Test.Fragment_Test"
+        android:name="bigbigdw.joaradw.test.FragmentTest"
         android:label=""
         tools:layout="@layout/test" >
     </fragment>

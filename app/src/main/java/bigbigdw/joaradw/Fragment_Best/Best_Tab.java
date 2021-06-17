@@ -28,16 +28,16 @@ import bigbigdw.joaradw.fragment_main.BookPageEtc;
 import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.main.Main_BookData;
-import bigbigdw.joaradw.main.Main_BookListData;
-import bigbigdw.joaradw.main.Tab_ViewModel;
+import bigbigdw.joaradw.main.MainBookData;
+import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.R;
 
 public class Best_Tab extends Fragment {
     private RequestQueue queue;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private ArrayList<MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private Tab_ViewModel Tab_ViewModel;
+    private TabViewModel TabViewModel;
     String BestType = "weekly", TOKEN = "", TabName = "", API_URL = "/v1/best/book.joa", ETC_URL = "&orderby=cnt_best&offset=100&page=1";
     LinearLayout LoadingLayout;
     NestedScrollView ContentsLayout;
@@ -56,12 +56,12 @@ public class Best_Tab extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Tab_ViewModel = new ViewModelProvider(this).get(Tab_ViewModel.class);
+        TabViewModel = new ViewModelProvider(this).get(TabViewModel.class);
         index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Tab_ViewModel.setIndex(index);
+        TabViewModel.setIndex(index);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -104,7 +104,7 @@ public class Best_Tab extends Fragment {
         Main_BookListAdapter_Best FinishAdapter = new Main_BookListAdapter_Best(items);
         Main_BookListAdapter_Best NoblessClassicAdapter = new Main_BookListAdapter_Best(items);
 
-        Tab_ViewModel.getText().observe(getViewLifecycleOwner(), TabNum -> {
+        TabViewModel.getText().observe(getViewLifecycleOwner(), TabNum -> {
             switch (TabNum) {
                 case "TAB1":
                     BestType = "realtime";
@@ -150,13 +150,13 @@ public class Best_Tab extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
         LinearLayout wrap = root.findViewById(Wrap);
-        Adapter.setItems(new Main_BookData().getData(API_URL, ETC, queue, wrap, "BEST"));
+        Adapter.setItems(new MainBookData().getData(API_URL, ETC, queue, wrap, "BEST"));
         Adapter.notifyDataSetChanged();
 
         Adapter.setOnItemClickListener((v, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
+            MainBookListData item = Adapter.getItem(position);
             if (Value.equals("FAV")) {
-                BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")) {
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode", String.format("%s", item.getBookCode()));

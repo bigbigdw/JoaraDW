@@ -14,15 +14,15 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class Main_BookList_Adapter_History extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<Main_BookListData> listData;
+    ArrayList<MainBookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
 
-    public Main_BookList_Adapter_History(ArrayList<Main_BookListData> items) {
+    public Main_BookList_Adapter_History(ArrayList<MainBookListData> items) {
         this.listData = items;
     }
 
@@ -66,7 +66,7 @@ public class Main_BookList_Adapter_History extends RecyclerView.Adapter<Recycler
     }
 
     private void populateItemRows(Main_BookList_Adapter_History.Main_BookListViewHolder_New holder, int position) {
-        Main_BookListData item = listData.get(position);
+        MainBookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())

@@ -3,6 +3,7 @@ package bigbigdw.joaradw.etc;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -17,7 +18,7 @@ import bigbigdw.joaradw.R;
 
 public class Splash extends Activity {
     RequestQueue queue;
-    String TOKEN = "";
+    String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,8 @@ public class Splash extends Activity {
 
         queue = Volley.newRequestQueue(this);
 
-        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + "&token=" + TOKEN;
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+        String resultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + "&token=" + token;
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
 
             try {
                 if (!response.getString("status").equals("1")) {
@@ -42,7 +43,7 @@ public class Splash extends Activity {
     }
 
     private void startLoading() {
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.myLooper());
         handler.postDelayed(this::finish, 2000);
     }
 

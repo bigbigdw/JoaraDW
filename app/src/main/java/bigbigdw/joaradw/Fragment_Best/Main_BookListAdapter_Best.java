@@ -20,12 +20,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import bigbigdw.joaradw.Config;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    ArrayList<Main_BookListData> listData;
+    ArrayList<MainBookListData> listData;
     private final int VIEW_TYPE_ITEM = 0;
 
     public interface OnItemClickListener {
@@ -38,7 +38,7 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         this.Listener = listener;
     }
 
-    public Main_BookListAdapter_Best(ArrayList<Main_BookListData> items) {
+    public Main_BookListAdapter_Best(ArrayList<MainBookListData> items) {
         this.listData = items;
     }
 
@@ -78,7 +78,7 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
     }
 
     private void populateItemRows(Main_BookListAdapter_Best.Main_BookListViewHolder_Best holder, int position) {
-        Main_BookListData item = listData.get(position);
+        MainBookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
@@ -209,11 +209,11 @@ public class Main_BookListAdapter_Best extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public void setItems(ArrayList<Main_BookListData> items) {
+    public void setItems(ArrayList<MainBookListData> items) {
         this.listData = items;
     }
 
-    public Main_BookListData getItem(int position) {
+    public MainBookListData getItem(int position) {
         return listData.get(position);
     }
 

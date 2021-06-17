@@ -31,13 +31,13 @@ import bigbigdw.joaradw.Book_Detail.Book_Detail;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class Fav_Tab_Fav extends Fragment {
     private Main_BookListAdapter_Fav Adapter;
     private RecyclerView recyclerView;
-    private ArrayList<Main_BookListData> items = new ArrayList<>();
+    private ArrayList<MainBookListData> items = new ArrayList<>();
     LinearLayout Wrap, LoginLayout;
     String STATUS = "", TOKEN = "", API = "/v1/user/favorite.joa";
     TextView Book_Fav_CoverText;
@@ -74,9 +74,9 @@ public class Fav_Tab_Fav extends Fragment {
             initScrollListener();
 
             Adapter.setOnItemClickListener((v, position, Value) -> {
-                Main_BookListData item = Adapter.getItem(position);
+                MainBookListData item = Adapter.getItem(position);
                 if (Value.equals("FAV")) {
-                    BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                    BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
                 } else if (Value.equals("BookDetail")) {
                     Intent intent = new Intent(getActivity().getApplicationContext(), Book_Detail.class);
                     intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
@@ -149,7 +149,7 @@ public class Fav_Tab_Fav extends Fragment {
                                         String BookCode = jo.getString("book_code");
                                         String BookCategory = jo.getString("category_ko_name");
 
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",0,"",BookCode,BookCategory));
+                                        items.add(new MainBookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",0,"",BookCode,BookCategory));
                                         Wrap.setVisibility(View.VISIBLE);
                                     }
 

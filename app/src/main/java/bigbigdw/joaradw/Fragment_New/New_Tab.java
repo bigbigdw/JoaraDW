@@ -28,17 +28,17 @@ import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookData_JSON;
-import bigbigdw.joaradw.main.Tab_ViewModel;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookDataJSON;
+import bigbigdw.joaradw.main.TabViewModel;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class New_Tab extends Fragment {
-    private Main_BookListAdapter_C Adapter;
-    private final ArrayList<Main_BookListData> items = new ArrayList<>();
+    private MainBookListAdapterC Adapter;
+    private final ArrayList<MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private Tab_ViewModel Tab_ViewModel;
+    private TabViewModel TabViewModel;
     LinearLayout Wrap, Cover, Blank;
     String Store = "";
     String TOKEN = "", ETC = "", CLASS = "&class=";
@@ -59,12 +59,12 @@ public class New_Tab extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Tab_ViewModel = new ViewModelProvider(this).get(Tab_ViewModel.class);
+        TabViewModel = new ViewModelProvider(this).get(TabViewModel.class);
         int index = 1;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Tab_ViewModel.setIndex(index);
+        TabViewModel.setIndex(index);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class New_Tab extends Fragment {
         Wrap = root.findViewById(R.id.TabWrap);
         Cover = root.findViewById(R.id.LoadingLayout);
         Blank = root.findViewById(R.id.BlankLayout);
-        Adapter = new Main_BookListAdapter_C(items);
+        Adapter = new MainBookListAdapterC(items);
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         if (Config.getuserinfo() != null) {
@@ -91,7 +91,7 @@ public class New_Tab extends Fragment {
 
         AssetManager assetManager = getActivity().getAssets();
 
-        Tab_ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        TabViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String TabNum) {
                 if (TabNum.equals("TAB1")) {
@@ -126,14 +126,14 @@ public class New_Tab extends Fragment {
     }
     public void NewBookList(){
         ETC = "&store=" + Store + "&orderby=redate&offset=25&page=" + 1 + "&token=" + TOKEN + CLASS;
-        BookPagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank, "");
+        BookPagination.populateData(API, ETC, queue, Wrap, items, Cover, Blank);
         BookList.initAdapterC(recyclerView, linearLayoutManager, Adapter);
-        BookPagination.ScrollListener(API, queue, Wrap, items, Adapter, recyclerView, ETC);
+        BookPagination.scrollListener(API, queue, Wrap, items, Adapter, recyclerView, ETC);
 
         Adapter.setOnItemClickListener((v, position, Value) -> {
-            Main_BookListData item = Adapter.getItem(position);
+            MainBookListData item = Adapter.getItem(position);
             if (Value.equals("FAV")) {
-                BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")) {
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
@@ -153,7 +153,7 @@ public class New_Tab extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(Adapter);
-        Adapter.setItems(new Main_BookData_JSON().getData(assetManager, BookType));
+        Adapter.setItems(new MainBookDataJSON().getData(assetManager, BookType));
         Adapter.notifyDataSetChanged();
     }
 

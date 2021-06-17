@@ -1,0 +1,48 @@
+
+g
+java:S2095q"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(ããŒıÿÿÿÿ
+z
+java:S1192—"cDefine a constant instead of duplicating this literal "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤" 3 times.(«ÊôÅ
+g	java:S101$"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(š‘˜şıÿÿÿÿ
+k	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î›ôõşÿÿÿÿ
+g	java:S117„"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş†Éá
+g	java:S117…"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôëãŠ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êïª×üÿÿÿÿ
+?
+java:S1659&"$Declare "PWtext" on a separate line.(ÆÑÉÂüÿÿÿÿ
+k	java:S116&"QRename this field "IDtext" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÑÉÂüÿÿÿÿ
+k	java:S116&"QRename this field "PWtext" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÑÉÂüÿÿÿÿ
+d	java:S116'"ORename this field "LOGO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«áÈç
+h	java:S116)"SRename this field "LoginBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìª†ğ
+j	java:S116*"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”Ïçşÿÿÿÿ
+–
+java:S11869"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(°Ÿ
+
+—
+java:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦›ß·
+–
+java:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(°Ÿ
+
+—
+java:S1186R"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦›ß·
+c	java:S100l"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óŸ›¸
+>
+java:S1172z"(Remove this unused method parameter "v".(¶ÅÓ¾
+=
+java:S1075†"&Remove this hard-coded path-delimiter.(ğùı
+O	java:S106›"9Replace this use of System.out or System.err by a logger.(ÿƒ®ë
+u
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ
+D
+java:S1172º"(Remove this unused method parameter "v".(æãæ‚ûÿÿÿÿ
+D
+java:S1172¿"(Remove this unused method parameter "v".(¿ÅÅ¨üÿÿÿÿ
+Q	java:S125Á"<This block of commented-out lines of code should be removed.(Æå,
+>
+java:S1172Å"(Remove this unused method parameter "v".(õ–’y
+W	java:S125Ç"<This block of commented-out lines of code should be removed.(³±’ïıÿÿÿÿ
+D
+java:S1172Ì"(Remove this unused method parameter "v".(‡éÏøùÿÿÿÿ
+R	java:S125Î"<This block of commented-out lines of code should be removed.(Ì³­ 
+?
+java:S1185Ó"(Remove this method to simply inherit it.(ÍÙ÷¢

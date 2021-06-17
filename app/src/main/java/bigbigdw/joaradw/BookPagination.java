@@ -1,6 +1,7 @@
 package bigbigdw.joaradw;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -25,10 +26,13 @@ import java.util.Map;
 
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.model.BookInfo;
 
 public interface BookPagination {
+
+    String BOOKS = "books";
 
     static void loginCheck(RequestQueue queue, String token, TextView bookFavCoverText) {
         String resultURL = HELPER.API + API.USER_TOKEN_CHECK_JOA + HELPER.ETC + token;
@@ -50,40 +54,24 @@ public interface BookPagination {
         queue.add(jsonRequest);
     }
 
-    static void populateDataFav(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, String Type) {
+    static void populateDataFav(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, ArrayList<MainBookListData> items, LinearLayout cover, String type) {
         String resultURL = HELPER.API + apiUrl + HELPER.ETC + etc;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
             try {
-                    JSONArray flag = response.getJSONArray("books");
+                    JSONArray flag = response.getJSONArray(BOOKS);
 
                     for (int i = 0; i < flag.length(); i++) {
                         JSONObject jo = flag.getJSONObject(i);
+                        BookInfo tempBookInfo = BookInfo.getParseData(jo);
 
-                        String bookImg = jo.getString("book_img");
-                        String title = jo.getString("subject");
-                        String writer = jo.getString("writer_name");
-                        String isAdult = jo.getString("is_adult");
-                        String isFinish = jo.getString("is_finish");
-                        String isPremium = jo.getString("is_premium");
-                        String isNobless = jo.getString("is_nobless");
-                        String intro = jo.getString("intro");
-                        String isFavorite = jo.getString("is_favorite");
-                        String bookCode = jo.getString("book_code");
-                        String categoryKoName = jo.getString("category_ko_name");
-                        String cntPageRead = jo.getString("cnt_page_read");
-                        String cntFavorite = jo.getString("cnt_favorite");
-                        String cntRecom = jo.getString("cnt_recom");
-
-
-                        if(Type.equals("Fav")){
-                            items.add(new Main_BookListData(writer, title, bookImg, isAdult, isFinish, isPremium, isNobless, intro, isFavorite,  cntPageRead, cntFavorite, cntRecom, 0, "", bookCode,categoryKoName));
+                        if(type.equals("Fav")){
+                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, "", tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
                         }else {
-                            String historySortno = jo.getString("history_sortno");
-                            items.add(new Main_BookListData(writer, title, bookImg, isAdult, isFinish, isPremium, isNobless, intro, isFavorite,  cntPageRead, cntFavorite, cntRecom, 0, historySortno, bookCode,categoryKoName));
+                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, tempBookInfo.getHistorySortno(), tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
                         }
 
-                        Cover.setVisibility(View.GONE);
+                        cover.setVisibility(View.GONE);
                         wrap.setVisibility(View.VISIBLE);
                     }
             } catch (JSONException e) {
@@ -95,83 +83,44 @@ public interface BookPagination {
     }
 
 
-    static void populateData(String API_URL, String ETC, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, LinearLayout Cover, LinearLayout Blank, String Type) {
-        String ResultURL = HELPER.API + API_URL + HELPER.ETC + ETC;
+    static void populateData(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, ArrayList<MainBookListData> items, LinearLayout cover, LinearLayout blank) {
+        String resultURL = HELPER.API + apiUrl + HELPER.ETC + etc;
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
 
             try {
-                JSONArray flag = response.getJSONArray("books");
+                JSONArray flag = response.getJSONArray(BOOKS);
 
                 if(flag.length() == 0){
-                    Blank.setVisibility(View.VISIBLE);
+                    blank.setVisibility(View.VISIBLE);
                 } else {
-                    Blank.setVisibility(View.GONE);
+                    blank.setVisibility(View.GONE);
                 }
 
                 for (int i = 0; i < flag.length(); i++) {
                     JSONObject jo = flag.getJSONObject(i);
 
-                    String BookImg = jo.getString("book_img");
-                    String Title = jo.getString("subject");
-                    String Writer = jo.getString("writer_name");
-                    String IsAdult = jo.getString("is_adult");
-                    String IsFinish = jo.getString("is_finish");
-                    String IsPremium = jo.getString("is_premium");
-                    String IsNobless = jo.getString("is_nobless");
-                    String Intro = jo.getString("intro");
-                    String IsFav = jo.getString("is_favorite");
-                    String BookCode = jo.getString("book_code");
-                    String BookCategory = jo.getString("category_ko_name");
+                    BookInfo tempBookInfo = BookInfo.getParseData(jo);
+                    BookInfo tempBookInfoBest = BookInfo.getParseBest(i);
 
-                    String BestViewed = jo.getString("cnt_page_read");
-                    String BestFav = jo.getString("cnt_favorite");
-                    String BestRecommend = jo.getString("cnt_recom");
-
-                    Integer BookBestRank = 0;
-
-                    if(i == 0){
-                        BookBestRank = R.drawable.icon_best_1;
-                    } else if (i == 1){
-                        BookBestRank = R.drawable.icon_best_2;
-                    } else if (i == 2) {
-                        BookBestRank = R.drawable.icon_best_3;
-                    } else if (i == 3) {
-                        BookBestRank = R.drawable.icon_best_4;
-                    } else if (i == 4) {
-                        BookBestRank = R.drawable.icon_best_5;
-                    } else if (i == 5) {
-                        BookBestRank = R.drawable.icon_best_6;
-                    } else if (i == 6) {
-                        BookBestRank = R.drawable.icon_best_7;
-                    } else if (i == 7) {
-                        BookBestRank = R.drawable.icon_best_8;
-                    } else if  (i == 8) {
-                        BookBestRank = R.drawable.icon_best_9;
-                    } 
-
-                    items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,BestViewed,BestFav,BestRecommend,BookBestRank,"1",BookCode,BookCategory));
-                    Cover.setVisibility(View.GONE);
-                    Wrap.setVisibility(View.VISIBLE);
+                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                    cover.setVisibility(View.GONE);
+                    wrap.setVisibility(View.VISIBLE);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.d("Book_Pagination", "에러!"));
+        }, error -> Log.d("populateData", "에러!"));
 
         queue.add(jsonRequest);
     }
 
-    static void ScrollListener(String API, RequestQueue queue, LinearLayout Wrap, ArrayList<Main_BookListData> items, Main_BookListAdapter_C Adpater, RecyclerView recyclerView, String ETC) {
+    static void scrollListener(String api, RequestQueue queue, LinearLayout wrap, ArrayList<MainBookListData> items, MainBookListAdapterC adpater, RecyclerView recyclerView, String etc) {
 
         final boolean[] isLoading = {false};
-        final int[] Page = {2};
+        final int[] page = {2};
 
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -179,82 +128,66 @@ public interface BookPagination {
 
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
-                if (!isLoading[0]) {
-                    if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
+                    if (!isLoading[0] && layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
 
-                        String ResultURL = HELPER.API + API + HELPER.ETC + ETC + "&page=" + Page[0];
-                        Log.d("ScrollListener",ResultURL);
+                        String resultURL = HELPER.API + api + HELPER.ETC + etc + "&page=" + page[0];
 
                         items.add(null);
-                        Adpater.notifyItemInserted(items.size() - 1);
+                        adpater.notifyItemInserted(items.size() - 1);
 
-                        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+                        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
 
-                            Handler handler = new Handler();
+                            Handler handler = new Handler(Looper.myLooper());
                             handler.postDelayed(() -> {
                                 items.remove(items.size() - 1);
                                 int scrollPosition = items.size();
-                                Adpater.notifyItemRemoved(scrollPosition);
+                                adpater.notifyItemRemoved(scrollPosition);
 
                                 try {
                                     JSONArray flag = response.getJSONArray("books");
 
                                     for (int i = 0; i < flag.length(); i++) {
                                         JSONObject jo = flag.getJSONObject(i);
-                                        String BookImg = jo.getString("book_img");
-                                        String Title = jo.getString("subject");
-                                        String Writer = jo.getString("writer_name");
-                                        String IsAdult = jo.getString("is_adult");
-                                        String IsFinish = jo.getString("is_finish");
-                                        String IsPremium = jo.getString("is_premium");
-                                        String IsNobless = jo.getString("is_nobless");
-                                        String Intro = jo.getString("intro");
-                                        String IsFav = jo.getString("is_favorite");
-                                        String BookCode = jo.getString("book_code");
-                                        String BookCategory = jo.getString("category_ko_name");
-                                        items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav,"","","",0,"",BookCode,BookCategory));
-                                        Wrap.setVisibility(View.VISIBLE);
+                                        BookInfo tempBookInfo = BookInfo.getParseData(jo);
+                                        items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                                        wrap.setVisibility(View.VISIBLE);
                                     }
 
-                                    Adpater.notifyDataSetChanged();
+                                    adpater.notifyDataSetChanged();
                                     isLoading[0] = false;
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }, 2000);
-                        }, error -> Log.d("Book_Pagination", "에러!"));
+                        }, error -> Log.d("scrollListener", "에러!"));
                         queue.add(jsonRequest);
                         isLoading[0] = true;
-                        Page[0]++;
+                        page[0]++;
                     }
                 }
-            }
         });
     }
 
-    static void FavToggle(RequestQueue queue, String BookCode, String TOKEN) {
-        String ResultURL = HELPER.API + "/v1/user/favorite.joa";
+    static void favToggle(RequestQueue queue, String bookCode, String token) {
+        String resultURL = HELPER.API + "/v1/user/favorite.joa";
 
-        final StringRequest stringRequest = new StringRequest(Request.Method.POST, ResultURL, response -> {
-            Log.d("Book_Pagination", response);
-        }, error -> {
-            Log.d("Book_Pagination", "실패!");
-        }) {
+        final StringRequest stringRequest = new StringRequest(Request.Method.POST, resultURL, response ->
+            Log.d("favToggle", response)
+        , error -> Log.d("favToggle", "실패!")) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("api_key", HELPER.API_KEY);
                 params.put("ver", HELPER.VER);
                 params.put("device", HELPER.DEVICE);
                 params.put("deviceuid", HELPER.DEVICE_ID);
                 params.put("devicetoken", HELPER.DEVICE_TOKEN);
-                params.put("token", TOKEN);
+                params.put("token", token);
                 params.put("category", "0");
-                params.put("book_code", BookCode);
+                params.put("book_code", bookCode);
                 return params;
             }
         };
         queue.add(stringRequest);
     }
-
 }

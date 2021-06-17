@@ -1,0 +1,16 @@
+
+f	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏÆ‰
+e	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛòİZ
+f	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú³Ê™
+f	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú³Ê™
+f	java:S117N"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú³Ê™
+*
+java:S1700"Rename field "Popup"(ïÑÆÿ
+v
+java:S1450"[Remove the "PopupWebView" field and declare it as a local variable in the relevant methods.(Ö¦Á³ÿÿÿÿÿ
+q	java:S116"WRename this field "PopupWebView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö¦Á³ÿÿÿÿÿ
+e	java:S116"PRename this field "Popup" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÑÆÿ
+c	java:S116"NRename this field "Url" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Í´Ç
+m	java:S116"SRename this field "POPUPURL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô§¿Éúÿÿÿÿ
+e
+java:S1874:"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(µÛÎ°üÿÿÿÿ

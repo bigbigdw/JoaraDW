@@ -183,6 +183,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Book_Detail/Detail_Tab_2.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Config.java">
           <value>
             <set />
@@ -204,6 +209,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Fragment_Main/fragmentMain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Fragment_New/New_Tab.java">
           <value>
             <set />
           </value>
@@ -233,6 +243,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Test/FragmentTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Test/Fragment_Test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Test/Fragment_Test_Z.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/Test/Test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/base/BookBaseAcitivy.java">
           <value>
             <set />
@@ -258,6 +288,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/etc/Splash.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragmentMain/FragmentMain.java">
           <value>
             <set />
@@ -269,6 +304,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/BookPageEtc.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentInterfaceMain.java">
           <value>
             <set />
           </value>
@@ -293,6 +333,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/MainMoreEventData.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/MainMoreListData.java">
           <value>
             <set />
@@ -313,12 +358,142 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookData.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookDataJSON.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookDataWebtoon.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterA.java">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterC.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterD.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/MainBookListData.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main_BookData.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main_BookData_JSON.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main_BookListAdapter_B.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main_BookListAdapter_D.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/TabViewModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/model/BookInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/model/UserInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/test/FragmentTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/test/Test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/util/Util.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Book_Detail/layout/book_detail_cover.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Best/layout/fragment_best.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Fav/layout/fragment_fav.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/booklist_etc.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_more.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_more_category.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_more_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_fav.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_history.xml">
           <value>
             <set />
           </value>

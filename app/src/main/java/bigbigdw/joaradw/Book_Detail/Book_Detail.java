@@ -175,12 +175,12 @@ public class Book_Detail extends AppCompatActivity {
 
     public void onClickFav(View v) {
         if (FavOff.getVisibility() == View.VISIBLE) {
-            BookPagination.FavToggle(queue, BookCode, TOKEN);
+            BookPagination.favToggle(queue, BookCode, TOKEN);
             Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
             FavON.setVisibility(View.VISIBLE);
             FavOff.setVisibility(View.GONE);
         } else if (FavON.getVisibility() == View.VISIBLE) {
-            BookPagination.FavToggle(queue, BookCode, TOKEN);
+            BookPagination.favToggle(queue, BookCode, TOKEN);
             Toast.makeText(getApplicationContext(), "'" + BookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
             FavON.setVisibility(View.GONE);
             FavOff.setVisibility(View.VISIBLE);

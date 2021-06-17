@@ -24,10 +24,10 @@ import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.main.MainBookListAdapterA;
-import bigbigdw.joaradw.main.Main_BookListAdapter_B;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookListAdapter_D;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListAdapterB;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookListAdapterD;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 
@@ -38,11 +38,11 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
     private final MainBookListAdapterA hobbyAdapter = new MainBookListAdapterA();
     private final MainBookListAdapterA mdNovelAdapter = new MainBookListAdapterA();
     private final MainBookListAdapterA mdWebtoonAdapter = new MainBookListAdapterA();
-    private final Main_BookListAdapter_B festivalAdapter = new Main_BookListAdapter_B();
-    private final Main_BookListAdapter_B promiseAdapter = new Main_BookListAdapter_B();
-    private final Main_BookListAdapter_B kidamuAdapter = new Main_BookListAdapter_B();
+    private final MainBookListAdapterB festivalAdapter = new MainBookListAdapterB();
+    private final MainBookListAdapterB promiseAdapter = new MainBookListAdapterB();
+    private final MainBookListAdapterB kidamuAdapter = new MainBookListAdapterB();
 
-    private final ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<MainBookListData> items = new ArrayList<>();
 
     CarouselView mainBanner;
     CarouselView mainBannerMid;
@@ -95,8 +95,8 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
 
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
         userToken = app.getToken();
-        userStatus = app.getUserstatus();
-        userNameCategory.setText(app.getUserName());
+        userStatus = app.getStatus();
+        userNameCategory.setText(app.getName());
 
         InterfaceMainBannerAPI.setBanner(mainBannerMid, mainBannerMidURLs, queue, paramToken + userToken, "&page=&banner_type=app_main2016_event");
         InterfaceMainBannerAPI.setBanner(mainBanner, mainBannerURLs, queue, paramToken + userToken, "&page=0&banner_type=app_home_top_banner");
@@ -114,16 +114,16 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
         BookList.bookListB(root, assetManager, "Main_PromisedBookList.json", R.id.Main_PromisedBookList, promiseAdapter);
         BookList.bookListB(root, assetManager, "Main_KidamuBookList.json", R.id.Main_KidamuBookList, kidamuAdapter);
 
-        Main_BookListAdapter_C userPickedAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C notyAdapter = new Main_BookListAdapter_C(items);
-        Main_BookListAdapter_C recommendAdapter = new Main_BookListAdapter_C(items);
+        MainBookListAdapterC userPickedAdapter = new MainBookListAdapterC(items);
+        MainBookListAdapterC notyAdapter = new MainBookListAdapterC(items);
+        MainBookListAdapterC recommendAdapter = new MainBookListAdapterC(items);
         bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=contest_free_award" + etc + showType, R.id.Main_UserPickedList, userPickedAdapter, R.id.main_booklist_userpicked);
         bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + "1&section_mode=contest_free_award" + etc + showType, R.id.Main_NotyList, notyAdapter, R.id.main_booklist_noty);
         bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + API.SECTION_MODE + etc + showType, R.id.Main_RecommendedList, recommendAdapter, R.id.main_booklist_recommeded);
 
-        Main_BookListAdapter_D noblessTodayBestAdapter = new Main_BookListAdapter_D(items);
-        Main_BookListAdapter_D premiumToadyBestAdapter = new Main_BookListAdapter_D(items);
-        Main_BookListAdapter_D couponToadyBestAdapter = new Main_BookListAdapter_D(items);
+        MainBookListAdapterD noblessTodayBestAdapter = new MainBookListAdapterD(items);
+        MainBookListAdapterD premiumToadyBestAdapter = new MainBookListAdapterD(items);
+        MainBookListAdapterD couponToadyBestAdapter = new MainBookListAdapterD(items);
         bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + etc + showType, R.id.Main_NoblessTodayBestList, noblessTodayBestAdapter, R.id.main_nobelsstodaybest);
         bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=todaybest&store=premium&orderby=cnt_best" + etc + showType, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
         bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=support_coupon&orderby=cnt_best" + etc + showType, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);

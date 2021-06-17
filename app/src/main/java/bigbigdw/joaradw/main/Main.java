@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,14 +43,16 @@ import bigbigdw.joaradw.R;
 
 
 public class Main extends AppCompatActivity {
-    private AppBarConfiguration AppBarConfiguration;
-    private Popup Popup;
-    boolean IsFirstPage = true;
-    String USERTOKEN = "", STATUS = "";
-    LinearLayout Drawer_LogOut, Drawer_LogIn;
+    private AppBarConfiguration appBarConfiguration;
+    private Popup popup;
+    boolean isFirstPage = true;
+    String usertoken = "";
+    String status = "";
+    LinearLayout drawerLogout;
+    LinearLayout drawerLogin;
     RequestQueue queue;
-    TextView Mana, Coupon, Cash, Manuscript_Coupon,Support_Coupon, UserName;
-    JSONObject GETUSERINFO;
+    TextView Mana, Coupon, Cash, Manuscript_Coupon, Support_Coupon, UserName;
+    JSONObject getuserinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,31 +67,31 @@ public class Main extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_vie);
-        View nav_header_view = navigationView.getHeaderView(0);
+        View navHeaderView = navigationView.getHeaderView(0);
 
-        Drawer_LogOut = nav_header_view.findViewById(R.id.Drawer_LogOut);
-        Drawer_LogIn = nav_header_view.findViewById(R.id.Drawer_LogIn);
-        Mana = nav_header_view.findViewById(R.id.Mana);
-        Coupon = nav_header_view.findViewById(R.id.Coupon);
-        Cash = nav_header_view.findViewById(R.id.Cash);
-        Manuscript_Coupon = nav_header_view.findViewById(R.id.Manuscript_Coupon);
-        Support_Coupon = nav_header_view.findViewById(R.id.Support_Coupon);
-        UserName = nav_header_view.findViewById(R.id.UserName);
+        drawerLogout = navHeaderView.findViewById(R.id.Drawer_LogOut);
+        drawerLogin = navHeaderView.findViewById(R.id.Drawer_LogIn);
+        Mana = navHeaderView.findViewById(R.id.Mana);
+        Coupon = navHeaderView.findViewById(R.id.Coupon);
+        Cash = navHeaderView.findViewById(R.id.Cash);
+        Manuscript_Coupon = navHeaderView.findViewById(R.id.Manuscript_Coupon);
+        Support_Coupon = navHeaderView.findViewById(R.id.Support_Coupon);
+        UserName = navHeaderView.findViewById(R.id.UserName);
 
         Intent intent = getIntent();
-        IsFirstPage = intent.getBooleanExtra("IsFirstPage", true);
-        if (IsFirstPage) {
+        isFirstPage = intent.getBooleanExtra("IsFirstPage", true);
+        if (isFirstPage) {
             Intent intentSplash = new Intent(this, Splash.class);
             startActivity(intentSplash);
         }
 
 
-        GETUSERINFO = Config.getuserinfo();
+        getuserinfo = Config.getuserinfo();
         try {
-            if(GETUSERINFO != null){
-                JSONObject UserInfo = GETUSERINFO.getJSONObject("user");
-                STATUS = GETUSERINFO.getString("status");
-                USERTOKEN = "&token=" + UserInfo.getString("token");
+            if (getuserinfo != null) {
+                JSONObject UserInfo = getuserinfo.getJSONObject("user");
+                status = getuserinfo.getString("status");
+                usertoken = "&token=" + UserInfo.getString("token");
                 String mana = UserInfo.getString("mana");
                 Mana.setText(mana);
                 String expire_cash = UserInfo.getString("expire_cash");
@@ -108,14 +109,14 @@ public class Main extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        LoginCheck(queue, USERTOKEN, Drawer_LogIn, Drawer_LogOut, navigationView);
+        loginCheck(queue, usertoken, drawerLogin, drawerLogout, navigationView);
 
-        AppBarConfiguration = new AppBarConfiguration.Builder(
+        appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_Main
         ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, AppBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
@@ -132,29 +133,29 @@ public class Main extends AppCompatActivity {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, HELPER.API + "/api/info/index.joa" + HELPER.ETC + "&category=22%2C2&menu_ver=43", null, response -> {
             try {
-                JSONArray BannerArray = response.getJSONArray("banner");
-                if (BannerArray.length() != 0) {
-                    Popup = new Popup(this, BtnLeftListener, BtnRightListener, BannerArray.getString(0));
-                    Popup.show();
+                JSONArray bannerArray = response.getJSONArray("banner");
+                if (bannerArray.length() != 0) {
+                    popup = new Popup(this, btnLeftListener, btnRightListener, bannerArray.getString(0));
+                    popup.show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Popup.hide());
+        }, error -> popup.hide());
         queue.add(jsonRequest);
     }
 
-    void LoginCheck(RequestQueue queue, String USERTOKEN, LinearLayout Drawer_LogIn, LinearLayout Drawer_LogOut, NavigationView navigationView) {
-        String ResultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + USERTOKEN;
+    void loginCheck(RequestQueue queue, String usertoken, LinearLayout drawerLogIn, LinearLayout drawerLogOut, NavigationView navigationView) {
+        String resultURL = HELPER.API + "/v1/user/token_check.joa" + HELPER.ETC + usertoken;
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, ResultURL, null, response -> {
+        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
             try {
                 if (response.getString("status").equals("1")) {
-                    Drawer_LogOut.setVisibility(View.GONE);
-                    Drawer_LogIn.setVisibility(View.VISIBLE);
+                    drawerLogOut.setVisibility(View.GONE);
+                    drawerLogIn.setVisibility(View.VISIBLE);
                 } else {
-                    Drawer_LogOut.setVisibility(View.VISIBLE);
-                    Drawer_LogIn.setVisibility(View.GONE);
+                    drawerLogOut.setVisibility(View.VISIBLE);
+                    drawerLogIn.setVisibility(View.GONE);
                     Config.deleteJSON();
                 }
                 hideItem(navigationView, response.getString("status").equals("1"));
@@ -174,39 +175,34 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void hideItem(NavigationView navigationView, boolean check)
-    {
-        Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.Menu_Logined).setVisible(check);
+    private void hideItem(NavigationView navigationView, boolean check) {
+        Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.Menu_Logined).setVisible(check);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, AppBarConfiguration)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 
-    private final View.OnClickListener BtnLeftListener = new View.OnClickListener() {
+    private final View.OnClickListener btnLeftListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Popup.dismiss();
+            popup.dismiss();
         }
     };
 
-    private final View.OnClickListener BtnRightListener = new View.OnClickListener() {
+    private final View.OnClickListener btnRightListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Popup.dismiss();
+            popup.dismiss();
         }
     };
 
@@ -218,7 +214,7 @@ public class Main extends AppCompatActivity {
         finish();
     }
 
-    void DeleteSignedInfo() {
+    void deleteSignedInfo() {
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
         alBuilder.setMessage("로그아웃하시겠습니까?");
         alBuilder.setPositiveButton("예", (dialog, which) -> {
@@ -236,16 +232,15 @@ public class Main extends AppCompatActivity {
 
     }
 
-    public void onClickLogout(View v) {
-        String LogoutURL = "/v1/user/deauth.joa";
-        String filename = getDataDir() + "/";
+    public void onClickLogout() {
+        String logoutURL = "/v1/user/deauth.joa";
 
-        final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + LogoutURL + HELPER.ETC + "&category=22%2C2" + USERTOKEN, response -> {
+        final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + logoutURL + HELPER.ETC + "&category=22%2C2" + usertoken, response -> {
             try {
                 JSONObject reader = new JSONObject(response);
-                STATUS = reader.getString("status");
-                if (STATUS.equals("1")) {
-                    DeleteSignedInfo();
+                status = reader.getString("status");
+                if (status.equals("1")) {
+                    deleteSignedInfo();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -254,10 +249,5 @@ public class Main extends AppCompatActivity {
 
         });
         queue.add(jsonRequest);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

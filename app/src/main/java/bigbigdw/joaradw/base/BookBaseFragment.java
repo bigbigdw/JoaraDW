@@ -22,9 +22,9 @@ import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.fragment_main.BookPageEtc;
 import bigbigdw.joaradw.main.MainBookListAdapterA;
-import bigbigdw.joaradw.main.Main_BookListAdapter_C;
-import bigbigdw.joaradw.main.Main_BookListAdapter_D;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.MainBookListAdapterD;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 
 public class BookBaseFragment extends Fragment {
@@ -45,9 +45,9 @@ public class BookBaseFragment extends Fragment {
                 userName = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
 
                 JOARADW app = (JOARADW) requireActivity().getApplicationContext();
-                app.setUserstatus(status);
+                app.setStatus(status);
                 app.setToken(token);
-                app.setUserName(userName);
+                app.setName(userName);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -58,32 +58,32 @@ public class BookBaseFragment extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
         BookList.bookListA(root, apiUrl, etc, recylerView, adapter, queue, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            Main_BookListData item = adapter.getItem(position);
+            MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
         });
     }
 
-    public void bookListC(View root, String apiUrl, String etc, Integer recylerView, Main_BookListAdapter_C adapter, Integer wrap) {
+    public void bookListC(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterC adapter, Integer wrap) {
         RequestQueue queue2 = Volley.newRequestQueue(requireActivity());
         BookList.bookListC(root, apiUrl, etc, recylerView, adapter, queue2, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            Main_BookListData item = adapter.getItem(position);
+            MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue2);
         });
     }
 
-    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, Main_BookListAdapter_D adapter, Integer wrap) {
+    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterD adapter, Integer wrap) {
         RequestQueue queue3 = Volley.newRequestQueue(requireActivity());
         BookList.bookListD(root, apiUrl, etc, recylerView, adapter, queue3, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            Main_BookListData item = adapter.getItem(position);
+            MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue3);
         });
     }
 
-    public void adapterListener(Main_BookListData item, String value, RequestQueue queue) {
+    public void adapterListener(MainBookListData item, String value, RequestQueue queue) {
         if (value.equals("FAV")) {
-            BookPagination.FavToggle(queue, item.getBookCode(), token);
+            BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {
             Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));

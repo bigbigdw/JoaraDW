@@ -25,7 +25,7 @@ import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.fragment_main.MainMoreAadapter;
 import bigbigdw.joaradw.main.MainBookListAdapterA;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 
@@ -82,9 +82,9 @@ public class Detail_Tab_3 extends Fragment {
         BookList.bookListA(root, API_URL, ETC, R.id.BookDetail, BookListAdapter, queue, R.id.TabWrap);
 
         BookListAdapter.setOnItemClickListener((v, position, Value) -> {
-            Main_BookListData item = BookListAdapter.getItem(position);
+            MainBookListData item = BookListAdapter.getItem(position);
             if(Value.equals("FAV")){
-                BookPagination.FavToggle(queue, item.getBookCode(), TOKEN);
+                BookPagination.favToggle(queue, item.getBookCode(), TOKEN);
             } else if (Value.equals("BookDetail")){
                 Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
                 intent.putExtra("BookCode",String.format("%s", item.getBookCode()));

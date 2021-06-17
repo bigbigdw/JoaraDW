@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import bigbigdw.joaradw.R;
@@ -21,63 +22,63 @@ import bigbigdw.joaradw.R;
 
 public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<Main_BookListData> listData = new ArrayList<>();
-    String False = "FALSE";
-    String True = "True";
+    private ArrayList<MainBookListData> listData = new ArrayList<>();
+    String f = "FALSE";
+    String t = "True";
 
     public interface OnItemClickListener {
-        void onItemClick(View v, int position, String Value);
+        void onItemClick(View v, int position, String value);
     }
 
-    private OnItemClickListener Listener = null;
+    private OnItemClickListener listener = null;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.Listener = listener;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_a, parent, false);
-        return new MainBookListAdapterA.Main_BookListViewHolder_A(view);
+        return new MainBookListViewHolderA(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Main_BookListData item = listData.get(position);
-        ConstraintLayout Cover = ((Main_BookListViewHolder_A) holder).UnderCover;
-        TextView Text = ((Main_BookListViewHolder_A) holder).UnderCoverText;
+        MainBookListData item = listData.get(position);
+        ConstraintLayout cover = ((MainBookListViewHolderA) holder).underCover;
+        TextView text = ((MainBookListViewHolderA) holder).underCoverText;
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
-                .into(((MainBookListAdapterA.Main_BookListViewHolder_A) holder).Image);
+                .into(((MainBookListViewHolderA) holder).image);
 
-        ((Main_BookListViewHolder_A) holder).Title.setText(listData.get(position).getTitle());
-        ((Main_BookListViewHolder_A) holder).Writer.setText(listData.get(position).getWriter());
+        ((MainBookListViewHolderA) holder).title.setText(listData.get(position).getTitle());
+        ((MainBookListViewHolderA) holder).writer.setText(listData.get(position).getWriter());
 
-        if (listData.get(position).getIsNobless().equals(True) && listData.get(position).getIsAdult().equals(False)) {
-            TextSetting(Cover, Text, R.string.NOBLESS, 0xAAa5c500);
-        } else if (listData.get(position).getIsPremium().equals(True) && listData.get(position).getIsAdult().equals(False)) {
-            TextSetting(Cover, Text, R.string.PREMIUM, 0xAA4971EF);
-        } else if (listData.get(position).getIsFinish().equals(True) && listData.get(position).getIsAdult().equals(False)) {
-            TextSetting(Cover, Text, R.string.FINISH, 0xAA767676);
-        } else if (listData.get(position).getIsNobless().equals(True) && listData.get(position).getIsAdult().equals(True)) {
-            TextSetting(Cover, Text, R.string.ADULT_NOBLESS, 0xAAF44336);
-        } else if (listData.get(position).getIsPremium().equals(True) && listData.get(position).getIsAdult().equals(True)) {
-            TextSetting(Cover, Text, R.string.ADULT_PREMIUM, 0xAA4971EF);
-        } else if (listData.get(position).getIsFinish().equals(True) && listData.get(position).getIsAdult().equals(True)) {
-            TextSetting(Cover, Text, R.string.ADULT_FINISH, 0xAA767676);
+        if (listData.get(position).getIsNobless().equals(t) && listData.get(position).getIsAdult().equals(f)) {
+            textSetting(cover, text, R.string.NOBLESS, 0xAAa5c500);
+        } else if (listData.get(position).getIsPremium().equals(t) && listData.get(position).getIsAdult().equals(f)) {
+            textSetting(cover, text, R.string.PREMIUM, 0xAA4971EF);
+        } else if (listData.get(position).getIsFinish().equals(t) && listData.get(position).getIsAdult().equals(f)) {
+            textSetting(cover, text, R.string.FINISH, 0xAA767676);
+        } else if (listData.get(position).getIsNobless().equals(t) && listData.get(position).getIsAdult().equals(t)) {
+            textSetting(cover, text, R.string.ADULT_NOBLESS, 0xAAF44336);
+        } else if (listData.get(position).getIsPremium().equals(t) && listData.get(position).getIsAdult().equals(t)) {
+            textSetting(cover, text, R.string.ADULT_PREMIUM, 0xAA4971EF);
+        } else if (listData.get(position).getIsFinish().equals(t) && listData.get(position).getIsAdult().equals(t)) {
+            textSetting(cover, text, R.string.ADULT_FINISH, 0xAA767676);
         } else {
-            Cover.setVisibility(View.GONE);
+            cover.setVisibility(View.GONE);
         }
 
     }
 
-    public void TextSetting(ConstraintLayout Cover, TextView Text, int Title, int Color) {
-        Cover.setVisibility(View.VISIBLE);
-        Text.setText(Title);
-        Text.setTextColor(Color);
+    public void textSetting(ConstraintLayout cover, TextView text, int title, int color) {
+        cover.setVisibility(View.VISIBLE);
+        text.setText(title);
+        text.setTextColor(color);
     }
 
     @Override
@@ -85,35 +86,38 @@ public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.View
         return listData.size();
     }
 
-    public void setItems(ArrayList<Main_BookListData> items) {
-        this.listData = items;
+    public void setItems(List<MainBookListData> items) {
+        this.listData = (ArrayList<MainBookListData>) items;
     }
 
-    public Main_BookListData getItem(int position) {
+    public MainBookListData getItem(int position) {
         return listData.get(position);
     }
 
-    public class Main_BookListViewHolder_A extends RecyclerView.ViewHolder {
+    public class MainBookListViewHolderA extends RecyclerView.ViewHolder {
 
-        ImageView Image;
-        TextView Title, Writer, UnderCoverText, BookCode;
-        ConstraintLayout UnderCover;
-        CardView Img_Wrap;
+        ImageView image;
+        TextView title;
+        TextView writer;
+        TextView underCoverText;
+        TextView bookCode;
+        ConstraintLayout underCover;
+        CardView imgWrap;
 
-        Main_BookListViewHolder_A(@NonNull View itemView) {
+        MainBookListViewHolderA(@NonNull View itemView) {
             super(itemView);
-            Image = itemView.findViewById(R.id.Img_BookA);
-            Title = itemView.findViewById(R.id.Text_TitleA);
-            Writer = itemView.findViewById(R.id.Text_WriterA);
-            UnderCover = itemView.findViewById(R.id.BookImgUnderWrap);
-            UnderCoverText = itemView.findViewById(R.id.UnderCoverText);
-            BookCode = itemView.findViewById(R.id.BookCodeText);
-            Img_Wrap = itemView.findViewById(R.id.Img_Wrap);
+            image = itemView.findViewById(R.id.Img_BookA);
+            title = itemView.findViewById(R.id.Text_TitleA);
+            writer = itemView.findViewById(R.id.Text_WriterA);
+            underCover = itemView.findViewById(R.id.BookImgUnderWrap);
+            underCoverText = itemView.findViewById(R.id.UnderCoverText);
+            bookCode = itemView.findViewById(R.id.BookCodeText);
+            imgWrap = itemView.findViewById(R.id.Img_Wrap);
 
-            Img_Wrap.setOnClickListener(v -> {
+            imgWrap.setOnClickListener(v -> {
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
-                    Listener.onItemClick(v, pos, "BookDetail");
+                    listener.onItemClick(v, pos, "BookDetail");
                 }
             });
 

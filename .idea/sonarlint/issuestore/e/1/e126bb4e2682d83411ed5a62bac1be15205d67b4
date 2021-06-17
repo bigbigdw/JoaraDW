@@ -1,17 +1,0 @@
-
-k	java:S114"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÓÜí£úÿÿÿÿ
-f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ™Ú‹
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(éô†©
-T
-java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ
-O
-java:S1128"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ
-J
-java:S1128"/Remove this unused import 'android.os.Message'.(¤ªæéıÿÿÿÿ
-L
-java:S1874"1Remove this use of "AsyncTask"; it is deprecated.(¢ÄÊåùÿÿÿÿ
-J
-java:S1874"/Remove this use of "execute"; it is deprecated.(¢ÄÊåùÿÿÿÿ
-O
-java:S4719!"9Replace charset name argument with StandardCharsets.UTF_8(€…õ
-S	java:S106*"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ

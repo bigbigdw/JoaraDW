@@ -15,13 +15,13 @@ import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 
 public class BookBaseAcitivy extends AppCompatActivity {
 
     String token = "";
     String status = "";
-    String userName;
+    String name;
 
     public void checkToken() {
         if (Config.getuserinfo() != null) {
@@ -31,21 +31,22 @@ public class BookBaseAcitivy extends AppCompatActivity {
                 userInfo = getUserInfo.getJSONObject("user");
                 token = userInfo.getString("token");
                 status = getUserInfo.getString("status");
-                userName = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+                name = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
 
                 JOARADW app = (JOARADW) getApplicationContext();
-                app.setUserstatus(status);
+                app.setStatus(status);
                 app.setToken(token);
-                app.setUserName(userName);
+                app.setName(name);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void adapterListener(Main_BookListData item, String value, RequestQueue queue) {
+    public void adapterListener(MainBookListData item, String value, RequestQueue queue) {
         if (value.equals("FAV")) {
-            BookPagination.FavToggle(queue, item.getBookCode(), token);
+            BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {
             Intent intent = new Intent(this.getApplicationContext().getApplicationContext(), Book_Detail_Cover.class);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));

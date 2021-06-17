@@ -29,13 +29,13 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.main.Main_BookListData;
+import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class Fav_Tab_History extends Fragment {
     Main_BookList_Adapter_History Adapter;
     RecyclerView recyclerView;
-    private final ArrayList<Main_BookListData> items = new ArrayList<>();
+    private final ArrayList<MainBookListData> items = new ArrayList<>();
     LinearLayout Wrap, LoginLayout;
     String TOKEN = "&token=", API = "/v1/user/historybooks.joa", STATUS = "";
     TextView Book_Fav_CoverText;
@@ -135,7 +135,7 @@ public class Fav_Tab_History extends Fragment {
                                             String Intro = jo.getString("intro");
                                             String IsFav = jo.getString("is_favorite");
                                             String ReadHistory = jo.getString("history_sortno");
-                                            items.add(new Main_BookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "",  "", 0, ReadHistory, "",""));
+                                            items.add(new MainBookListData(Writer, Title, BookImg, IsAdult, IsFinish, IsPremium, IsNobless, Intro, IsFav, "", "",  "", 0, ReadHistory, "",""));
                                             Wrap.setVisibility(View.VISIBLE);
                                         }
                                         Adapter.notifyDataSetChanged();

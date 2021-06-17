@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category1"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category2"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category3"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category4"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category5"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category6"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -219,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category7"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category8"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
         </TableRow>
@@ -281,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category9"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -308,7 +308,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category10"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -335,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category11"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -363,7 +363,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category12"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
         </TableRow>
@@ -396,7 +396,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category13"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -424,7 +424,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category14"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -452,7 +452,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Main_More_category15"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textStyle="bold" />
             </LinearLayout>
 
