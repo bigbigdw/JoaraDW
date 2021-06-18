@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -32,7 +34,7 @@ import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 
 
-public class FragmentInterfaceMain extends BookBaseFragment implements InterfaceMainBannerAPI {
+public class FragmentMain extends BookBaseFragment implements InterfaceMainBannerAPI {
 
     private final MainBookListAdapterA historyAdapter = new MainBookListAdapterA();
     private final MainBookListAdapterA hobbyAdapter = new MainBookListAdapterA();
@@ -66,6 +68,7 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
     LinearLayout wrapKidamu;
     LinearLayout wrapNOTY;
     LinearLayout wrapPromised;
+    Bundle bundle;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -92,6 +95,7 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
 
         AssetManager assetManager = requireActivity().getAssets();
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
+        bundle = new Bundle();
 
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
         userToken = app.getToken();
@@ -128,17 +132,15 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
         bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=todaybest&store=premium&orderby=cnt_best" + etc + showType, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
         bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=support_coupon&orderby=cnt_best" + etc + showType, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);
 
-        FragmentInterfaceMain fragmentMain = new FragmentInterfaceMain();
-
-        wrap77Fes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        wrapKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        wrapNOTY.setOnClickListener(v -> gotoMore(3, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        wrapPromised.setOnClickListener(v -> gotoMore(4, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        goToHistory.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_Fav, fragmentMain));
-        goToFes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        goToPromised.setOnClickListener(v -> gotoMore(4, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        goToKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
-        goToNoty.setOnClickListener(v -> gotoMore(3, R.id.action_Fragment_Main_to_Fragment_New, fragmentMain));
+        wrap77Fes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        wrapKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        wrapNOTY.setOnClickListener(v -> gotoMore(3, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        wrapPromised.setOnClickListener(v -> gotoMore(4, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        goToHistory.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_Fav, FragmentMain.this));
+        goToFes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        goToPromised.setOnClickListener(v -> gotoMore(4, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        goToKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
+        goToNoty.setOnClickListener(v -> gotoMore(3, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
 
         bookSnipe.setOnClickListener(v -> goToBookPageEtc("취향 저격", API.BOOK_RECOMMEND_LIST_API_JOA, paramToken + userToken + "&book_code=&offset=50"));
         userPicked.setOnClickListener(v -> goToBookPageEtc("수상작", API.HOME_LIST_JOA, paramToken + userToken + API.SECTION_MODE + "&page=1&offset=50" + showType));
@@ -146,8 +148,6 @@ public class FragmentInterfaceMain extends BookBaseFragment implements Interface
 
         return root;
     }
-
-
 
     ImageListener imageListener = (position, imageView) -> {
         imageView.setAdjustViewBounds(true);

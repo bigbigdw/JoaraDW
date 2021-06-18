@@ -56,6 +56,7 @@
             android:id="@+id/TabWrap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/Contents"
             android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
@@ -63,6 +64,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/BookDetail"
                 android:layout_width="match_parent"
+                android:background="@color/Contents"
                 android:layout_height="wrap_content"
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"

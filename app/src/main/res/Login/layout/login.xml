@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Contents"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="22dp"
@@ -21,12 +21,11 @@
 
         <ImageView
             android:id="@+id/LOGO"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:contentDescription="@string/TODO"
-            android:onClick="onClickMain"
+            android:layout_width="158dp"
+            android:layout_height="158dp"
             android:layout_marginBottom="62dp"
-            android:src="@drawable/splash_logo2" />
+            android:contentDescription="@string/TODO"
+            android:src="@drawable/ic_launcher" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -34,19 +33,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textColorHint="#002635"
             android:hint="@string/Login_ID"
+            android:textColorHint="@color/Contents_Text3"
+            app:boxStrokeColor="@color/PrimaryColor"
+            app:hintTextColor="@color/Contents_Text3"
             app:startIconDrawable="@drawable/xml_icon_id"
-            app:startIconTint="#002635">
+            app:startIconTint="@color/Contents_Text3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
-                android:drawableTint="#002635"
+                android:backgroundTint="@color/Contents"
+                android:drawableTint="#888888"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:textColor="#002635" />
+                android:textColor="@color/Contents_Text3"  />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -54,18 +55,21 @@
             android:id="@+id/PWtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#002635"
             android:hint="@string/Login_PW"
+            android:textColorHint="@color/Contents_Text3"
+            app:boxStrokeColor="@color/PrimaryColor"
+            app:hintTextColor="@color/Contents_Text3"
             app:startIconDrawable="@drawable/xml_icon_pw"
-            app:startIconTint="#002635">
+            app:startIconTint="@color/Contents_Text3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@color/Contents"
+                android:drawableTint="#888888"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:textColor="#002635" />
+                android:textColor="@color/Contents_Text3"  />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -82,10 +86,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
-                android:onClick="onClickFindID"
                 android:text="@string/Login_FindID"
                 android:textAlignment="textStart"
-                android:textColor="#002635" />
+                android:textColor="@color/PrimaryColor" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +96,7 @@
                 android:layout_marginEnd="6dp"
                 android:text="@string/Find_FindBar"
                 android:textAlignment="textStart"
-                android:textColor="#002635" />
+                android:textColor="@color/PrimaryColor" />
 
             <TextView
                 android:id="@+id/LoginMain_FIndPW"
@@ -102,7 +105,7 @@
                 android:layout_marginEnd="6dp"
                 android:text="@string/Login_FindPW"
                 android:textAlignment="textStart"
-                android:textColor="#002635" />
+                android:textColor="@color/PrimaryColor"/>
 
         </LinearLayout>
 
@@ -117,9 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="#FFFFFF"
-                android:onClick="onClickRegister"
                 android:text="@string/Login_Register"
-                android:textColor="#002635"
+                android:textColor="@color/Contents_Text2"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -130,9 +132,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="#4971EF"
-                android:onClick="onClickLogin"
+                android:backgroundTint="@color/PrimaryColor"
                 android:text="@string/Login_Login"
+                android:textColor="#ffffff"
                 app:layout_constraintBottom_toTopOf="@+id/RegisterBtn"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -140,4 +142,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+</androidx.constraintlayout.widget.ConstraintLayout>

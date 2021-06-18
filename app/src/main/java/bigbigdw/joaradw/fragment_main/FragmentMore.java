@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +39,7 @@ public class FragmentMore extends BookBaseFragment {
     LinearLayout gotoFaceBook;
     LinearLayout gotoInstagram;
     String userToken = "";
+    Bundle bundle;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -62,6 +65,7 @@ public class FragmentMore extends BookBaseFragment {
         eventAdapter(root, queue, eventList);
 
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
+        bundle = new Bundle();
         userToken = "&token=" +  app.getToken();
 
         wrap77Fes.setOnClickListener(v -> gotoMore(1 ,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));

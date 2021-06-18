@@ -49,7 +49,6 @@
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/TODO"
-                android:onClick="onClickLogout"
                 android:src="@drawable/icon_logout" />
         </LinearLayout>
 
@@ -241,7 +240,6 @@
         android:id="@+id/Drawer_LogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClickLogin"
         android:orientation="vertical"
         tools:visibility="gone">
 

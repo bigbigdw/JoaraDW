@@ -32,67 +32,68 @@ public class JOARADW extends Application {
         return apiUrl;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public String getStatus() {
+        return status;
     }
 
     public String getToken() {
         return token;
     }
 
-    public String getMana() {
-        return mana;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setMana(String mana) {
         this.mana = mana;
     }
 
-    public String getExpireCash() {
-        return expireCash;
+    public String getMana() {
+        return mana;
     }
 
     public void setExpireCash(String expireCash) {
         this.expireCash = expireCash;
     }
 
-    public String getCash() {
-        return cash;
+    public String getExpireCash() {
+        return expireCash;
     }
 
     public void setCash(String cash) {
         this.cash = cash;
     }
 
-    public String getName() {
-        return name;
+    public String getCash() {
+        return cash;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getManuscriptCoupon() {
-        return manuscriptCoupon;
+    public String getName() {
+        return name;
     }
 
     public void setManuscriptCoupon(String manuscriptCoupon) {
         this.manuscriptCoupon = manuscriptCoupon;
     }
 
-    public String getSupportCoupon() {
-        return supportCoupon;
+    public String getManuscriptCoupon() {
+        return manuscriptCoupon;
     }
 
     public void setSupportCoupon(String supportCoupon) {
         this.supportCoupon = supportCoupon;
     }
+
+    public String getSupportCoupon() {
+        return supportCoupon;
+    }
+
 }

@@ -33,6 +33,8 @@
     <string name="BookCount">화</string>
     <string name="FAV">선호작 완료</string>
     <string name="BookDetail">작품 상세</string>
+    <string name="Common_Btn_Back">돌아가기</string>
+    <string name="Common_Btn_Confirm">확인</string>
     <!-- 푸터 -->
     <string name="Footer_Section1">사업자 정보확인</string>
     <string name="Footer_Section2">이용약관</string>

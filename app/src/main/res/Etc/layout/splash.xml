@@ -5,7 +5,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/Contents"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -24,7 +24,7 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:contentDescription="@string/TODO"
-            android:src="@drawable/splash_logo2" />
+            android:src="@drawable/ic_launcher" />
 
 
         <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Splash_Year"
                 android:textAlignment="center"
-                android:textColor="#00283f"
+                android:textColor="@color/Contents_Text2"
                 android:textSize="12sp" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Splash_Name"
                 android:textAlignment="center"
-                android:textColor="#00283f"
+                android:textColor="@color/Contents_Text2"
                 android:textSize="12sp" />
         </LinearLayout>
 

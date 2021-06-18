@@ -1,0 +1,80 @@
+
+€
+AXoOls6BnFzoK_qoU3Az
+java:S1192q"HDefine a constant instead of duplicating this literal "&token=" 6 times.(¤ŠÒºúÿÿÿÿ8àë¶˜/
+„
+AXoOls6BnFzoK_qoU3A0	java:S101$"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¨İ½ëûÿÿÿÿ8Øš¬±˜/
+ˆ
+AXoOls6BnFzoK_qoU3A1	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¯íˆùÿÿÿÿ8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A2	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¿Ì8Øš¬±˜/
+ˆ
+AXoOls6BnFzoK_qoU3A3	java:S117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷Óèûÿÿÿÿ8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A4	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A5	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A6	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A7	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+ƒ
+AXoOls6BnFzoK_qoU3A8	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+„
+AXoOls6BnFzoK_qoU3A9	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿìˆå8øÿ…Ò˜/
+‰
+AXoOls6BnFzoK_qoU3A-	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ8Øš¬±˜/
+‰
+AXoOls6BnFzoK_qoU3A_	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ8Øš¬±˜/
+‘
+AXoOls6BnFzoK_qoU3BA	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œ¶‚éøÿÿÿÿ8øÿ…Ò˜/
+‡
+AXoOls6BnFzoK_qoU3BL
+java:S1450("TRemove the "queue" field and declare it as a local variable in the relevant methods.(®¤œé8Øš¬±˜/
+V
+AXoOls6BnFzoK_qoU3BM
+java:S1659)"#Declare "TOKEN" on a separate line.(¸°ç‰8àë¶˜/
+X
+AXoOls6BnFzoK_qoU3BN
+java:S1659)"%Declare "API_URL" on a separate line.(¸°ç‰8àë¶˜/
+X
+AXoOls6BnFzoK_qoU3BO
+java:S1659)"%Declare "ETC_URL" on a separate line.(¸°ç‰8àë¶˜/
+a
+AXoOls6BnFzoK_qoU3BP
+java:S1659,")Declare "GotoPremium" on a separate line.(·€Òˆøÿÿÿÿ8Øš¬±˜/
+a
+AXoOls6BnFzoK_qoU3BQ
+java:S1659,")Declare "GotoNobless" on a separate line.(·€Òˆøÿÿÿÿ8Øš¬±˜/
+x	java:S116'"WRename this field "TabViewModel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆîªÏıÿÿÿÿ8÷ÿÇ¡/
+‡
+AXoOls6BnFzoK_qoU3BC	java:S116)"URename this field "FinishType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰8àë¶˜/
+‚
+AXoOls6BnFzoK_qoU3BD	java:S116)"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰8àë¶˜/
+„
+AXoOls6BnFzoK_qoU3BE	java:S116)"RRename this field "API_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰8àë¶˜/
+„
+AXoOls6BnFzoK_qoU3BF	java:S116)"RRename this field "ETC_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸°ç‰8àë¶˜/
+‰
+AXoOls6BnFzoK_qoU3BG	java:S116*"XRename this field "LoadingLayout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—òÅ:8Øš¬±˜/
+‹
+AXoOls6BnFzoK_qoU3BH	java:S116+"YRename this field "ContentsLayout" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á£Êº8Øš¬±˜/
+‰
+AXoOls6BnFzoK_qoU3BI	java:S116,"RRename this field "GoToAll" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ8Øš¬±˜/
+
+AXoOls6BnFzoK_qoU3BJ	java:S116,"VRename this field "GotoPremium" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ8Øš¬±˜/
+
+AXoOls6BnFzoK_qoU3BK	java:S116,"VRename this field "GotoNobless" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·€Òˆøÿÿÿÿ8Øš¬±˜/
+r
+AXoOls6BnFzoK_qoU3BR
+java:S1161A":Add the "@Override" annotation above this method signature(î•Éğûÿÿÿÿ8Øš¬±˜/
+b
+AXoOls6BnFzoK_qoU3BS
+java:S1874L"/Remove this use of "Handler"; it is deprecated.(’Ú©Š8Øš¬±˜/
+€
+AXoOls6BnFzoK_qoU3BU	java:S100}"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üˆ¥8Øš¬±˜/
+†
+AXoOls6BnFzoK_qoU3BV	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÍ¶Åÿÿÿÿÿ8Øš¬±˜/
+\
+AXoOls6BnFzoK_qoU3BW
+java:S1185˜"(Remove this method to simply inherit it.(±íòÑ8Øš¬±˜/

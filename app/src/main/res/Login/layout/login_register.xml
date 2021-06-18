@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Contents"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ActionBar"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/Register"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:hint="@string/LoginMain_ID"
+                        android:textColorHint="@color/Contents_Text3"
+                        app:boxStrokeColor="@color/PrimaryColor"
+                        app:hintTextColor="@color/Contents_Text3"
+                        app:startIconDrawable="@drawable/ic_icon_id"
+                        app:startIconTint="@color/Contents_Text3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:backgroundTint="@color/Contents"
+                            android:drawableTint="#888888"
+                            android:ems="10"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/Contents_Text3" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputPW"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:textColorHint="@color/Contents_Text3"
+                        app:boxStrokeColor="@color/PrimaryColor"
+                        app:hintTextColor="@color/Contents_Text3"
+                        app:startIconDrawable="@drawable/ic_icon_password"
+                        app:startIconTint="@color/Contents_Text3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/Contents"
+                            android:hint="@string/LoginMain_PW"
+                            android:inputType="textPassword"
+                            android:textColor="#000000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputPWcheck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:textColorHint="@color/Contents_Text3"
+                        app:boxStrokeColor="@color/PrimaryColor"
+                        app:hintTextColor="@color/Contents_Text3"
+                        app:startIconDrawable="@drawable/ic_icon_password"
+                        app:startIconTint="@color/Contents_Text3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/Contents"
+                            android:hint="@string/Register_PWCheck"
+                            android:inputType="textPassword"
+                            android:textColor="#000000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/Phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="@string/Find_InputPhone"
+                            android:textColorHint="@color/Contents_Text3"
+                            app:boxStrokeColor="@color/PrimaryColor"
+                            app:hintTextColor="@color/Contents_Text3"
+                            app:startIconDrawable="@drawable/ic_icon_phone"
+                            app:startIconTint="@color/Contents_Text3">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:backgroundTint="@color/Contents"
+                                android:drawableTint="#888888"
+                                android:ems="10"
+                                android:inputType="phone"
+                                android:maxLength="12"
+                                android:textColor="@color/Contents_Text3" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/onClickPhone"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="@string/Common_Btn_Confirm"
+                            android:textColor="@color/Contents_Text2"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/Num"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="@string/Find_InputNum"
+                            android:textColorHint="@color/Contents_Text3"
+                            app:boxStrokeColor="@color/PrimaryColor"
+                            app:hintTextColor="@color/Contents_Text3"
+                            app:startIconDrawable="@drawable/ic_icon_comfirmnum"
+                            app:startIconTint="@color/Contents_Text3">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:backgroundTint="@color/Contents"
+                                android:drawableTint="#888888"
+                                android:ems="10"
+                                android:inputType="phone"
+                                android:maxLength="12"
+                                android:textColor="@color/Contents_Text3" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <Button
+                            android:id="@+id/onClickNum"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|end"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="@string/Common_Btn_Confirm"
+                            android:textColor="@color/Contents_Text2"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:id="@+id/Register_Welcome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:text="@string/Register_Promise"
+                        android:textAlignment="center"
+                        android:textColor="@color/Contents_Text3"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/promise1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/Contents_Text2"
+                            android:text="@string/Register_Checkbox1"
+                            android:textColor="@color/Contents_Text2" />
+
+                        <TextView
+                            android:id="@+id/PolicyText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/Register_Checkbox_Detail"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/PrimaryColor" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="160dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/promise2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/Contents_Text2"
+                            android:text="@string/Register_Checkbox2"
+                            android:textColor="@color/Contents_Text2" />
+
+                        <TextView
+                            android:id="@+id/PolicyText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/Register_Checkbox_Detail"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/PrimaryColor" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/Btn_Back"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#888888"
+                    android:text="@string/Common_Btn_Back"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/Btn_Continue"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00283D"
+                    android:text="@string/Register_Continue"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,68 @@
+
+„
+AXoOls95nFzoK_qoU3MT	java:S101%"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(„Û¹ûÿÿÿÿ8ğ‹ù¦˜/
+ƒ
+AXoOls95nFzoK_qoU3MU	java:S117R"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¿Ì8ğ‹ù¦˜/
+ˆ
+AXoOls95nFzoK_qoU3MV	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÀÆëşÿÿÿÿ8ğ‹ù¦˜/
+„
+AXoOls95nFzoK_qoU3MW	java:S117…"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿìˆå8øÿ…Ò˜/
+„
+AXoOls95nFzoK_qoU3MX	java:S117“"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’‹™Ÿ8àë¶˜/
+‹
+AXoOls95nFzoK_qoU3MY	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àİˆh8øÿ…Ò˜/
+[
+AXoOls95nFzoK_qoU3MZ
+java:S1604^"(Make this anonymous inner class a lambda(Ç—È·8Øš¬±˜/
+w
+AXoOls95nFzoK_qoU3Ma
+java:S2259a"DA "NullPointerException" could be thrown; "TabNum" is nullable here.(ñ­¼ì8ğ‹ù¦˜/
+V
+AXoOls95nFzoK_qoU3Mm
+java:S1659*"#Declare "Cover" on a separate line.(ŞÎâÚ8ğ‹ù¦˜/
+V
+AXoOls95nFzoK_qoU3Mn
+java:S1659*"#Declare "Blank" on a separate line.(ŞÎâÚ8ğ‹ù¦˜/
+T
+AXoOls95nFzoK_qoU3Mo
+java:S1659,"!Declare "ETC" on a separate line.(‹ÕŞ8ğ‹ù¦˜/
+V
+AXoOls95nFzoK_qoU3Mp
+java:S1659,"#Declare "CLASS" on a separate line.(‹ÕŞ8ğ‹ù¦˜/
+‰
+AXoOls95nFzoK_qoU3Mb	java:S116&"RRename this field "Adapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Ò–ÿüÿÿÿÿ8ğ‹ù¦˜/
+x	java:S116)"WRename this field "TabViewModel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆîªÏıÿÿÿÿ8â„Ç¡/
+
+AXoOls95nFzoK_qoU3Md	java:S116*"ORename this field "Wrap" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎâÚ8ğ‹ù¦˜/
+‚
+AXoOls95nFzoK_qoU3Me	java:S116*"PRename this field "Cover" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎâÚ8ğ‹ù¦˜/
+‚
+AXoOls95nFzoK_qoU3Mf	java:S116*"PRename this field "Blank" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÎâÚ8ğ‹ù¦˜/
+‡
+AXoOls95nFzoK_qoU3Mg	java:S116+"PRename this field "Store" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ€µıÿÿÿÿ8ğ‹ù¦˜/
+‚
+AXoOls95nFzoK_qoU3Mh	java:S116,"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÕŞ8ğ‹ù¦˜/
+€
+AXoOls95nFzoK_qoU3Mi	java:S116,"NRename this field "ETC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÕŞ8ğ‹ù¦˜/
+‚
+AXoOls95nFzoK_qoU3Mj	java:S116,"PRename this field "CLASS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ÕŞ8ğ‹ù¦˜/
+
+AXoOls95nFzoK_qoU3Mk	java:S116-"VRename this field "GETUSERINFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÔ¿äÿÿÿÿÿ8ğ‹ù¦˜/
+
+AXoOls95nFzoK_qoU3Ml	java:S1161"NRename this field "API" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ”µ08àë¶˜/
+r
+AXoOls95nFzoK_qoU3Mq
+java:S1161F":Add the "@Override" annotation above this method signature(ÿ£º¡ÿÿÿÿÿ8ğ‹ù¦˜/
+€
+AXoOls95nFzoK_qoU3Ms	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íß¢¿8àë¶˜/
+
+AXoOls95nFzoK_qoU3Mt	java:S100“"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’‹™Ÿ8àë¶˜/
+t
+AXoOls95nFzoK_qoU3Mu
+java:S1117˜"@Rename "recyclerView" which hides the field declared at line 47.(®Ä›á8àë¶˜/
+{
+AXoOls95nFzoK_qoU3Mv
+java:S1117™"GRename "linearLayoutManager" which hides the field declared at line 46.(Çóª8àë¶˜/
+\
+AXoOls95nFzoK_qoU3Mw
+java:S1185¢"(Remove this method to simply inherit it.(±íòÑ8ğ‹ù¦˜/

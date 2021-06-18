@@ -6,12 +6,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -32,27 +32,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
-
 import bigbigdw.joaradw.Config;
+import bigbigdw.joaradw.JOARADW;
+import bigbigdw.joaradw.base.BookBaseAcitivy;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.etc.Popup;
 import bigbigdw.joaradw.etc.Splash;
-import bigbigdw.joaradw.Login.Login_Main;
+import bigbigdw.joaradw.login.LoginMain;
 import bigbigdw.joaradw.R;
 
 
-public class Main extends AppCompatActivity {
+public class Main extends BookBaseAcitivy {
     private AppBarConfiguration appBarConfiguration;
     private Popup popup;
     boolean isFirstPage = true;
     String usertoken = "";
-    String status = "";
+    String userStatus = "";
     LinearLayout drawerLogout;
     LinearLayout drawerLogin;
     RequestQueue queue;
-    TextView Mana, Coupon, Cash, Manuscript_Coupon, Support_Coupon, UserName;
-    JSONObject getuserinfo;
+    TextView viewMana;
+    TextView coupon;
+    TextView viewCash;
+    TextView viewManuscriptCoupon;
+    TextView viewSupportCoupon;
+    TextView userName;
+    ImageView btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +76,40 @@ public class Main extends AppCompatActivity {
 
         drawerLogout = navHeaderView.findViewById(R.id.Drawer_LogOut);
         drawerLogin = navHeaderView.findViewById(R.id.Drawer_LogIn);
-        Mana = navHeaderView.findViewById(R.id.Mana);
-        Coupon = navHeaderView.findViewById(R.id.Coupon);
-        Cash = navHeaderView.findViewById(R.id.Cash);
-        Manuscript_Coupon = navHeaderView.findViewById(R.id.Manuscript_Coupon);
-        Support_Coupon = navHeaderView.findViewById(R.id.Support_Coupon);
-        UserName = navHeaderView.findViewById(R.id.UserName);
+        viewMana = navHeaderView.findViewById(R.id.Mana);
+        coupon = navHeaderView.findViewById(R.id.Coupon);
+        viewCash = navHeaderView.findViewById(R.id.Cash);
+        viewManuscriptCoupon = navHeaderView.findViewById(R.id.Manuscript_Coupon);
+        viewSupportCoupon = navHeaderView.findViewById(R.id.Support_Coupon);
+        userName = navHeaderView.findViewById(R.id.UserName);
+        btnLogout = navHeaderView.findViewById(R.id.Btn_Logout);
+
+        drawerLogout.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), LoginMain.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivityIfNeeded(intent, 0);
+            finish();
+        });
+
+        btnLogout.setOnClickListener(v -> {
+            String logoutURL = "/v1/user/deauth.joa";
+
+            final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + logoutURL + HELPER.ETC + "&category=22%2C2" + usertoken, response -> {
+                try {
+                    JSONObject reader = new JSONObject(response);
+                    userStatus = reader.getString("status");
+                    if (userStatus.equals("1")) {
+                        deleteSignedInfo();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }, error -> {
+
+            });
+            queue.add(jsonRequest);
+        });
 
         Intent intent = getIntent();
         isFirstPage = intent.getBooleanExtra("IsFirstPage", true);
@@ -85,29 +118,17 @@ public class Main extends AppCompatActivity {
             startActivity(intentSplash);
         }
 
+        checkToken();
 
-        getuserinfo = Config.getuserinfo();
-        try {
-            if (getuserinfo != null) {
-                JSONObject UserInfo = getuserinfo.getJSONObject("user");
-                status = getuserinfo.getString("status");
-                usertoken = "&token=" + UserInfo.getString("token");
-                String mana = UserInfo.getString("mana");
-                Mana.setText(mana);
-                String expire_cash = UserInfo.getString("expire_cash");
-                Coupon.setText(expire_cash);
-                String cash = UserInfo.getString("cash");
-                Cash.setText(cash);
-                String usernamed = new String(UserInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
-                UserName.setText(usernamed);
-                String manuscript_coupon = UserInfo.getString("manuscript_coupon");
-                Manuscript_Coupon.setText(manuscript_coupon);
-                String support_coupon = UserInfo.getString("support_coupon");
-                Support_Coupon.setText(support_coupon);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        JOARADW myapp = (JOARADW) getApplicationContext();
+        userStatus = myapp.getStatus();
+        usertoken = "&token=" + myapp.getToken();
+        viewMana.setText(myapp.getMana());
+        coupon.setText(myapp.getExpireCash());
+        viewCash.setText(myapp.getCash());
+        userName.setText(myapp.getName());
+        viewManuscriptCoupon.setText(myapp.getManuscriptCoupon());
+        viewSupportCoupon.setText(myapp.getSupportCoupon());
 
         loginCheck(queue, usertoken, drawerLogin, drawerLogout, navigationView);
 
@@ -150,7 +171,8 @@ public class Main extends AppCompatActivity {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
             try {
-                if (response.getString("status").equals("1")) {
+                String status = response.getString("status");
+                if (status.equals("1")) {
                     drawerLogOut.setVisibility(View.GONE);
                     drawerLogIn.setVisibility(View.VISIBLE);
                 } else {
@@ -158,7 +180,7 @@ public class Main extends AppCompatActivity {
                     drawerLogIn.setVisibility(View.GONE);
                     Config.deleteJSON();
                 }
-                hideItem(navigationView, response.getString("status").equals("1"));
+                hideItem(navigationView, status.equals("1"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -194,25 +216,9 @@ public class Main extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private final View.OnClickListener btnLeftListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            popup.dismiss();
-        }
-    };
 
-    private final View.OnClickListener btnRightListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            popup.dismiss();
-        }
-    };
-
-    public void onClickLogin(View v) {
-        Toast.makeText(getApplicationContext(), "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), Login_Main.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivityIfNeeded(intent, 0);
-        finish();
-    }
+    private final View.OnClickListener btnLeftListener = (View v) -> popup.dismiss();
+    private final View.OnClickListener btnRightListener = (View v) -> popup.dismiss();
 
     void deleteSignedInfo() {
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
@@ -232,22 +238,4 @@ public class Main extends AppCompatActivity {
 
     }
 
-    public void onClickLogout() {
-        String logoutURL = "/v1/user/deauth.joa";
-
-        final StringRequest jsonRequest = new StringRequest(Request.Method.GET, HELPER.API + logoutURL + HELPER.ETC + "&category=22%2C2" + usertoken, response -> {
-            try {
-                JSONObject reader = new JSONObject(response);
-                status = reader.getString("status");
-                if (status.equals("1")) {
-                    deleteSignedInfo();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> {
-
-        });
-        queue.add(jsonRequest);
-    }
 }

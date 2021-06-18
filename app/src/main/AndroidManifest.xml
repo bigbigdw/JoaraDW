@@ -14,7 +14,7 @@
         android:theme="@style/Theme.JoaraDW">
         <activity
             android:name="bigbigdw.joaradw.etc.Splash"
-            android:theme="@style/Theme.JoaraDW">
+            android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
         <activity
@@ -28,13 +28,13 @@
 
         <activity
             android:name="bigbigdw.joaradw.test.Test"
-            android:theme="@style/Theme.JoaraDW">
+            android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Login.Login_Main"
-            android:theme="@style/Theme.JoaraDW">
+            android:name="bigbigdw.joaradw.login.LoginMain"
+            android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
@@ -72,6 +72,36 @@
 
         <activity
             android:name="bigbigdw.joaradw.Book_Viewer.Viewer_Setting"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.login.LoginRegister"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.login.LoginCardPW"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.login.LoginFindID"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.login.LoginFindPW"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.policy.Policy"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
