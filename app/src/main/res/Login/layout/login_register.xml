@@ -310,7 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#00283D"
+                    android:background="#20459e"
                     android:text="@string/Register_Continue"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />

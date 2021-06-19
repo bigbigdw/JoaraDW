@@ -39,7 +39,6 @@ public class FragmentMore extends BookBaseFragment {
     LinearLayout gotoFaceBook;
     LinearLayout gotoInstagram;
     String userToken = "";
-    Bundle bundle;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,9 +64,15 @@ public class FragmentMore extends BookBaseFragment {
         eventAdapter(root, queue, eventList);
 
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
-        bundle = new Bundle();
         userToken = "&token=" +  app.getToken();
 
+        setLayout();
+
+        return root;
+    }
+
+    public void setLayout()
+    {
         wrap77Fes.setOnClickListener(v -> gotoMore(1 ,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
         wrapKidamu.setOnClickListener(v -> gotoMore(2,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
         wrapNOTY.setOnClickListener(v -> gotoMore(3,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
@@ -81,8 +86,6 @@ public class FragmentMore extends BookBaseFragment {
         gotoBlog.setOnClickListener(v -> gotoURL("https://m.blog.naver.com/joarablog"));
         gotoFaceBook.setOnClickListener(v -> gotoURL("https://www.facebook.com/Joara.page/"));
         gotoInstagram.setOnClickListener(v -> gotoURL("https://www.instagram.com/joara_official/"));
-
-        return root;
     }
 
     public void noticeAdapter(View root, RequestQueue queue, LinearLayout noticeList)

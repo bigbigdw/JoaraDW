@@ -6,13 +6,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -20,9 +18,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.base.RegisterActivity;
 import bigbigdw.joaradw.policy.Policy;
 
-public class LoginRegister extends AppCompatActivity {
+public class LoginRegister extends RegisterActivity {
 
     TextInputLayout inputPW;
     TextInputLayout inputPWcheck;
@@ -64,7 +63,11 @@ public class LoginRegister extends AppCompatActivity {
         policy1 = findViewById(R.id.PolicyText1);
         policy2 = findViewById(R.id.PolicyText2);
 
+        setLayout();
 
+    }
+
+    public void setLayout(){
         Objects.requireNonNull(inputID.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
@@ -73,7 +76,7 @@ public class LoginRegister extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                idCheck(text);
+                idCheck(text, inputID);
             }
 
             @Override
@@ -90,12 +93,7 @@ public class LoginRegister extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                if (text.toString().equals(initPW.toString())) {
-                    inputPWcheck.setErrorEnabled(true);
-                    inputPWcheck.setErrorEnabled(false);
-                } else {
-                    inputPWcheck.setError(getString(R.string.Register_PWCheck_Message));
-                }
+                pwCheck(text, initPW, inputPWcheck);
             }
 
             @Override
@@ -112,7 +110,7 @@ public class LoginRegister extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                phoneCheck(text);
+                phoneCheck(text, phone, onClickPhone);
             }
 
             @Override
@@ -129,7 +127,7 @@ public class LoginRegister extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                numCheck(text);
+                numCheck(text,num , phone, onClickNum);
             }
 
             @Override
@@ -154,10 +152,7 @@ public class LoginRegister extends AppCompatActivity {
                 }
         );
 
-        onClickPhone.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "인증번호가 전송되었습니다", Toast.LENGTH_SHORT).show();
-            num.setVisibility(View.VISIBLE);
-        });
+        onClickPhone.setOnClickListener(v -> sendNumMsg(num));
 
         onClickNum.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "임시 비밀번호가 전송되었습니다", Toast.LENGTH_SHORT).show());
 
@@ -193,50 +188,6 @@ public class LoginRegister extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Policy.class);
             startActivity(intent);
         });
-    }
-
-    public void idCheck(CharSequence text) {
-        if (text.toString().equals("kdw0310@ajou.ac.kr")) {
-            inputID.setError(getString(R.string.Register_IDCheck_Message));
-            inputID.setErrorEnabled(true);
-        }
-        else if (text.toString().length() < 10) {
-            inputID.setError(getString(R.string.FindID_IDInvalid));
-            inputID.setErrorEnabled(true);
-        }
-        else {
-            inputID.setErrorEnabled(false);
-        }
-    }
-
-    public void phoneCheck(CharSequence text) {
-        if (text.toString().length() < 10) {
-            phone.setError(getString(R.string.Find_InputPhone_NO));
-            phone.setErrorEnabled(true);
-            onClickPhone.setVisibility(View.GONE);
-        } else if(text.toString().length() == 11){
-            phone.setErrorEnabled(false);
-            onClickPhone.setVisibility(View.VISIBLE);
-        } else {
-            phone.setErrorEnabled(false);
-            onClickPhone.setVisibility(View.GONE);
-        }
-    }
-
-    public void numCheck(CharSequence text) {
-        if (text.toString().length() < 5) {
-            num.setError(getString(R.string.Find_InputNum_NO));
-            num.setErrorEnabled(true);
-            onClickNum.setVisibility(View.GONE);
-        }
-        else if(text.toString().length() == 6){
-            phone.setErrorEnabled(false);
-            onClickNum.setVisibility(View.VISIBLE);
-        }
-        else {
-            num.setErrorEnabled(false);
-            onClickNum.setVisibility(View.GONE);
-        }
     }
 
     @Override

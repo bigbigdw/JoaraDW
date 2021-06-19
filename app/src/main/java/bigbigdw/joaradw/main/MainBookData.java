@@ -33,7 +33,7 @@ public class MainBookData {
 
                 if (type.equals("BEST")) {
                     length = Math.min(flag.length(), 5);
-                    initNum = 2;
+                    initNum = 0;
                 } else {
                     length = flag.length();
                 }
@@ -44,7 +44,7 @@ public class MainBookData {
                     BookInfo tempBookInfo = BookInfo.getParseData(jo);
                     BookInfo tempBookInfoBest = BookInfo.getParseBest(i);
 
-                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                     wrap.setVisibility(View.VISIBLE);
                 }
 

@@ -35,15 +35,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import bigbigdw.joaradw.Book_Detail.Book_Detail;
-import bigbigdw.joaradw.Book_Detail.Detail_BookPageData;
+import bigbigdw.joaradw.book_detail.BookDetail;
+import bigbigdw.joaradw.book_detail.DetailBookPageData;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.R;
 
 public class Book_Viewer extends AppCompatActivity {
     private AppBarConfiguration AppBarConfiguration;
     Viewer_DrawerAdpater Adapter;
-    private final ArrayList<Detail_BookPageData> items = new ArrayList<>();
+    private final ArrayList<DetailBookPageData> items = new ArrayList<>();
     private RecyclerView recyclerView;
     String CID, TOKEN, BookCode, CryptKey_URL, SortNO, BookDetailURL;
     TextView Text_Title, Text_Writer, Text_Intro;
@@ -115,7 +115,7 @@ public class Book_Viewer extends AppCompatActivity {
                     String BookCid = jo.getString("cid");
                     String BookList_Num = String.valueOf(i + 1);
 
-                    items.add(new Detail_BookPageData(BookList_Num, BookImg, BookListRecommend, ChapterTitle, BookCid, BookListComment));
+                    items.add(new DetailBookPageData(BookList_Num, BookImg, BookListRecommend, ChapterTitle, BookCid, BookListComment));
                 }
 
                 handler.postDelayed(() -> {
@@ -143,7 +143,7 @@ public class Book_Viewer extends AppCompatActivity {
         Adapter.notifyDataSetChanged();
 
         Adapter.setOnItemClickListener((v, position, Value) -> {
-            Detail_BookPageData item = Adapter.getItem(position);
+            DetailBookPageData item = Adapter.getItem(position);
             Intent intentViewer = new Intent(this.getApplicationContext(), Book_Viewer.class);
             intentViewer.putExtra("Cid", String.format("%s", item.getCid()));
             intentViewer.putExtra("TOKEN", String.format("%s", TOKEN));
@@ -155,7 +155,7 @@ public class Book_Viewer extends AppCompatActivity {
     }
 
     public void onClickGoDetail(View v) {
-        Intent intent = new Intent(getApplicationContext(), Book_Detail.class);
+        Intent intent = new Intent(getApplicationContext(), BookDetail.class);
         intent.putExtra("BookCode", String.format("%s", BookCode));
         intent.putExtra("TOKEN", String.format("%s", TOKEN));
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

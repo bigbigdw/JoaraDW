@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/Fragment_Detail_1"
-        android:name="bigbigdw.joaradw.Book_Detail.Detail_Tab_1"
+        android:name="bigbigdw.joaradw.book_detail.DetailTab1"
         android:label=""
         tools:layout="@layout/book_detail_tab_1" >
     </fragment>
@@ -48,26 +48,26 @@
 
     <fragment
         android:id="@+id/Fragment_New"
-        android:name="bigbigdw.joaradw.Fragment_New.Fragment_New"
+        android:name="bigbigdw.joaradw.fragment_new.FragmentNew"
         android:label=""
         tools:layout="@layout/fragment_new" >
     </fragment>
 
     <fragment
         android:id="@+id/Fragment_Best"
-        android:name="bigbigdw.joaradw.Fragment_Best.Fragment_Best"
+        android:name="bigbigdw.joaradw.fragment_best.FragmentBest"
         android:label=""
         tools:layout="@layout/fragment_best" />
 
     <fragment
         android:id="@+id/Fragment_Finish"
-        android:name="bigbigdw.joaradw.Fragment_Finish.Fragment_Finish"
+        android:name="bigbigdw.joaradw.fragment_finish.FragmentFinish"
         android:label=""
         tools:layout="@layout/fragment_best" />
 
     <fragment
         android:id="@+id/Fragment_Fav"
-        android:name="bigbigdw.joaradw.Fragment_Fav.Fragment_Fav"
+        android:name="bigbigdw.joaradw.fragment_fav.FragmentFav"
         android:label=""
         tools:layout="@layout/fragment_best" />
 

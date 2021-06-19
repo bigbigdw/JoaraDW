@@ -60,15 +60,20 @@ public class LoginMain extends AppCompatActivity {
         loginMainFIndPW = findViewById(R.id.LoginMain_FIndPW);
         registerBtn = findViewById(R.id.RegisterBtn);
 
+        setLayout();
+
+    }
+
+    public void setLayout(){
         Objects.requireNonNull(idtext.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
-                Log.d("LoginMain", "idtext");
+                Log.d("LoginMain_idtext", "idtext");
             }
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                Log.d("LoginMain", "idtext");
+                Log.d("LoginMain_idtext", "idtext");
             }
 
             @Override
@@ -86,12 +91,12 @@ public class LoginMain extends AppCompatActivity {
         Objects.requireNonNull(pwtext.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
-                Log.d("LoginMain", "pwtext");
+                Log.d("LoginMain_pwtext", "pwtext");
             }
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                Log.d("LoginMain", "pwtext");
+                Log.d("LoginMain_pwtext", "pwtext");
             }
 
             @Override
@@ -180,7 +185,6 @@ public class LoginMain extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Main.class);
             startActivity(intent);
         });
-
     }
 
 

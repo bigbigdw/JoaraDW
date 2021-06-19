@@ -66,9 +66,9 @@ public interface BookPagination {
                         BookInfo tempBookInfo = BookInfo.getParseData(jo);
 
                         if(type.equals("Fav")){
-                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, "", tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, "", tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                         }else {
-                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, tempBookInfo.getHistorySortno(), tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                            items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(), 0, tempBookInfo.getHistorySortno(), tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                         }
 
                         cover.setVisibility(View.GONE);
@@ -103,7 +103,7 @@ public interface BookPagination {
                     BookInfo tempBookInfo = BookInfo.getParseData(jo);
                     BookInfo tempBookInfoBest = BookInfo.getParseBest(i);
 
-                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                     cover.setVisibility(View.GONE);
                     wrap.setVisibility(View.VISIBLE);
                 }
@@ -149,7 +149,7 @@ public interface BookPagination {
                                     for (int i = 0; i < flag.length(); i++) {
                                         JSONObject jo = flag.getJSONObject(i);
                                         BookInfo tempBookInfo = BookInfo.getParseData(jo);
-                                        items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName()));
+                                        items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                                         wrap.setVisibility(View.VISIBLE);
                                     }
 

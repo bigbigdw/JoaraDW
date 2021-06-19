@@ -16,9 +16,10 @@ public class MainBookListData {
     String readCount;
     String bookCode;
     String bookCategory;
+    String cntChapter;
     int bookBestRank;
 
-    public MainBookListData(String writer, String title, String bookImg, String isAdult, String isFinish, String isPremium, String isNobless, String intro, String isFav, String bookViewed, String bookFavCount, String bookRecommend, int bookBestRank, String readCount, String bookCode, String bookCategory) {
+    public MainBookListData(String writer, String title, String bookImg, String isAdult, String isFinish, String isPremium, String isNobless, String intro, String isFav, String bookViewed, String bookFavCount, String bookRecommend, int bookBestRank, String readCount, String bookCode, String bookCategory, String cntChapter) {
         this.writer = writer;
         this.title = title;
         this.bookImg = bookImg;
@@ -35,6 +36,7 @@ public class MainBookListData {
         this.readCount = readCount;
         this.bookCode = bookCode;
         this.bookCategory = bookCategory;
+        this.cntChapter = cntChapter;
     }
 
     public String getBookCategory() {
@@ -99,5 +101,13 @@ public class MainBookListData {
 
     public String getBookCode() {
         return bookCode;
+    }
+
+    public void setCntChapter(String cntChapter) {
+        this.cntChapter = cntChapter;
+    }
+
+    public String getCntChapter() {
+        return cntChapter;
     }
 }

@@ -39,14 +39,14 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail"
+            android:name="bigbigdw.joaradw.book_detail.BookDetail"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail_Cover"
+            android:name="bigbigdw.joaradw.book_detail.BookDetailCover"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
 
@@ -65,7 +65,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Book_Detail.Book_Detail_SubPage"
+            android:name="bigbigdw.joaradw.book_detail.BookDetailSubPage"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>

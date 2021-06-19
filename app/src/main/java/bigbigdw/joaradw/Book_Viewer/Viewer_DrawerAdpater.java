@@ -15,13 +15,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import bigbigdw.joaradw.Book_Detail.Detail_BookPageData;
+import bigbigdw.joaradw.book_detail.DetailBookListAdapter;
+import bigbigdw.joaradw.book_detail.DetailBookPageData;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.R;
 
 
 public class Viewer_DrawerAdpater extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<Detail_BookPageData> listData;
+    ArrayList<DetailBookPageData> listData;
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
@@ -29,14 +30,14 @@ public class Viewer_DrawerAdpater extends RecyclerView.Adapter<RecyclerView.View
         void onItemClick(View v, int position, String Value);
     }
 
-    private bigbigdw.joaradw.Book_Detail.Detail_BookListAdapter.OnItemClickListener Listener = null;
+    private DetailBookListAdapter.OnItemClickListener Listener = null;
 
-    public void setOnItemClickListener(bigbigdw.joaradw.Book_Detail.Detail_BookListAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(DetailBookListAdapter.OnItemClickListener listener) {
         this.Listener = listener;
     }
 
 
-    public Viewer_DrawerAdpater(ArrayList<Detail_BookPageData> items) {
+    public Viewer_DrawerAdpater(ArrayList<DetailBookPageData> items) {
         this.listData = items;
     }
 
@@ -76,7 +77,7 @@ public class Viewer_DrawerAdpater extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private void populateItemRows(Viewer_DrawerAdpater.Detail_BookList_ViewHolder holder, int position) {
-        Detail_BookPageData item = listData.get(position);
+        DetailBookPageData item = listData.get(position);
 
         holder.Title.setText(listData.get(position).getBookChapter());
         holder.BookList.setText(listData.get(position).getBookListNum());
@@ -133,11 +134,11 @@ public class Viewer_DrawerAdpater extends RecyclerView.Adapter<RecyclerView.View
     }
 
 
-    public void setItems(ArrayList<Detail_BookPageData> items) {
+    public void setItems(ArrayList<DetailBookPageData> items) {
         this.listData = items;
     }
 
-    public Detail_BookPageData getItem(int position) {
+    public DetailBookPageData getItem(int position) {
         return listData.get(position);
     }
 }

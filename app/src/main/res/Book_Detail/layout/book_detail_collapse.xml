@@ -34,48 +34,6 @@
                 android:onClick="onClickFav"
                 android:scaleType="fitXY" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/FavWrap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/TextBookFav"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/FavON"
-                        android:layout_width="25dp"
-                        android:layout_height="26dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/TODO"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/icon_favon" />
-
-                    <ImageView
-                        android:id="@+id/FavOff"
-                        android:layout_width="25dp"
-                        android:layout_height="26dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/TODO"
-                        android:scaleType="fitXY"
-                        android:visibility="gone"
-                        app:srcCompat="@drawable/icon_favoff"
-                        tools:visibility="gone" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

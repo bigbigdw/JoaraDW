@@ -86,6 +86,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
         holder.bookCodeWrap.setText(listData.get(position).getBookCode());
         holder.bookFav.setText(listData.get(position).getIsFav());
         holder.category.setText(listData.get(position).getBookCategory());
+        holder.textCntChapter.setText(listData.get(position).getCntChapter());
 
         TextView topText = holder.topText;
         TextView bar = holder.bar;
@@ -135,6 +136,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
         TextView topText;
         TextView bookCodeWrap;
         TextView bookFav;
+        TextView textCntChapter;
         TextView bar;
         TextView category;
         CardView imgWrap;
@@ -159,6 +161,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
             bookContentsWrapC = itemView.findViewById(R.id.BookContentsWrapC);
             bar = itemView.findViewById(R.id.Bar);
             category = itemView.findViewById(R.id.Category);
+            textCntChapter = itemView.findViewById(R.id.Text_CntChapter);
 
             if (Config.getuserinfo() != null) {
                 getuserinfo = Config.getuserinfo();

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 
-import bigbigdw.joaradw.Book_Detail.Book_Detail_Cover;
+import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
@@ -31,7 +31,12 @@ public class BookBaseFragment extends Fragment {
 
     String token = "";
     String status = "";
-    String userName;
+    String name;
+    String mana;
+    String expireCash;
+    String cash;
+    String manuscriptCoupon;
+    String supportCoupon;
     Bundle bundle;
 
     public void checkToken() {
@@ -42,12 +47,22 @@ public class BookBaseFragment extends Fragment {
                 userInfo = getUserInfo.getJSONObject("user");
                 token = userInfo.getString("token");
                 status = getUserInfo.getString("status");
-                userName = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+                name = new String(userInfo.getString("nickname").getBytes(), StandardCharsets.UTF_8);
+                mana = userInfo.getString("mana");
+                expireCash = userInfo.getString("expire_cash");
+                cash = userInfo.getString("cash");
+                manuscriptCoupon = userInfo.getString("manuscript_coupon");
+                supportCoupon = userInfo.getString("support_coupon");
 
                 JOARADW app = (JOARADW) requireActivity().getApplicationContext();
                 app.setStatus(status);
                 app.setToken(token);
-                app.setName(userName);
+                app.setName(name);
+                app.setMana(mana);
+                app.setExpireCash(expireCash);
+                app.setCash(cash);
+                app.setManuscriptCoupon(manuscriptCoupon);
+                app.setSupportCoupon(supportCoupon);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -85,7 +100,7 @@ public class BookBaseFragment extends Fragment {
         if (value.equals("FAV")) {
             BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Detail_Cover.class);
+            Intent intent = new Intent(requireContext().getApplicationContext(), BookDetailCover.class);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
             intent.putExtra("token", String.format("%s", token));
             startActivity(intent);

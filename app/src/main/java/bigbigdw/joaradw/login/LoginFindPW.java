@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -18,8 +17,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.base.RegisterActivity;
 
-public class LoginFindPW extends AppCompatActivity {
+public class LoginFindPW extends RegisterActivity {
 
     TextInputLayout phone;
     TextInputLayout num;
@@ -48,6 +48,10 @@ public class LoginFindPW extends AppCompatActivity {
         btnBack = findViewById(R.id.Btn_Back);
         btnFindID = findViewById(R.id.Btn_FindID);
 
+        setLayout();
+    }
+
+    public void setLayout() {
         Objects.requireNonNull(id.getEditText()).addTextChangedListener((new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
@@ -80,17 +84,7 @@ public class LoginFindPW extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                if (text.toString().length() < 10) {
-                    phone.setError(getString(R.string.Find_InputPhone_NO));
-                    phone.setErrorEnabled(true);
-                    onClickPhone.setVisibility(View.GONE);
-                } else if (text.toString().length() == 11) {
-                    phone.setErrorEnabled(false);
-                    onClickPhone.setVisibility(View.VISIBLE);
-                } else {
-                    phone.setErrorEnabled(false);
-                    onClickPhone.setVisibility(View.GONE);
-                }
+                phoneCheck(text, phone, onClickPhone);
             }
 
             @Override
@@ -107,17 +101,7 @@ public class LoginFindPW extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                if (text.toString().length() < 5) {
-                    num.setError(getString(R.string.Find_InputNum_NO));
-                    num.setErrorEnabled(true);
-                    onClickNum.setVisibility(View.GONE);
-                } else if (text.toString().length() == 6) {
-                    phone.setErrorEnabled(false);
-                    onClickNum.setVisibility(View.VISIBLE);
-                } else {
-                    num.setErrorEnabled(false);
-                    onClickNum.setVisibility(View.GONE);
-                }
+                numCheck(text,num , phone, onClickNum);
             }
 
             @Override
@@ -128,10 +112,7 @@ public class LoginFindPW extends AppCompatActivity {
 
         id.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "유효한 아이디입니다", Toast.LENGTH_SHORT).show());
 
-        onClickPhone.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "인증번호가 전송되었습니다", Toast.LENGTH_SHORT).show();
-            num.setVisibility(View.VISIBLE);
-        });
+        onClickPhone.setOnClickListener(v -> sendNumMsg(num));
 
         onClickNum.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "임시 비밀번호가 전송되었습니다", Toast.LENGTH_SHORT).show());
 
@@ -140,11 +121,7 @@ public class LoginFindPW extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnFindID.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), LoginFindID.class);
-            startActivity(intent);
-        });
-
+        btnFindID.setOnClickListener(v -> goToMain());
     }
 
     @Override

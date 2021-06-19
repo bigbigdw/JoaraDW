@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.Fragment_Best.Main_BookListAdapter_Best;
-import bigbigdw.joaradw.base.BookBaseAcitivy;
+import bigbigdw.joaradw.fragment_best.MainBookListAdapterBest;
+import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
-public class BookPageEtc extends BookBaseAcitivy {
+public class BookPageEtc extends BookBaseActivity {
     private MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
     private final ArrayList<MainBookListData> items = new ArrayList<>();
@@ -79,7 +79,7 @@ public class BookPageEtc extends BookBaseAcitivy {
 
     private void initAdapter() {
         if (type.equals("BEST")) {
-            Main_BookListAdapter_Best bestAdapter = new Main_BookListAdapter_Best(items);
+            MainBookListAdapterBest bestAdapter = new MainBookListAdapterBest(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             bestAdapter.notifyDataSetChanged();

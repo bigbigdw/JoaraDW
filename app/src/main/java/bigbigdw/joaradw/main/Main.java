@@ -34,17 +34,17 @@ import org.json.JSONObject;
 
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.base.BookBaseAcitivy;
+import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.etc.Popup;
+import bigbigdw.joaradw.etc.PopupBanner;
 import bigbigdw.joaradw.etc.Splash;
 import bigbigdw.joaradw.login.LoginMain;
 import bigbigdw.joaradw.R;
 
 
-public class Main extends BookBaseAcitivy {
+public class Main extends BookBaseActivity {
     private AppBarConfiguration appBarConfiguration;
-    private Popup popup;
+    private PopupBanner popupBanner;
     boolean isFirstPage = true;
     String usertoken = "";
     String userStatus = "";
@@ -58,6 +58,10 @@ public class Main extends BookBaseAcitivy {
     TextView viewSupportCoupon;
     TextView userName;
     ImageView btnLogout;
+    NavController navController;
+    NavigationView navigationView;
+    View navHeaderView;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +72,9 @@ public class Main extends BookBaseAcitivy {
         setSupportActionBar(toolbar);
 
         queue = Volley.newRequestQueue(this);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_vie);
-        View navHeaderView = navigationView.getHeaderView(0);
-
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_vie);
+        navHeaderView = navigationView.getHeaderView(0);
         drawerLogout = navHeaderView.findViewById(R.id.Drawer_LogOut);
         drawerLogin = navHeaderView.findViewById(R.id.Drawer_LogIn);
         viewMana = navHeaderView.findViewById(R.id.Mana);
@@ -83,6 +84,26 @@ public class Main extends BookBaseAcitivy {
         viewSupportCoupon = navHeaderView.findViewById(R.id.Support_Coupon);
         userName = navHeaderView.findViewById(R.id.UserName);
         btnLogout = navHeaderView.findViewById(R.id.Btn_Logout);
+        JOARADW myapp = (JOARADW) getApplicationContext();
+        userStatus = myapp.getStatus();
+        usertoken = "&token=" + myapp.getToken();
+        viewMana.setText(myapp.getMana());
+        coupon.setText(myapp.getExpireCash());
+        viewCash.setText(myapp.getCash());
+        userName.setText(myapp.getName());
+        viewManuscriptCoupon.setText(myapp.getManuscriptCoupon());
+        viewSupportCoupon.setText(myapp.getSupportCoupon());
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        checkToken();
+
+        loginCheck(queue, usertoken, drawerLogin, drawerLogout, navigationView);
+
+        setLayout();
+
+    }
+
+    public void setLayout() {
 
         drawerLogout.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(), "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
@@ -118,29 +139,15 @@ public class Main extends BookBaseAcitivy {
             startActivity(intentSplash);
         }
 
-        checkToken();
-
-        JOARADW myapp = (JOARADW) getApplicationContext();
-        userStatus = myapp.getStatus();
-        usertoken = "&token=" + myapp.getToken();
-        viewMana.setText(myapp.getMana());
-        coupon.setText(myapp.getExpireCash());
-        viewCash.setText(myapp.getCash());
-        userName.setText(myapp.getName());
-        viewManuscriptCoupon.setText(myapp.getManuscriptCoupon());
-        viewSupportCoupon.setText(myapp.getSupportCoupon());
-
-        loginCheck(queue, usertoken, drawerLogin, drawerLogout, navigationView);
-
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_Main
         ).setOpenableLayout(drawer).build();
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
+
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.Fragment_Main) {
@@ -156,13 +163,13 @@ public class Main extends BookBaseAcitivy {
             try {
                 JSONArray bannerArray = response.getJSONArray("banner");
                 if (bannerArray.length() != 0) {
-                    popup = new Popup(this, btnLeftListener, btnRightListener, bannerArray.getString(0));
-                    popup.show();
+                    popupBanner = new PopupBanner(this, btnLeftListener, btnRightListener, bannerArray.getString(0));
+                    popupBanner.show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> popup.hide());
+        }, error -> popupBanner.hide());
         queue.add(jsonRequest);
     }
 
@@ -211,14 +218,14 @@ public class Main extends BookBaseAcitivy {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+        NavController navControllerUp = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navControllerUp, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 
 
-    private final View.OnClickListener btnLeftListener = (View v) -> popup.dismiss();
-    private final View.OnClickListener btnRightListener = (View v) -> popup.dismiss();
+    private final View.OnClickListener btnLeftListener = (View v) -> popupBanner.dismiss();
+    private final View.OnClickListener btnRightListener = (View v) -> popupBanner.dismiss();
 
     void deleteSignedInfo() {
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);

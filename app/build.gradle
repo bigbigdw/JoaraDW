@@ -46,7 +46,7 @@ sonarqube {
         property "sonar.host.url", "http://localhost:9000/"
         property "sonar.projectKey", "KDW"
         property "sonar.projectName", "KDW"
-        property 'sonar.projectVersion', '2021.06.17'
+        property 'sonar.projectVersion', '2021.06.18'
         property "sonar.sources", "src/main"
         property "sonar.login", "9b8c47dec65057583e13a486e9f755a706973c71"
     }

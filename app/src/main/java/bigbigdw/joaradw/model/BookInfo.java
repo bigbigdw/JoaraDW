@@ -22,6 +22,7 @@ public class BookInfo {
     String cntFavorite;
     String cntRecom;
     String historySortno;
+    String cntChapter;
     int bookBestRank;
 
     public void setTitle(String title) {
@@ -152,6 +153,14 @@ public class BookInfo {
         return bookBestRank;
     }
 
+    public void setCntChapter(String cntChapter) {
+        this.cntChapter = cntChapter;
+    }
+
+    public String getCtnChapter() {
+        return cntChapter;
+    }
+
     public static BookInfo getParseData(JSONObject obj) throws JSONException {
         BookInfo tempBookInfo  = new BookInfo();
 
@@ -170,6 +179,7 @@ public class BookInfo {
         tempBookInfo.setCntFavorite(obj.getString("cnt_favorite"));
         tempBookInfo.setCntRecom(obj.getString("cnt_favorite"));
         tempBookInfo.setHistorySortno(Util.getJSONObjStringValue(obj,"history_sortno"));
+        tempBookInfo.setCntChapter("총 " + Util.getJSONObjStringValue(obj,"cnt_chapter") + "편");
 
         return tempBookInfo;
     }

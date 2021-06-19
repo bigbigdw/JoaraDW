@@ -1,6 +1,5 @@
 package bigbigdw.joaradw.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -51,6 +50,11 @@ public class LoginCardPW extends AppCompatActivity {
         onClickNext = findViewById(R.id.onClickNext);
         onClickDone =  findViewById(R.id.onClickDone);
 
+        setLayout();
+
+    }
+
+    public void setLayout() {
         Objects.requireNonNull(pwFirst).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
@@ -99,13 +103,25 @@ public class LoginCardPW extends AppCompatActivity {
 
         pwSecond.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                InputMethodManager imm = (InputMethodManager) LoginCardPW.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) LoginCardPW.this.getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(pwSecond.getWindowToken(), 0);
                 return true;
             }
             return false;
         });
 
+        onClickNext.setOnClickListener(v -> {
+            before.setVisibility(View.GONE);
+            onClickNext.setVisibility(View.GONE);
+            done.setVisibility(View.VISIBLE);
+            onClickDone.setVisibility(View.VISIBLE);
+        });
+
+        onClickDone.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "조아라에 가입하신 것을 환영합니다!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), LoginMain.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -115,19 +131,6 @@ public class LoginCardPW extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onClickNext(View v) {
-        before.setVisibility(View.GONE);
-        onClickNext.setVisibility(View.GONE);
-        done.setVisibility(View.VISIBLE);
-        onClickDone.setVisibility(View.VISIBLE);
-    }
-
-    public void onClickDone(View v) {
-        Toast.makeText(getApplicationContext(), "조아라에 가입하신 것을 환영합니다!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), LoginMain.class);
-        startActivity(intent);
     }
 
 }

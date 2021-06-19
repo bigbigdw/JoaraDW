@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.fragment_main;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
     List<String> mainBannerMidURLs = new ArrayList<>();
     String userToken = "";
     String userStatus = "";
-    String paramToken = "&token=";
+    String paramToken;
     String etc = "&page=1&offset=10";
     String showType = "&show_type=home";
     TextView userNameCategory;
@@ -68,7 +69,6 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
     LinearLayout wrapKidamu;
     LinearLayout wrapNOTY;
     LinearLayout wrapPromised;
-    Bundle bundle;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -93,25 +93,37 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
 
         checkToken();
 
-        AssetManager assetManager = requireActivity().getAssets();
-        RequestQueue queue = Volley.newRequestQueue(requireActivity());
-        bundle = new Bundle();
-
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
         userToken = app.getToken();
         userStatus = app.getStatus();
         userNameCategory.setText(app.getName());
+        paramToken = "&token=" + userToken;
 
-        InterfaceMainBannerAPI.setBanner(mainBannerMid, mainBannerMidURLs, queue, paramToken + userToken, "&page=&banner_type=app_main2016_event");
-        InterfaceMainBannerAPI.setBanner(mainBanner, mainBannerURLs, queue, paramToken + userToken, "&page=0&banner_type=app_home_top_banner");
+        setLayout(root);
+
+        return root;
+    }
+
+    public void setLayout(View root) {
+
+        AssetManager assetManager = requireActivity().getAssets();
+        RequestQueue queue = Volley.newRequestQueue(requireActivity());
+
+        String bookC = paramToken + "&section_mode=contest_free_award" + etc + showType;
+        String bookD = paramToken + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + etc + showType;
+        String resultEtcUrl = paramToken + "&book_code=&offset=50";
+        String resultEtcUrlSection = paramToken + API.SECTION_MODE + "&page=1&offset=50" + showType;
+
+        InterfaceMainBannerAPI.setBanner(mainBannerMid, mainBannerMidURLs, queue, paramToken, "&page=&banner_type=app_main2016_event");
+        InterfaceMainBannerAPI.setBanner(mainBanner, mainBannerURLs, queue, paramToken, "&page=0&banner_type=app_home_top_banner");
         mainBanner.setImageListener(imageListener);
         mainBannerMid.setImageListener(imageListenerMid);
 
         if (userStatus.equals("1")) {
-            bookListA(root, API.USER_HISTORYBOOKS_JOA, paramToken + userToken + "&mem_time=0" + etc, R.id.Main_HistoryBookList, historyAdapter, R.id.main_booklist_history);
-            bookListA(root, API.BOOK_RECOMMEND_LIST_API_JOA, paramToken + userToken + "&book_code=", R.id.Main_HobbyBookList, hobbyAdapter, R.id.main_booklist_hobby);
+            bookListA(root, API.USER_HISTORYBOOKS_JOA, paramToken + "&mem_time=0" + etc, R.id.Main_HistoryBookList, historyAdapter, R.id.main_booklist_history);
+            bookListA(root, API.BOOK_RECOMMEND_LIST_API_JOA, paramToken + "&book_code=", R.id.Main_HobbyBookList, hobbyAdapter, R.id.main_booklist_hobby);
         }
-        bookListA(root, API.HOME_LIST_JOA, paramToken + userToken + "&page=1&section_mode=recommend_book" + etc, R.id.Main_MDNovelList, mdNovelAdapter, R.id.main_booklist_mdnovel);
+        bookListA(root, API.HOME_LIST_JOA, paramToken + "&page=1&section_mode=recommend_book" + etc, R.id.Main_MDNovelList, mdNovelAdapter, R.id.main_booklist_mdnovel);
         BookList.bookListAWebToon(root, API.HOME_WEBTOON_LIST_JOA, userToken, R.id.Main_MDWebtoonList, mdWebtoonAdapter, queue, R.id.main_booklist_mdwebtoon);
 
         BookList.bookListB(root, assetManager, "Main_FestivalBookList.json", R.id.Main_FestivalBookList, festivalAdapter);
@@ -121,16 +133,19 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         MainBookListAdapterC userPickedAdapter = new MainBookListAdapterC(items);
         MainBookListAdapterC notyAdapter = new MainBookListAdapterC(items);
         MainBookListAdapterC recommendAdapter = new MainBookListAdapterC(items);
-        bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=contest_free_award" + etc + showType, R.id.Main_UserPickedList, userPickedAdapter, R.id.main_booklist_userpicked);
-        bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + "1&section_mode=contest_free_award" + etc + showType, R.id.Main_NotyList, notyAdapter, R.id.main_booklist_noty);
-        bookListC(root, API.HOME_LIST_JOA, paramToken + userToken + API.SECTION_MODE + etc + showType, R.id.Main_RecommendedList, recommendAdapter, R.id.main_booklist_recommeded);
+
+        bookListC(root, API.HOME_LIST_JOA, bookC, R.id.Main_UserPickedList, userPickedAdapter, R.id.main_booklist_userpicked);
+        bookListC(root, API.HOME_LIST_JOA, bookC, R.id.Main_NotyList, notyAdapter, R.id.main_booklist_noty);
+        bookListC(root, API.HOME_LIST_JOA, paramToken + API.SECTION_MODE + etc + showType, R.id.Main_RecommendedList, recommendAdapter, R.id.main_booklist_recommeded);
 
         MainBookListAdapterD noblessTodayBestAdapter = new MainBookListAdapterD(items);
         MainBookListAdapterD premiumToadyBestAdapter = new MainBookListAdapterD(items);
         MainBookListAdapterD couponToadyBestAdapter = new MainBookListAdapterD(items);
-        bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + etc + showType, R.id.Main_NoblessTodayBestList, noblessTodayBestAdapter, R.id.main_nobelsstodaybest);
-        bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=todaybest&store=premium&orderby=cnt_best" + etc + showType, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
-        bookListD(root, API.HOME_LIST_JOA, paramToken + userToken + "&section_mode=support_coupon&orderby=cnt_best" + etc + showType, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);
+
+
+        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_NoblessTodayBestList, noblessTodayBestAdapter, R.id.main_nobelsstodaybest);
+        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
+        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);
 
         wrap77Fes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
         wrapKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
@@ -142,11 +157,9 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         goToKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
         goToNoty.setOnClickListener(v -> gotoMore(3, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
 
-        bookSnipe.setOnClickListener(v -> goToBookPageEtc("취향 저격", API.BOOK_RECOMMEND_LIST_API_JOA, paramToken + userToken + "&book_code=&offset=50"));
-        userPicked.setOnClickListener(v -> goToBookPageEtc("수상작", API.HOME_LIST_JOA, paramToken + userToken + API.SECTION_MODE + "&page=1&offset=50" + showType));
-        bookRecommend.setOnClickListener(v -> goToBookPageEtc("천만 인증", API.HOME_LIST_JOA, paramToken + userToken + API.SECTION_MODE + "&page=1&offset=50" + showType));
-
-        return root;
+        bookSnipe.setOnClickListener(v -> goToBookPageEtc("취향 저격", API.BOOK_RECOMMEND_LIST_API_JOA, resultEtcUrl));
+        userPicked.setOnClickListener(v -> goToBookPageEtc("수상작", API.HOME_LIST_JOA, resultEtcUrlSection));
+        bookRecommend.setOnClickListener(v -> goToBookPageEtc("천만 인증", API.HOME_LIST_JOA, resultEtcUrlSection));
     }
 
     ImageListener imageListener = (position, imageView) -> {

@@ -19,8 +19,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Objects;
 
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.base.RegisterActivity;
 
-public class LoginFindID extends AppCompatActivity {
+public class LoginFindID extends RegisterActivity {
 
     TextInputLayout phone;
     TextInputLayout num;
@@ -45,6 +46,12 @@ public class LoginFindID extends AppCompatActivity {
         onclickphone = findViewById(R.id.onClickPhone);
         btnGoBack = findViewById(R.id.BtnGoBack);
         btnFindPW  = findViewById(R.id.BtnFindPW);
+
+        setLayout();
+
+    }
+
+    public void setLayout(){
         Objects.requireNonNull(phone.getEditText()).addTextChangedListener((new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence text, int start, int count, int after) {
@@ -53,17 +60,7 @@ public class LoginFindID extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                if (text.toString().length() < 10) {
-                    phone.setError(getString(R.string.Find_InputPhone_NO));
-                    phone.setErrorEnabled(true);
-                    onclickphone.setVisibility(View.GONE);
-                } else if(text.toString().length() == 11){
-                    phone.setErrorEnabled(false);
-                    onclickphone.setVisibility(View.VISIBLE);
-                } else {
-                    phone.setErrorEnabled(false);
-                    onclickphone.setVisibility(View.GONE);
-                }
+                phoneCheck(text, phone, onclickphone);
             }
 
             @Override
@@ -80,19 +77,7 @@ public class LoginFindID extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                if (text.toString().length() < 5) {
-                    num.setError(getString(R.string.Find_InputNum_NO));
-                    num.setErrorEnabled(true);
-                    onclicknum.setVisibility(View.GONE);
-                }
-                else if(text.toString().length() == 6){
-                    phone.setErrorEnabled(false);
-                    onclicknum.setVisibility(View.VISIBLE);
-                }
-                else {
-                    num.setErrorEnabled(false);
-                    onclicknum.setVisibility(View.GONE);
-                }
+                numCheck(text,num , phone, onclicknum);
             }
 
             @Override
@@ -101,31 +86,19 @@ public class LoginFindID extends AppCompatActivity {
             }
         }));
 
-        onclickphone.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(),"인증번호가 전송되었습니다", Toast.LENGTH_SHORT).show();
-            num.setVisibility(View.VISIBLE);
-        });
+        onclickphone.setOnClickListener(v -> sendNumMsg(num));
 
         onclicknum.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(),"인증이 완료되었습니다", Toast.LENGTH_SHORT).show();
             id.setVisibility(View.VISIBLE);
         });
 
-        onclicknum.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(),"인증이 완료되었습니다", Toast.LENGTH_SHORT).show();
-            id.setVisibility(View.VISIBLE);
-        });
-
-        btnGoBack.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), LoginMain.class);
-            startActivity(intent);
-        });
+        btnGoBack.setOnClickListener(v -> goToMain());
 
         btnFindPW.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), LoginFindPW.class);
             startActivity(intent);
         });
-
     }
 
     @Override

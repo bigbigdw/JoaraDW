@@ -104,25 +104,6 @@
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Text_Title_Best"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:breakStrategy="high_quality"
-            android:ellipsize="end"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="@string/Common_BookTitle"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/BookCodeText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -179,6 +160,25 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/Text_Title_Best"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:breakStrategy="high_quality"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/Common_BookTitle"
+            android:textColor="@color/Contents_Text3"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/BookCodeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -194,7 +194,31 @@
                 android:fontFamily="@font/noto_sans"
                 android:maxLines="1"
                 android:text="@string/Common_BookWriter"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/Common_Bar"
+                android:textColor="@color/Contents_Text3"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/Text_CntChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:breakStrategy="high_quality"
+                android:ellipsize="end"
+                android:fontFamily="@font/noto_sans"
+                android:maxLines="1"
+                android:text="@string/Common_BookWriter"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -209,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookViewed"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp" />
 
             <TextView
@@ -220,7 +244,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/Main_Best_Num"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -236,7 +260,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookFavCount"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp" />
 
             <TextView
@@ -247,7 +271,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/Main_Best_Num"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -263,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/Main_Best_BookRecommend"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp" />
 
             <TextView
@@ -274,7 +298,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/Main_Best_Num"
-                android:textColor="#000000"
+                android:textColor="@color/Contents_Text3"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
