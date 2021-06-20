@@ -1,15 +1,0 @@
-
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(İ‘¬âÿÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×àÆ±şÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(°ĞÌ¶
-k	java:S116"VRename this field "BookListNum" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ŠÈ
-l	java:S116"RRename this field "BookImg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°â´ùşÿÿÿÿ
-v	java:S116"\Rename this field "BookListRecommend" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÜŞÁÿÿÿÿÿ
-n	java:S116"ZRename this field "BookListComment" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÜ@
-p	java:S116"VRename this field "BookChapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀÎ¡«üÿÿÿÿ
-c	java:S116	"NRename this field "Cid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔÆœÀ

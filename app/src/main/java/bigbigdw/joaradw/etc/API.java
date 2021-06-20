@@ -17,4 +17,6 @@ public interface API {
     String BOARD_BOOK_NOTICE_JOA = "/v1/board/book_notice.joa";
     String BOARD_BOOK_SETTING_JOA = "/v1/board/book_setting.joa";
     String BOARD_BOOK_POLL_JOA = "/v1/board/book_poll.joa";
+    String BOOK_CHAPTER_VALID_JOA = "/v1/book/chapter_valid.joa";
+    String BOOK_CHAPTER_JOA = "/v1/book/chapter.joa";
 }

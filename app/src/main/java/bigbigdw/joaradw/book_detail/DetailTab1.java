@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import bigbigdw.joaradw.Book_Viewer.Book_Viewer;
+import bigbigdw.joaradw.book_viewer.BookViewer;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.etc.API;
@@ -61,7 +61,7 @@ public class DetailTab1 extends Fragment {
 
         adapter.setOnItemClickListener((v, position, value) -> {
             DetailBookPageData item = adapter.getItem(position);
-            Intent intent = new Intent(requireContext().getApplicationContext(), Book_Viewer.class);
+            Intent intent = new Intent(requireContext().getApplicationContext(), BookViewer.class);
             intent.putExtra("Cid",String.format("%s", item.getCid()));
             intent.putExtra("TOKEN",String.format("%s", token));
             intent.putExtra("BOOKCODE",String.format("%s", bookcode));

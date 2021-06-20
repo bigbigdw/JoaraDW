@@ -167,16 +167,13 @@ public class LoginRegister extends RegisterActivity {
             numCheck = Objects.requireNonNull(num.getEditText()).getText();
             pwCheck = Objects.requireNonNull(inputPWcheck.getEditText()).getText();
 
-            Intent intent = new Intent(getApplicationContext(), LoginCardPW.class);
-            startActivity(intent);
-
-//            if(promise1.isChecked() && promise2.isChecked() && numCheck.toString().length() != 0 &&  phoneCheck.toString().length() != 0 && pwCheck.toString().equals(initPW.toString())){
-//                Toast.makeText(getApplicationContext(), "결제 비밀번호 설정으로 이동합니다.", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getApplicationContext(), LoginCardPW.class);
-//                startActivity(intent);
-//            } else {
-//                Toast.makeText(getApplicationContext(), "회원가입이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show();
-//            }
+            if(promise1.isChecked() && promise2.isChecked() && numCheck.toString().length() != 0 &&  phoneCheck.toString().length() != 0 && pwCheck.toString().equals(initPW.toString())){
+                Toast.makeText(getApplicationContext(), "결제 비밀번호 설정으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), LoginCardPW.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "회원가입이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         policy1.setOnClickListener(v -> {

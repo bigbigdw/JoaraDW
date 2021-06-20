@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE"
+    android:background="@color/Contents_BG"
     android:orientation="vertical"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
+        android:id="@+id/BookInfoWrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,27 +21,6 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/Text_Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:breakStrategy="high_quality"
-                android:ellipsize="end"
-                android:fontFamily="@font/noto_sans_bold"
-                android:maxLines="1"
-                android:text="@string/Common_BookTitle"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,28 +59,30 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/Text_Writer"
+                    android:id="@+id/Text_Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:breakStrategy="high_quality"
                     android:ellipsize="end"
                     android:fontFamily="@font/noto_sans"
-                    android:maxLines="1"
-                    android:text="@string/Common_BookWriter"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
+                    android:maxLines="3"
+                    android:text="@string/Common_BookTitle"
+                    android:textColor="@color/Contents_Text3"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Text_Intro"
+                    android:id="@+id/Text_Writer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:breakStrategy="high_quality"
                     android:ellipsize="end"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/noto_sans"
-                    android:maxLines="3"
-                    android:text="@string/Common_BookIntro"
-                    android:textColor="#767676"
+                    android:maxLines="1"
+                    android:text="@string/Common_BookWriter"
+                    android:textColor="@color/Contents_Text3"
                     android:textSize="12sp" />
 
                 <TextView
@@ -112,7 +94,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:maxLines="3"
                     android:text="@string/Viewwer_Detail"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text3"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -127,7 +109,7 @@
         android:id="@+id/TabWrap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@color/Contents"
         android:orientation="vertical">
 
         <include
@@ -138,8 +120,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/BookChapterList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:layout_height="match_parent"
+            android:background="@color/Contents"
             android:visibility="gone" />
 
     </LinearLayout>

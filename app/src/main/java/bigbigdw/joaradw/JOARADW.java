@@ -15,6 +15,24 @@ public class JOARADW extends Application {
     String cash;
     String manuscriptCoupon;
     String supportCoupon;
+    String cid;
+    String sortNo;
+
+    public void setSortNo(String sortNo) {
+        this.sortNo = sortNo;
+    }
+
+    public String getSortNo() {
+        return sortNo;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getCid() {
+        return cid;
+    }
 
     public void setBookCode(String bookcode) {
         this.bookcode = bookcode;

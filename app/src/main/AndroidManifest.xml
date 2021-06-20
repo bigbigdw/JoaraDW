@@ -53,7 +53,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Book_Viewer.Book_Viewer"
+            android:name="bigbigdw.joaradw.book_viewer.BookViewer"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
@@ -71,7 +71,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.Book_Viewer.Viewer_Setting"
+            android:name="bigbigdw.joaradw.book_viewer.ViewerSetting"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>

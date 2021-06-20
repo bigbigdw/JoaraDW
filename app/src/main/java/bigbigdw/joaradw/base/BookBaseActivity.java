@@ -1,6 +1,7 @@
 package bigbigdw.joaradw.base;
 
 import android.content.Intent;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +12,13 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 
+import bigbigdw.joaradw.book_detail.BookDetail;
 import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
+import bigbigdw.joaradw.book_detail.DetailBookPageData;
+import bigbigdw.joaradw.book_viewer.BookViewer;
 import bigbigdw.joaradw.main.MainBookListData;
 
 public class BookBaseActivity extends AppCompatActivity {
@@ -68,5 +72,23 @@ public class BookBaseActivity extends AppCompatActivity {
             intent.putExtra("TOKEN", String.format("%s", token));
             startActivity(intent);
         }
+    }
+
+    public void adapterListenerBookViewer(DetailBookPageData item, String userToken, String bookCode) {
+        Intent intentViewer = new Intent(this.getApplicationContext(), BookViewer.class);
+        intentViewer.putExtra("Cid", String.format("%s", item.getCid()));
+        intentViewer.putExtra("TOKEN", String.format("%s", userToken));
+        intentViewer.putExtra("BOOKCODE", String.format("%s", bookCode));
+        intentViewer.putExtra("SORTNO", String.format("%s", item.getBookListNum()));
+        intentViewer.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intentViewer);
+    }
+
+    public void onClickGoDetail(String userToken, String bookCode) {
+        Intent intent = new Intent(getApplicationContext(), BookDetail.class);
+        intent.putExtra("BookCode", String.format("%s", bookCode));
+        intent.putExtra("TOKEN", String.format("%s", userToken));
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 }
