@@ -16,8 +16,6 @@ import bigbigdw.joaradw.R;
 
 public class Policy extends AppCompatActivity {
 
-    private WebView webView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +24,7 @@ public class Policy extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        webView= findViewById(R.id.PopupWebView);
+        WebView webView= findViewById(R.id.PopupWebView);
 
         WebSettings mws = webView.getSettings();
         mws.setLoadWithOverviewMode(true);
