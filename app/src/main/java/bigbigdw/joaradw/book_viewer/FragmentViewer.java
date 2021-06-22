@@ -53,8 +53,6 @@ public class FragmentViewer extends Fragment {
         apiurl = HELPER.API + API.BOOK_CHAPTER_JOA + HELPER.ETC + "&cid=" + cid + "&sortno=" + sortNO;
         cryptKeyURL = HELPER.API + API.BOOK_CHAPTER_VALID_JOA + HELPER.ETC;
 
-        Log.d("@@@@@", apiurl);
-
         setLayout();
 
         return root;
@@ -78,7 +76,6 @@ public class FragmentViewer extends Fragment {
                 Log.d("@@@@", response.toString());
                 JSONObject chapter = response.getJSONObject("chapter");
                 String chapterTotal = "제 " + chapter.getString("sortno") + "화 " + chapter.getString("sub_title");
-                Log.d("@@@@", chapterTotal);
                 viewerChapter.setText(chapterTotal);
             } catch (JSONException e) {
                 e.printStackTrace();

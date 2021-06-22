@@ -30,7 +30,9 @@ public class MainMoreAadapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         ((MainMoreViewHolder) holder).contents.setText(listData.get(position).getContents());
         ((MainMoreViewHolder) holder).date.setText(listData.get(position).getStartDate());
 
-        ((MainMoreViewHolder) holder).sortNo.setText(listData.get(position).getBookSortNo());
+        String stringSortNo = listData.get(position).getBookSortNo() + " ";
+
+        ((MainMoreViewHolder) holder).sortNo.setText(stringSortNo);
         if(((MainMoreViewHolder) holder).sortNo != null){
             ((MainMoreViewHolder) holder).sortNo.setVisibility(View.VISIBLE);
         }

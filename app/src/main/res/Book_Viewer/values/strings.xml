@@ -7,6 +7,7 @@
     <string name="Viewer_Bottom5">다음</string>
     <string name="Viewwer_Detail">작품 상세 보기</string>
     <string name="Viewwer_Setting">뷰어 설정</string>
+    <string name="Viewwer_Setting_BtnEdit">변경</string>
     <string name="Vieewer_Setting_Test">전쟁은 시작되고 언데드 군대는 밀려온다. 혼란의 정점에서는 그는 과연 평화를 찾을 수 있을까? Legend Of Fantasy-war 매주 일요일 연재. 전쟁은 시작되고 언데드 군대는 밀려온다. 혼란의 정점에서는 그는 과연 평화를 찾을 수 있을까? Legend Of Fantasy-war 매주 일요일 연재.전쟁은 시작되고 언데드 군대는 밀려온다. 혼란의 정점에서는 그는 과연 평화를 찾을 수 있을까? Legend Of Fantasy-war 매주 일요일 연재.</string>
     <string name="Viewwer_Setting_Option_Titile1">미리보기</string>
     <string name="Viewwer_Setting_Option_Titile2">글자 설정</string>
@@ -20,19 +21,19 @@
     <string name="Viewwer_Setting_Option024">넓게</string>
     <string name="Viewwer_Setting_Option03">간격</string>
     <string name="Viewwer_Setting_Option04">들여쓰기</string>
-    <string name="Viewwer_Setting_Option041">들여쓰기를 적용합니다</string>
-    <string name="Viewwer_Setting_Option042">들여쓰기를 해제합니다</string>
+    <string name="Viewwer_Setting_Option041">들여쓰기를 적용하지 않습니다.</string>
     <string name="Viewwer_Setting_Option05">스크롤</string>
     <string name="Viewwer_Setting_Option051">상하</string>
     <string name="Viewwer_Setting_Option052">좌우</string>
     <string name="Viewwer_Setting_Option053">스크롤</string>
     <string name="Viewwer_Setting_Option06">연속 보기</string>
-    <string name="Viewwer_Setting_Option061">연속 보기를 적용합니다</string>
-    <string name="Viewwer_Setting_Option062">연속 보기를 해제합니다</string>
+    <string name="Viewwer_Setting_Option061">연속보기를 적용하지 않습니다.</string>
     <string name="Viewwer_Setting_Option07">버튼 이동</string>
-    <string name="Viewwer_Setting_Option071">볼륨버튼으로 스크롤을 제어합니다</string>
-    <string name="Viewwer_Setting_Option072">볼륨버튼으로 스크롤을 제어하지 않습니다</string>
+    <string name="Viewwer_Setting_Option071">볼륨버튼으로 스크롤을 제어하지 않습니다.</string>
     <string name="Viewwer_Setting_Option08">배경 색</string>
     <string name="Viewwer_Setting_Option09">글자 색</string>
     <string name="Viewwer_Setting_Option10">테마</string>
+    <string name="Viewwer_Setting_Color">채도</string>
+    <string name="Viewwer_Setting_Font">기본</string>
+    <string name="Viewwer_Setting_BtnDefalut">초기화</string>
 </resources>

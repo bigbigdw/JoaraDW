@@ -4,7 +4,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#1743a4</item>
-        <item name="colorAccent">#00283d</item>
+        <item name="colorAccent">@color/PrimaryColor</item>
         <item name="colorPrimaryDark">#00283d</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -25,12 +25,16 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#1743a4</item>
-        <item name="colorAccent">#00283d</item>
+        <item name="colorAccent">@color/PrimaryColor</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="MySwitch" parent="@style/Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColorPrimaryDisableOnly">#00838f</item>
+        <item name="colorAccent">@color/PrimaryColor</item>
+    </style>
 
 
     <!-- Base application theme. -->

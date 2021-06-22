@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon1"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon2"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon3"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon7"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon5"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/BookDetail_Tab3_Icon6"
                     android:textAlignment="center"
-                    android:textColor="#000000"
+                    android:textColor="@color/Contents_Text2"
                     android:textStyle="bold" />
             </LinearLayout>
 

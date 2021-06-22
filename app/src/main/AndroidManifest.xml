@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.test.Test"
+            android:name="bigbigdw.joaradw.test.ActivityTest"
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>

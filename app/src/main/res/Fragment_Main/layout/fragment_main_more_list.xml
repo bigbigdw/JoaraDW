@@ -32,7 +32,7 @@
             android:maxEms="10"
             android:maxLines="1"
             android:text="@string/Common_Joara"
-            android:textColor="#00283d"
+            android:textColor="@color/PrimaryColor"
             android:textSize="12sp"
             android:visibility="gone" />
 

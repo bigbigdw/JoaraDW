@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ColorPickerText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingTop="32dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="32dp"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <com.larswerkman.holocolorpicker.ColorPicker
+        android:id="@+id/pickerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Viewwer_Setting_Color" />
+
+    <com.larswerkman.holocolorpicker.SVBar
+        android:id="@+id/svbarText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -35,6 +35,7 @@
     <string name="BookDetail">작품 상세</string>
     <string name="Common_Btn_Back">돌아가기</string>
     <string name="Common_Btn_Confirm">확인</string>
+    <string name="Common_Btn_Apply">적용</string>
     <!-- 푸터 -->
     <string name="Footer_Section1">사업자 정보확인</string>
     <string name="Footer_Section2">이용약관</string>

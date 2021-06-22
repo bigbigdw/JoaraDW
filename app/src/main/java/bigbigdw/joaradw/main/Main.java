@@ -40,6 +40,7 @@ import bigbigdw.joaradw.etc.PopupBanner;
 import bigbigdw.joaradw.etc.Splash;
 import bigbigdw.joaradw.login.LoginMain;
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.test.ActivityTest;
 
 
 public class Main extends BookBaseActivity {
@@ -58,6 +59,7 @@ public class Main extends BookBaseActivity {
     TextView viewSupportCoupon;
     TextView userName;
     ImageView btnLogout;
+    ImageView homeImg;
     NavController navController;
     NavigationView navigationView;
     View navHeaderView;
@@ -74,6 +76,7 @@ public class Main extends BookBaseActivity {
         queue = Volley.newRequestQueue(this);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_vie);
+        homeImg = findViewById(R.id.HomeImg);
         navHeaderView = navigationView.getHeaderView(0);
         drawerLogout = navHeaderView.findViewById(R.id.Drawer_LogOut);
         drawerLogin = navHeaderView.findViewById(R.id.Drawer_LogIn);
@@ -148,6 +151,10 @@ public class Main extends BookBaseActivity {
         BottomNavigationView navView = findViewById(R.id.nav_bottom);
         NavigationUI.setupWithNavController(navView, navController);
 
+        homeImg.setOnClickListener(v -> {
+            Intent activityTest = new Intent(getApplicationContext(), ActivityTest.class);
+            startActivity(activityTest);
+        });
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.Fragment_Main) {

@@ -1,30 +1,0 @@
-
-b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(²™’Á
-k	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£¥àÿÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Š¥•ÿÿÿÿÿ
-D
-java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›
->
-java:S1659"#Declare "TOKEN" on a separate line.(¦şù›øÿÿÿÿ
-@
-java:S1659"%Declare "API_URL" on a separate line.(¦şù›øÿÿÿÿ
-A
-java:S1659"&Declare "BookCode" on a separate line.(¦şù›øÿÿÿÿ
-?
-java:S1659"$Declare "SortNO" on a separate line.(¦şù›øÿÿÿÿ
-h	java:S116"NRename this field "CID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦şù›øÿÿÿÿ
-j	java:S116"PRename this field "TOKEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦şù›øÿÿÿÿ
-l	java:S116"RRename this field "API_URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦şù›øÿÿÿÿ
-m	java:S116"SRename this field "BookCode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦şù›øÿÿÿÿ
-k	java:S116"QRename this field "SortNO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦şù›øÿÿÿÿ
-j	java:S116"URename this field "ViewerText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éø­é
-d	java:S116 "ORename this field "Data" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÒâæÑ
-i	java:S116!"TRename this field "ViwerJSON" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“‹Ã¿
-T
-java:S1854'"9Remove this useless assignment to local variable "queue".(ßåÿùÿÿÿÿ
-U
-java:S1161#":Add the "@Override" annotation above this method signature(ÿ£º¡ÿÿÿÿÿ
-V	java:S125*"<This block of commented-out lines of code should be removed.(ô´ÅÕüÿÿÿÿ
-Q	java:S1254"<This block of commented-out lines of code should be removed.(Ìªê
-E
-java:S1481'"*Remove this unused "queue" local variable.(ßåÿùÿÿÿÿ

@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseFragment;
+import bigbigdw.joaradw.book_viewer.ViewerSetting;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.fragment_main.MainMoreAadapter;
@@ -37,6 +38,7 @@ public class DetailTab3 extends BookBaseFragment {
     LinearLayout settingList;
     LinearLayout noticeList;
     LinearLayout surveyList;
+    LinearLayout wrapViewerSetting;
     String userToken = "";
     String etc = "";
     String bookcode;
@@ -61,6 +63,7 @@ public class DetailTab3 extends BookBaseFragment {
         gotoBookNotice = root.findViewById(R.id.GotoBookNotice);
         gotoBookSetting = root.findViewById(R.id.GotoBookSetting);
         gotoBookSurvey = root.findViewById(R.id.GotoBookSurvey);
+        wrapViewerSetting = root.findViewById(R.id.WrapViewerSetting);
 
         etc = "&recommend_type=book_code&offset=50" + "&token=" + userToken + "&book_code=" + bookcode + "&model_type=all&chapter_cnt=1&finish=&adult=";
 
@@ -77,6 +80,10 @@ public class DetailTab3 extends BookBaseFragment {
         gotoBookNotice.setOnClickListener(v -> gotoBookPage("NOTICE_PAGE"));
         gotoBookSetting.setOnClickListener(v -> gotoBookPage("SETTING_PAGE"));
         gotoBookSurvey.setOnClickListener(v -> gotoBookPage("SURVEY_PAGE"));
+        wrapViewerSetting.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), ViewerSetting.class);
+            startActivity(intent);
+        });
 
         BookList.bookListA(root, API.RECOMMEND_LIST_API_JOA, etc, R.id.BookDetail, bookListAdapterA, queue, R.id.TabWrap);
 
