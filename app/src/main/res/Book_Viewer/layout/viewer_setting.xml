@@ -85,7 +85,7 @@
                     android:id="@+id/ExBg"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:background="@color/Contents"
+                    android:background="#ffffff"
                     android:orientation="vertical">
 
                     <TextView
@@ -286,8 +286,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    tools:visibility="gone">
+                    android:paddingRight="16dp">
 
                     <ImageView
                         android:layout_width="21dp"
@@ -473,26 +472,33 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/ScrollScroll"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:buttonTint="@color/PrimaryColor"
+                            android:buttonTint="#A5C500"
                             android:checked="true"
+                            android:onClick="checkScroll"
+                            android:text="@string/Viewwer_Setting_Option053" />
+
+                        <RadioButton
+                            android:id="@+id/ScrollUpDown"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="#A5C500"
+                            android:onClick="checkScroll"
                             android:text="@string/Viewwer_Setting_Option051" />
 
                         <RadioButton
+                            android:id="@+id/ScrollLeftRight"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@color/PrimaryColor"
                             android:layout_weight="1"
+                            android:buttonTint="#A5C500"
+                            android:onClick="checkScroll"
                             android:text="@string/Viewwer_Setting_Option052" />
 
-                        <RadioButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/PrimaryColor"
-                            android:layout_weight="1"
-                            android:text="@string/Viewwer_Setting_Option053" />
                     </RadioGroup>
                 </LinearLayout>
 
@@ -855,7 +861,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/PrimaryColor"
+                android:background="#20459e"
                 android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/Common_Btn_Confirm"
                 android:textColor="#FFFFFF"

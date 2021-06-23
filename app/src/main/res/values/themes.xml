@@ -33,7 +33,7 @@
 
     <style name="MySwitch" parent="@style/Widget.AppCompat.CompoundButton.Switch">
         <item name="android:textColorPrimaryDisableOnly">#00838f</item>
-        <item name="colorAccent">@color/PrimaryColor</item>
+        <item name="colorAccent">#A5C500</item>
     </style>
 
 

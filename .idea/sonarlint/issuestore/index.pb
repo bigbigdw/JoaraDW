@@ -53,8 +53,6 @@ n
 >app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab1.java,6\6\66729ccdeeaf4451f58dce0f20e2121eb063994c
 n
 >app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab2.java,f\5\f57aedb40825a0a81b9885a49c73f1465206dfea
-s
-Capp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailCover.java,9\b\9b657e020b8c6249c17a544ae8434078d19e3d5e
 v
 Fapp/src/main/java/bigbigdw/joaradw/book_detail/DetailBookPageData.java,b\f\bf3927fdd6f52c90b76dd53a2164c5356d8b24ae
 y
@@ -75,8 +73,6 @@ k
 ;app/src/main/java/bigbigdw/joaradw/fragment_new/NewTab.java,1\2\12742aa420bb8bb963a300738b822a69f7213687
 p
 @app/src/main/java/bigbigdw/joaradw/fragment_new/FragmentNew.java,d\5\d539054dd56644e39bcaf623cdb72a5877ca9b8c
-_
-/app/src/main/java/bigbigdw/joaradw/JOARADW.java,a\3\a3573334c84d60a6bf3a46492bd331d34c77f340
 m
 =app/src/main/java/bigbigdw/joaradw/fragment_best/BestTab.java,9\a\9ad81c23eb8d850d6067d7adf36970f253aec320
 r
@@ -115,10 +111,6 @@ X
 local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-q
-Aapp/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterC.java,3\4\34f351e8f60358ec8352b9b8306e0acae74fb9c2
-n
->app/src/main/java/bigbigdw/joaradw/book_detail/BookDetail.java,0\d\0da6b38650d604467e68808fd0a2000ab7fd0ac7
 _
 /app/src/main/java/bigbigdw/joaradw/etc/API.java,2\b\2b5153bfdd812a5e7292eb3de1264aca159455f8
 m
@@ -140,3 +132,13 @@ Gapp/src/main/java/bigbigdw/joaradw/book_viewer/ViewerDrawerAdpater.java,0\1\01
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+n
+>app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab3.java,d\6\d6988808d73085e48d57252a9ec3728471bdef8f
+v
+Fapp/src/main/java/bigbigdw/joaradw/fragment_main/MainMoreAadapter.java,5\1\51469e28c693478def78b308318c1c376a28ae03
+a
+1app/src/main/java/bigbigdw/joaradw/main/Main.java,c\3\c3bddf2033695c0ee15b7fde60f736593414f58d
+i
+9app/src/main/java/bigbigdw/joaradw/test/ActivityTest.java,4\7\47ffe7b93d38774b9d04968b99e308f83d53da2e
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

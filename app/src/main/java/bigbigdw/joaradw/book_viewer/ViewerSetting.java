@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.larswerkman.holocolorpicker.ValueBar;
 
 import java.util.Objects;
 
+import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 
 public class ViewerSetting extends AppCompatActivity {
@@ -56,6 +59,12 @@ public class ViewerSetting extends AppCompatActivity {
     String bold = "굵게";
     String italic = "이탤릭";
     String boldItalic = "굵은 이탤릭";
+    Button btnDefault;
+    Button btnApply;
+    RadioButton scrollScroll;
+    RadioButton scrollUpDown;
+    RadioButton scrollLeftRight;
+    JOARADW myApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +99,11 @@ public class ViewerSetting extends AppCompatActivity {
         swtichConitnue = findViewById(R.id.SwtichConitnue);
         switchVolume = findViewById(R.id.SwitchVolume);
         textVolume = findViewById(R.id.TextVolume);
+        btnDefault = findViewById(R.id.BtnDefault);
+        btnApply = findViewById(R.id.BtnApply);
+        scrollScroll = findViewById(R.id.ScrollScroll);
+        scrollUpDown = findViewById(R.id.ScrollUpDown);
+        scrollLeftRight = findViewById(R.id.ScrollLeftRight);
 
         picker = findViewById(R.id.picker);
         SVBar svBar = findViewById(R.id.svbar);
@@ -105,28 +119,51 @@ public class ViewerSetting extends AppCompatActivity {
         SVBar svBarText = findViewById(R.id.svbarText);
         pickerText.addSVBar(svBarText);
 
+        myApp = (JOARADW) getApplicationContext();
+
         setLayout();
     }
 
-    public void setLayout(){
-        switchVolume.setOnClickListener(v->{
-            if(switchVolume.isChecked()){
+    public void setLayout() {
+
+        exText.setTextColor(myApp.getTextColor());
+        textApply.setBackgroundColor(myApp.getTextColor());
+        pickerText.setOldCenterColor(myApp.getTextColor());
+        pickerText.setNewCenterColor(myApp.getTextColor());
+        if(myApp.getViewerBGType().equals("BG")){
+            exBg.setBackgroundColor(myApp.getViewerBG());
+            bgApply.setBackgroundColor(myApp.getViewerBG());
+            picker.setOldCenterColor(myApp.getViewerBG());
+            picker.setNewCenterColor(myApp.getViewerBG());
+        } else {
+            exBg.setBackgroundResource(myApp.getViewerBGTheme());
+        }
+        fontType.setText(myApp.getTextType());
+        changeFontType();
+        textSizeSeekBar.setProgress(myApp.getTextSize());
+        textSizeOption(myApp.getTextSize());
+        textSpaceOption(myApp.getTextLineSpace());
+        textSpaceSeekBar.setProgress(myApp.getTextLineSpace());
+
+
+        switchVolume.setOnClickListener(v -> {
+            if (switchVolume.isChecked()) {
                 textVolume.setText("볼륨버튼으로 스크롤을 제어합니다.");
             } else {
                 textVolume.setText("볼륨버튼으로 스크롤을 제어하지 않습니다.");
             }
         });
 
-        swtichConitnue.setOnClickListener(v->{
-            if(swtichConitnue.isChecked()){
+        swtichConitnue.setOnClickListener(v -> {
+            if (swtichConitnue.isChecked()) {
                 textContinue.setText("연속보기를 적용합니다.");
             } else {
                 textContinue.setText("연속보기를 적용하지 않습니다.");
             }
         });
 
-        switchIndent.setOnClickListener(v->{
-            if(switchIndent.isChecked()){
+        switchIndent.setOnClickListener(v -> {
+            if (switchIndent.isChecked()) {
                 indentText.setText("들여쓰기를 적용합니다.");
             } else {
                 indentText.setText("들여쓰기를 적용하지 않습니다.");
@@ -137,17 +174,7 @@ public class ViewerSetting extends AppCompatActivity {
         textSpaceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress == 1) {
-                    exText.setLineSpacing(0,1.0f);
-                } else if (progress == 2) {
-                    exText.setLineSpacing(0,1.2f);
-                } else if (progress == 3) {
-                    exText.setLineSpacing(0,1.4f);
-                } else if (progress == 4) {
-                    exText.setLineSpacing(0,1.6f);
-                } else if (progress == 5) {
-                    exText.setLineSpacing(0,1.8f);
-                }
+                textSpaceOption(progress);
             }
 
             @Override
@@ -164,17 +191,7 @@ public class ViewerSetting extends AppCompatActivity {
         textSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress == 1) {
-                    exText.setTextSize(14);
-                } else if (progress == 2) {
-                    exText.setTextSize(16);
-                } else if (progress == 3) {
-                    exText.setTextSize(18);
-                } else if (progress == 4) {
-                    exText.setTextSize(20);
-                } else if (progress == 5) {
-                    exText.setTextSize(22);
-                }
+                textSizeOption(progress);
             }
 
             @Override
@@ -191,6 +208,47 @@ public class ViewerSetting extends AppCompatActivity {
         btnFontLeft.setOnClickListener(v -> changeFontTypeBtn("LEFT"));
         btnFontRight.setOnClickListener(v -> changeFontTypeBtn("RIGHT"));
 
+        picker.setOldCenterColor(-1);
+        pickerText.setOldCenterColor(-16777216);
+
+        btnApply.setOnClickListener(v -> {
+            myApp.setTextType(fontType.getText().toString());
+            myApp.setViewerBG(picker.getColor());
+            myApp.setTextColor(pickerText.getColor());
+            myApp.setTextLineSpace(textSpaceSeekBar.getProgress());
+            myApp.setTextSize(textSizeSeekBar.getProgress());
+            finish();
+        });
+
+        btnDefault.setOnClickListener(v -> {
+            exBg.setBackgroundColor(-1);
+            exText.setTextColor(-16777216);
+            exText.setTypeface(null, Typeface.NORMAL);
+            picker.setOldCenterColor(-1);
+            pickerText.setOldCenterColor(-16777216);
+            picker.setNewCenterColor(-1);
+            pickerText.setNewCenterColor(-16777216);
+            bgApply.setBackgroundColor(-1);
+            textApply.setBackgroundColor(-16777216);
+            switchVolume.setChecked(false);
+            swtichConitnue.setChecked(false);
+            switchIndent.setChecked(false);
+            textSizeSeekBar.setProgress(0);
+            textSpaceSeekBar.setProgress(0);
+            fontType.setText(normal);
+            indentText.setText("들여쓰기를 적용하지 않습니다.");
+            textContinue.setText("연속보기를 적용하지 않습니다.");
+            textVolume.setText("볼륨버튼으로 스크롤을 제어하지 않습니다.");
+            scrollScroll.setChecked(true);
+            scrollUpDown.setChecked(false);
+            scrollLeftRight.setChecked(false);
+            myApp.setViewerBGTheme(R.drawable.viewer_full_bg01);
+            myApp.setTextType("기본");
+            myApp.setViewerBG(-1);
+            myApp.setTextColor(-16777216);
+            myApp.setViewerBGType("BG");
+        });
+
         textEditBg.setOnClickListener(v -> {
             if (textEditBg.getText().equals("적용")) {
                 int color = picker.getColor();
@@ -198,6 +256,7 @@ public class ViewerSetting extends AppCompatActivity {
                 exBg.setBackgroundColor(color);
                 textEditBg.setText("변경");
                 colorPickerBG.setVisibility(View.GONE);
+                myApp.setViewerBGType("BG");
                 picker.setOldCenterColor(picker.getColor());
             } else {
                 textEditBg.setText("적용");
@@ -222,12 +281,26 @@ public class ViewerSetting extends AppCompatActivity {
         themeEdit.setOnClickListener(v -> {
             if (themeEdit.getText().equals("적용")) {
                 themeEdit.setText("변경");
+                myApp.setViewerBGType("BG_THEME");
                 viewerSettingTheme.setVisibility(View.GONE);
             } else {
                 themeEdit.setText("적용");
                 viewerSettingTheme.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public void checkScroll(View view) {
+        if (view.getId() == R.id.ScrollScroll) {
+            scrollUpDown.setChecked(false);
+            scrollLeftRight.setChecked(false);
+        } else if (view.getId() == R.id.ScrollUpDown) {
+            scrollScroll.setChecked(false);
+            scrollLeftRight.setChecked(false);
+        } else if (view.getId() == R.id.ScrollLeftRight) {
+            scrollScroll.setChecked(false);
+            scrollUpDown.setChecked(false);
+        }
     }
 
     public void onClickBgTheme(View view) {
@@ -268,8 +341,40 @@ public class ViewerSetting extends AppCompatActivity {
         } else if (view.getId() == R.id.Viewer_Theme18) {
             changeTheme(R.drawable.viewer_full_bg18, R.drawable.viewer_full_bg18);
         }
-
     }
+
+    public void textSpaceOption(int progress) {
+        if (progress == 0) {
+            exText.setLineSpacing(0, 1.0f);
+        } else if (progress == 1) {
+            exText.setLineSpacing(0, 1.2f);
+        } else if (progress == 2) {
+            exText.setLineSpacing(0, 1.4f);
+        } else if (progress == 3) {
+            exText.setLineSpacing(0, 1.6f);
+        } else if (progress == 4) {
+            exText.setLineSpacing(0, 1.8f);
+        } else if (progress == 5) {
+            exText.setLineSpacing(0, 2.0f);
+        }
+    }
+
+    public void textSizeOption(int progress) {
+        if (progress == 0) {
+            exText.setTextSize(14);
+        } else if (progress == 1) {
+            exText.setTextSize(16);
+        } else if (progress == 2) {
+            exText.setTextSize(18);
+        } else if (progress == 3) {
+            exText.setTextSize(20);
+        } else if (progress == 4) {
+            exText.setTextSize(22);
+        } else if (progress == 5) {
+            exText.setTextSize(24);
+        }
+    }
+
 
     public void changeFontTypeBtn(String direction) {
         if (fontType.getText().equals(normal)) {
@@ -297,16 +402,12 @@ public class ViewerSetting extends AppCompatActivity {
 
     public void changeFontType() {
         if (fontType.getText().equals(normal)) {
-            fontType.setText(normal);
             exText.setTypeface(null, Typeface.NORMAL);
         } else if (fontType.getText().equals(bold)) {
-            fontType.setText(bold);
             exText.setTypeface(exText.getTypeface(), Typeface.BOLD);
         } else if (fontType.getText().equals(italic)) {
-            fontType.setText(italic);
             exText.setTypeface(exText.getTypeface(), Typeface.ITALIC);
         } else if (fontType.getText().equals(boldItalic)) {
-            fontType.setText(boldItalic);
             exText.setTypeface(exText.getTypeface(), Typeface.BOLD_ITALIC);
         }
     }
@@ -314,11 +415,19 @@ public class ViewerSetting extends AppCompatActivity {
     public void changeTheme(int apply, int ex) {
         themeApply.setBackgroundResource(apply);
         exBg.setBackgroundResource(ex);
+        myApp.setViewerBGTheme(ex);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            myApp.setViewerBGTheme(myApp.getViewerBGTheme());
+            myApp.setTextType(myApp.getTextType());
+            myApp.setViewerBG(myApp.getViewerBG());
+            myApp.setTextColor(myApp.getTextColor());
+            myApp.setViewerBGType(myApp.getViewerBGType());
+            myApp.setTextSize(myApp.getTextSize());
+            myApp.setTextLineSpace(myApp.getTextLineSpace());
             finish();
             return true;
         }

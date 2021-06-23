@@ -63,6 +63,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/bigbigdw/joaradw/ViewerSettingTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/androidTest/java/bigbigdw/joaradw/bookListTest.java">
           <value>
             <set />
@@ -334,6 +339,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/base/RegisterActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/base/ViewerActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/base/ViewerBaseActivity.java">
           <value>
             <set />
           </value>
@@ -1159,6 +1174,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/test/java/bigbigdw/joaradw/Test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/bigbigdw/joaradw/ViewerBase.java">
           <value>
             <set />
           </value>
