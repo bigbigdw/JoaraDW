@@ -142,7 +142,7 @@ public class BookViewer extends BookBaseActivity {
                 handler.postDelayed(() -> {
                     loadinglayout.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
-                }, 1500);
+                }, 1800);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -25,8 +25,8 @@ public class DetailTab3Data {
     private static final String SETTING = "SETTING";
     private static final String SETTING_PAGE = "SETTING_PAGE";
 
-    public ArrayList<MainMoreListData> getData(RequestQueue queue, LinearLayout wrap, String value) {
-        String resultETC = HELPER.ETC + "&category=0&book_code=" + 738760;
+    public ArrayList<MainMoreListData> getData(RequestQueue queue, LinearLayout wrap, String value, String bookCode) {
+        String resultETC = HELPER.ETC + "&category=0&book_code=" + bookCode;
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, getApiUrl(value, resultETC), null, response -> {
             try {
@@ -60,7 +60,6 @@ public class DetailTab3Data {
                         case SETTING:
                         case SETTING_PAGE:
                             String sortno = jo.getString("sortno");
-
                             sortNoText = sortnoCheck(sortno);
                             items.add(new MainMoreListData(title, date, sortNoText, ""));
                             break;
@@ -115,17 +114,17 @@ public class DetailTab3Data {
     }
 
     public static String getApiUrl(String value, String resultETC) {
-        if(value.equals(NOTICE)){
-            return HELPER.API + API.BOARD_BOOK_NOTICE_JOA + resultETC + "&page=1&offset=20";
+        if(value.equals(NOTICE) || value.equals(NOTICE_PAGE)){
+            return HELPER.API + API.BOARD_BOOK_NOTICE_JOA + resultETC + "&page=1&offset=100";
         } else if(value.equals(SETTING) || value.equals(SETTING_PAGE)){
-            return HELPER.API + API.BOARD_BOOK_SETTING_JOA + resultETC + "&page=1&offset=20";
+            return HELPER.API + API.BOARD_BOOK_SETTING_JOA + resultETC + "&page=1&offset=100";
         } else {
             return HELPER.API + API.BOARD_BOOK_POLL_JOA + resultETC + "&chkfinish=&page=1&offset=100";
         }
     }
 
     public static String getJsonArray(String value) {
-        if(value.equals(NOTICE)){
+        if(value.equals(NOTICE) || value.equals(NOTICE_PAGE)){
             return "notices";
         } else if(value.equals(SETTING) || value.equals(SETTING_PAGE)){
             return "data";

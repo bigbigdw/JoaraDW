@@ -29,6 +29,7 @@ import java.util.Objects;
 
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.base.BookBaseActivity;
+import bigbigdw.joaradw.book_viewer.BookViewer;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.R;
@@ -62,6 +63,7 @@ public class BookDetailCover extends BookBaseActivity {
     LinearLayout bookCoverWrap;
     Button bookDetailHeader2;
     JSONObject book;
+    Button btnChapterFirst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,6 @@ public class BookDetailCover extends BookBaseActivity {
         Intent intent = getIntent();
         bookCode = intent.getStringExtra("BookCode");
         app.setBookCode(bookCode);
-        userToken = intent.getStringExtra("TOKEN");
         bookDetailURL = HELPER.API + API.BOOK_DETAIL_JOA + HELPER.ETC + "&token=" + userToken + "&category=0&book_code=" + bookCode + "&promotion_code=";
 
         bookCoverHeader = findViewById(R.id.BookCoverHeader);
@@ -104,6 +105,7 @@ public class BookDetailCover extends BookBaseActivity {
         bookDetailHeader2 = findViewById(R.id.BookDetailHeader2);
         loadingLayout = findViewById(R.id.LoadingLayout);
         bookCoverWrap = findViewById(R.id.BookCoverWrap);
+        btnChapterFirst = findViewById(R.id.BtnChapterFirst);
 
         setLayout();
 
@@ -153,6 +155,15 @@ public class BookDetailCover extends BookBaseActivity {
             bookDetailIntent.putExtra("BookCode", String.format("%s", bookCode));
             bookDetailIntent.putExtra("TOKEN", String.format("%s", userToken));
             startActivity(bookDetailIntent);
+        });
+
+        btnChapterFirst.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), BookViewer.class);
+            intent.putExtra("Cid",String.format("%s", "000000"));
+            intent.putExtra("TOKEN",String.format("%s", userToken));
+            intent.putExtra("BOOKCODE",String.format("%s", bookCode));
+            intent.putExtra("SORTNO",String.format("%s", "1"));
+            startActivity(intent);
         });
     }
 

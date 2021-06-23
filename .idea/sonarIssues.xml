@@ -868,6 +868,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Book_Detail/layout/book_detail_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Book_Detail/layout/book_detail_subpage.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Book_Detail/layout/book_detail_tab3_category.xml">
           <value>
             <set />
@@ -879,6 +889,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Book_Detail/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Book_Viewer/layout/book_viewer_wrap.xml">
           <value>
             <set />
           </value>
@@ -909,6 +924,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Book_Viewer/layout/viewer_drawer.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Book_Viewer/layout/viewer_drawer_item.xml">
           <value>
             <set />
           </value>
@@ -1004,6 +1024,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/booklist_etc.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_noty.xml">
           <value>
             <set />
           </value>

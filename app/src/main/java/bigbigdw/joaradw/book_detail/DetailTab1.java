@@ -53,7 +53,7 @@ public class DetailTab1 extends Fragment {
         JOARADW myApp = (JOARADW) requireActivity().getApplicationContext();
         bookcode = myApp.getBookCode();
         token = myApp.getToken();
-        bookDetailURL = HELPER.API + API.BOOK_DETAIL_JOA + HELPER.ETC + "&book_code=" + bookcode;
+        bookDetailURL = HELPER.API + API.BOOK_DETAIL_JOA + HELPER.ETC + "&book_code=" + bookcode + "&token=" + token;
         queue = Volley.newRequestQueue(requireActivity());
 
         populateData();

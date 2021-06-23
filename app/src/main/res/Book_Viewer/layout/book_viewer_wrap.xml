@@ -186,19 +186,17 @@
 
             <TextView
                 android:id="@+id/BookTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="55dp"
+                android:layout_marginStart="64dp"
                 android:ellipsize="end"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:paddingStart="64dp"
-                android:paddingEnd="0dp"
                 android:text="@string/Common_BookTitle"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_collapseMode="pin" />
+                android:textStyle="bold" />
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

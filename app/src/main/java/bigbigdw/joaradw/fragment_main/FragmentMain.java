@@ -107,7 +107,6 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
 
         String bookC = paramToken + "&section_mode=contest_free_award" + etc + showType;
-        String bookD = paramToken + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + etc + showType;
         String resultEtcUrl = paramToken + "&book_code=&offset=50";
         String resultEtcUrlSection = paramToken + API.SECTION_MODE + "&page=1&offset=50" + showType;
 
@@ -131,8 +130,8 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         MainBookListAdapterC notyAdapter = new MainBookListAdapterC(items);
         MainBookListAdapterC recommendAdapter = new MainBookListAdapterC(items);
 
-        bookListC(root, API.HOME_LIST_JOA, bookC, R.id.Main_UserPickedList, userPickedAdapter, R.id.main_booklist_userpicked);
-        bookListC(root, API.HOME_LIST_JOA, bookC, R.id.Main_NotyList, notyAdapter, R.id.main_booklist_noty);
+        bookListC(root, API.HOME_LIST_JOA, paramToken + "&section_mode=contest_free_award" + etc + showType, R.id.Main_UserPickedList, userPickedAdapter, R.id.main_booklist_userpicked);
+        bookListC(root, API.HOME_LIST_JOA, paramToken + "&section_mode=noty" + etc + showType, R.id.Main_NotyList, notyAdapter, R.id.main_booklist_noty);
         bookListC(root, API.HOME_LIST_JOA, paramToken + API.SECTION_MODE + etc + showType, R.id.Main_RecommendedList, recommendAdapter, R.id.main_booklist_recommeded);
 
         MainBookListAdapterD noblessTodayBestAdapter = new MainBookListAdapterD(items);
@@ -140,9 +139,9 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         MainBookListAdapterD couponToadyBestAdapter = new MainBookListAdapterD(items);
 
 
-        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_NoblessTodayBestList, noblessTodayBestAdapter, R.id.main_nobelsstodaybest);
-        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
-        bookListD(root, API.HOME_LIST_JOA, bookD, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);
+        bookListD(root, API.HOME_LIST_JOA, paramToken + "&section_mode=todaybest&store=nobless&orderby=cnt_best" + etc + showType, R.id.Main_NoblessTodayBestList, noblessTodayBestAdapter, R.id.main_nobelsstodaybest);
+        bookListD(root, API.HOME_LIST_JOA, paramToken + "&section_mode=todaybest&store=premium&orderby=cnt_best" + etc + showType, R.id.Main_PremiumTodayBestList, premiumToadyBestAdapter, R.id.main_premiumtodaybest);
+        bookListD(root, API.HOME_LIST_JOA, paramToken + "&section_mode=support_coupon&orderby=cnt_best" + etc + showType, R.id.Main_CouponTodayBestList, couponToadyBestAdapter, R.id.main_coupontodaybest);
 
         wrap77Fes.setOnClickListener(v -> gotoMore(1, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));
         wrapKidamu.setOnClickListener(v -> gotoMore(2, R.id.action_Fragment_Main_to_Fragment_New, FragmentMain.this));

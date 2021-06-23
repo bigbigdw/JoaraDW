@@ -116,7 +116,7 @@ public class DetailTab3 extends BookBaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewNotice.setLayoutManager(manager);
         recyclerViewNotice.setAdapter(moreAadapter);
-        moreAadapter.setItems(new DetailTab3Data().getData(queue, noticeList,  "NOTICE"));
+        moreAadapter.setItems(new DetailTab3Data().getData(queue, noticeList,  "NOTICE", bookcode));
         moreAadapter.notifyDataSetChanged();
     }
 
@@ -126,7 +126,7 @@ public class DetailTab3 extends BookBaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewSetting.setLayoutManager(manager);
         recyclerViewSetting.setAdapter(settingAdapter);
-        settingAdapter.setItems(new DetailTab3Data().getData(queue, eventList, "SETTING"));
+        settingAdapter.setItems(new DetailTab3Data().getData(queue, eventList, "SETTING", bookcode));
         settingAdapter.notifyDataSetChanged();
     }
 
@@ -136,7 +136,7 @@ public class DetailTab3 extends BookBaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewSurvey.setLayoutManager(manager);
         recyclerViewSurvey.setAdapter(surveyAdapter);
-        surveyAdapter.setItems(new DetailTab3Data().getData(queue, eventList,  "SURVEY"));
+        surveyAdapter.setItems(new DetailTab3Data().getData(queue, eventList,  "SURVEY", bookcode));
         surveyAdapter.notifyDataSetChanged();
     }
 }

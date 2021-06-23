@@ -53,7 +53,7 @@ public class BookDetailSubPage extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(noticeAdapter);
-        noticeAdapter.setItems(new DetailTab3Data().getData(queue, wrap, value));
+        noticeAdapter.setItems(new DetailTab3Data().getData(queue, wrap, value, bookCode));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 manager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);

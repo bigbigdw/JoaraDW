@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.book_detail;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import bigbigdw.joaradw.fragment_main.MainMoreListData;
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.main.MainBookListData;
 
 public class BookDetailPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -31,14 +33,22 @@ public class BookDetailPageAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ((BookDetailPageAdapter.PageViewHolder) holder).contents.setText(listData.get(position).getContents());
         ((BookDetailPageAdapter.PageViewHolder) holder).date.setText(listData.get(position).getStartDate());
 
-        ((BookDetailPageAdapter.PageViewHolder) holder).sortNo.setText(listData.get(position).getBookSortNo());
-        if(((BookDetailPageAdapter.PageViewHolder) holder).sortNo != null){
+        if(!listData.get(position).getBookSortNo().equals("")){
+            String sortNoText = listData.get(position).getBookSortNo() + " ";
+            ((BookDetailPageAdapter.PageViewHolder) holder).sortNo.setText(sortNoText);
             ((BookDetailPageAdapter.PageViewHolder) holder).sortNo.setVisibility(View.VISIBLE);
+        } else {
+            ((BookDetailPageAdapter.PageViewHolder) holder).sortNo.setText("");
+            ((BookDetailPageAdapter.PageViewHolder) holder).sortNo.setVisibility(View.GONE);
         }
 
-        ((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus.setText(listData.get(position).getBookSurveyFinish());
-        if(((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus != null){
+        if(!listData.get(position).getBookSurveyFinish().equals("")){
+            String surveyText = listData.get(position).getBookSurveyFinish() + " ";
+            ((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus.setText(surveyText);
             ((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus.setVisibility(View.VISIBLE);
+        } else {
+            ((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus.setText("1");
+            ((BookDetailPageAdapter.PageViewHolder) holder).bookSurveyStatus.setVisibility(View.GONE);
         }
 
 

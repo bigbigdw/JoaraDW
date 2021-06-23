@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +49,6 @@ public class BookDetail extends BookBaseActivity {
     String bookDetailURL;
     String bookCode = "";
     String bookTitleText = "";
-    String favCheck = "";
     TextView bookTitle;
     TextView bookTypeBody;
     TextView categoryBody;
@@ -64,8 +62,8 @@ public class BookDetail extends BookBaseActivity {
     TextView bookDetailIntro;
     AppBarLayout bookAppBar;
     ImageView bookCover;
-    Button btnFavOn;
-    Button btnFavOff;
+    ImageView btnFavOn;
+    ImageView btnFavOff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +116,17 @@ public class BookDetail extends BookBaseActivity {
         setLayout();
     }
 
+
     public void setLayout(){
         RequestQueue queue = Volley.newRequestQueue(this);
+
+        if (userStatus.equals("1")) {
+            btnFavOn.setVisibility(View.VISIBLE);
+            btnFavOff.setVisibility(View.VISIBLE);
+        } else {
+            btnFavOn.setVisibility(View.GONE);
+            btnFavOff.setVisibility(View.GONE);
+        }
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, bookDetailURL, null, response -> {
             try {
@@ -143,11 +150,11 @@ public class BookDetail extends BookBaseActivity {
                 bookTitleText = tempBookInfo.getTitle();
 
                 if(tempBookInfo.getIsFavorite().equals("TRUE")){
-                    btnFavOn.setVisibility(View.GONE);
-                    btnFavOff.setVisibility(View.VISIBLE);
-                } else if(tempBookInfo.getIsFavorite().equals("FALSE")){
                     btnFavOn.setVisibility(View.VISIBLE);
                     btnFavOff.setVisibility(View.GONE);
+                } else if(tempBookInfo.getIsFavorite().equals("FALSE")){
+                    btnFavOn.setVisibility(View.GONE);
+                    btnFavOff.setVisibility(View.VISIBLE);
                 }
 
             } catch (JSONException e) {
@@ -157,27 +164,18 @@ public class BookDetail extends BookBaseActivity {
 
         queue.add(jsonRequest);
 
-        if (userStatus.equals("1")) {
-            btnFavOn.setVisibility(View.VISIBLE);
-            btnFavOff.setVisibility(View.VISIBLE);
-        } else {
-            btnFavOn.setVisibility(View.GONE);
-            btnFavOff.setVisibility(View.VISIBLE);
-        }
-
-        btnFavOn.setOnClickListener(v -> {
-            BookPagination.favToggle(queue, bookCode, userToken);
-            Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
-            btnFavOn.setVisibility(View.GONE);
-            btnFavOff.setVisibility(View.VISIBLE);
-        });
-
-        btnFavOff.setOnClickListener(v -> {
-            BookPagination.favToggle(queue, bookCode, userToken);
-            Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
-            btnFavOn.setVisibility(View.VISIBLE);
-            btnFavOff.setVisibility(View.GONE);
-
+        bookCover.setOnClickListener(v -> {
+            if(btnFavOff.getVisibility() == View.VISIBLE){
+                BookPagination.favToggle(queue, bookCode, userToken);
+                Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                btnFavOn.setVisibility(View.VISIBLE);
+                btnFavOff.setVisibility(View.GONE);
+            } else if (btnFavOn.getVisibility() == View.VISIBLE) {
+                BookPagination.favToggle(queue, bookCode, userToken);
+                Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
+                btnFavOn.setVisibility(View.GONE);
+                btnFavOff.setVisibility(View.VISIBLE);
+            }
         });
     }
 
