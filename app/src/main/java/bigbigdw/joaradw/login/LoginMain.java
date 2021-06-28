@@ -62,8 +62,6 @@ public class LoginMain extends AppCompatActivity {
 
         setLayout();
 
-        Log.d("@@@@", String.valueOf(getDataDir()));
-
     }
 
     public void setLayout(){
@@ -200,7 +198,6 @@ public class LoginMain extends AppCompatActivity {
     }
 
     static void writeJson(String filename, String response) {
-        Log.d("@@@@", filename + "userInfo.json");
         try {
             FileWriter fw = new FileWriter(filename + "userInfo.json");
             try(BufferedWriter bufwr = new BufferedWriter(fw)){
