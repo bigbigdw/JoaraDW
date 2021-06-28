@@ -91,11 +91,12 @@ public class FragmentMain extends BookBaseFragment implements InterfaceMainBanne
         checkToken();
 
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
-        userToken = app.getToken();
-        userStatus = app.getStatus();
-        userNameCategory.setText(app.getName());
-        paramToken = "&token=" + userToken;
-
+        if(app.getIsLogined()){
+            userToken = app.getToken();
+            userStatus = app.getStatus();
+            userNameCategory.setText(app.getName());
+            paramToken = "&token=" + userToken;
+        }
         setLayout(root);
 
         return root;

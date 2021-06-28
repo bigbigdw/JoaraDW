@@ -23,6 +23,15 @@ public class JOARADW extends Application {
     String viewerBGType = "BG";                                     //뷰어 배경 타입
     int textSize = 0;                                               //뷰어 텍스트 크기
     int textLineSpace = 0;                                          //뷰어 텍스트 행간
+    boolean isLogined = false;
+
+    public void setIsLogined(boolean isLogined) {
+        this.isLogined = isLogined;
+    }
+
+    public boolean getIsLogined() {
+        return isLogined;
+    }
 
     public void setTextLineSpace(int textLineSpace) {
         this.textLineSpace = textLineSpace;
