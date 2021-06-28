@@ -135,13 +135,6 @@ public class Main extends BookBaseActivity {
             queue.add(jsonRequest);
         });
 
-        Intent intent = getIntent();
-        isFirstPage = intent.getBooleanExtra("IsFirstPage", true);
-        if (isFirstPage) {
-            Intent intentSplash = new Intent(this, Splash.class);
-            startActivity(intentSplash);
-        }
-
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.Fragment_Main
         ).setOpenableLayout(drawer).build();

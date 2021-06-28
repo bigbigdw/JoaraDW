@@ -1,8 +1,8 @@
 package bigbigdw.joaradw.etc;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
@@ -15,6 +15,7 @@ import org.json.JSONException;
 
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.main.Main;
 
 public class Splash extends Activity {
     RequestQueue queue;
@@ -43,8 +44,14 @@ public class Splash extends Activity {
     }
 
     private void startLoading() {
-        Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(this::finish, 2000);
+        new android.os.Handler(Looper.myLooper()).postDelayed(
+                () -> {
+                    Intent intent = new Intent(this, Main.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivityIfNeeded(intent, 0);
+                    finish();
+                },
+                2000);
     }
 
 }
