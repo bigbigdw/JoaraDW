@@ -63,8 +63,11 @@ public class BookBaseFragment extends Fragment {
                 app.setCash(cash);
                 app.setManuscriptCoupon(manuscriptCoupon);
                 app.setSupportCoupon(supportCoupon);
+                app.setIsLogined(true);
             } catch (JSONException e) {
                 e.printStackTrace();
+                JOARADW app = (JOARADW) requireActivity().getApplicationContext();
+                app.setIsLogined(false);
             }
         }
     }
