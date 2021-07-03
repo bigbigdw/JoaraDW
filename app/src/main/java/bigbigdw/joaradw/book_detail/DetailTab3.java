@@ -39,6 +39,7 @@ public class DetailTab3 extends BookBaseFragment {
     LinearLayout noticeList;
     LinearLayout surveyList;
     LinearLayout wrapViewerSetting;
+    LinearLayout wrapSupportList;
     String userToken = "";
     String etc = "";
     String bookcode;
@@ -64,6 +65,7 @@ public class DetailTab3 extends BookBaseFragment {
         gotoBookSetting = root.findViewById(R.id.GotoBookSetting);
         gotoBookSurvey = root.findViewById(R.id.GotoBookSurvey);
         wrapViewerSetting = root.findViewById(R.id.WrapViewerSetting);
+        wrapSupportList = root.findViewById(R.id.WrapSupportList);
 
         etc = "&recommend_type=book_code&offset=50" + "&token=" + userToken + "&book_code=" + bookcode + "&model_type=all&chapter_cnt=1&finish=&adult=";
 
@@ -82,6 +84,12 @@ public class DetailTab3 extends BookBaseFragment {
         gotoBookSurvey.setOnClickListener(v -> gotoBookPage("SURVEY_PAGE"));
         wrapViewerSetting.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext().getApplicationContext(), ViewerSetting.class);
+            startActivity(intent);
+        });
+
+        wrapSupportList.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), BookSupportersCoupon.class);
+            intent.putExtra("BookCode",String.format("%s", bookcode));
             startActivity(intent);
         });
 

@@ -94,7 +94,6 @@ public class FragmentViewer extends Fragment {
 
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, apiurl, null, response -> {
             try {
-                Log.d("@@@@", response.toString());
                 JSONObject chapter = response.getJSONObject("chapter");
                 String chapterTotal = "제 " + chapter.getString("sortno") + "화 " + chapter.getString("sub_title");
                 viewerChapter.setText(chapterTotal);

@@ -23,7 +23,6 @@ import bigbigdw.joaradw.databinding.FragmentNewBinding;
 public class FragmentNew extends Fragment {
     int tabNum = 0;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

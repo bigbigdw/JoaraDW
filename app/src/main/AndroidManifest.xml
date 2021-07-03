@@ -105,6 +105,12 @@
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
+        <activity
+            android:name="bigbigdw.joaradw.book_detail.BookSupportersCoupon"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -98,17 +98,15 @@ public class BookDetail extends BookBaseActivity {
 
         ViewPager viewPager = findViewById(R.id.view_pager);
 
-        JOARADW myApp = (JOARADW) getApplicationContext();
-        userStatus = myApp.getStatus();
-        userToken = myApp.getToken();
-
         setupViewPager(viewPager);
 
         checkToken();
         JOARADW app = (JOARADW) getApplicationContext();
-        userToken = app.getToken();
-        userStatus = app.getStatus();
-        app.setBookCode(bookCode);
+        if(app.getIsLogined()) {
+            userToken = app.getToken();
+            userStatus = app.getStatus();
+            app.setBookCode(bookCode);
+        }
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

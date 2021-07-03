@@ -58,8 +58,11 @@ public class FavTabHistory extends BookBaseFragment {
 
         checkToken();
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
-        userToken = "&token=" + app.getToken();
-        userStatus = app.getStatus();
+        if(app.getIsLogined()){
+            userToken = "&token=" + app.getToken();
+            userStatus = app.getStatus();
+
+        }
 
         String etc = userToken + "&category=0&page=1&mem_time=0";
 

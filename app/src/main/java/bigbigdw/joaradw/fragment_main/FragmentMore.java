@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.fragment_main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
+import bigbigdw.joaradw.policy.Policy;
 
 public class FragmentMore extends BookBaseFragment {
 
@@ -36,6 +38,7 @@ public class FragmentMore extends BookBaseFragment {
     LinearLayout gotoBlog;
     LinearLayout gotoFaceBook;
     LinearLayout gotoInstagram;
+    LinearLayout wrapPolicy;
     String userToken = "";
 
     @Override
@@ -56,6 +59,7 @@ public class FragmentMore extends BookBaseFragment {
         gotoBlog = root.findViewById(R.id.GotoBlog);
         gotoFaceBook = root.findViewById(R.id.GotoFaceBook);
         gotoInstagram = root.findViewById(R.id.GotoInstagram);
+        wrapPolicy = root.findViewById(R.id.WrapPolicy);
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
 
         noticeAdapter(root, queue, noticeList);
@@ -75,6 +79,10 @@ public class FragmentMore extends BookBaseFragment {
         wrapKidamu.setOnClickListener(v -> gotoMore(2,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
         wrapNOTY.setOnClickListener(v -> gotoMore(3,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
         wrapPromised.setOnClickListener(v -> gotoMore(4,R.id.action_Fragment_More_to_Fragment_New, FragmentMore.this));
+        wrapPolicy.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext().getApplicationContext(), Policy.class);
+            startActivity(intent);
+        });
 
         wrapBookSnipe.setOnClickListener(v -> goToBookPageEtc("취향 저격", API.BOOK_RECOMMEND_LIST_API_JOA, userToken + "&book_code=&offset=50"));
         wrapRecommend.setOnClickListener(v -> goToBookPageEtc("추천 소설", API.HOME_LIST_JOA, userToken + "&page=1&section_mode=recommend_book&offset=50"));

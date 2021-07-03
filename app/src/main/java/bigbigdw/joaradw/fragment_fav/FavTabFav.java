@@ -58,9 +58,10 @@ public class FavTabFav extends BookBaseFragment {
 
         checkToken();
         JOARADW app = (JOARADW) requireActivity().getApplicationContext();
-        userToken = "&token=" + app.getToken();
-        userStatus = app.getStatus();
-
+        if(app.getIsLogined()){
+            userToken = "&token=" + app.getToken();
+            userStatus = app.getStatus();
+        }
         setLayout();
 
         return root;

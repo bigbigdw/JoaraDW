@@ -76,8 +76,11 @@ public class BookDetailCover extends BookBaseActivity {
 
         checkToken();
         JOARADW app = (JOARADW) getApplicationContext();
-        userToken = app.getToken();
-        userStatus = app.getStatus();
+
+        if(app.getIsLogined()) {
+            userToken = app.getToken();
+            userStatus = app.getStatus();
+        }
 
         Intent intent = getIntent();
         bookCode = intent.getStringExtra("BookCode");

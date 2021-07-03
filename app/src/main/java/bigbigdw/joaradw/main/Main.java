@@ -88,14 +88,17 @@ public class Main extends BookBaseActivity {
         userName = navHeaderView.findViewById(R.id.UserName);
         btnLogout = navHeaderView.findViewById(R.id.Btn_Logout);
         JOARADW myapp = (JOARADW) getApplicationContext();
-        userStatus = myapp.getStatus();
-        usertoken = "&token=" + myapp.getToken();
-        viewMana.setText(myapp.getMana());
-        coupon.setText(myapp.getExpireCash());
-        viewCash.setText(myapp.getCash());
-        userName.setText(myapp.getName());
-        viewManuscriptCoupon.setText(myapp.getManuscriptCoupon());
-        viewSupportCoupon.setText(myapp.getSupportCoupon());
+        if(myapp.getIsLogined()){
+            userStatus = myapp.getStatus();
+            usertoken = "&token=" + myapp.getToken();
+            viewMana.setText(myapp.getMana());
+            coupon.setText(myapp.getExpireCash());
+            viewCash.setText(myapp.getCash());
+            userName.setText(myapp.getName());
+            viewManuscriptCoupon.setText(myapp.getManuscriptCoupon());
+            viewSupportCoupon.setText(myapp.getSupportCoupon());
+        }
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         checkToken();
