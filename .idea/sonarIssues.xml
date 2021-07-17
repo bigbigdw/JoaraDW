@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/foo.bar">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityBookDetail.java">
           <value>
             <set />
@@ -369,6 +374,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book_detail/BookDetailSubPage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book_detail/BookReport.java">
           <value>
             <set />
           </value>

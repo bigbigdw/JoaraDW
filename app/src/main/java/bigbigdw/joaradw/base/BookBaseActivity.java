@@ -1,8 +1,13 @@
 package bigbigdw.joaradw.base;
 
 import android.content.Intent;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 
@@ -10,7 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
+import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.book_detail.BookDetail;
 import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
@@ -30,6 +37,18 @@ public class BookBaseActivity extends AppCompatActivity {
     String cash;
     String manuscriptCoupon;
     String supportCoupon;
+
+    /**
+     * Toolbar Title 변경
+     */
+    public void setTitle(String title){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        TextView tviewTitle = findViewById(R.id.toolbarTitle);
+        tviewTitle.setText(title);
+    }
 
     public void checkToken() {
         if (Config.getuserinfo() != null) {
@@ -90,4 +109,5 @@ public class BookBaseActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
+
 }

@@ -18,4 +18,20 @@
     <string name="Book_Notice">작품 공지</string>
     <string name="Book_Supporter_Coupon">쿠폰 후원</string>
     <string name="Book_Supporter_Manuscript">원고료 후원</string>
+    <string name="Btn_Book_Detail_Report">신고하기</string>
+
+<!--신고하기-->
+    <string name="book_report_checked">이미 신고했습니다.</string>
+    <string name="book_report_radio1">폭력 / 음란성 / 청소년 부적합 내용</string>
+    <string name="book_report_radio2">타 사이트 홍보 및 가입유도 / 상업성</string>
+    <string name="book_report_radio3">명예훼손, 사생활 침해, 저작권 침해 등</string>
+    <string name="book_report_radio4">동일 작품 중복 업로드(도배)</string>
+    <string name="book_report_radio5">기타 사유</string>
+    <string name="book_report_writer">작가명</string>
+    <string name="book_report_subject">작품명</string>
+    <string name="book_report_title1">상세내용</string>
+    <string name="book_report_title2">기타사유 또는 운영자에게 전달할 추가 내용을 입력해주세요.</string>
+    <string name="book_report_result">신고가 완료되었습니다.</string>
+    <string name="book_report_category1">신고 사유</string>
+    <string name="book_report_category2">(여러 가지 사유에 해당 시 대표적인 사유 1개 선택)</string>
 </resources>

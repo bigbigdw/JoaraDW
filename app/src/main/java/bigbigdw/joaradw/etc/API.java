@@ -19,4 +19,7 @@ public interface API {
     String BOARD_BOOK_POLL_JOA = "/v1/board/book_poll.joa";
     String BOOK_CHAPTER_VALID_JOA = "/v1/book/chapter_valid.joa";
     String BOOK_CHAPTER_JOA = "/v1/book/chapter.joa";
+    String USER_FAVORTATE = "/v1/user/favorite.joa";
+    String BOOK_BOOK_REPORT = "/v1/book/book_report.joa";
+    String BOARD_REPORT_CHECK = "/v1/board/report_check.joa";
 }

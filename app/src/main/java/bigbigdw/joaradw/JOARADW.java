@@ -24,6 +24,9 @@ public class JOARADW extends Application {
     int textSize = 0;                                               //뷰어 텍스트 크기
     int textLineSpace = 0;                                          //뷰어 텍스트 행간
     boolean isLogined = false;
+    String writerName;
+    String writerID;
+    String bookTitle;
 
     public void setIsLogined(boolean isLogined) {
         this.isLogined = isLogined;
@@ -183,6 +186,30 @@ public class JOARADW extends Application {
 
     public String getSupportCoupon() {
         return supportCoupon;
+    }
+
+    public void setWriterName(String writerName) {
+        this.writerName = writerName;
+    }
+
+    public String getWriterName() {
+        return writerName;
+    }
+
+    public void setWriterID(String writerID) {
+        this.writerID = writerID;
+    }
+
+    public String getWriterID() {
+        return writerID;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
     }
 
 }

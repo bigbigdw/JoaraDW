@@ -3,8 +3,8 @@ package bigbigdw.joaradw.etc;
 
 public interface HELPER {
 
-    String API = "https://api.joara.com";
-//    String API = "https://api-dev1.joara.com:7443";
+//    String API = "https://api.joara.com";
+    String API = "https://api-dev1.joara.com:7443";
     String API_KEY = "mw_8ba234e7801ba288554ca07ae44c7";
     String VER = "2.6.3";
     String DEVICE = "mw";

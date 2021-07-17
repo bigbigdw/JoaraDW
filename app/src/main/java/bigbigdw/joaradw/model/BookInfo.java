@@ -24,6 +24,7 @@ public class BookInfo {
     String historySortno;
     String cntChapter;
     int bookBestRank;
+    String writerID;
 
     public void setTitle(String title) {
         this.title = title;
@@ -161,12 +162,21 @@ public class BookInfo {
         return cntChapter;
     }
 
+    public void setWriterID(String writerID) {
+        this.writerID = writerID;
+    }
+
+    public String getWriterID() {
+        return writerID;
+    }
+
     public static BookInfo getParseData(JSONObject obj) throws JSONException {
         BookInfo tempBookInfo  = new BookInfo();
 
         tempBookInfo.setTitle(obj.getString("subject"));
         tempBookInfo.setBookImg(obj.getString("book_img"));
         tempBookInfo.setWriter(obj.getString("writer_name"));
+        tempBookInfo.setWriterID(obj.getString("writer_id"));
         tempBookInfo.setIsAdult(obj.getString("is_adult"));
         tempBookInfo.setIsFinish(obj.getString("is_finish"));
         tempBookInfo.setIsPremium(obj.getString("is_premium"));

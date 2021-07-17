@@ -64,6 +64,7 @@ public class BookDetail extends BookBaseActivity {
     ImageView bookCover;
     ImageView btnFavOn;
     ImageView btnFavOff;
+    JOARADW app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,12 +102,12 @@ public class BookDetail extends BookBaseActivity {
         setupViewPager(viewPager);
 
         checkToken();
-        JOARADW app = (JOARADW) getApplicationContext();
+        app = (JOARADW) getApplicationContext();
         if(app.getIsLogined()) {
             userToken = app.getToken();
             userStatus = app.getStatus();
-            app.setBookCode(bookCode);
         }
+        app.setBookCode(bookCode);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -126,7 +127,7 @@ public class BookDetail extends BookBaseActivity {
             btnFavOff.setVisibility(View.GONE);
         }
 
-        final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, bookDetailURL, null, response -> {
+       JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, bookDetailURL, null, response -> {
             try {
                 JSONObject book = response.getJSONObject("book");
 
@@ -136,7 +137,11 @@ public class BookDetail extends BookBaseActivity {
                 BookInfo tempBookInfo = BookInfo.getParseData(book);
 
                 categoryCheck(book);
-                
+
+                app.setBookTitle(tempBookInfo.getTitle());
+                app.setWriterName(tempBookInfo.getWriter());
+                app.setWriterID(tempBookInfo.getWriterID());
+
                 bookTitleBody.setText(tempBookInfo.getTitle());
                 bookWriterBody.setText(tempBookInfo.getWriter());
                 categoryBody.setText(tempBookInfo.getCategoryKoName());
