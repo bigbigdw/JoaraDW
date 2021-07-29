@@ -21,6 +21,12 @@
             app:destination="@id/Fragment_Detail_1" />
     </fragment>
 
+    <fragment
+        android:id="@+id/Joara_Post_List"
+        android:name="bigbigdw.joaradw.joara_post.Fragment_Joara_Post"
+        android:label=""
+        tools:layout="@layout/fragment_new" >
+    </fragment>
 
     <fragment
         android:id="@+id/Fragment_Test"

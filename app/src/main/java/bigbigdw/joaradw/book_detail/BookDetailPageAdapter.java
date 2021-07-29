@@ -1,6 +1,5 @@
 package bigbigdw.joaradw.book_detail;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import java.util.List;
 
 import bigbigdw.joaradw.fragment_main.MainMoreListData;
 import bigbigdw.joaradw.R;
-import bigbigdw.joaradw.main.MainBookListData;
 
 public class BookDetailPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

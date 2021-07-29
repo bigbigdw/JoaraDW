@@ -33,7 +33,10 @@
         android:title="@string/drawer_Bottom_title2">
         <menu>
             <group android:checkableBehavior="single">
-
+                <item
+                    android:id="@id/Joara_Post_List"
+                    android:icon="@drawable/icon_lnb_10"
+                    android:title="@string/drawer_Bottom_subTitle12" />
                 <item
                     android:id="@id/Fragment_Main"
                     android:icon="@drawable/icon_lnb_9"

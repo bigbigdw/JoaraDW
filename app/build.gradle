@@ -31,7 +31,7 @@ android {
     sourceSets {
         main {
             res {
-                srcDirs 'src\\main\\res', 'src\\main\\res\\Etc', 'src\\main\\res\\assets', 'src\\main\\res\\Main', 'src\\main\\res\\Main_Fragment', 'src\\main\\res\\Login', 'src\\main\\res\\Fragment_Main', 'src\\main\\res\\Fragment_Best', 'src\\main\\res\\Fragment_New', 'src\\main\\res\\Fragment_Finish', 'src\\main\\res\\Fragment_Fav', 'src\\main\\res\\BookDetail', 'src\\main\\res\\BookViewer', 'src\\main\\res\\Book_Detail', 'src\\main\\res\\Book_Viewer', 'src\\main\\res\\Policy'
+                srcDirs 'src\\main\\res', 'src\\main\\res\\Etc', 'src\\main\\res\\assets', 'src\\main\\res\\Main', 'src\\main\\res\\Main_Fragment', 'src\\main\\res\\Login', 'src\\main\\res\\Fragment_Main', 'src\\main\\res\\Fragment_Best', 'src\\main\\res\\Fragment_New', 'src\\main\\res\\Fragment_Finish', 'src\\main\\res\\Fragment_Fav', 'src\\main\\res\\BookDetail', 'src\\main\\res\\BookViewer', 'src\\main\\res\\Book_Detail', 'src\\main\\res\\Book_Viewer', 'src\\main\\res\\Policy', 'src\\main\\res\\Joara_Post'
             }
             assets {
                 srcDirs 'src\\main\\assets', 'src\\main\\assets\\Login2'

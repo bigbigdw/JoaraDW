@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_new;
+package bigbigdw.joaradw.joara_post;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -15,22 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.JOARADW;
+import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookDataJSON;
-import bigbigdw.joaradw.main.TabViewModel;
+import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookListData;
-import bigbigdw.joaradw.R;
+import bigbigdw.joaradw.main.TabViewModel;
 
-public class NewTab extends BookBaseFragment {
+public class Fragment_Joara_Post extends BookBaseFragment {
     private MainBookListAdapterC adapter;
     private final ArrayList<MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -46,8 +44,8 @@ public class NewTab extends BookBaseFragment {
     RecyclerView recyclerView;
     RequestQueue queue;
 
-    public static NewTab newInstance(int index) {
-        NewTab fragment = new NewTab();
+    public static Fragment_Joara_Post_List newInstance(int index) {
+        Fragment_Joara_Post_List fragment = new Fragment_Joara_Post_List();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -67,7 +65,7 @@ public class NewTab extends BookBaseFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_tab, container, false);
+        View root = inflater.inflate(R.layout.fragment_joara_post, container, false);
         queue = Volley.newRequestQueue(requireActivity());
         recyclerView  = root.findViewById(R.id.Main_NewBookList);
         wrap = root.findViewById(R.id.TabWrap);
@@ -148,3 +146,4 @@ public class NewTab extends BookBaseFragment {
         adapter.notifyDataSetChanged();
     }
 }
+
