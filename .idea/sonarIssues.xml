@@ -693,6 +693,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/AdapterPostList.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/BlankFragment.kt">
           <value>
             <set />
@@ -704,6 +709,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPost.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPostList.kt">
           <value>
             <set />
           </value>
@@ -1129,6 +1139,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/layout/fragment_post_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/layout/fragment_post_tabs.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/values/string.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/values/strings.xml">
           <value>
             <set />
           </value>

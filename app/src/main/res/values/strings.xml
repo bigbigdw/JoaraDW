@@ -50,7 +50,5 @@
     <string name="loading_Books">작품을 불러오고 있습니다…</string>
     <!-- 로그인 -->
     <string name="NeedLogin">로그인이 필요합니다</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 

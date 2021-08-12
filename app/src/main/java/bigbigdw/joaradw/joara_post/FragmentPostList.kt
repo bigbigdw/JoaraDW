@@ -10,9 +10,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.databinding.FragmentPostListBinding
-import bigbigdw.joaradw.fragment_new.NewTab
 
-class Fragment_Post_List : Fragment() {
+class FragmentPostList : Fragment() {
 
     var tabNum = 0
 
@@ -43,12 +42,12 @@ class Fragment_Post_List : Fragment() {
             fm!!
         ) {
         private val tabTitles = intArrayOf(
-            R.string.New_Tab1,
-            R.string.New_Tab2
+            R.string.Post_Tab1,
+            R.string.Post_Tab2
         )
 
         override fun getItem(position: Int): Fragment {
-            return NewTab.newInstance(position + 1)
+            return FragmentPostTabs.newInstance(position + 1)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {

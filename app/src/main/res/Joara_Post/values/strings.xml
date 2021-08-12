@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Post_Tab1">전체</string>
+    <string name="Post_Tab2">최신</string>
+</resources>

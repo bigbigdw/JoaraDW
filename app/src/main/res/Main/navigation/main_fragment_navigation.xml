@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/Joara_Post_List"
-        android:name="bigbigdw.joaradw.joara_post.Fragment_Post_List"
+        android:name="bigbigdw.joaradw.joara_post.FragmentPostList"
         android:label=""
         tools:layout="@layout/fragment_post_list" >
     </fragment>

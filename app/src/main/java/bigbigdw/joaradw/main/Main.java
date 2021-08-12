@@ -153,7 +153,8 @@ public class Main extends BookBaseActivity {
         });
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.Fragment_Main) {
+            //바텀 내비게이션 바 비활성화
+            if (destination.getId() == R.id.Fragment_Main || destination.getId() == R.id.Joara_Post_List) {
                 setCheckable(navView, false);
                 navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_UNLABELED);
             } else {
