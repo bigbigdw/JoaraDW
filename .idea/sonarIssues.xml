@@ -8,41 +8,6 @@
             <set />
           </value>
         </entry>
-        <entry key="/a.dummy">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/foo.bar">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityBookDetail.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/model/ItemBookInfo.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/net/NetInfo.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/scheme/SchemePolicy.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -728,6 +693,51 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/BlankFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPost.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPost.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPostTabs.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPostTabs.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/Fragment_Post_List.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/Fragment_Post_Tabs.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/test.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/login/LoginCardPW.java">
           <value>
             <set />
@@ -1113,6 +1123,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_New/layout/fragment_new.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/layout/fragment_post_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Login/drawable/ic_logo.xml">
           <value>
             <set />
@@ -1159,6 +1179,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Main/layout/component_main_wrap.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main/navigation/main_fragment_navigation.xml">
           <value>
             <set />
           </value>
@@ -1284,6 +1309,41 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../MyApplication/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/foo.bar">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityBookDetail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/model/ItemBookInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/net/NetInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/scheme/SchemePolicy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
           <value>
             <set />
           </value>

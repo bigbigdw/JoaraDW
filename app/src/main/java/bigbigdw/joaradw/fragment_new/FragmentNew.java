@@ -32,7 +32,7 @@ public class FragmentNew extends Fragment {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getChildFragmentManager());
         ViewPager viewPager = fragmentNewBinding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout fragmentNewTab = fragmentNewBinding.NewTab;
+        TabLayout fragmentNewTab = fragmentNewBinding.postTab;
         fragmentNewTab.setupWithViewPager(viewPager);
 
         Bundle bundle = this.getArguments();

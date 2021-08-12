@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/Joara_Post_List"
-        android:name="bigbigdw.joaradw.joara_post.Fragment_Joara_Post"
+        android:name="bigbigdw.joaradw.joara_post.Fragment_Post_List"
         android:label=""
-        tools:layout="@layout/fragment_new" >
+        tools:layout="@layout/fragment_post_list" >
     </fragment>
 
     <fragment
