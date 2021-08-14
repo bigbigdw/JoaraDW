@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.BookPagination
@@ -20,7 +21,6 @@ import bigbigdw.joaradw.etc.API
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.fragment_new.NewTab
 import bigbigdw.joaradw.main.MainBookDataJSON
-import bigbigdw.joaradw.main.MainBookListData
 import bigbigdw.joaradw.main.TabViewModel
 import bigbigdw.joaradw.model.BookInfo
 import com.android.volley.Request
@@ -34,7 +34,7 @@ import java.util.*
 
 class FragmentPostTabs : BookBaseFragment() {
     private var adapter: AdapterPostList? = null
-    private val items = ArrayList<MainBookListData>()
+    private val items = ArrayList<PostListData>()
     private var tabviewmodel: TabViewModel? = null
     var wrap: LinearLayout? = null
     var cover: LinearLayout? = null
@@ -74,51 +74,51 @@ class FragmentPostTabs : BookBaseFragment() {
         val app = requireActivity().applicationContext as JOARADW
         userToken = app.token
         val assetManager = requireActivity().assets
-        tabviewmodel!!.text.observe(viewLifecycleOwner, { tabNum: String? ->
+        tabviewmodel!!.text.observe(viewLifecycleOwner) { tabNum: String? ->
             when (tabNum) {
                 "TAB1" -> {
                     store = ""
-                    getPostData()
+//                    getPostData()
                 }
                 "TAB2" -> newBookListJSON(root, assetManager, "Main_Tab_Best_77FES.json")
             }
-        })
+        }
         return root
     }
 
-    fun getPostData() {
-        etc = "&store=$store&orderby=redate&offset=25&page=1&token=$userToken$classes"
-        BookPagination.populateData(API.BOOK_LIST_JOA, etc, queue, wrap, items, cover, blank)
-        recyclerView!!.layoutManager = linearLayoutManager
-        adapter!!.notifyDataSetChanged()
-        recyclerView!!.adapter = adapter
-        recyclerView?.let {
-            adapter?.let { it1 ->
-                wrap?.let { it2 ->
-                    scrollListener(
-                        API.BOOK_LIST_JOA,
-                        queue,
-                        it2,
-                        items,
-                        it1,
-                        it,
-                        etc
-                    )
-                }
-            }
-        }
-
-        adapter!!.setOnItemClickListener { v: View?, position: Int, value: String? ->
-            val item = adapter!!.getItem(position)
-            adapterListener(item, value, queue)
-        }
-    }
+//    fun getPostData() {
+//        etc = "&store=$store&orderby=redate&offset=25&page=1&token=$userToken$classes"
+//        BookPagination.populateData(API.BOOK_LIST_JOA, etc, queue, wrap, items, cover, blank)
+//        recyclerView!!.layoutManager = linearLayoutManager
+//        adapter!!.notifyDataSetChanged()
+//        recyclerView!!.adapter = adapter
+//        recyclerView?.let {
+//            adapter?.let { it1 ->
+//                wrap?.let { it2 ->
+//                    scrollListener(
+//                        API.BOOK_LIST_JOA,
+//                        queue,
+//                        it2,
+//                        items,
+//                        it1,
+//                        it,
+//                        etc
+//                    )
+//                }
+//            }
+//        }
+//
+//        adapter!!.setOnItemClickListener { v: View?, position: Int, value: String? ->
+//            val item = adapter!!.getItem(position)
+//            adapterListener(item, value, queue)
+//        }
+//    }
 
     fun scrollListener(
         api: String,
         queue: RequestQueue?,
         wrap: LinearLayout,
-        items: ArrayList<MainBookListData>,
+        items: ArrayList<PostListData>,
         adpater: AdapterPostList,
         recyclerView: RecyclerView,
         etc: String
@@ -148,7 +148,7 @@ class FragmentPostTabs : BookBaseFragment() {
                                         val jo = flag.getJSONObject(i)
                                         val tempBookInfo = BookInfo.getParseData(jo)
                                         items.add(
-                                            MainBookListData(
+                                                PostListData(
                                                 tempBookInfo.writer,
                                                 tempBookInfo.title,
                                                 tempBookInfo.bookImg,
