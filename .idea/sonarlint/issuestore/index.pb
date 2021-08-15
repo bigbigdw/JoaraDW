@@ -15,14 +15,10 @@ g
 7app/src/test/java/Bigbigdw/JoaraDW/ExampleUnitTest.java,5\8\584cea5f09f05ccbb9d35d2431e1f85a27f6f67e
 v
 Fapp/src/androidTest/java/Bigbigdw/JoaraDW/ExampleInstrumentedTest.java,8\0\8041a8ccc571c5a0f06c7d48c46428e3627900d5
-d
-4app/src/main/java/bigbigdw/joaradw/etc/BookList.java,f\6\f6b56eb0205ffb70790ba309786130c62a27dec7
 g
 7app/src/main/java/bigbigdw/joaradw/etc/PopupBanner.java,4\2\428ec44523e2e5040a505895b48049459368ae30
 m
 =app/src/main/java/bigbigdw/joaradw/base/RegisterActivity.java,a\d\ad530f6d51cca8ae929424486ba0dd44a0383841
-i
-9app/src/main/java/bigbigdw/joaradw/main/TabViewModel.java,9\2\92785a2b7eccee7437c0e47d5d3f1668a24276f1
 m
 =app/src/main/java/bigbigdw/joaradw/main/MainBookDataJSON.java,9\e\9e46a7ec7df44b2daa6ffae5b52ab4b90b9d7ee7
 p
@@ -33,8 +29,6 @@ q
 Aapp/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterD.java,0\7\076eaf8d721b330f79f65000115d2397646522dd
 i
 9app/src/main/java/bigbigdw/joaradw/test/FragmentTest.java,6\3\63d4cc79201ad859f18b2844cd074d6df8f04b2a
-a
-1app/src/main/java/bigbigdw/joaradw/util/Util.java,4\5\455e865fd52aa2977bd4e468501be2dd13705514
 i
 9app/src/main/java/bigbigdw/joaradw/login/LoginCardPW.java,3\3\33e4bf6eca7cfef9928abdb209dbf136d52ca14e
 k
@@ -43,8 +37,6 @@ k
 Kapp/src/main/java/bigbigdw/joaradw/fragment_fav/MainBookListAdapterFav.java,1\1\1152597af9487d3b310bd12c71af850bb7de1ec8
 
 Oapp/src/main/java/bigbigdw/joaradw/fragment_fav/MainBookListAdapterHistory.java,9\2\92c8e8fa8ea7deffd5e7e8c45c8311134c664255
-k
-;app/src/main/java/bigbigdw/joaradw/fragment_new/NewTab.java,1\2\12742aa420bb8bb963a300738b822a69f7213687
 m
 =app/src/main/java/bigbigdw/joaradw/fragment_best/BestTab.java,9\a\9ad81c23eb8d850d6067d7adf36970f253aec320
 r

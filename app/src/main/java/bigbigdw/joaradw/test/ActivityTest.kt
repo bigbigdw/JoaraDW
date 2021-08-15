@@ -23,15 +23,15 @@ class ActivityTest : AppCompatActivity() {
 
         val call = service1.getPosts("1")
 
-        call!!.enqueue(object : Callback<PostResult?> {
-            override fun onResponse(call: Call<PostResult?>, response: Response<PostResult?>) {
+        call!!.enqueue(object : Callback<Test_PostResult?> {
+            override fun onResponse(call: Call<Test_PostResult?>, response: Response<Test_PostResult?>) {
                 if (response.isSuccessful) {
                     val result = response.body()
                     Log.d("@@@@", result.toString())
                 }
             }
 
-            override fun onFailure(call: Call<PostResult?>, t: Throwable) {
+            override fun onFailure(call: Call<Test_PostResult?>, t: Throwable) {
                 Log.d("@@@@", "실패")
             }
         })

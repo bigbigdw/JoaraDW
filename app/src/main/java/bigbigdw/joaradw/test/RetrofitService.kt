@@ -7,5 +7,5 @@ import retrofit2.http.Path
 interface RetrofitService {
     // @GET( EndPoint-자원위치(URI) )
     @GET("posts/{post}")
-    fun getPosts(@Path("post") post: String?): Call<PostResult?>?
+    fun getPosts(@Path("post") post: String?): Call<Test_PostResult?>?
 }

@@ -3,7 +3,7 @@ package bigbigdw.joaradw.test
 import com.google.gson.annotations.SerializedName
 
 // DTO 모델 - PostResult Class 선언
-class PostResult {
+class Test_PostResult {
     @SerializedName("userId")
     private val userId = 0
 
