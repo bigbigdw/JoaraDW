@@ -2,6 +2,7 @@ package bigbigdw.joaradw.fragment_new;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,6 +132,10 @@ public class NewTab extends BookBaseFragment {
         adapter.setOnItemClickListener((v, position, value) -> {
             MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
+        });
+
+        adapter.setOnItemClickListener((v, position, value) -> {
+            Log.d("@@@@","DSADSAD");
         });
     }
 

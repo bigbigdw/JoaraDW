@@ -20,7 +20,8 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
     }
 
     private var listener: OnItemClickListener? = null
-    fun setOnItemClickListener(listener: AdapterPostList.OnItemClickListener?) {
+
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
         this.listener = listener
     }
 
@@ -52,7 +53,7 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
     private fun populateItemRows(holder: PostListViewHolder, position: Int) {
         val item = listData!![position]
         Glide.with(holder.itemView.context)
-                .load(item!!.PostImg)
+                .load(item!!.postImg)
                 .into(holder.post)
         holder.title.text = listData!![position]!!.title
         holder.categoryName.text = listData!![position]!!.categoryName
@@ -68,7 +69,7 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
             post = itemView.findViewById(R.id.Post)
             wrap = itemView.findViewById(R.id.Wrap)
             title = itemView.findViewById(R.id.Title)
-            categoryName = itemView.findViewById(R.id.Text_Intro)
+            categoryName = itemView.findViewById(R.id.CategoryName)
 
             wrap.setOnClickListener { v: View? ->
                 val pos = adapterPosition

@@ -1,6 +1,5 @@
 package bigbigdw.joaradw.joara_post
 
-import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,14 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.etc.HELPER
+import bigbigdw.joaradw.main.MainBookListAdapterC
+import bigbigdw.joaradw.main.MainBookListData
 import bigbigdw.joaradw.main.TabViewModel
-import com.android.volley.RequestQueue
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +29,7 @@ class FragmentPostTabs : BookBaseFragment() {
     var wrap: LinearLayout? = null
     var cover: LinearLayout? = null
     var blank: LinearLayout? = null
-    var store = ""
+    var orderBy = ""
     var linearLayoutManager: LinearLayoutManager? = null
     var recyclerView: RecyclerView? = null
 
@@ -64,16 +58,16 @@ class FragmentPostTabs : BookBaseFragment() {
 
         linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-
         tabviewmodel!!.text.observe(viewLifecycleOwner) { tabNum: String? ->
             when (tabNum) {
                 "TAB1" -> {
-                    store = ""
+                    orderBy = "redate"
                     getPostData()
                 }
                 "TAB2" -> {
-                    store = ""
+                    orderBy = "cnt_recom"
                     getPostData()
+
                 }
             }
         }
@@ -91,38 +85,59 @@ class FragmentPostTabs : BookBaseFragment() {
                 "5f3d29431deb982466d8aa50cf0fc6ab",
                 "1",
                 "",
-                "redate",
+                orderBy,
                 "10"
                 ,"1")
 
         call!!.enqueue(object : Callback<PostTabResult?> {
             override fun onResponse(call: Call<PostTabResult?>, response: Response<PostTabResult?>) {
                 if (response.isSuccessful) {
-                    val result = response.body()
-                    Log.d("@@@@onResponse", result.toString())
+
+                    response.body()?.let { it ->
+                        val offset = it.offset
+                        val page = it.page
+                        val posts = it.posts
+                        val status = it.status
+                        val totalCnt = it.totalCnt
+
+                        Log.d("@@@@",posts.toString())
+
+                        if (posts != null) {
+                            for (i in posts.indices) {
+                                var postId = posts[i].postId
+                                var nickname = posts[i].nickname
+                                var categoryName = posts[i].categoryName
+                                var title = posts[i].title
+                                var thumbnailImage = posts[i].thumbnailImage
+                                var redate = posts[i].redate
+                                var isHtml = posts[i].isHtml
+                                var isComment = posts[i].isComment
+                                var cntRead = posts[i].cntRead
+                                var cntRecom = posts[i].cntRecom
+                                var cntComment = posts[i].cntComment
+
+                                items.add(PostListData(categoryName,title,thumbnailImage))
+
+                                cover!!.visibility = View.GONE
+                                wrap!!.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView!!.adapter = adapter
+
+//                    adapter!!.setOnItemClickListener(AdapterPostList.OnItemClickListener { v: View?, position: Int, value: String? -> Log.d("@@@@", "DSADSAD") })
                 } else {
-                    Log.d("@@@@onResponse", "실패")
+                    blank!!.visibility = View.VISIBLE
+                    wrap!!.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<PostTabResult?>, t: Throwable) {
-                Log.d("@@@@onFailure", "통신 실패")
+                blank!!.visibility = View.VISIBLE
+                wrap!!.visibility = View.GONE
             }
         })
-    }
-
-
-    fun newBookListJSON(root: View, assetManager: AssetManager?, bookType: String?) {
-//        wrap!!.visibility = View.VISIBLE
-//        cover!!.visibility = View.GONE
-//        blank!!.visibility = View.GONE
-//        val recyclerViewJSON: RecyclerView = root.findViewById(R.id.Main_NewBookList)
-//        val linearLayoutManagerJSON =
-//            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-//        recyclerViewJSON.layoutManager = linearLayoutManagerJSON
-//        recyclerViewJSON.adapter = adapter
-//        adapter!!.setItems(MainBookDataJSON().getData(assetManager, bookType))
-//        adapter!!.notifyDataSetChanged()
     }
 
     companion object {

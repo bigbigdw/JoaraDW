@@ -35,7 +35,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
 
     private MainBookListAdapterC.OnItemClickListener listener = null;
 
-    public void setOnItemClickListener(MainBookListAdapterC.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 

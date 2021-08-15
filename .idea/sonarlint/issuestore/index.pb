@@ -1,7 +1,5 @@
 
 b
-2app/src/main/java/Bigbigdw/JoaraDW/Etc/HELPER.java,c\4\c489347ada3e4bf5f64818c7fcf81bfcc55c8b41
-b
 2app/src/main/java/Bigbigdw/JoaraDW/Etc/Splash.java,7\e\7e4f591cb090c3b3eaf22713210422e304a9b5f5
 d
 4app/src/main/java/Bigbigdw/JoaraDW/Etc/BookList.java,6\a\6a4396c2a15d1a5639fb67bb4da0c7c27e118f3e
@@ -78,8 +76,6 @@ i
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-i
-9app/src/main/java/bigbigdw/joaradw/test/ActivityTest.java,4\7\47ffe7b93d38774b9d04968b99e308f83d53da2e
 `
 0app/src/test/java/bigbigdw/joaradw/BookTest.java,1\8\18ef02f54c7f588e379169e47ba74882603f30ef
 k
@@ -104,8 +100,6 @@ m
 =app/src/main/java/bigbigdw/joaradw/main/MainBookListData.java,d\c\dc651e00ac1d8d0f73389a90eb6452d2f64b878a
 g
 7app/src/main/java/bigbigdw/joaradw/login/LoginMain.java,a\5\a5f7e96329cc29f271d50b0a6decc7b133939f6e
-q
-Aapp/src/main/java/bigbigdw/joaradw/main/MainBookListAdapterC.java,3\4\34f351e8f60358ec8352b9b8306e0acae74fb9c2
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 b
@@ -134,8 +128,6 @@ v
 Fapp/src/main/java/bigbigdw/joaradw/fragment_main/MainMoreListData.java,c\2\c213735b627d37899ad92c07a99d80d58326a348
 s
 Capp/src/main/java/bigbigdw/joaradw/book_detail/BookSupportData.java,f\2\f2384ead883bc979d7dacd99f1d3b71f4ff48fce
-m
-=app/src/main/java/bigbigdw/joaradw/base/BookBaseFragment.java,7\2\72af8af717e8b7fb2aef60b46c9dafb87171ef95
 v
 Fapp/src/main/java/bigbigdw/joaradw/book_detail/DetailBookPageData.java,b\f\bf3927fdd6f52c90b76dd53a2164c5356d8b24ae
 r
@@ -150,3 +142,17 @@ y
 Iapp/src/main/java/bigbigdw/joaradw/book_detail/DetailBookListAdapter.java,4\e\4e2deafe2cb1a0cdd410a2d870c3a5a645db5284
 y
 Iapp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailPageAdapter.java,5\2\525531e72b8a3c09a011e23c89d398b1cea68f00
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+a
+1app/src/main/java/bigbigdw/joaradw/util/Util.java,4\5\455e865fd52aa2977bd4e468501be2dd13705514
+q
+Aapp/src/main/java/bigbigdw/joaradw/joara_post/FragmentPostList.kt,f\9\f958bea6590a64148f4210d385c64635dbc60afc
+g
+7app/src/main/java/bigbigdw/joaradw/main/TabViewModel.kt,7\9\791e9ffcd76fe797ed1d7b41fc735bcb77428cd3
+g
+7app/src/main/java/bigbigdw/joaradw/test/ActivityTest.kt,d\6\d661e2e218ec76a807cb4b807e97cab61d714b83
+]
+-app/src/main/java/bigbigdw/joaradw/etc/API.kt,7\5\759171f9f6eee5e6400a322ed775a46fe50870c3
+j
+:app/src/main/java/bigbigdw/joaradw/test/RetrofitService.kt,5\a\5a186696c212c8a5974e7e19bcc5eb50a570fa1b

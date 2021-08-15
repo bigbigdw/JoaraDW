@@ -3,90 +3,57 @@ package bigbigdw.joaradw.joara_post
 import com.google.gson.annotations.SerializedName
 
 class PostResult {
-    @SerializedName("offset")
-    private val offset = 0
 
-    @SerializedName("page")
-    private val page = 0
-
-    @SerializedName("posts")
-    private val posts: List<PostsValue>? = null
-
-    @SerializedName("status")
-    private val status = 0
-
-    @SerializedName("total_cnt")
-    private val total_cnt: String? = null
-
-    override fun toString(): String {
-        return "PostResult{" +
-                "offset=" + offset +
-                ", page=" + page +
-                ", posts='" + posts +
-                ", total_cnt='" + total_cnt +
-                ", status='" + status  +
-                '}'
-    }
 }
 
 class PostTabResult {
     @SerializedName("offset")
-    private val offset = 0
+    val offset = 0
 
     @SerializedName("page")
-    private val page = 0
+    val page = 0
 
     @SerializedName("posts")
-    private val posts: List<PostsValue>? = null
+    val posts: List<PostsValue>? = null
 
     @SerializedName("status")
-    private val status = 0
+    val status = 0
 
     @SerializedName("total_cnt")
-    private val total_cnt: String? = null
-
-    override fun toString(): String {
-        return "PostResult{" +
-                "offset=" + offset +
-                ", page=" + page +
-                ", posts='" + posts +
-                ", total_cnt='" + total_cnt +
-                ", status='" + status  +
-                '}'
-    }
+    val totalCnt: String? = null
 }
 
-internal class PostsValue {
+class PostsValue {
     @SerializedName("post_id")
-    var post_id: String? = null
+    var postId: String? = null
 
     @SerializedName("nickname")
     var nickname: String? = null
 
     @SerializedName("category_name")
-    var category_name: String? = null
+    var categoryName: String? = null
 
     @SerializedName("title")
     var title: String? = null
 
     @SerializedName("thumbnail_image")
-    var thumbnail_image: String? = null
+    var thumbnailImage: String? = null
 
     @SerializedName("redate")
     var redate: String? = null
 
     @SerializedName("is_html")
-    var is_html: String? = null
+    var isHtml: String? = null
 
     @SerializedName("is_comment")
-    var is_comment: String? = null
+    var isComment: String? = null
 
     @SerializedName("cnt_read")
-    var cnt_read: String? = null
+    var cntRead: String? = null
 
     @SerializedName("cnt_recom")
-    var cnt_recom: String? = null
+    var cntRecom: String? = null
 
     @SerializedName("cnt_comment")
-    var cnt_comment: String? = null
+    var cntComment: String? = null
 }

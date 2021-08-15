@@ -41,9 +41,10 @@
             android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:text="타이틀"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,15 +55,16 @@
             android:background="#ACC231"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"/>
+
         <TextView
             android:id="@+id/CategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="#ACC231"
             android:layout_marginBottom="15dp"
+            android:text="카테고리 이름"
+            android:textColor="#ACC231"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

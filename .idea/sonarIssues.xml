@@ -88,6 +88,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/assets/test.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/Bigbigdw/JoaraDW/Base/BookBaseAcitivy.java">
           <value>
             <set />
@@ -1434,6 +1439,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../MyApplication/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/info/InfoPrivate.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/res/layout/adapter_item_criticism_comment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/res/layout/adapter_item_post.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>
