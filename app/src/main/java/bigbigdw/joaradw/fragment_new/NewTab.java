@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.fragment_new;
 
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -133,12 +134,7 @@ public class NewTab extends BookBaseFragment {
             MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
         });
-
-        adapter.setOnItemClickListener((v, position, value) -> {
-            Log.d("@@@@","DSADSAD");
-        });
     }
-
 
     public void newBookListJSON(View root, AssetManager assetManager, String bookType){
         wrap.setVisibility(View.VISIBLE);

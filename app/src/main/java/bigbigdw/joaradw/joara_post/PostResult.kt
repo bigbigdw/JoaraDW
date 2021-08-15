@@ -2,10 +2,6 @@ package bigbigdw.joaradw.joara_post
 
 import com.google.gson.annotations.SerializedName
 
-class PostResult {
-
-}
-
 class PostTabResult {
     @SerializedName("offset")
     val offset = 0

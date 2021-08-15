@@ -9,6 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.SharedPreferences
+
+
+
 
 class ActivityTest : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,5 +39,36 @@ class ActivityTest : AppCompatActivity() {
                 Log.d("@@@@", "실패")
             }
         })
+    }
+
+    // 값 불러오기
+    private fun getPreferences() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        pref.getString("hi", "")
+    }
+
+
+    // 값 저장하기
+    fun savePreferences(token: String) {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("hi", token)
+        editor.apply()
+    }
+
+    // 값(Key Data) 삭제하기
+    private fun removePreferences() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.remove("hi")
+        editor.apply()
+    }
+
+    // 값(ALL Data) 삭제하기
+    private fun removeAllPreferences() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.clear()
+        editor.commit()
     }
 }

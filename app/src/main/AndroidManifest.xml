@@ -117,6 +117,11 @@
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
+        <activity
+            android:name="bigbigdw.joaradw.joara_post.PostDetail"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

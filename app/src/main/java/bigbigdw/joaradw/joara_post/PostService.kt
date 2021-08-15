@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface PostService {
     @GET("v1/board/post_list.joa" + HELPER.ETC)
-    fun getQuery(
+    fun getRetrofit(
             @Query("token") token: String?,
             @Query("category") category: String?,
             @Query("category_id") categoryId: String?,

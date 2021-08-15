@@ -14,5 +14,6 @@
     <color name="Contents_Text1">#A5C500</color>
     <color name="Contents_Text2">#002635</color>
     <color name="Contents_Text3">#000000</color>
+    <color name="Contents_Text4">#333333</color>
     <color name="PrimaryColor">#00283d</color>
 </resources>

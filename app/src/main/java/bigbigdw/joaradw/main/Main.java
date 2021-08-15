@@ -88,6 +88,7 @@ public class Main extends BookBaseActivity {
         userName = navHeaderView.findViewById(R.id.UserName);
         btnLogout = navHeaderView.findViewById(R.id.Btn_Logout);
         JOARADW myapp = (JOARADW) getApplicationContext();
+
         if(myapp.getIsLogined()){
             userStatus = myapp.getStatus();
             usertoken = "&token=" + myapp.getToken();

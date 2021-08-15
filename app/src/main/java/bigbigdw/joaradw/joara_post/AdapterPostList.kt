@@ -13,10 +13,9 @@ import java.util.ArrayList
 
 class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<PostListData?>?
-    var f = "FALSE"
 
     interface OnItemClickListener {
-        fun onItemClick(v: View?, position: Int, value: String?)
+        fun onItemClick(v: View?, position: Int)
     }
 
     private var listener: OnItemClickListener? = null
@@ -38,6 +37,11 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PostListViewHolder) {
             populateItemRows(holder, position)
+
+            //view에 onClickListner를 달고, 그 안에서 직접 만든 itemClickListener를 연결시킨다
+            holder.itemView.setOnClickListener {
+                listener?.onItemClick(it, position)
+            }
         }
     }
 
@@ -57,6 +61,10 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
                 .into(holder.post)
         holder.title.text = listData!![position]!!.title
         holder.categoryName.text = listData!![position]!!.categoryName
+        holder.cntRead.text = listData!![position]!!.cntRead
+        holder.cntRecom.text = listData!![position]!!.cntRecom
+        holder.cntComment.text = listData!![position]!!.cntComment
+        holder.postId.text = listData!![position]!!.postId
     }
 
     inner class PostListViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -64,17 +72,25 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
         var wrap: LinearLayout
         var title: TextView
         var categoryName: TextView
+        var cntRead: TextView
+        var cntRecom: TextView
+        var cntComment: TextView
+        var postId: TextView
 
         init {
             post = itemView.findViewById(R.id.Post)
             wrap = itemView.findViewById(R.id.Wrap)
             title = itemView.findViewById(R.id.Title)
             categoryName = itemView.findViewById(R.id.CategoryName)
+            postId = itemView.findViewById(R.id.PostID)
+            cntRead = itemView.findViewById(R.id.cntRead)
+            cntRecom = itemView.findViewById(R.id.cntRecom)
+            cntComment = itemView.findViewById(R.id.cntComment)
 
             wrap.setOnClickListener { v: View? ->
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(v, pos, "PostDetail")
+                    listener!!.onItemClick(v, pos)
                 }
             }
         }

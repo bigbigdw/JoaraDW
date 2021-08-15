@@ -2,4 +2,11 @@
 <resources>
     <string name="Post_Tab1">전체</string>
     <string name="Post_Tab2">최신</string>
+    <string name="Post_Detail_Comment_Hint">댓글을 남겨주세요</string>
+    <string name="Post_Detail_Comment_Btn">등록하기</string>
+    <string name="Post_Detail_Comment_Edit">수정</string>
+    <string name="Post_Detail_Comment_Delete">삭제</string>
+    <string name="Post_Detail_Comment_Report">신고</string>
+    <string name="Post_Detail_Comment_Cancel">취소</string>
+    <string name="Post_Detail_Comment_Commit">적용</string>
 </resources>
