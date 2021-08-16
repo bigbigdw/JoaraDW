@@ -44,17 +44,19 @@ class PostDetail : AppCompatActivity() {
     var textRecommend : TextView? = null
     var commentCount : TextView? = null
     var commentEditText : EditText? = null
-    var commentWrap : LinearLayout? = null
+    var commentEditWrap : LinearLayout? = null
     private var commentCommit : TextView? = null
     var commentBlank : LinearLayout? = null
     var tCommentBlankText : TextView? = null
     var recyclerView: RecyclerView? = null
+    var commentWrap: LinearLayout? = null
 
     private var postId : String? = null
     private var token : String? = null
-    private var adapter: AdapterPostComment? = null
     var linearLayoutManager: LinearLayoutManager? = null
+    private var adapter: AdapterPostComment? = null
     private val items = ArrayList<PostCommentData>()
+
     var postBannerURLs: MutableList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,13 +77,15 @@ class PostDetail : AppCompatActivity() {
         textRecommend = findViewById(R.id.Text_Recommend)
         commentCount = findViewById(R.id.Comment_Count)
         commentEditText = findViewById(R.id.Comment_EditText)
-        commentWrap = findViewById(R.id.CommentWrap)
+        commentEditWrap = findViewById(R.id.CommentEditWrap)
         commentCommit = findViewById(R.id.Comment_Commit)
         commentBlank = findViewById(R.id.Comment_Blank)
         tCommentBlankText = findViewById(R.id.Comment_Blank_Text)
         recyclerView = findViewById(R.id.CommentList)
-        adapter = AdapterPostComment(items)
+        commentWrap = findViewById(R.id.Comment_Wrap)
 
+        adapter = AdapterPostComment(items)
+        linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mContext = this
 
         val intent = intent
@@ -219,8 +223,10 @@ class PostDetail : AppCompatActivity() {
 
                         //댓글 레이아웃 관련
                         if(isComment.equals("Y")){
+                            commentEditWrap!!.visibility = View.VISIBLE
                             commentWrap!!.visibility = View.VISIBLE
                         } else {
+                            commentEditWrap!!.visibility = View.GONE
                             commentWrap!!.visibility = View.GONE
                         }
 
@@ -346,23 +352,10 @@ class PostDetail : AppCompatActivity() {
                             }
                         }
                     }
+
                     recyclerView!!.layoutManager = linearLayoutManager
                     recyclerView!!.adapter = adapter
 
-                    //클릭리스너 등록
-//                    adapter!!.setOnItemClickListener(object : AdapterPostList.OnItemClickListener {
-//                        override fun onItemClick(v: View?, position: Int) {
-//                            val item: PostListData? = adapter!!.getItem(position)
-//                            if (item != null) {
-//                                val intent = Intent(
-//                                    requireContext().applicationContext,
-//                                    PostDetail::class.java
-//                                )
-//                                intent.putExtra("POSTID", item.postId)
-//                                startActivity(intent)
-//                            }
-//                        }
-//                    })
                 }
             }
 
