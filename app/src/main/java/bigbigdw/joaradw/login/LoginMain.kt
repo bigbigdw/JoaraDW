@@ -9,35 +9,17 @@ import com.android.volley.toolbox.Volley
 import android.text.TextWatcher
 import android.text.Editable
 import bigbigdw.joaradw.etc.HELPER
-import com.android.volley.toolbox.StringRequest
-import org.json.JSONObject
-import bigbigdw.joaradw.login.LoginMain
-import bigbigdw.joaradw.JOARADW
 import android.content.Intent
-import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.*
-import bigbigdw.joaradw.joara_post.AdapterPostList
-import bigbigdw.joaradw.joara_post.PostListData
-import bigbigdw.joaradw.joara_post.PostService
-import bigbigdw.joaradw.joara_post.PostTabResult
-import org.json.JSONException
-import com.android.volley.VolleyError
-import bigbigdw.joaradw.login.LoginFindID
-import bigbigdw.joaradw.login.LoginFindPW
-import bigbigdw.joaradw.login.LoginRegister
 import bigbigdw.joaradw.main.Main
 import bigbigdw.joaradw.util.LoginResult
 import bigbigdw.joaradw.util.LoginService
-import com.android.volley.Response
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
 import java.util.*
 
 class LoginMain : AppCompatActivity() {
@@ -106,57 +88,6 @@ class LoginMain : AppCompatActivity() {
         loginBtn!!.setOnClickListener { v: View? ->
             val idCheck = Objects.requireNonNull(idtext!!.editText)?.text.toString()
             val pwCheck = Objects.requireNonNull(pwtext!!.editText)?.text.toString()
-
-//            if (idCheck.length > 1 && pwCheck.length > 1) {
-//                val stringRequest: StringRequest = object :
-//                    StringRequest(Method.POST, resultURL, Response.Listener { response: String? ->
-//                        try {
-//                            val reader = JSONObject(response)
-//                            val userInfo = reader.getJSONObject("user")
-//                            val userName = userInfo.getString("nickname")
-//                            val dir = "/"
-//                            val filename = dataDir.toString() + dir
-//                            writeJson(filename, response)
-//                            token = userInfo.getString("token")
-//                            val myApp = applicationContext as JOARADW
-//                            myApp.token = token
-//                            Toast.makeText(
-//                                applicationContext,
-//                                "환영합니다!" + " " + userName + "님!",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                            val intent = Intent(applicationContext, Main::class.java)
-//                            intent.putExtra("IsFirstPage", false)
-//                            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-//                            startActivityIfNeeded(intent, 0)
-//                            finish()
-//                        } catch (e: JSONException) {
-//                            e.printStackTrace()
-//                            Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT)
-//                                .show()
-//                        }
-//                    }, Response.ErrorListener { error: VolleyError? ->
-//                        Toast.makeText(
-//                            applicationContext, loginFailMsg, Toast.LENGTH_SHORT
-//                        ).show()
-//                    }) {
-//                    override fun getParams(): Map<String, String>? {
-//                        val params: MutableMap<String, String> = HashMap()
-//                        params["member_id"] = idCheck
-//                        params["passwd"] = pwCheck
-//                        params["api_key"] = HELPER.API_KEY
-//                        params["ver"] = HELPER.VER
-//                        params["device"] = HELPER.DEVICE
-//                        params["deviceuid"] = HELPER.DEVICE_ID
-//                        params["devicetoken"] = HELPER.DEVICE_TOKEN
-//                        return@setOnClickListener params
-//                    }
-//                }
-//                queue!!.add(stringRequest)
-//            } else {
-//                Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()
-//            }
-
 
             val call = Retrofit.Builder()
                 .baseUrl(HELPER.API)

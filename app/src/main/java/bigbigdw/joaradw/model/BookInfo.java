@@ -4,7 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import bigbigdw.joaradw.R;
-import bigbigdw.joaradw.util.Util;
+import bigbigdw.joaradw.util.Old_Util;
 
 public class BookInfo {
     String bookImg;
@@ -188,8 +188,8 @@ public class BookInfo {
         tempBookInfo.setCntPageRead(obj.getString("cnt_page_read"));
         tempBookInfo.setCntFavorite(obj.getString("cnt_favorite"));
         tempBookInfo.setCntRecom(obj.getString("cnt_favorite"));
-        tempBookInfo.setHistorySortno(Util.getJSONObjStringValue(obj,"history_sortno"));
-        tempBookInfo.setCntChapter("총 " + Util.getJSONObjStringValue(obj,"cnt_chapter") + "편");
+        tempBookInfo.setHistorySortno(Old_Util.getJSONObjStringValue(obj,"history_sortno"));
+        tempBookInfo.setCntChapter("총 " + Old_Util.getJSONObjStringValue(obj,"cnt_chapter") + "편");
 
         return tempBookInfo;
     }

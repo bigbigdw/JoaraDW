@@ -100,8 +100,6 @@ n
 >app/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabFav.java,e\b\ebdb9114b59f9836cd9448a099aef9bb71eee631
 r
 Bapp/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabHistory.java,2\5\251d273fd915a7209fde4fc2169c467e34ba0ed1
-^
-.app/src/main/java/bigbigdw/joaradw/Config.java,9\b\9b3d6da40b1bf5789660d907570a2f1ad0f0b65f
 s
 Capp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailCover.java,9\b\9b657e020b8c6249c17a544ae8434078d19e3d5e
 p
@@ -118,8 +116,6 @@ v
 Fapp/src/main/java/bigbigdw/joaradw/fragment_main/MainMoreListData.java,c\2\c213735b627d37899ad92c07a99d80d58326a348
 s
 Capp/src/main/java/bigbigdw/joaradw/book_detail/BookSupportData.java,f\2\f2384ead883bc979d7dacd99f1d3b71f4ff48fce
-v
-Fapp/src/main/java/bigbigdw/joaradw/book_detail/DetailBookPageData.java,b\f\bf3927fdd6f52c90b76dd53a2164c5356d8b24ae
 r
 Bapp/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMore.java,2\b\2b9bf3b5781a9e140383c0ff8646fc9546d77b85
 x
@@ -134,11 +130,23 @@ g
 7app/src/main/java/bigbigdw/joaradw/main/TabViewModel.kt,7\9\791e9ffcd76fe797ed1d7b41fc735bcb77428cd3
 ]
 -app/src/main/java/bigbigdw/joaradw/etc/API.kt,7\5\759171f9f6eee5e6400a322ed775a46fe50870c3
-j
-:app/src/main/java/bigbigdw/joaradw/test/RetrofitService.kt,5\a\5a186696c212c8a5974e7e19bcc5eb50a570fa1b
-l
-<app/src/main/java/bigbigdw/joaradw/joara_post/PostService.kt,d\1\d16a7daa39dd513d43a3eae0d1fe22229349e646
-k
-;app/src/main/java/bigbigdw/joaradw/joara_post/PostResult.kt,f\d\fd20f72d088decc14e22b78159390b22693f6cb7
 f
 6app/src/main/java/bigbigdw/joaradw/util/UserService.kt,1\6\169209f965a98213bb33129b1fcda9836f3128b4
+m
+=app/src/main/java/bigbigdw/joaradw/joara_post/PostListData.kt,5\7\57395223184d9ee5081989dc70811e155554a40b
+_
+/app/src/main/java/bigbigdw/joaradw/JOARADW.java,a\3\a3573334c84d60a6bf3a46492bd331d34c77f340
+k
+;app/src/main/java/bigbigdw/joaradw/fragment_new/NewTab.java,1\2\12742aa420bb8bb963a300738b822a69f7213687
+`
+0app/src/main/java/bigbigdw/joaradw/etc/HELPER.kt,c\1\c1c10193e8d4112089630ffdb2ff56ab8b2d0a27
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+m
+=app/src/main/java/bigbigdw/joaradw/base/BookBaseFragment.java,7\2\72af8af717e8b7fb2aef60b46c9dafb87171ef95
+u
+Eapp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailSubPage.java,f\e\fed03683df54b3cddd76f89c177f04c65c3f00fd
+a
+1app/src/main/java/bigbigdw/joaradw/main/Main.java,c\3\c3bddf2033695c0ee15b7fde60f736593414f58d
+d
+4app/src/main/java/bigbigdw/joaradw/etc/BookList.java,f\6\f6b56eb0205ffb70790ba309786130c62a27dec7

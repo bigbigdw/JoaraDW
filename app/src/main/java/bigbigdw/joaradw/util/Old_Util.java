@@ -3,9 +3,9 @@ package bigbigdw.joaradw.util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Util {
+public class Old_Util {
 
-    private Util() { throw new IllegalStateException("Util class"); }
+    private Old_Util() { throw new IllegalStateException("Util class"); }
 
     // Parse JSONObject
     public static String getJSONObjStringValue(JSONObject obj, String name) throws JSONException {

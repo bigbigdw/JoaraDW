@@ -2,7 +2,6 @@ package bigbigdw.joaradw.joara_post
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.book_detail.BookDetailCover
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.main.TabViewModel
 import retrofit2.Call
@@ -34,6 +32,7 @@ class FragmentPostTabs : BookBaseFragment() {
     var orderBy = ""
     var linearLayoutManager: LinearLayoutManager? = null
     var recyclerView: RecyclerView? = null
+    var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +56,13 @@ class FragmentPostTabs : BookBaseFragment() {
         cover = root.findViewById(R.id.LoadingLayout)
         blank = root.findViewById(R.id.BlankLayout)
         adapter = AdapterPostList(items)
-        var token = ""
+
+        setlayout()
+
+        return root
+    }
+
+    fun setlayout(){
 
         linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
@@ -80,8 +85,6 @@ class FragmentPostTabs : BookBaseFragment() {
             ?.let {
                 token = it
             }
-
-        return root
     }
 
     private fun getPostData() {
@@ -89,7 +92,7 @@ class FragmentPostTabs : BookBaseFragment() {
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
 
-        val service = retrofit.create(PostService::class.java)
+        val service = retrofit.create(PostListService::class.java)
 
         val call = service.getRetrofit(
             "5f3d29431deb982466d8aa50cf0fc6ab",
