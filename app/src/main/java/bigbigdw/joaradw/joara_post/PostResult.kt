@@ -3,7 +3,7 @@ package bigbigdw.joaradw.joara_post
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-//포스트 탭 결과
+//포스트 탭
 class PostTabResult {
     @SerializedName("offset")
     @Expose
@@ -25,7 +25,7 @@ class PostTabResult {
     val totalCnt: String? = null
 }
 
-//포스트 탭 - 포스트 데이터 결과
+//포스트 탭 - 포스트 데이터
 class PostsValue {
     @SerializedName("post_id")
     @Expose
@@ -69,7 +69,7 @@ class PostsValue {
     var cntComment: String? = null
 }
 
-//포스트 상세 결과
+//포스트 상세
 class PostDetailResult {
 
     @SerializedName("post")
@@ -133,7 +133,7 @@ class PostDetailData {
     }
 }
 
-//포스트 상세 - 슬라이드 결과
+//포스트 상세 - 슬라이드
 class PostDetailSlideShow {
     @SerializedName("slideshow_image")
     @Expose
@@ -148,4 +148,41 @@ class PostRecommendResult {
     @SerializedName("message")
     @Expose
     var message: String? = null
+}
+
+//포스트 댓글 리스트
+class PostCommentListResult {
+
+    @SerializedName("comments")
+    @Expose
+    val comments: List<PostsCommentValue>? = null
+
+    @SerializedName("status")
+    @Expose
+    val status = 0
+
+    @SerializedName("total_cnt")
+    val totalCnt: String? = null
+}
+
+//포스트 댓글 상세
+class PostsCommentValue {
+    @SerializedName("comment")
+    @Expose
+    var comment: String? = null
+
+    @SerializedName("comment_id")
+    var comment_id: String? = null
+
+    @SerializedName("created")
+    @Expose
+    var created: String? = null
+
+    @SerializedName("member_name")
+    @Expose
+    var member_name: String? = null
+
+    @SerializedName("profile")
+    @Expose
+    var profile: String? = null
 }

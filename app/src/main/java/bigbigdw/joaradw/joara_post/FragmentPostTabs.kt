@@ -114,13 +114,13 @@ class FragmentPostTabs : BookBaseFragment() {
 
                         if (posts != null) {
                             for (i in posts.indices) {
-                                var postId = posts[i].postId
-                                var categoryName = posts[i].categoryName
-                                var title = posts[i].title
-                                var thumbnailImage = posts[i].thumbnailImage
-                                var cntRead = posts[i].cntRead
-                                var cntRecom = posts[i].cntRecom
-                                var cntComment = posts[i].cntComment
+                                val postId = posts[i].postId
+                                val categoryName = posts[i].categoryName
+                                val title = posts[i].title
+                                val thumbnailImage = posts[i].thumbnailImage
+                                val cntRead = posts[i].cntRead
+                                val cntRecom = posts[i].cntRecom
+                                val cntComment = posts[i].cntComment
 
                                 items.add(
                                     PostListData(

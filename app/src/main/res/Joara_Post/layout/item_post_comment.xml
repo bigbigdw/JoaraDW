@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/llayout_container"
+    android:id="@+id/Comment_Contents"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/comment_img"
+            android:id="@+id/Comment_Img"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="top|center_horizontal"
@@ -42,7 +42,7 @@
             android:gravity="start|center_vertical">
 
             <TextView
-                android:id="@+id/tview_item_comment_writer"
+                android:id="@+id/Comment_Writer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -133,7 +133,7 @@
             android:gravity="start|center_vertical">
 
             <TextView
-                android:id="@+id/tview_item_comment_created"
+                android:id="@+id/Comment_Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/Contents_Text4"
@@ -151,7 +151,7 @@
             android:gravity="start|center_vertical">
 
             <TextView
-                android:id="@+id/tview_item_comment_contents"
+                android:id="@+id/Comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/Contents_Text4"
@@ -167,6 +167,7 @@
                 android:textColor="@color/Contents_Text4"
                 android:textSize="14sp"
                 android:visibility="gone"
+                tools:ignore="SpeakableTextPresentCheck"
                 tools:visibility="visible" />
 
         </LinearLayout>

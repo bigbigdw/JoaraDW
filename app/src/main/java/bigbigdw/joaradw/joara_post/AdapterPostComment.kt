@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
@@ -12,8 +11,8 @@ import com.bumptech.glide.Glide
 import java.util.ArrayList
 
 
-class AdapterPostComment(items: List<PostListData?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var listData: ArrayList<PostListData?>?
+class AdapterPostComment(items: List<PostCommentData?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var listData: ArrayList<PostCommentData?>?
 
     interface OnItemClickListener {
         fun onItemClick(v: View?, position: Int)
@@ -27,7 +26,7 @@ class AdapterPostComment(items: List<PostListData?>?) : RecyclerView.Adapter<Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ITEM) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_comment, parent, false)
             PostCommentViewHolder(view)
         } else {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.spinner, parent, false)
@@ -57,42 +56,32 @@ class AdapterPostComment(items: List<PostListData?>?) : RecyclerView.Adapter<Rec
     private fun populateItemRows(holder: PostCommentViewHolder, position: Int) {
         val item = listData!![position]
         Glide.with(holder.itemView.context)
-            .load(item!!.postImg)
-            .into(holder.post)
-        holder.title.text = listData!![position]!!.title
-        holder.categoryName.text = listData!![position]!!.categoryName
-        holder.cntRead.text = listData!![position]!!.cntRead
-        holder.cntRecom.text = listData!![position]!!.cntRecom
-        holder.cntComment.text = listData!![position]!!.cntComment
-        holder.postId.text = listData!![position]!!.postId
+            .load(item!!.commentImg)
+            .into(holder.iCommentImg)
+
+        holder.tCommentWriter.text = listData!![position]!!.commentWriter
+        holder.tCommentDate.text = listData!![position]!!.commentDate
+        holder.tComment.text = listData!![position]!!.comment
     }
 
     inner class PostCommentViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var post: ImageView
-        var wrap: LinearLayout
-        var title: TextView
-        var categoryName: TextView
-        var cntRead: TextView
-        var cntRecom: TextView
-        var cntComment: TextView
-        var postId: TextView
+        var iCommentImg: ImageView
+        var tCommentWriter: TextView
+        var tCommentDate: TextView
+        var tComment: TextView
 
         init {
-            post = itemView.findViewById(R.id.Post)
-            wrap = itemView.findViewById(R.id.Wrap)
-            title = itemView.findViewById(R.id.Title)
-            categoryName = itemView.findViewById(R.id.CategoryName)
-            postId = itemView.findViewById(R.id.PostID)
-            cntRead = itemView.findViewById(R.id.cntRead)
-            cntRecom = itemView.findViewById(R.id.cntRecom)
-            cntComment = itemView.findViewById(R.id.cntComment)
+            iCommentImg = itemView.findViewById(R.id.Comment_Img)
+            tCommentWriter = itemView.findViewById(R.id.Comment_Writer)
+            tCommentDate = itemView.findViewById(R.id.Comment_Date)
+            tComment = itemView.findViewById(R.id.Comment)
 
-            wrap.setOnClickListener { v: View? ->
-                val pos = adapterPosition
-                if (pos != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(v, pos)
-                }
-            }
+//            wrap.setOnClickListener { v: View? ->
+//                val pos = adapterPosition
+//                if (pos != RecyclerView.NO_POSITION) {
+//                    listener!!.onItemClick(v, pos)
+//                }
+//            }
         }
     }
 
@@ -102,11 +91,11 @@ class AdapterPostComment(items: List<PostListData?>?) : RecyclerView.Adapter<Rec
         }
     }
 
-    fun setItems(items: List<PostListData?>?) {
-        listData = items as ArrayList<PostListData?>?
+    fun setItems(items: List<PostCommentData?>?) {
+        listData = items as ArrayList<PostCommentData?>?
     }
 
-    fun getItem(position: Int): PostListData? {
+    fun getItem(position: Int): PostCommentData? {
         return listData!![position]
     }
 
@@ -115,6 +104,6 @@ class AdapterPostComment(items: List<PostListData?>?) : RecyclerView.Adapter<Rec
     }
 
     init {
-        listData = items as ArrayList<PostListData?>?
+        listData = items as ArrayList<PostCommentData?>?
     }
 }

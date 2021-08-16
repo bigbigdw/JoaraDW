@@ -12,6 +12,8 @@ import android.webkit.WebSettings
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.util.Util
@@ -35,7 +37,7 @@ class PostDetail : AppCompatActivity() {
     var toolbarTitle: TextView? = null
     var wcontents: ClickableWebView? = null
     var carouselPostBanner: CarouselView? = null
-    var postBannerURLs: MutableList<String> = ArrayList()
+
     private var dialogPost: DialogPost? = null
     private var mContext: Context? = null
     var btnRecommend : LinearLayout? = null
@@ -44,10 +46,16 @@ class PostDetail : AppCompatActivity() {
     var commentEditText : EditText? = null
     var commentWrap : LinearLayout? = null
     private var commentCommit : TextView? = null
-    var Comment_Blank : LinearLayout? = null
-    var Comment_Blank_Text : TextView? = null
+    var commentBlank : LinearLayout? = null
+    var tCommentBlankText : TextView? = null
+    var recyclerView: RecyclerView? = null
+
     private var postId : String? = null
     private var token : String? = null
+    private var adapter: AdapterPostComment? = null
+    var linearLayoutManager: LinearLayoutManager? = null
+    private val items = ArrayList<PostCommentData>()
+    var postBannerURLs: MutableList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,8 +77,10 @@ class PostDetail : AppCompatActivity() {
         commentEditText = findViewById(R.id.Comment_EditText)
         commentWrap = findViewById(R.id.CommentWrap)
         commentCommit = findViewById(R.id.Comment_Commit)
-        Comment_Blank = findViewById(R.id.Comment_Blank)
-        Comment_Blank_Text = findViewById(R.id.Comment_Blank_Text)
+        commentBlank = findViewById(R.id.Comment_Blank)
+        tCommentBlankText = findViewById(R.id.Comment_Blank_Text)
+        recyclerView = findViewById(R.id.CommentList)
+        adapter = AdapterPostComment(items)
 
         mContext = this
 
@@ -102,6 +112,7 @@ class PostDetail : AppCompatActivity() {
         }
 
         getPostDetailData()
+        getCommentData()
 
         btnRecommend!!.setOnClickListener { putRecommend() }
     }
@@ -150,6 +161,7 @@ class PostDetail : AppCompatActivity() {
         })
     }
 
+    //상세 데이터
     fun getPostDetailData() {
 
         val retrofit = Retrofit.Builder()
@@ -181,7 +193,7 @@ class PostDetail : AppCompatActivity() {
                         vtitle!!.text = title
                         vCategoryID!!.text = categoryName
                         vRedate!!.text = Util.changeDateType(redate, "")
-                        commentCount!!.text = cntComment.toString()
+
                         switchRecom(isRecom!!)
 
                         //웹뷰 세팅
@@ -212,12 +224,6 @@ class PostDetail : AppCompatActivity() {
                             commentWrap!!.visibility = View.GONE
                         }
 
-                        if(cntComment.equals("0")){
-                            Comment_Blank!!.visibility = View.VISIBLE
-                            Comment_Blank_Text!!.text = "현재 댓글이 없습니다"
-                        } else {
-                            Comment_Blank!!.visibility = View.GONE
-                        }
 
                         // 다크 모드 판별
                         val currentNightMode =
@@ -256,6 +262,7 @@ class PostDetail : AppCompatActivity() {
         })
     }
 
+    //추천 토글
     fun switchRecom(isRecommend: String?) {
         if (isRecommend == "Y") {
             btnRecommend!!.setBackgroundResource(R.drawable.bg_shape_comment_btn_gray)
@@ -266,7 +273,8 @@ class PostDetail : AppCompatActivity() {
         }
     }
 
-    var imageListener = ImageListener { position: Int, imageView: ImageView ->
+    //캐러셀 이미지 리스너
+    private var imageListener = ImageListener { position: Int, imageView: ImageView ->
         imageView.adjustViewBounds = true
         val vto = imageView.viewTreeObserver
         vto.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
@@ -281,6 +289,88 @@ class PostDetail : AppCompatActivity() {
             }
         })
         Glide.with(applicationContext).load(postBannerURLs[position]).into(imageView)
+    }
+
+    //댓글 정보
+    private fun getCommentData() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(PostCommentListService::class.java)
+            .getRetrofit(
+                postId,
+                token
+            )
+
+        retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
+            override fun onResponse(
+                call: Call<PostCommentListResult?>,
+                response: Response<PostCommentListResult?>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        val comments = it.comments
+                        val totalCnt = it.totalCnt
+
+                        //댓글 수 관련
+                        commentCount!!.text = totalCnt.toString()
+
+                        if(totalCnt.equals("0")){
+                            commentBlank!!.visibility = View.VISIBLE
+                            tCommentBlankText!!.text = "현재 댓글이 없습니다"
+                        } else {
+                            commentBlank!!.visibility = View.GONE
+                        }
+
+
+                        //댓글 관련
+                        if (comments != null) {
+                            for (i in comments.indices) {
+                                val comment = comments[i].comment
+                                val commentId = comments[i].comment_id
+                                val created = comments[i].created
+                                val memberName = comments[i].member_name
+                                val profile = comments[i].profile
+
+                                items.add(
+                                    PostCommentData(
+                                        profile,
+                                        memberName,
+                                        created,
+                                        comment
+                                    )
+                                )
+
+                                commentBlank!!.visibility = View.GONE
+                                recyclerView!!.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView!!.adapter = adapter
+
+                    //클릭리스너 등록
+//                    adapter!!.setOnItemClickListener(object : AdapterPostList.OnItemClickListener {
+//                        override fun onItemClick(v: View?, position: Int) {
+//                            val item: PostListData? = adapter!!.getItem(position)
+//                            if (item != null) {
+//                                val intent = Intent(
+//                                    requireContext().applicationContext,
+//                                    PostDetail::class.java
+//                                )
+//                                intent.putExtra("POSTID", item.postId)
+//                                startActivity(intent)
+//                            }
+//                        }
+//                    })
+                }
+            }
+
+            override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
+                commentBlank!!.visibility = View.VISIBLE
+                recyclerView!!.visibility = View.GONE
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
