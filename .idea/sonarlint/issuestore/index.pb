@@ -94,8 +94,6 @@ w
 Gapp/src/main/java/bigbigdw/joaradw/book_viewer/ViewerDrawerAdpater.java,0\1\0172f67e3d60d35cea2e39bcc7270c277ba4f407
 m
 =app/src/main/java/bigbigdw/joaradw/main/MainBookListData.java,d\c\dc651e00ac1d8d0f73389a90eb6452d2f64b878a
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 n
 >app/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabFav.java,e\b\ebdb9114b59f9836cd9448a099aef9bb71eee631
 r
@@ -138,15 +136,11 @@ _
 /app/src/main/java/bigbigdw/joaradw/JOARADW.java,a\3\a3573334c84d60a6bf3a46492bd331d34c77f340
 k
 ;app/src/main/java/bigbigdw/joaradw/fragment_new/NewTab.java,1\2\12742aa420bb8bb963a300738b822a69f7213687
-`
-0app/src/main/java/bigbigdw/joaradw/etc/HELPER.kt,c\1\c1c10193e8d4112089630ffdb2ff56ab8b2d0a27
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 m
 =app/src/main/java/bigbigdw/joaradw/base/BookBaseFragment.java,7\2\72af8af717e8b7fb2aef60b46c9dafb87171ef95
 u
 Eapp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailSubPage.java,f\e\fed03683df54b3cddd76f89c177f04c65c3f00fd
-a
-1app/src/main/java/bigbigdw/joaradw/main/Main.java,c\3\c3bddf2033695c0ee15b7fde60f736593414f58d
 d
 4app/src/main/java/bigbigdw/joaradw/etc/BookList.java,f\6\f6b56eb0205ffb70790ba309786130c62a27dec7

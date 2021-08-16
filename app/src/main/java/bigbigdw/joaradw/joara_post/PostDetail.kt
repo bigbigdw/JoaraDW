@@ -1,20 +1,26 @@
 package bigbigdw.joaradw.joara_post
 
 
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
+import android.view.*
 import android.webkit.WebSettings
-import android.webkit.WebView
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.util.Util
+import com.ahmadnemati.clickablewebview.ClickableWebView
+import com.bumptech.glide.Glide
+import com.synnapps.carouselview.CarouselView
+import com.synnapps.carouselview.ImageListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +35,11 @@ class PostDetail : AppCompatActivity() {
     var vCategoryID: TextView? = null
     var vRedate: TextView? = null
     var toolbarTitle: TextView? = null
-    var wcontents: WebView? = null
+    var wcontents: ClickableWebView? = null
+    var carouselPostBanner: CarouselView? = null
+    var postBannerURLs: MutableList<String> = ArrayList()
+    private var dialogPost: DialogPost? = null
+    private var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +54,31 @@ class PostDetail : AppCompatActivity() {
         vRedate = findViewById(R.id.Redate)
         toolbarTitle = findViewById(R.id.toolbarTitle)
         wcontents = findViewById(R.id.Contents)
+        carouselPostBanner = findViewById(R.id.Carousel_PostBanner)
+
+        mContext = this
 
         setlayout()
     }
 
     fun setlayout() {
-        vtitle!!.text = "조아라 포스트"
+        toolbarTitle!!.text = "조아라 포스트"
+
+        carouselPostBanner!!.setImageListener(imageListener)
+        carouselPostBanner?.setImageClickListener {
+            dialogPost = DialogPost(mContext!!, postBannerURLs, "", "CAROUSEL")
+            dialogPost!!.show()
+            val window: Window? = dialogPost?.window
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
 
         getPostDetailData()
     }
@@ -73,7 +102,6 @@ class PostDetail : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val result = response.body()
-                    Log.d("@@@@", result.toString())
 
                     result?.let { it ->
                         val categoryName = it.post?.categoryName
@@ -90,43 +118,85 @@ class PostDetail : AppCompatActivity() {
 
                         vtitle!!.text = title
                         vCategoryID!!.text = categoryName
-                        vRedate!!.text = Util.changeDateType(redate,"")
+                        vRedate!!.text = Util.changeDateType(redate, "")
 
+                        //웹뷰 세팅
                         val mws: WebSettings = wcontents!!.settings
                         mws.loadWithOverviewMode = true
                         wcontents!!.setInitialScale(200)
                         mws.useWideViewPort = true
 
+                        wcontents!!.setOnWebViewClickListener { url: String? ->
+                            dialogPost = DialogPost(mContext!!, postBannerURLs, url!!, "IMAGE")
+                            dialogPost!!.show()
+//                            val window = dialogPost!!.window
+//                            LinearLayout.LayoutParams(
+//                                ViewGroup.LayoutParams.MATCH_PARENT,
+//                                ViewGroup.LayoutParams.MATCH_PARENT
+//                            )
+//                            window!!.setLayout(
+//                                ViewGroup.LayoutParams.MATCH_PARENT,
+//                                ViewGroup.LayoutParams.MATCH_PARENT
+//                            )
+//                            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        }
+
                         // 다크 모드 판별
-                        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                        val currentNightMode =
+                            resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
                         //다크 모드가 아닐때
                         if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
-                            Util.loadPostHTMLData(wcontents!!, "#ffffff",content)
+                            Util.loadPostHTMLData(wcontents!!, "#ffffff", content)
                         }
                         //다크 모드가 일때
                         else if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-                            Util.loadPostHTMLData(wcontents!!, "#333333",content)
+                            Util.loadPostHTMLData(wcontents!!, "#333333", content)
                         }
 
+                        //캐러셀 세팅
+                        if (isSlideshow.equals("Y")) {
+                            if (slideshowData != null) {
+                                for (i in slideshowData.indices) {
+                                    val slideshowImage = slideshowData[i].slideshowImage
+                                    postBannerURLs.add(slideshowImage!!)
+                                }
+                                carouselPostBanner!!.pageCount = postBannerURLs.size
+                                carouselPostBanner?.visibility = View.VISIBLE
 
-                        if (slideshowData != null) {
-                            for (i in slideshowData.indices) {
-                                var slideshowImage = slideshowData[i].slideshowImage
 
                             }
+                        } else {
+                            carouselPostBanner?.visibility = View.GONE
                         }
+
+
                     }
-
-
                 } else {
-                    Log.d("@@@@!", "실패")
+                    Log.d("onResponse", "실패")
                 }
             }
 
             override fun onFailure(call: Call<PostDetailResult?>, t: Throwable) {
-                Log.d("@@@@!!", "실패")
+                Log.d("onFailure", "실패")
             }
         })
+    }
+
+    var imageListener = ImageListener { position: Int, imageView: ImageView ->
+        imageView.adjustViewBounds = true
+        val vto = imageView.viewTreeObserver
+        vto.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                imageView.viewTreeObserver.removeOnPreDrawListener(this)
+                val layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    imageView.measuredWidth
+                )
+                carouselPostBanner?.layoutParams = layoutParams
+                return true
+            }
+        })
+        Glide.with(applicationContext).load(postBannerURLs[position]).into(imageView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

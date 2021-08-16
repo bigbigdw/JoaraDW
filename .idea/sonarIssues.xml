@@ -588,6 +588,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/etc/PopupBanner.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/etc/Splash.java">
           <value>
             <set />
@@ -808,6 +813,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/DialogPost.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/DialogPost.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/joara_post/FragmentPost.java">
           <value>
             <set />
@@ -944,6 +959,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/Main.kt">
           <value>
             <set />
           </value>
@@ -1328,6 +1348,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/layout/dialog_post.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Joara_Post/layout/fragment_post_list.xml">
           <value>
             <set />
@@ -1574,6 +1599,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/ActivityPostDetail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/ActivityPostDetail.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/PostDialog.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/PostDialog.kt">
           <value>
             <set />
           </value>
