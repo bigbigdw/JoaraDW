@@ -2,9 +2,10 @@ package bigbigdw.joaradw.util
 
 import android.util.Base64
 import android.webkit.WebView
+import java.util.*
 
 object Util {
-    //날짜 변환 타입 A
+    //날짜 변환 타입
     fun changeDateType(string: String?, type : String?): String {
         var string = string
         if(type.equals("0000.00.00")){
@@ -19,18 +20,18 @@ object Util {
     /**
      * 포스트 HTML 스타일
      */
-    open fun loadPostHTMLData(webView: WebView, bgColor: String?, data: String?) {
-        if (data!!.toLowerCase().indexOf("<html") > 0) {
+    fun loadPostHTMLData(webView: WebView, bgColor: String?, data: String?) {
+        if (data!!.lowercase(Locale.getDefault()).indexOf("<html") > 0) {
             val encodedHtml = Base64.encodeToString(data.toByteArray(), Base64.NO_PADDING)
             webView.loadData(encodedHtml, "text/html; charset=UTF-8", "base64")
         } else {
-            var loadData =  createPostHtmlBody(data,bgColor)
+            val loadData =  createPostHtmlBody(data,bgColor)
             val encodedHtml = Base64.encodeToString(loadData.toByteArray(), Base64.NO_PADDING)
             webView.loadData(encodedHtml, "text/html; charset=UTF-8", "base64")
         }
     }
 
-    fun createPostHtmlBody(data: String?, bgColor: String?): String {
+    private fun createPostHtmlBody(data: String?, bgColor: String?): String {
         val sb = StringBuffer("<HTML>")
         sb.append("<HEAD>")
         sb.append("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>")

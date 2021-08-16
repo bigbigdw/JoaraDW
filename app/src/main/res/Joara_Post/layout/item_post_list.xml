@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/posttab_ex" />
+        app:srcCompat="@drawable/posttab_ex"
+        android:contentDescription="@string/TODO" />
 
     <LinearLayout
         android:id="@+id/Wrap"
@@ -43,7 +44,6 @@
             android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="타이틀"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -80,7 +80,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="카테고리 이름"
                 android:textColor="#ACC231"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -89,7 +88,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
@@ -98,21 +97,21 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_post_list1" />
+                    app:srcCompat="@drawable/icon_post_list1"
+                    android:contentDescription="@string/TODO" />
 
                 <TextView
                     android:id="@+id/cntRead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="15dp"
-                    android:text="조회 수"
                     android:textColor="#ACC231"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -123,21 +122,21 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_post_list2" />
+                    app:srcCompat="@drawable/icon_post_list2"
+                    android:contentDescription="@string/TODO" />
 
                 <TextView
                     android:id="@+id/cntRecom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="15dp"
-                    android:text="댓글수"
                     android:textColor="#ACC231"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -148,20 +147,20 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_post_list3" />
+                    app:srcCompat="@drawable/icon_post_list3"
+                    android:contentDescription="@string/TODO" />
 
                 <TextView
                     android:id="@+id/cntComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:text="추천 수"
                     android:textColor="#ACC231"
                     android:textSize="14sp"
                     android:textStyle="bold"

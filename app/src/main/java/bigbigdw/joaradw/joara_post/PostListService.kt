@@ -2,9 +2,9 @@ package bigbigdw.joaradw.joara_post
 
 import bigbigdw.joaradw.etc.HELPER
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
+//포스트 리스트
 interface PostListService {
     @GET("v1/board/post_list.joa" + HELPER.ETC)
     fun getRetrofit(
@@ -17,9 +17,28 @@ interface PostListService {
     ): Call<PostTabResult?>?
 }
 
+//포스트 상세
 interface PostDetailService {
     @GET("v1/board/post_detail.joa" + HELPER.ETC)
     fun getRetrofit(
-        @Query("post_id") post_id: String?,
+        @Query("post_id") postId: String?,
+        @Query("token") token: String?,
     ): Call<PostDetailResult?>?
+}
+
+
+//포스트 상세 추천
+interface PostRecommendService {
+    @FormUrlEncoded
+    @POST("v1/board/post_recommend.joa")
+    fun postRetrofit(
+        @Field("post_id") post_id: String?,
+        @Field("category") category: String?,
+        @Field("api_key") apiKey: String?,
+        @Field("ver") ver: String?,
+        @Field("device") device: String?,
+        @Field("deviceuid") deviceUid: String?,
+        @Field("devicetoken") deviceToken: String?,
+        @Field("token") token: String?,
+    ): Call<PostRecommendResult?>?
 }

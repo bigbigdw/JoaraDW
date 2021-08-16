@@ -34,7 +34,6 @@ class DialogPost(context: Context, var postBannerURLs: List<String?>?, var imgUr
         layoutParams.dimAmount = 0.9f
         window!!.attributes = layoutParams
 
-
         popupImg = findViewById(R.id.PopupImg)
         postBanner = findViewById(R.id.Carousel_PostBanner)
         iivew_exit = findViewById(R.id.iivew_exit)

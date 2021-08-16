@@ -9,4 +9,7 @@
     <string name="Post_Detail_Comment_Report">신고</string>
     <string name="Post_Detail_Comment_Cancel">취소</string>
     <string name="Post_Detail_Comment_Commit">적용</string>
+    <string name="Post_Detail_Recommend">추천</string>
+    <string name="Post_Detail_Comment_Count1">댓글 총</string>
+    <string name="Post_Detail_Comment_Count2">개</string>
 </resources>

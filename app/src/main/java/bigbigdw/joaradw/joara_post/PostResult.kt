@@ -139,3 +139,13 @@ class PostDetailSlideShow {
     @Expose
     var slideshowImage: String? = null
 }
+
+//포스트 추천
+class PostRecommendResult {
+    @SerializedName("status")
+    val status = 0
+
+    @SerializedName("message")
+    @Expose
+    var message: String? = null
+}

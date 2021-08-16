@@ -17,7 +17,6 @@ interface CheckTokenService {
 }
 
 interface LoginService {
-
     @FormUrlEncoded
     @POST("v1/user/auth.joa")
     fun postRetrofit(
@@ -29,5 +28,4 @@ interface LoginService {
         @Field("deviceuid") deviceuid: String?,
         @Field("devicetoken") devicetoken: String?,
     ): Call<LoginResult?>?
-
 }
