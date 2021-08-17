@@ -52,3 +52,19 @@ interface PostCommentListService {
         @Query("page") page: String?,
     ): Call<PostCommentListResult?>?
 }
+
+//포스트 댓글 쓰기
+interface PostWriteCommentService {
+    @FormUrlEncoded
+    @POST("v1/board/post_comment.joa")
+    fun postRetrofit(
+        @Field("post_id") postId: String?,
+        @Field("comment") comment: String?,
+        @Field("api_key") apiKey: String?,
+        @Field("ver") ver: String?,
+        @Field("device") device: String?,
+        @Field("deviceuid") deviceUid: String?,
+        @Field("devicetoken") deviceToken: String?,
+        @Field("token") token: String?,
+    ): Call<PostWriteCommentResult?>?
+}

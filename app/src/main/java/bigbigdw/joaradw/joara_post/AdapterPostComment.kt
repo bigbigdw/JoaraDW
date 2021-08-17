@@ -28,13 +28,8 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_ITEM) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_comment, parent, false)
-            PostCommentViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.spinner, parent, false)
-            LoadingViewHolder(view)
-        }
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_comment, parent, false)
+        return PostCommentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -75,7 +70,7 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
         holder.tCommentID.text = listData!![position]!!.commentId
         holder.tUserID.text = listData!![position]!!.userId
 
-        holder.Comment_EditText.setText("HAHAHAH")
+        holder.Comment_EditText.setText(listData!![position]!!.comment)
     }
 
     inner class PostCommentViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -131,12 +126,6 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
                     Comment_ApplyBtn.visibility = View.GONE
                 }
             }
-        }
-    }
-
-    private class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        init {
-            itemView.findViewById<View>(R.id.progressBar)
         }
     }
 

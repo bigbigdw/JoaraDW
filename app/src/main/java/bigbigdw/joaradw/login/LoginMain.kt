@@ -135,10 +135,6 @@ class LoginMain : AppCompatActivity() {
                                 savePreferences("LOGIN_MEMBERID", memberId!!)
                                 savePreferences("LOGIN_STATUS", status!!)
 
-                                val intent = Intent(applicationContext, Main::class.java)
-                                intent.putExtra("IsFirstPage", false)
-                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                startActivityIfNeeded(intent, 0)
                                 finish()
                             } else {
                                 Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()

@@ -190,3 +190,13 @@ class PostsCommentValue {
     @Expose
     var memberId: String? = null
 }
+
+//포스트 댓글 쓰기
+class PostWriteCommentResult {
+    @SerializedName("status")
+    val status = 0
+
+    @SerializedName("message")
+    @Expose
+    var message: String? = null
+}

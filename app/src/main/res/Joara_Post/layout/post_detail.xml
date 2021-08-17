@@ -293,7 +293,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
             android:scrollHorizontally="false"
-            android:textColor="#333333"
+            android:textColor="@color/Contents_Text3"
             android:textColorHint="#999999"
             android:textSize="15sp"
             tools:ignore="TextContrastCheck"

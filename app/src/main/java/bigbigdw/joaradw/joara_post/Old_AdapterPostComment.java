@@ -138,7 +138,7 @@ import bigbigdw.joaradw.R;
 //        return null;
 //    }
 //
-//    public void setData(List<ItemCriticismComment> list) {
+//    public void  setData(List<ItemCriticismComment> list) {
 //        mItemCriticismComment = list;
 //
 //        initCommentEditMode();

@@ -1,14 +1,13 @@
 package bigbigdw.joaradw.joara_post
 
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.webkit.WebSettings
@@ -19,25 +18,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.etc.HELPER
-import bigbigdw.joaradw.main.MainBookListData
-import bigbigdw.joaradw.model.BookInfo
 import bigbigdw.joaradw.util.Util
 import com.ahmadnemati.clickablewebview.ClickableWebView
-import com.android.volley.Request
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import android.widget.Toast
+import androidx.core.widget.NestedScrollView
+
+import bigbigdw.joaradw.login.LoginMain
+import kotlin.math.roundToInt
 
 
 class PostDetail : AppCompatActivity() {
@@ -61,6 +57,7 @@ class PostDetail : AppCompatActivity() {
     var tCommentBlankText : TextView? = null
     var recyclerView: RecyclerView? = null
     var commentWrap: LinearLayout? = null
+    var nestWrap: NestedScrollView? = null
 
     private var postId : String? = null
     private var token : String? = null
@@ -69,6 +66,13 @@ class PostDetail : AppCompatActivity() {
     private val items = ArrayList<PostCommentData?>()
 
     var postBannerURLs: MutableList<String> = ArrayList()
+    var page = 1
+    var totalCnt = ""
+
+    override fun onResume() {
+        super.onResume()
+        token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_TOKEN", "")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +98,7 @@ class PostDetail : AppCompatActivity() {
         tCommentBlankText = findViewById(R.id.Comment_Blank_Text)
         recyclerView = findViewById(R.id.CommentList)
         commentWrap = findViewById(R.id.Comment_Wrap)
+        nestWrap = findViewById(R.id.nestWrap)
 
         adapter = AdapterPostComment(this,items)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -101,8 +106,6 @@ class PostDetail : AppCompatActivity() {
 
         val intent = intent
         postId = intent.getStringExtra("POSTID")
-
-        token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_TOKEN", "")
 
         setlayout()
     }
@@ -128,8 +131,30 @@ class PostDetail : AppCompatActivity() {
 
         getPostDetailData()
         getCommentData()
-        scrollComment()
         adapter!!.notifyDataSetChanged()
+
+        //댓글 리스트
+        nestWrap!!.setOnScrollChangeListener(commentScrollListener)
+
+        //등록 버튼 클릭
+        commentCommit!!.setOnClickListener {
+            if(!token.equals("")){
+                postWriteComment()
+            } else {
+                val myAlertBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+                myAlertBuilder.setTitle("로그인 필요")
+                myAlertBuilder.setMessage("댓글을 작성하려면 로그인이 필요합니다")
+                myAlertBuilder.setPositiveButton("로그인"
+                ) { _, _ ->
+                    Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(applicationContext, LoginMain::class.java)
+                    startActivityIfNeeded(intent, 0)
+                }
+                myAlertBuilder.setNegativeButton("취소"
+                ) { _, _ ->}
+                myAlertBuilder.show()
+            }
+        }
 
         //클릭리스너 등록
         adapter!!.setOnItemClickListener(object : AdapterPostComment.OnItemClickListener {
@@ -142,11 +167,67 @@ class PostDetail : AppCompatActivity() {
             }
         })
 
-        btnRecommend!!.setOnClickListener { putRecommend() }
+        btnRecommend!!.setOnClickListener { postRecommend() }
+    }
+
+    var commentScrollListener =
+        NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight && page < ((totalCnt.toInt() / 25) + 2)) {
+                page++
+                getCommentData()
+                adapter!!.notifyDataSetChanged()
+            }
+        }
+
+    //댓글 쓰기
+    private fun postWriteComment(){
+        val call = Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(PostWriteCommentService::class.java)
+            .postRetrofit(
+                postId,
+                commentEditText!!.text.toString(),
+                HELPER.API_KEY,
+                HELPER.VER,
+                HELPER.DEVICE,
+                HELPER.DEVICE_ID,
+                HELPER.DEVICE_TOKEN,
+                token
+            )
+
+        if(commentEditText!!.text.toString() == ""){
+            Toast.makeText(applicationContext, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        } else {
+            call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+                override fun onResponse(
+                    call: Call<PostWriteCommentResult?>,
+                    response: Response<PostWriteCommentResult?>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            val status = it.status
+                            val message = it.message
+                            if(status == 1){
+                                Toast.makeText(applicationContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT).show()
+                                getCommentData()
+                                adapter!!.notifyDataSetChanged()
+                            } else {
+                                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    }
+                }
+                override fun onFailure(call: Call<PostWriteCommentResult?>, t: Throwable) {
+                    Log.d("onFailure", "실패")
+                }
+            })
+        }
     }
 
     //게시물 추천
-    private fun putRecommend(){
+    private fun postRecommend(){
         val call = Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -209,7 +290,6 @@ class PostDetail : AppCompatActivity() {
 
                     result?.let { it ->
                         val categoryName = it.post?.categoryName
-                        val cntComment = it.post?.cntComment
                         val content = it.post?.content
                         val isComment = it.post?.isComment
                         val isRecom = it.post?.isRecom
@@ -330,7 +410,7 @@ class PostDetail : AppCompatActivity() {
             .getRetrofit(
                 postId,
                 token,
-                "1"
+                page.toString()
             )
 
         retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
@@ -341,7 +421,7 @@ class PostDetail : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val comments = it.comments
-                        val totalCnt = it.totalCnt
+                        totalCnt = it.totalCnt.toString()
 
                         //댓글 수 관련
                         commentCount!!.text = totalCnt.toString()
@@ -359,10 +439,11 @@ class PostDetail : AppCompatActivity() {
                             for (i in comments.indices) {
                                 val comment = comments[i].comment
                                 val commentId = comments[i].comment_id
-                                val created = comments[i].created
+                                val created = Util.changeDateType(comments[i].created ,"00.00.00")
                                 val memberName = comments[i].member_name
                                 val profile = comments[i].profile
                                 val memberId = comments[i].memberId
+
 
                                 items.add(
                                     PostCommentData(
@@ -383,8 +464,10 @@ class PostDetail : AppCompatActivity() {
 
                     recyclerView!!.layoutManager = linearLayoutManager
                     recyclerView!!.adapter = adapter
+                    adapter!!.notifyDataSetChanged()
 
                 }
+
             }
 
             override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
@@ -392,87 +475,7 @@ class PostDetail : AppCompatActivity() {
                 recyclerView!!.visibility = View.GONE
             }
         })
-    }
 
-    private fun scrollComment(){
-        val isLoading = booleanArrayOf(false)
-        val page = intArrayOf(2)
-
-        recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager?
-                if (!isLoading[0] && layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size - 1) {
-                    items.add(null)
-                    adapter!!.notifyItemInserted(items.size - 1)
-
-                    val handler = Handler(Looper.myLooper()!!)
-                    handler.postDelayed({
-                        items.removeAt(items.size - 1)
-                        val scrollPosition = items.size
-                        adapter!!.notifyItemRemoved(scrollPosition)
-
-                        val retrofitScroll = Retrofit.Builder()
-                            .baseUrl(HELPER.API)
-                            .addConverterFactory(GsonConverterFactory.create()).build()
-                            .create(PostCommentListService::class.java)
-                            .getRetrofit(
-                                postId,
-                                token,
-                                page[0].toString()
-                            )
-
-                        retrofitScroll!!.enqueue(object : Callback<PostCommentListResult?> {
-                            override fun onResponse(
-                                call: Call<PostCommentListResult?>,
-                                response: Response<PostCommentListResult?>
-                            ) {
-                                if (response.isSuccessful) {
-                                    response.body()?.let { it ->
-                                        val comments = it.comments
-
-                                        //댓글 관련
-                                        if (comments != null) {
-                                            for (i in comments.indices) {
-                                                val comment = comments[i].comment
-                                                val commentId = comments[i].comment_id
-                                                val created = comments[i].created
-                                                val memberName = comments[i].member_name
-                                                val profile = comments[i].profile
-                                                val memberId = comments[i].memberId
-
-                                                items.add(
-                                                    PostCommentData(
-                                                        profile,
-                                                        memberName,
-                                                        created,
-                                                        commentId,
-                                                        comment,
-                                                        memberId
-                                                    )
-                                                )
-                                            }
-                                        }
-                                    }
-
-                                    adapter!!.notifyDataSetChanged()
-                                    isLoading[0] = false
-
-                                }
-                            }
-
-                            override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
-                                Log.d("onFailure","onFailure")
-                            }
-                        })
-
-
-                    }, 2000)
-                    isLoading[0] = true
-                    page[0]++
-                }
-            }
-        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
