@@ -185,4 +185,8 @@ class PostsCommentValue {
     @SerializedName("profile")
     @Expose
     var profile: String? = null
+
+    @SerializedName("member_id")
+    @Expose
+    var memberId: String? = null
 }

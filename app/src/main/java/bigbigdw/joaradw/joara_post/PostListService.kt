@@ -49,5 +49,6 @@ interface PostCommentListService {
     fun getRetrofit(
         @Query("post_id") postId: String?,
         @Query("token") token: String?,
+        @Query("page") page: String?,
     ): Call<PostCommentListResult?>?
 }

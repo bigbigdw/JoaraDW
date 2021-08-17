@@ -2,10 +2,13 @@ package bigbigdw.joaradw.joara_post
 
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.webkit.WebSettings
@@ -16,11 +19,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.etc.HELPER
+import bigbigdw.joaradw.main.MainBookListData
+import bigbigdw.joaradw.model.BookInfo
 import bigbigdw.joaradw.util.Util
 import com.ahmadnemati.clickablewebview.ClickableWebView
+import com.android.volley.Request
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,7 +66,7 @@ class PostDetail : AppCompatActivity() {
     private var token : String? = null
     var linearLayoutManager: LinearLayoutManager? = null
     private var adapter: AdapterPostComment? = null
-    private val items = ArrayList<PostCommentData>()
+    private val items = ArrayList<PostCommentData?>()
 
     var postBannerURLs: MutableList<String> = ArrayList()
 
@@ -84,7 +95,7 @@ class PostDetail : AppCompatActivity() {
         recyclerView = findViewById(R.id.CommentList)
         commentWrap = findViewById(R.id.Comment_Wrap)
 
-        adapter = AdapterPostComment(items)
+        adapter = AdapterPostComment(this,items)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mContext = this
 
@@ -117,6 +128,19 @@ class PostDetail : AppCompatActivity() {
 
         getPostDetailData()
         getCommentData()
+        scrollComment()
+        adapter!!.notifyDataSetChanged()
+
+        //클릭리스너 등록
+        adapter!!.setOnItemClickListener(object : AdapterPostComment.OnItemClickListener {
+
+            override fun onItemClick(v: View?, position: Int, value: String?) {
+                val item: PostCommentData? = adapter!!.getItem(position)
+                if (item != null) {
+                    Log.d("@@@@","HIHI")
+                }
+            }
+        })
 
         btnRecommend!!.setOnClickListener { putRecommend() }
     }
@@ -166,7 +190,7 @@ class PostDetail : AppCompatActivity() {
     }
 
     //상세 데이터
-    fun getPostDetailData() {
+    private fun getPostDetailData() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(HELPER.API)
@@ -305,7 +329,8 @@ class PostDetail : AppCompatActivity() {
             .create(PostCommentListService::class.java)
             .getRetrofit(
                 postId,
-                token
+                token,
+                "1"
             )
 
         retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
@@ -337,13 +362,16 @@ class PostDetail : AppCompatActivity() {
                                 val created = comments[i].created
                                 val memberName = comments[i].member_name
                                 val profile = comments[i].profile
+                                val memberId = comments[i].memberId
 
                                 items.add(
                                     PostCommentData(
                                         profile,
                                         memberName,
                                         created,
-                                        comment
+                                        commentId,
+                                        comment,
+                                        memberId
                                     )
                                 )
 
@@ -362,6 +390,87 @@ class PostDetail : AppCompatActivity() {
             override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
                 commentBlank!!.visibility = View.VISIBLE
                 recyclerView!!.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun scrollComment(){
+        val isLoading = booleanArrayOf(false)
+        val page = intArrayOf(2)
+
+        recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager?
+                if (!isLoading[0] && layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size - 1) {
+                    items.add(null)
+                    adapter!!.notifyItemInserted(items.size - 1)
+
+                    val handler = Handler(Looper.myLooper()!!)
+                    handler.postDelayed({
+                        items.removeAt(items.size - 1)
+                        val scrollPosition = items.size
+                        adapter!!.notifyItemRemoved(scrollPosition)
+
+                        val retrofitScroll = Retrofit.Builder()
+                            .baseUrl(HELPER.API)
+                            .addConverterFactory(GsonConverterFactory.create()).build()
+                            .create(PostCommentListService::class.java)
+                            .getRetrofit(
+                                postId,
+                                token,
+                                page[0].toString()
+                            )
+
+                        retrofitScroll!!.enqueue(object : Callback<PostCommentListResult?> {
+                            override fun onResponse(
+                                call: Call<PostCommentListResult?>,
+                                response: Response<PostCommentListResult?>
+                            ) {
+                                if (response.isSuccessful) {
+                                    response.body()?.let { it ->
+                                        val comments = it.comments
+
+                                        //댓글 관련
+                                        if (comments != null) {
+                                            for (i in comments.indices) {
+                                                val comment = comments[i].comment
+                                                val commentId = comments[i].comment_id
+                                                val created = comments[i].created
+                                                val memberName = comments[i].member_name
+                                                val profile = comments[i].profile
+                                                val memberId = comments[i].memberId
+
+                                                items.add(
+                                                    PostCommentData(
+                                                        profile,
+                                                        memberName,
+                                                        created,
+                                                        commentId,
+                                                        comment,
+                                                        memberId
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+
+                                    adapter!!.notifyDataSetChanged()
+                                    isLoading[0] = false
+
+                                }
+                            }
+
+                            override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
+                                Log.d("onFailure","onFailure")
+                            }
+                        })
+
+
+                    }, 2000)
+                    isLoading[0] = true
+                    page[0]++
+                }
             }
         })
     }

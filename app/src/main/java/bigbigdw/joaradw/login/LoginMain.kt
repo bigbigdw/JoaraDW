@@ -59,7 +59,7 @@ class LoginMain : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable) {
-                if (s.toString().length < 1) {
+                if (s.toString().isEmpty()) {
                     idtext!!.error = getString(R.string.Login_EmptyID)
                     idtext!!.isErrorEnabled = true
                 } else {
@@ -77,7 +77,7 @@ class LoginMain : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable) {
-                if (s.toString().length < 1) {
+                if (s.toString().isEmpty()) {
                     pwtext!!.error = getString(R.string.Login_EmptyPW)
                     pwtext!!.isErrorEnabled = true
                 } else {
@@ -111,19 +111,38 @@ class LoginMain : AppCompatActivity() {
                     if (response.isSuccessful) {
 
                         response.body()?.let { it ->
+                            val status = it.status
+                            val message = it.message
                             val nickname = it.user?.nickname
                             val token = it.user?.token
+                            val mana = it.user?.mana
+                            val expireCash = it.user?.expireCash
+                            val cash = it.user?.cash
+                            val manuscriptCoupon = it.user?.manuscriptCoupon
+                            val supportCoupon = it.user?.supportCoupon
+                            val memberId = it.user?.memberId
 
-                            Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
+                            if(status.equals("1")){
+                                Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
 
-                            savePreferences("LOGIN_TOKEN", token!!)
-                            savePreferences("LOGIN_NICKNAME", nickname!!)
+                                savePreferences("LOGIN_TOKEN", token!!)
+                                savePreferences("LOGIN_NICKNAME", nickname!!)
+                                savePreferences("LOGIN_MANA", mana!!)
+                                savePreferences("LOGIN_EXPIRECASH", expireCash!!)
+                                savePreferences("LOGIN_CASH", cash!!)
+                                savePreferences("LOGIN_MANUSCRIPTCOUPON", manuscriptCoupon!!)
+                                savePreferences("LOGIN_SUPPORTCOUPON", supportCoupon!!)
+                                savePreferences("LOGIN_MEMBERID", memberId!!)
+                                savePreferences("LOGIN_STATUS", status!!)
 
-                            val intent = Intent(applicationContext, Main::class.java)
-                            intent.putExtra("IsFirstPage", false)
-                            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                            startActivityIfNeeded(intent, 0)
-                            finish()
+                                val intent = Intent(applicationContext, Main::class.java)
+                                intent.putExtra("IsFirstPage", false)
+                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                startActivityIfNeeded(intent, 0)
+                                finish()
+                            } else {
+                                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     } else {
                         Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()

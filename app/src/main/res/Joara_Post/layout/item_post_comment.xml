@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:background="@drawable/bg_shape_comment_wrap">
+    android:background="@drawable/bg_shape_comment_wrap"
+    android:baselineAligned="false">
 
     <!-- 이미지 -->
     <FrameLayout
@@ -23,7 +24,8 @@
             android:background="@drawable/bg_shape_comment_img"
             android:padding="2dp"
             android:scaleType="fitXY"
-            android:src="@drawable/likeit_3" />
+            android:src="@drawable/likeit_3"
+            android:contentDescription="@string/TODO" />
     </FrameLayout>
 
     <LinearLayout
@@ -58,65 +60,45 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/tview_item_comment_edit"
+                    android:id="@+id/Comment_EditBtn"
                     android:layout_width="48dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="2dp"
                     android:gravity="center"
                     android:text="@string/Post_Detail_Comment_Edit"
                     android:textColor="@color/Contents_Text4"
-                    android:textSize="14sp"/>
-
-                <View
-                    android:layout_width="0.8dp"
-                    android:layout_height="12dp"
-                    android:background="#FF898989"
+                    android:textSize="14sp"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/tview_item_comment_delete"
+                    android:id="@+id/Comment_DelBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
                     android:text="@string/Post_Detail_Comment_Delete"
                     android:textColor="@color/Contents_Text4"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tview_item_comment_report"
-                    android:layout_width="48dp"
-                    android:layout_height="24dp"
-                    android:gravity="center"
-                    android:text="@string/Post_Detail_Comment_Report"
-                    android:textColor="@color/Contents_Text4"
                     android:textSize="14sp"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/tview_item_comment_cancel"
+                    android:id="@+id/Comment_CancelBtn"
                     android:layout_width="48dp"
                     android:layout_height="24dp"
                     android:gravity="center"
                     android:text="@string/Post_Detail_Comment_Cancel"
                     android:textColor="@color/Contents_Text4"
-                    android:textSize="14sp"/>
-
-                <View
-                    android:id="@+id/tview_item"
-                    android:layout_width="0.8dp"
-                    android:layout_height="12dp"
-                    android:background="#FF898989"
+                    android:textSize="14sp"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/tview_item_comment_commit"
+                    android:id="@+id/Comment_ApplyBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
                     android:text="@string/Post_Detail_Comment_Commit"
                     android:textColor="@color/Contents_Text4"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -140,6 +122,24 @@
                 android:textSize="14sp"
                 android:singleLine="true"/>
 
+            <TextView
+                android:id="@+id/Comment_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/Contents_Text4"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/User_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/Contents_Text4"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <!-- 코멘트 내용 -->
@@ -158,9 +158,9 @@
                 android:textSize="14sp"/>
 
             <EditText
-                android:id="@+id/etext_item_comment_contents"
+                android:id="@+id/Comment_EditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:background="@drawable/bg_comment_edittext"
                 android:gravity="start|center_vertical"
                 android:padding="10dp"
@@ -168,7 +168,9 @@
                 android:textSize="14sp"
                 android:visibility="gone"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 

@@ -43,6 +43,8 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
         this.listData = (ArrayList<MainBookListData>) items;
     }
 
+
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -24,6 +24,8 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_edit.xml" value="0.27569444444444446" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_img.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_wrap.xml" value="0.19671052631578947" />
+        <entry key="app/src/main/res/Joara_Post/layout/item_post_comment.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_comment_edittext.xml" value="0.23541666666666666" />
       </map>
     </option>
   </component>

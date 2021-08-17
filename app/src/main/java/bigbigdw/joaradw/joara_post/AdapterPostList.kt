@@ -37,11 +37,6 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PostListViewHolder) {
             populateItemRows(holder, position)
-
-            //view에 onClickListner를 달고, 그 안에서 직접 만든 itemClickListener를 연결시킨다
-            holder.itemView.setOnClickListener {
-                listener?.onItemClick(it, position)
-            }
         }
     }
 

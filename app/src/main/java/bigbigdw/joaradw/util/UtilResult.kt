@@ -15,6 +15,14 @@ class LoginResult {
     @SerializedName("user")
     @Expose
     val user: UserValue? = null
+
+    @SerializedName("status")
+    @Expose
+    var status: String? = null
+
+    @SerializedName("message")
+    @Expose
+    var message: String? = null
 }
 
 //로그인 - 유저 정보
@@ -26,4 +34,29 @@ class UserValue {
     @SerializedName("token")
     @Expose
     var token: String? = null
+
+    @SerializedName("mana")
+    @Expose
+    var mana: String? = null
+
+    @SerializedName("expire_cash")
+    @Expose
+    var expireCash: String? = null
+
+    @SerializedName("cash")
+    @Expose
+    var cash: String? = null
+
+    @SerializedName("manuscript_coupon")
+    @Expose
+    var manuscriptCoupon: String? = null
+
+    @SerializedName("support_coupon")
+    @Expose
+    var supportCoupon: String? = null
+
+    @SerializedName("member_id")
+    @Expose
+    var memberId: String? = null
+
 }
