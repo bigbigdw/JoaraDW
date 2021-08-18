@@ -12,14 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import com.bumptech.glide.Glide
+import com.chauthai.swipereveallayout.SwipeRevealLayout
+import com.chauthai.swipereveallayout.ViewBinderHelper
 import java.util.ArrayList
 
 
-class AdapterPostComment(private val mContext: Context,items: List<PostCommentData?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterPostComment(private val mContext: Context, items: List<PostCommentData?>?) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<PostCommentData?>?
+    private var checkedPosition = -1
+    private val viewBinderHelper = ViewBinderHelper()
 
     interface OnItemClickListener {
-        fun onItemClick(v: View?, position: Int, value : String?)
+        fun onItemClick(v: View?, position: Int, value: String?)
     }
 
     private var listener: OnItemClickListener? = null
@@ -29,23 +34,84 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_comment, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_post_comment, parent, false)
         return PostCommentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PostCommentViewHolder) {
-            populateItemRows(holder, position)
+            viewBinderHelper.setOpenOnlyOne(true)
+            viewBinderHelper.bind(
+                holder.swipelayout,
+                java.lang.String.valueOf(listData?.get(position)?.commentId)
+            )
+            viewBinderHelper.closeLayout(java.lang.String.valueOf(listData?.get(position)?.commentId))
 
-            // 본인이 작성한 코멘트 인지 확인
-            if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE).getString("LOGIN_STATUS", "").equals("1")) {
-                if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE).getString("LOGIN_MEMBERID", "").equals(listData!![position]!!.userId))
-                {
-                    holder.Comment_EditBtn.visibility = View.VISIBLE
-                    holder.Comment_DelBtn.visibility = View.VISIBLE
+            val item = listData!![position]
+            Glide.with(holder.itemView.context)
+                .load(item!!.commentImg)
+                .into(holder.iCommentImg)
+
+            holder.tCommentWriter.text = listData!![position]!!.commentWriter
+            holder.tCommentDate.text = listData!![position]!!.commentDate
+            holder.tComment.text = listData!![position]!!.comment
+            holder.Comment_EditText.setText(listData!![position]!!.comment)
+            holder.tCommentID.text = listData!![position]!!.commentId
+            holder.tUserID.text = listData!![position]!!.userId
+            holder.Comment_EditText.setText(listData!![position]!!.comment)
+
+
+            holder.Comment_EditBtn.setOnClickListener { v: View? ->
+                val pos = holder.adapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(v, pos, "EDIT")
+                    holder.Comment_EditBtn.visibility = View.GONE
+                    holder.Comment_DelBtn.visibility = View.GONE
+                    holder.tComment.visibility = View.GONE
+                    holder.Comment_EditText.visibility = View.VISIBLE
+                    holder.Comment_CancelBtn.visibility = View.VISIBLE
+                    holder.Comment_ApplyBtn.visibility = View.VISIBLE
+                    if (checkedPosition != holder.getAdapterPosition()) {
+                        notifyItemChanged(checkedPosition)
+                        checkedPosition = holder.getAdapterPosition()
+                    }
                 }
             }
 
+            // 본인이 작성한 코멘트 인지 확인
+            if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+                    .getString("LOGIN_MEMBERID", "").equals(listData!![position]!!.userId)
+            ) {
+                holder.Swipe_Del.visibility = View.VISIBLE
+                holder.Comment_EditBtn.visibility = View.VISIBLE
+                holder.Comment_DelBtn.visibility = View.VISIBLE
+
+                if (checkedPosition == -1) {
+                    holder.Comment_EditBtn.visibility = View.VISIBLE
+                    holder.Comment_DelBtn.visibility = View.VISIBLE
+                    holder.tComment.visibility = View.VISIBLE
+                    holder.Comment_EditText.visibility = View.GONE
+                    holder.Comment_CancelBtn.visibility = View.GONE
+                    holder.Comment_ApplyBtn.visibility = View.GONE
+                } else {
+                    if (checkedPosition == holder.getAdapterPosition()) {
+                        holder.Comment_EditBtn.visibility = View.GONE
+                        holder.Comment_DelBtn.visibility = View.GONE
+                        holder.tComment.visibility = View.GONE
+                        holder.Comment_EditText.visibility = View.VISIBLE
+                        holder.Comment_CancelBtn.visibility = View.VISIBLE
+                        holder.Comment_ApplyBtn.visibility = View.VISIBLE
+                    } else {
+                        holder.Comment_EditBtn.visibility = View.VISIBLE
+                        holder.Comment_DelBtn.visibility = View.VISIBLE
+                        holder.tComment.visibility = View.VISIBLE
+                        holder.Comment_EditText.visibility = View.GONE
+                        holder.Comment_CancelBtn.visibility = View.GONE
+                        holder.Comment_ApplyBtn.visibility = View.GONE
+                    }
+                }
+            }
         }
     }
 
@@ -58,23 +124,8 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
         return if (listData == null) 0 else listData!!.size
     }
 
-    private fun populateItemRows(holder: PostCommentViewHolder, position: Int) {
-        val item = listData!![position]
-        Glide.with(holder.itemView.context)
-            .load(item!!.commentImg)
-            .into(holder.iCommentImg)
-
-        holder.tCommentWriter.text = listData!![position]!!.commentWriter
-        holder.tCommentDate.text = listData!![position]!!.commentDate
-        holder.tComment.text = listData!![position]!!.comment
-        holder.Comment_EditText.setText(listData!![position]!!.comment)
-        holder.tCommentID.text = listData!![position]!!.commentId
-        holder.tUserID.text = listData!![position]!!.userId
-
-        holder.Comment_EditText.setText(listData!![position]!!.comment)
-    }
-
-    inner class PostCommentViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PostCommentViewHolder internal constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
         var iCommentImg: ImageView
         var tCommentWriter: TextView
         var tCommentDate: TextView
@@ -87,6 +138,8 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
         var Comment_CancelBtn: TextView
         var Comment_ApplyBtn: TextView
         var Comment_EditText: EditText
+        var swipelayout: SwipeRevealLayout
+        var Swipe_Del: TextView
 
         init {
             iCommentImg = itemView.findViewById(R.id.Comment_Img)
@@ -101,19 +154,8 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
             Comment_CancelBtn = itemView.findViewById(R.id.Comment_CancelBtn)
             Comment_ApplyBtn = itemView.findViewById(R.id.Comment_ApplyBtn)
             Comment_EditText = itemView.findViewById(R.id.Comment_EditText)
-
-            Comment_EditBtn.setOnClickListener { v: View? ->
-                val pos = adapterPosition
-                if (pos != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(v, pos, "EDIT")
-                    Comment_EditBtn.visibility = View.GONE
-                    Comment_DelBtn.visibility = View.GONE
-                    tComment.visibility = View.GONE
-                    Comment_EditText.visibility = View.VISIBLE
-                    Comment_CancelBtn.visibility = View.VISIBLE
-                    Comment_ApplyBtn.visibility = View.VISIBLE
-                }
-            }
+            swipelayout = itemView.findViewById(R.id.swipelayout)
+            Swipe_Del = itemView.findViewById(R.id.Swipe_Del)
 
             Comment_CancelBtn.setOnClickListener { v: View? ->
                 val pos = adapterPosition
@@ -125,6 +167,14 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
                     Comment_EditText.visibility = View.GONE
                     Comment_CancelBtn.visibility = View.GONE
                     Comment_ApplyBtn.visibility = View.GONE
+                }
+            }
+
+            Comment_DelBtn.setOnClickListener { v: View? ->
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(v, pos, "DELETE")
+                    swipelayout!!.close(true)
                 }
             }
         }

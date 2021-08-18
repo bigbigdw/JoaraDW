@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -83,6 +84,8 @@ public class NewTab extends BookBaseFragment {
         userToken = app.getToken();
 
         AssetManager assetManager = requireActivity().getAssets();
+
+
 
         tabviewmodel.getText().observe(getViewLifecycleOwner(), tabNum -> {
             switch (tabNum) {

@@ -40,6 +40,10 @@ import bigbigdw.joaradw.login.LoginMain
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import kotlin.math.roundToInt
+import androidx.recyclerview.widget.ItemTouchHelper
+
+
+
 
 
 class PostDetail : AppCompatActivity() {

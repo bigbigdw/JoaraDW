@@ -146,8 +146,6 @@ e
 0app/src/main/java/bigbigdw/joaradw/etc/Splash.kt,1\3\13a0b4a2eafc45d123451599c21da69e53369489
 n
 >app/src/main/java/bigbigdw/joaradw/book_detail/BookDetail.java,0\d\0da6b38650d604467e68808fd0a2000ab7fd0ac7
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 k
 ;app/src/main/java/bigbigdw/joaradw/joara_post/DialogPost.kt,6\b\6b4202fefdc4031ac3c43b1367e6037d829aa3e1
 e

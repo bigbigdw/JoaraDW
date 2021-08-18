@@ -57,6 +57,7 @@ sonarqube {
 dependencies {
     api 'com.google.android.material:material:1.5.0-alpha02'
     implementation 'com.ahmadnemati.clickablewebview:clickablewebview:1.1.2'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 
     // Retrofit 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
