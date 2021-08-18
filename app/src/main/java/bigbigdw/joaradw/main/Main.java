@@ -115,9 +115,7 @@ public class Main extends BookBaseActivity {
         drawerLogout.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(), "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), LoginMain.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivityIfNeeded(intent, 0);
-            finish();
+            startActivity(intent);
         });
 
         btnLogout.setOnClickListener(v -> {

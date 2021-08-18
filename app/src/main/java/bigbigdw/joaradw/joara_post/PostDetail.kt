@@ -1,6 +1,7 @@
 package bigbigdw.joaradw.joara_post
 
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -8,8 +9,10 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.webkit.WebSettings
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -30,9 +33,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.NestedScrollView
 
 import bigbigdw.joaradw.login.LoginMain
+import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 import kotlin.math.roundToInt
 
 
@@ -67,6 +73,7 @@ class PostDetail : AppCompatActivity() {
 
     var postBannerURLs: MutableList<String> = ArrayList()
     var page = 1
+    var writeTotalCount = 0
     var totalCnt = ""
 
     override fun onResume() {
@@ -137,22 +144,27 @@ class PostDetail : AppCompatActivity() {
         nestWrap!!.setOnScrollChangeListener(commentScrollListener)
 
         //등록 버튼 클릭
-        commentCommit!!.setOnClickListener {
-            if(!token.equals("")){
-                postWriteComment()
-            } else {
-                val myAlertBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
-                myAlertBuilder.setTitle("로그인 필요")
-                myAlertBuilder.setMessage("댓글을 작성하려면 로그인이 필요합니다")
-                myAlertBuilder.setPositiveButton("로그인"
-                ) { _, _ ->
-                    Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(applicationContext, LoginMain::class.java)
-                    startActivityIfNeeded(intent, 0)
+        commentCommit!!.setOnClickListener {v ->
+            run {
+                if (!token.equals("")) {
+                    postWriteComment(v)
+                } else {
+                    val myAlertBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+                    myAlertBuilder.setTitle("로그인 필요")
+                    myAlertBuilder.setMessage("댓글을 작성하려면 로그인이 필요합니다")
+                    myAlertBuilder.setPositiveButton(
+                        "로그인"
+                    ) { _, _ ->
+                        Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        val intent = Intent(applicationContext, LoginMain::class.java)
+                        startActivityIfNeeded(intent, 0)
+                    }
+                    myAlertBuilder.setNegativeButton(
+                        "취소"
+                    ) { _, _ -> }
+                    myAlertBuilder.show()
                 }
-                myAlertBuilder.setNegativeButton("취소"
-                ) { _, _ ->}
-                myAlertBuilder.show()
             }
         }
 
@@ -162,7 +174,7 @@ class PostDetail : AppCompatActivity() {
             override fun onItemClick(v: View?, position: Int, value: String?) {
                 val item: PostCommentData? = adapter!!.getItem(position)
                 if (item != null) {
-                    Log.d("@@@@","HIHI")
+                    //TODO:todo
                 }
             }
         })
@@ -170,17 +182,16 @@ class PostDetail : AppCompatActivity() {
         btnRecommend!!.setOnClickListener { postRecommend() }
     }
 
-    var commentScrollListener =
+    private var commentScrollListener =
         NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight && page < ((totalCnt.toInt() / 25) + 2)) {
                 page++
                 getCommentData()
-                adapter!!.notifyDataSetChanged()
             }
         }
 
     //댓글 쓰기
-    private fun postWriteComment(){
+    private fun postWriteComment(v : View){
         val call = Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -209,9 +220,49 @@ class PostDetail : AppCompatActivity() {
                             val status = it.status
                             val message = it.message
                             if(status == 1){
-                                Toast.makeText(applicationContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT).show()
                                 getCommentData()
-                                adapter!!.notifyDataSetChanged()
+
+                                //키보드 숨김
+                                val inputMethodManager = mContext!!.getSystemService(
+                                    INPUT_METHOD_SERVICE
+                                ) as InputMethodManager
+
+                                inputMethodManager.hideSoftInputFromWindow(
+                                    v.windowToken,
+                                    0
+                                )
+
+                                //시간 출력
+                                val sdfNow = SimpleDateFormat("yy.MM.dd")
+                                val time = sdfNow.format(Date(System.currentTimeMillis()))
+
+                                Toast.makeText(applicationContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT).show()
+
+                                val data = PostCommentData(
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_PROFILEIMG", ""),
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_NICKNAME", ""),
+                                    time,
+                                    "",
+                                    commentEditText!!.text.toString(),
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_MEMBERID", "")
+                                )
+
+                                //댓글 수 관련
+                                if(totalCnt == "0"){
+                                    commentBlank!!.visibility = View.GONE
+                                    writeTotalCount++
+                                    commentCount!!.text = writeTotalCount.toString()
+                                    adapter!!.changeItem(data, 0)
+                                } else {
+                                    adapter!!.changeItem(data, 0)
+                                }
+
+                                // 상위로 이동
+                                Handler().postDelayed({
+                                    recyclerView?.smoothScrollToPosition(0)
+                                }, 200)
+                                commentEditText!!.setText("");
+
                             } else {
                                 Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                             }
@@ -424,7 +475,7 @@ class PostDetail : AppCompatActivity() {
                         totalCnt = it.totalCnt.toString()
 
                         //댓글 수 관련
-                        commentCount!!.text = totalCnt.toString()
+                        commentCount!!.text = totalCnt
 
                         if(totalCnt.equals("0")){
                             commentBlank!!.visibility = View.VISIBLE

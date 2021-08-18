@@ -1,6 +1,7 @@
 package bigbigdw.joaradw.joara_post
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -135,6 +136,15 @@ class AdapterPostComment(private val mContext: Context,items: List<PostCommentDa
 
     fun getItem(position: Int): PostCommentData? {
         return listData!![position]
+    }
+
+    fun addItem(data: PostCommentData?) {
+        listData!!.add(data)
+    }
+
+    fun changeItem(items: PostCommentData, position: Int) {
+        listData!!.add(position, items)
+        notifyItemInserted(position)
     }
 
     companion object {

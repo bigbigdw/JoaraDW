@@ -59,4 +59,8 @@ class UserValue {
     @Expose
     var memberId: String? = null
 
+    @SerializedName("profile")
+    @Expose
+    var profile: String? = null
+
 }

@@ -121,6 +121,7 @@ class LoginMain : AppCompatActivity() {
                             val manuscriptCoupon = it.user?.manuscriptCoupon
                             val supportCoupon = it.user?.supportCoupon
                             val memberId = it.user?.memberId
+                            val profile = it.user?.profile
 
                             if(status.equals("1")){
                                 Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
@@ -134,6 +135,7 @@ class LoginMain : AppCompatActivity() {
                                 savePreferences("LOGIN_SUPPORTCOUPON", supportCoupon!!)
                                 savePreferences("LOGIN_MEMBERID", memberId!!)
                                 savePreferences("LOGIN_STATUS", status!!)
+                                savePreferences("LOGIN_PROFILEIMG", profile!!)
 
                                 finish()
                             } else {

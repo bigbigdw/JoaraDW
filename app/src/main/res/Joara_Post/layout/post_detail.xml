@@ -286,6 +286,8 @@
             android:background="@drawable/bg_shape_comment_edit"
             android:gravity="start|center_vertical"
             android:hint="@string/Post_Detail_Comment_Hint"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="3"
             android:paddingLeft="10dp"
@@ -296,8 +298,7 @@
             android:textColor="@color/Contents_Text3"
             android:textColorHint="#999999"
             android:textSize="15sp"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/Comment_Commit"
