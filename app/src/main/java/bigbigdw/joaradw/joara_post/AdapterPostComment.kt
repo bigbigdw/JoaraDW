@@ -20,7 +20,7 @@ import java.util.ArrayList
 class AdapterPostComment(private val mContext: Context, items: List<PostCommentData?>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<PostCommentData?>?
-    private var checkedPosition = -1
+    private var checkedPosition = -2
     private val viewBinderHelper = ViewBinderHelper()
 
     interface OnItemClickListener {
@@ -41,33 +41,25 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PostCommentViewHolder) {
-            viewBinderHelper.setOpenOnlyOne(true)
-            viewBinderHelper.bind(
-                holder.swipelayout,
-                java.lang.String.valueOf(listData?.get(position)?.commentId)
-            )
-            viewBinderHelper.closeLayout(java.lang.String.valueOf(listData?.get(position)?.commentId))
 
             val item = listData!![position]
             Glide.with(holder.itemView.context)
                 .load(item!!.commentImg)
                 .into(holder.iCommentImg)
 
-            holder.tCommentWriter.text = listData!![position]!!.commentWriter
             holder.tCommentDate.text = listData!![position]!!.commentDate
             holder.tComment.text = listData!![position]!!.comment
             holder.Comment_EditText.setText(listData!![position]!!.comment)
             holder.tCommentID.text = listData!![position]!!.commentId
-            holder.tUserID.text = listData!![position]!!.userId
             holder.Comment_EditText.setText(listData!![position]!!.comment)
+            holder.tUserID.text = listData!![position]!!.userId
 
-
-            holder.Comment_EditBtn.setOnClickListener { v: View? ->
+            holder.Swipe_Edit.setOnClickListener { v: View? ->
                 val pos = holder.adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     listener!!.onItemClick(v, pos, "EDIT")
-                    holder.Comment_EditBtn.visibility = View.GONE
-                    holder.Comment_DelBtn.visibility = View.GONE
+                    viewBinderHelper.setOpenOnlyOne(true)
+                    holder.swipelayout.close(true)
                     holder.tComment.visibility = View.GONE
                     holder.Comment_EditText.visibility = View.VISIBLE
                     holder.Comment_CancelBtn.visibility = View.VISIBLE
@@ -83,34 +75,38 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
             if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
                     .getString("LOGIN_MEMBERID", "").equals(listData!![position]!!.userId)
             ) {
+                viewBinderHelper.setOpenOnlyOne(true)
+                viewBinderHelper.bind(
+                    holder.swipelayout,
+                    java.lang.String.valueOf(listData?.get(position)?.commentId)
+                )
+                viewBinderHelper.closeLayout(java.lang.String.valueOf(listData?.get(position)?.commentId))
+
                 holder.Swipe_Del.visibility = View.VISIBLE
-                holder.Comment_EditBtn.visibility = View.VISIBLE
-                holder.Comment_DelBtn.visibility = View.VISIBLE
+                holder.Swipe_Edit.visibility = View.VISIBLE
+                val textString = listData!![position]!!.commentWriter + "(나)"
+                holder.tCommentWriter.text = textString
 
                 if (checkedPosition == -1) {
-                    holder.Comment_EditBtn.visibility = View.VISIBLE
-                    holder.Comment_DelBtn.visibility = View.VISIBLE
                     holder.tComment.visibility = View.VISIBLE
                     holder.Comment_EditText.visibility = View.GONE
                     holder.Comment_CancelBtn.visibility = View.GONE
                     holder.Comment_ApplyBtn.visibility = View.GONE
                 } else {
                     if (checkedPosition == holder.getAdapterPosition()) {
-                        holder.Comment_EditBtn.visibility = View.GONE
-                        holder.Comment_DelBtn.visibility = View.GONE
                         holder.tComment.visibility = View.GONE
                         holder.Comment_EditText.visibility = View.VISIBLE
                         holder.Comment_CancelBtn.visibility = View.VISIBLE
                         holder.Comment_ApplyBtn.visibility = View.VISIBLE
                     } else {
-                        holder.Comment_EditBtn.visibility = View.VISIBLE
-                        holder.Comment_DelBtn.visibility = View.VISIBLE
                         holder.tComment.visibility = View.VISIBLE
                         holder.Comment_EditText.visibility = View.GONE
                         holder.Comment_CancelBtn.visibility = View.GONE
                         holder.Comment_ApplyBtn.visibility = View.GONE
                     }
                 }
+            } else {
+                holder.tCommentWriter.text = listData!![position]!!.commentWriter
             }
         }
     }
@@ -133,13 +129,12 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
         var tCommentID: TextView
         var tUserID: TextView
 
-        var Comment_EditBtn: TextView
-        var Comment_DelBtn: TextView
         var Comment_CancelBtn: TextView
         var Comment_ApplyBtn: TextView
         var Comment_EditText: EditText
         var swipelayout: SwipeRevealLayout
         var Swipe_Del: TextView
+        var Swipe_Edit: TextView
 
         init {
             iCommentImg = itemView.findViewById(R.id.Comment_Img)
@@ -149,20 +144,17 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
             tCommentID = itemView.findViewById(R.id.Comment_ID)
             tUserID = itemView.findViewById(R.id.User_ID)
 
-            Comment_EditBtn = itemView.findViewById(R.id.Comment_EditBtn)
-            Comment_DelBtn = itemView.findViewById(R.id.Comment_DelBtn)
             Comment_CancelBtn = itemView.findViewById(R.id.Comment_CancelBtn)
             Comment_ApplyBtn = itemView.findViewById(R.id.Comment_ApplyBtn)
             Comment_EditText = itemView.findViewById(R.id.Comment_EditText)
             swipelayout = itemView.findViewById(R.id.swipelayout)
             Swipe_Del = itemView.findViewById(R.id.Swipe_Del)
+            Swipe_Edit = itemView.findViewById(R.id.Swipe_Edit)
 
             Comment_CancelBtn.setOnClickListener { v: View? ->
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     listener!!.onItemClick(v, pos, "CANCEL")
-                    Comment_EditBtn.visibility = View.VISIBLE
-                    Comment_DelBtn.visibility = View.VISIBLE
                     tComment.visibility = View.VISIBLE
                     Comment_EditText.visibility = View.GONE
                     Comment_CancelBtn.visibility = View.GONE
@@ -170,11 +162,12 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                 }
             }
 
-            Comment_DelBtn.setOnClickListener { v: View? ->
+            Swipe_Del.setOnClickListener { v: View? ->
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     listener!!.onItemClick(v, pos, "DELETE")
-                    swipelayout!!.close(true)
+                    swipelayout.close(true)
+                    viewBinderHelper.setOpenOnlyOne(true)
                 }
             }
         }
