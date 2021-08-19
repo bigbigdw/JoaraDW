@@ -68,3 +68,19 @@ interface PostWriteCommentService {
         @Field("token") token: String?,
     ): Call<PostWriteCommentResult?>?
 }
+
+//포스트 댓글 삭제
+interface PostDeleteCommentService {
+    @FormUrlEncoded
+    @POST("v1/board/post_comment_delete.joa")
+    fun postRetrofit(
+        @Field("category") category: String?,
+        @Field("comment_id") comment_id: String?,
+        @Field("api_key") apiKey: String?,
+        @Field("ver") ver: String?,
+        @Field("device") device: String?,
+        @Field("deviceuid") deviceUid: String?,
+        @Field("devicetoken") deviceToken: String?,
+        @Field("token") token: String?,
+    ): Call<PostWriteCommentResult?>?
+}

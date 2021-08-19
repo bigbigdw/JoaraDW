@@ -162,7 +162,7 @@ class PostCommentListResult {
     val status = 0
 
     @SerializedName("total_cnt")
-    val totalCnt: String? = null
+    val totalCnt = 0
 }
 
 //포스트 댓글 상세

@@ -1,7 +1,5 @@
 package bigbigdw.joaradw.joara_post
 
-
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -33,18 +31,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.widget.NestedScrollView
 
 import bigbigdw.joaradw.login.LoginMain
-import org.w3c.dom.Text
+import bigbigdw.joaradw.test.Test_PostResult
 import java.text.SimpleDateFormat
-import kotlin.math.roundToInt
-import androidx.recyclerview.widget.ItemTouchHelper
-
-
-
-
 
 class PostDetail : AppCompatActivity() {
 
@@ -78,7 +69,8 @@ class PostDetail : AppCompatActivity() {
     var postBannerURLs: MutableList<String> = ArrayList()
     var page = 1
     var writeTotalCount = 0
-    var totalCnt = ""
+    var totalCnt = 0
+    var getCommentId : String? = null
 
     override fun onResume() {
         super.onResume()
@@ -178,7 +170,18 @@ class PostDetail : AppCompatActivity() {
             override fun onItemClick(v: View?, position: Int, value: String?) {
                 val item: PostCommentData? = adapter!!.getItem(position)
                 if (item != null) {
-                    //TODO:todo
+                    if(value.equals("DELETE")){
+                        Log.d("@@@@","item.commentId" + item.commentId)
+                        if(item.commentId.equals("")){
+                            //댓글 리스트 정보 최신화
+                            refreshCommentData("DELETE", position)
+                        } else {
+                            postCommentDelete(item.commentId, position)
+                        }
+                    } else {
+                        //댓글 리스트 정보 최신화
+                        refreshCommentData("EDIT", position)
+                    }
                 }
             }
         })
@@ -193,6 +196,59 @@ class PostDetail : AppCompatActivity() {
                 getCommentData()
             }
         }
+
+    //댓글 삭제
+    fun postCommentDelete(commentId: String?, position: Int?){
+        val myAlertBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        myAlertBuilder.setTitle("댓글 삭제")
+        myAlertBuilder.setMessage("댓글을 삭제하시겠습니까?")
+        myAlertBuilder.setPositiveButton(
+            "예"
+        ) { _, _ ->
+            val call = Retrofit.Builder()
+                .baseUrl(HELPER.API)
+                .addConverterFactory(GsonConverterFactory.create()).build()
+                .create(PostDeleteCommentService::class.java)
+                .postRetrofit(
+                    "2,9,6,3,4,5,19",
+                    commentId,
+                    HELPER.API_KEY,
+                    HELPER.VER,
+                    HELPER.DEVICE,
+                    HELPER.DEVICE_ID,
+                    HELPER.DEVICE_TOKEN,
+                    token
+                )
+
+            call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+                override fun onResponse(call: Call<PostWriteCommentResult?>, response: Response<PostWriteCommentResult?>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            val status = it.status
+                            val message = it.message
+                            if (status == 1) {
+                                adapter!!.deleteItem(position!!)
+                                //댓글 수 관련
+                                commentCount!!.text = (totalCnt - 1).toString()
+
+                                Toast.makeText(applicationContext, "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<PostWriteCommentResult?>, t: Throwable) {
+                    Log.d("onFailure", "실패")
+                }
+            })
+        }
+        myAlertBuilder.setNegativeButton(
+            "아니오"
+        ) { _, _ -> }
+        myAlertBuilder.show()
+    }
 
     //댓글 쓰기
     private fun postWriteComment(v : View){
@@ -224,7 +280,8 @@ class PostDetail : AppCompatActivity() {
                             val status = it.status
                             val message = it.message
                             if(status == 1){
-                                getCommentData()
+                                //댓글 수 관련
+                                commentCount!!.text = (totalCnt + 1).toString()
 
                                 //키보드 숨김
                                 val inputMethodManager = mContext!!.getSystemService(
@@ -252,7 +309,7 @@ class PostDetail : AppCompatActivity() {
                                 )
 
                                 //댓글 수 관련
-                                if(totalCnt == "0"){
+                                if(totalCnt == 0){
                                     commentBlank!!.visibility = View.GONE
                                     writeTotalCount++
                                     commentCount!!.text = writeTotalCount.toString()
@@ -476,10 +533,10 @@ class PostDetail : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val comments = it.comments
-                        totalCnt = it.totalCnt.toString()
+                        totalCnt = it.totalCnt
 
                         //댓글 수 관련
-                        commentCount!!.text = totalCnt
+                        commentCount!!.text = totalCnt.toString()
 
                         if(totalCnt.equals("0")){
                             commentBlank!!.visibility = View.VISIBLE
@@ -528,6 +585,57 @@ class PostDetail : AppCompatActivity() {
             override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
                 commentBlank!!.visibility = View.VISIBLE
                 recyclerView!!.visibility = View.GONE
+            }
+        })
+
+    }
+
+    //댓글 최신화
+    private fun refreshCommentData(type : String?, position : Int?) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(PostCommentListService::class.java)
+            .getRetrofit(
+                postId,
+                token,
+                page.toString()
+            )
+
+        retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
+            override fun onResponse(
+                call: Call<PostCommentListResult?>,
+                response: Response<PostCommentListResult?>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        val comments = it.comments
+                        totalCnt = it.totalCnt
+
+                        //댓글 수 관련
+                        commentCount!!.text = totalCnt.toString()
+
+                        if(totalCnt.equals("0")){
+                            commentBlank!!.visibility = View.VISIBLE
+                            tCommentBlankText!!.text = "현재 댓글이 없습니다"
+                        } else {
+                            commentBlank!!.visibility = View.GONE
+                        }
+
+                        //댓글 관련
+                        if (comments != null) {
+                            for (i in comments.indices) {
+                                getCommentId = comments[0].comment_id
+                            }
+                        }
+
+                        postCommentDelete(getCommentId, position)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PostCommentListResult?>, t: Throwable) {
+                Log.d("onFailure", "실패")
             }
         })
 

@@ -1,6 +1,7 @@
 package bigbigdw.joaradw.joara_post
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ import java.util.ArrayList
 class AdapterPostComment(private val mContext: Context, items: List<PostCommentData?>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<PostCommentData?>?
-    private var checkedPosition = -2
+    private var checkedPosition = -10
     private val viewBinderHelper = ViewBinderHelper()
 
     interface OnItemClickListener {
@@ -75,6 +76,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
             if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
                     .getString("LOGIN_MEMBERID", "").equals(listData!![position]!!.userId)
             ) {
+
                 viewBinderHelper.setOpenOnlyOne(true)
                 viewBinderHelper.bind(
                     holder.swipelayout,
@@ -86,6 +88,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                 holder.Swipe_Edit.visibility = View.VISIBLE
                 val textString = listData!![position]!!.commentWriter + "(나)"
                 holder.tCommentWriter.text = textString
+                holder.tCommentWriter.setTypeface(null, Typeface.BOLD);
 
                 if (checkedPosition == -1) {
                     holder.tComment.visibility = View.VISIBLE
@@ -183,6 +186,12 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
 
     fun addItem(data: PostCommentData?) {
         listData!!.add(data)
+    }
+
+    fun deleteItem(position: Int) {
+        listData!!.removeAt(position)
+        notifyItemInserted(position)
+        notifyDataSetChanged()
     }
 
     fun changeItem(items: PostCommentData, position: Int) {
