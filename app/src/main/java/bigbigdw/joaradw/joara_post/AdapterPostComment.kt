@@ -2,10 +2,14 @@ package bigbigdw.joaradw.joara_post
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.Editable
+import android.text.Selection
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +19,7 @@ import bigbigdw.joaradw.R
 import com.bumptech.glide.Glide
 import com.chauthai.swipereveallayout.SwipeRevealLayout
 import com.chauthai.swipereveallayout.ViewBinderHelper
-import java.util.ArrayList
+import java.util.*
 
 
 class AdapterPostComment(private val mContext: Context, items: List<PostCommentData?>?) :
@@ -65,6 +69,31 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                     holder.Comment_EditText.visibility = View.VISIBLE
                     holder.Comment_CancelBtn.visibility = View.VISIBLE
                     holder.Comment_ApplyBtn.visibility = View.VISIBLE
+
+                    // 커서 위치 마지막으로 이동
+                    holder.Comment_EditText.setSelection(holder.Comment_EditText.text.length)
+                    //키보드 올림
+                    val inputMethodManager =
+                        mContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    holder.Comment_EditText.requestFocus()
+                    inputMethodManager.showSoftInput(holder.Comment_EditText, 0)
+
+                    Objects.requireNonNull(holder.Comment_EditText!!)?.addTextChangedListener(object :
+                        TextWatcher {
+                        override fun beforeTextChanged(text: CharSequence, start: Int, count: Int, after: Int) {
+                            Log.d("holder.Comment_EditText", "beforeTextChanged")
+                        }
+
+                        override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
+                            holder.tComment.text = text
+                            listData!![holder.getAdapterPosition()]!!.comment = text.toString()
+                        }
+
+                        override fun afterTextChanged(s: Editable) {
+                            Log.d("holder.Comment_EditText", "onTextChanged")
+                        }
+                    })
+
                     if (checkedPosition != holder.getAdapterPosition()) {
                         notifyItemChanged(checkedPosition)
                         checkedPosition = holder.getAdapterPosition()
@@ -153,6 +182,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
             swipelayout = itemView.findViewById(R.id.swipelayout)
             Swipe_Del = itemView.findViewById(R.id.Swipe_Del)
             Swipe_Edit = itemView.findViewById(R.id.Swipe_Edit)
+            Swipe_Edit.nextFocusDownId = R.id.Comment_EditText;
 
             Comment_CancelBtn.setOnClickListener { v: View? ->
                 val pos = adapterPosition
@@ -162,6 +192,15 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                     Comment_EditText.visibility = View.GONE
                     Comment_CancelBtn.visibility = View.GONE
                     Comment_ApplyBtn.visibility = View.GONE
+                    //키보드 숨김
+                    val inputMethodManager = mContext!!.getSystemService(
+                        AppCompatActivity.INPUT_METHOD_SERVICE
+                    ) as InputMethodManager
+
+                    inputMethodManager.hideSoftInputFromWindow(
+                        v!!.windowToken,
+                        0
+                    )
                 }
             }
 
@@ -171,6 +210,27 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                     listener!!.onItemClick(v, pos, "DELETE")
                     swipelayout.close(true)
                     viewBinderHelper.setOpenOnlyOne(true)
+                }
+            }
+
+            Comment_ApplyBtn.setOnClickListener { v: View? ->
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(v, pos, "APPLY")
+                    checkedPosition = -10
+                    tComment.visibility = View.VISIBLE
+                    Comment_EditText.visibility = View.GONE
+                    Comment_CancelBtn.visibility = View.GONE
+                    Comment_ApplyBtn.visibility = View.GONE
+                    //키보드 숨김
+                    val inputMethodManager = mContext!!.getSystemService(
+                        AppCompatActivity.INPUT_METHOD_SERVICE
+                    ) as InputMethodManager
+
+                    inputMethodManager.hideSoftInputFromWindow(
+                        v!!.windowToken,
+                        0
+                    )
                 }
             }
         }
@@ -192,6 +252,11 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
         listData!!.removeAt(position)
         notifyItemInserted(position)
         notifyDataSetChanged()
+    }
+
+    fun editItem(items: PostCommentData, position: Int) {
+        listData!!.set(position, items)
+        notifyItemChanged(position)
     }
 
     fun changeItem(items: PostCommentData, position: Int) {

@@ -16,5 +16,5 @@ class PostCommentData(
     var commentDate: String?,
     var commentId: String?,
     var comment: String?,
-    var userId: String?,
+    var userId: String?
 )

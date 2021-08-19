@@ -3,6 +3,10 @@ package bigbigdw.joaradw.joara_post
 import bigbigdw.joaradw.etc.HELPER
 import retrofit2.Call
 import retrofit2.http.*
+import retrofit2.http.Body
+
+
+
 
 //포스트 리스트
 interface PostListService {
@@ -82,5 +86,22 @@ interface PostDeleteCommentService {
         @Field("deviceuid") deviceUid: String?,
         @Field("devicetoken") deviceToken: String?,
         @Field("token") token: String?,
+    ): Call<PostWriteCommentResult?>?
+}
+
+//포스트 댓글 수정
+interface PostEditCommentService {
+    @FormUrlEncoded
+    @PUT("v1/board/post_comment.joa")
+    fun putRetrofit(
+        @Field("comment") comment: String?,
+        @Field("category") category: String?,
+        @Field("comment_id") comment_id: String?,
+        @Field("api_key") apiKey: String?,
+        @Field("ver") ver: String?,
+        @Field("device") device: String?,
+        @Field("deviceuid") deviceUid: String?,
+        @Field("devicetoken") deviceToken: String?,
+        @Field("token") token: String?
     ): Call<PostWriteCommentResult?>?
 }

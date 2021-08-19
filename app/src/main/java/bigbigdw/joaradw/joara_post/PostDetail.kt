@@ -34,7 +34,6 @@ import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 
 import bigbigdw.joaradw.login.LoginMain
-import bigbigdw.joaradw.test.Test_PostResult
 import java.text.SimpleDateFormat
 
 class PostDetail : AppCompatActivity() {
@@ -71,6 +70,8 @@ class PostDetail : AppCompatActivity() {
     var writeTotalCount = 0
     var totalCnt = 0
     var getCommentId : String? = null
+    var getComment : String? = null
+    var getCommentDate : String? = null
 
     override fun onResume() {
         super.onResume()
@@ -171,16 +172,24 @@ class PostDetail : AppCompatActivity() {
                 val item: PostCommentData? = adapter!!.getItem(position)
                 if (item != null) {
                     if(value.equals("DELETE")){
-                        Log.d("@@@@","item.commentId" + item.commentId)
                         if(item.commentId.equals("")){
                             //댓글 리스트 정보 최신화
                             refreshCommentData("DELETE", position)
                         } else {
                             postCommentDelete(item.commentId, position)
                         }
-                    } else {
-                        //댓글 리스트 정보 최신화
-                        refreshCommentData("EDIT", position)
+                    } else if(value.equals("APPLY")) {
+                        commentEditWrap!!.visibility = View.VISIBLE
+                        if(item.commentId.equals("")){
+                            //댓글 리스트 정보 최신화
+                            refreshCommentData("EDIT", position)
+                        } else {
+                            putCommentEdit(item.comment,item.commentId, item.commentDate, position)
+                        }
+                    } else if(value.equals("EDIT")){
+                        commentEditWrap!!.visibility = View.GONE
+                    } else if(value.equals("CANCEL")){
+                        commentEditWrap!!.visibility = View.VISIBLE
                     }
                 }
             }
@@ -248,6 +257,59 @@ class PostDetail : AppCompatActivity() {
             "아니오"
         ) { _, _ -> }
         myAlertBuilder.show()
+    }
+
+    //댓글 수정
+    fun putCommentEdit(comment : String?, commentId: String?, commentDate: String?, position: Int?){
+        val call = Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(PostEditCommentService::class.java)
+            .putRetrofit(
+                comment,
+                "2,9,6,3,4,5,19",
+                commentId,
+                HELPER.API_KEY,
+                HELPER.VER,
+                HELPER.DEVICE,
+                HELPER.DEVICE_ID,
+                HELPER.DEVICE_TOKEN,
+                token
+            )
+
+        call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+            override fun onResponse(call: Call<PostWriteCommentResult?>, response: Response<PostWriteCommentResult?>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        val status = it.status
+                        val message = it.message
+                        if (status == 1) {
+
+                            val data = PostCommentData(
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_PROFILEIMG", ""),
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_NICKNAME", ""),
+                                commentDate,
+                                commentId,
+                                comment,
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_MEMBERID", "")
+                            )
+                            adapter!!.editItem(data, position!!)
+
+                            //댓글 수 관련
+                            commentCount!!.text = (totalCnt - 1).toString()
+
+                            Toast.makeText(applicationContext, "댓글이 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PostWriteCommentResult?>, t: Throwable) {
+                Log.d("onFailure", "실패")
+            }
+        })
     }
 
     //댓글 쓰기
@@ -626,10 +688,16 @@ class PostDetail : AppCompatActivity() {
                         if (comments != null) {
                             for (i in comments.indices) {
                                 getCommentId = comments[0].comment_id
+                                getComment = comments[position!!].comment
+                                getCommentDate = comments[position!!].created
                             }
                         }
 
-                        postCommentDelete(getCommentId, position)
+                        if(type.equals("DELETE")){
+                            postCommentDelete(getCommentId, position)
+                        } else {
+                            putCommentEdit(getCommentId,getComment,getCommentDate,position)
+                        }
                     }
                 }
             }
