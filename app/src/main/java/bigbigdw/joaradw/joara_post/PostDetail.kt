@@ -70,7 +70,6 @@ class PostDetail : AppCompatActivity() {
     var writeTotalCount = 0
     var totalCnt = 0
     var getCommentId : String? = null
-    var getComment : String? = null
     var getCommentDate : String? = null
 
     override fun onResume() {
@@ -174,7 +173,7 @@ class PostDetail : AppCompatActivity() {
                     if(value.equals("DELETE")){
                         if(item.commentId.equals("")){
                             //댓글 리스트 정보 최신화
-                            refreshCommentData("DELETE", position)
+                            refreshCommentData("DELETE","" , position)
                         } else {
                             postCommentDelete(item.commentId, position)
                         }
@@ -182,7 +181,7 @@ class PostDetail : AppCompatActivity() {
                         commentEditWrap!!.visibility = View.VISIBLE
                         if(item.commentId.equals("")){
                             //댓글 리스트 정보 최신화
-                            refreshCommentData("EDIT", position)
+                            refreshCommentData("EDIT",item.comment, position)
                         } else {
                             putCommentEdit(item.comment,item.commentId, item.commentDate, position)
                         }
@@ -618,7 +617,6 @@ class PostDetail : AppCompatActivity() {
                                 val profile = comments[i].profile
                                 val memberId = comments[i].memberId
 
-
                                 items.add(
                                     PostCommentData(
                                         profile,
@@ -653,7 +651,7 @@ class PostDetail : AppCompatActivity() {
     }
 
     //댓글 최신화
-    private fun refreshCommentData(type : String?, position : Int?) {
+    private fun refreshCommentData(type : String?, comment : String?, position : Int?) {
         val retrofit = Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -687,16 +685,15 @@ class PostDetail : AppCompatActivity() {
                         //댓글 관련
                         if (comments != null) {
                             for (i in comments.indices) {
-                                getCommentId = comments[0].comment_id
-                                getComment = comments[position!!].comment
-                                getCommentDate = comments[position!!].created
+                                getCommentId = comments[position!!].comment_id
+                                getCommentDate = Util.changeDateType(comments[i].created ,"00.00.00")
                             }
                         }
 
                         if(type.equals("DELETE")){
                             postCommentDelete(getCommentId, position)
                         } else {
-                            putCommentEdit(getCommentId,getComment,getCommentDate,position)
+                            putCommentEdit(comment,getCommentId,getCommentDate,position)
                         }
                     }
                 }
