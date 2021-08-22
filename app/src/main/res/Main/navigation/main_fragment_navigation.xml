@@ -9,7 +9,7 @@
         android:id="@+id/Fragment_Main"
         android:name="bigbigdw.joaradw.fragment_main.FragmentMain"
         android:label=""
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_tab_main">
         <action
             android:id="@+id/action_Fragment_Main_to_Fragment_New"
             app:destination="@id/Fragment_New" />

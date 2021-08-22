@@ -2,8 +2,8 @@ package bigbigdw.joaradw.etc
 
 interface HELPER {
     companion object {
-//        const val API = "https://api.joara.com";
-        const val API = "https://api-dev1.joara.com:7443"
+        const val API = "https://api.joara.com";
+//        const val API = "https://api-dev1.joara.com:7443"
         const val API_KEY = "mw_8ba234e7801ba288554ca07ae44c7"
         const val VER = "2.6.3"
         const val DEVICE = "mw"

@@ -33,9 +33,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
-
 class Main : AppCompatActivity() {
     private var appBarConfiguration: AppBarConfiguration? = null
     private var dialogBanner: DialogBanner? = null
@@ -85,8 +82,6 @@ class Main : AppCompatActivity() {
         btnLogout = navHeaderView!!.findViewById(R.id.Btn_Logout)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
-
 
         setLayout()
     }
