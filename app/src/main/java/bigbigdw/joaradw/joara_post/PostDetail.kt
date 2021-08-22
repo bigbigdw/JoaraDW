@@ -74,7 +74,7 @@ class PostDetail : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_TOKEN", "")
+        token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -285,12 +285,12 @@ class PostDetail : AppCompatActivity() {
                         if (status == 1) {
 
                             val data = PostCommentData(
-                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_PROFILEIMG", ""),
-                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_NICKNAME", ""),
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("PROFILEIMG", ""),
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("NICKNAME", ""),
                                 commentDate,
                                 commentId,
                                 comment,
-                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_MEMBERID", "")
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("MEMBERID", "")
                             )
                             adapter!!.editItem(data, position!!)
 
@@ -361,12 +361,12 @@ class PostDetail : AppCompatActivity() {
                                 Toast.makeText(applicationContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT).show()
 
                                 val data = PostCommentData(
-                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_PROFILEIMG", ""),
-                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_NICKNAME", ""),
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("PROFILEIMG", ""),
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("NICKNAME", ""),
                                     time,
                                     "",
                                     commentEditText!!.text.toString(),
-                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("LOGIN_MEMBERID", "")
+                                    getSharedPreferences("LOGIN", MODE_PRIVATE).getString("MEMBERID", "")
                                 )
 
                                 //댓글 수 관련

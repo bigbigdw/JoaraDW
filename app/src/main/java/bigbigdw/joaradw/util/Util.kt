@@ -44,7 +44,7 @@ object Util {
         sb.append("<meta name=\"viewport\" content=\"width=device-width\">")
         sb.append("</HEAD>")
         sb.append("<STYLE>img{max-width:100%;width:auto;height:auto;}</STYLE>")
-        sb.append("<BODY style=\"margin:0; padding:5px; background-color:$bgColor;\">")
+        sb.append("<BODY style=\"margin:0; padding:0px; background-color:$bgColor;\">")
         sb.append("<DIV style=\"font-size:15px; color:#666666;\">")
         sb.append(data)
         sb.append("</DIV>")

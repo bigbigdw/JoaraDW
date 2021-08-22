@@ -122,15 +122,6 @@ class PostDetailData {
     @SerializedName("slideshow_data")
     @Expose
     val slideshowData: List<PostDetailSlideShow>? = null
-
-    // toString()을 Override 해주지 않으면 객체 주소값을 출력함
-    override fun toString(): String {
-        return "PostResult{" +
-                "title=" + title +
-                ", title=" + title +
-
-                '}'
-    }
 }
 
 //포스트 상세 - 슬라이드

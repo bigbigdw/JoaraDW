@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Book_Detail/layout/book_detail.xml" value="0.13958333333333334" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Book_Detail/layout/book_detail_subpage.xml" value="0.13958333333333334" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/popup.xml" value="0.16180555555555556" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/test.xml" value="0.1" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/toolbar_activity.xml" value="0.13958333333333334" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/dialog_post.xml" value="0.1" />
@@ -14,6 +15,10 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/item_post_list.xml" value="0.22" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/post_detail.xml" value="0.22" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Login/layout/login.xml" value="0.2423611111111111" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main.xml" value="0.17389875082182774" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_contents.xml" value="0.17401315789473684" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_drawer.xml" value="0.17401315789473684" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_wrap.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_c.xml" value="0.18848684210526315" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_comment_edittext.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape.xml" value="0.17152777777777778" />

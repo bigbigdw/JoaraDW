@@ -188,6 +188,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     listener!!.onItemClick(v, pos, "CANCEL")
+                    checkedPosition = -10
                     tComment.visibility = View.VISIBLE
                     Comment_EditText.visibility = View.GONE
                     Comment_CancelBtn.visibility = View.GONE
@@ -208,6 +209,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
                 val pos = adapterPosition
                 if (pos != RecyclerView.NO_POSITION) {
                     listener!!.onItemClick(v, pos, "DELETE")
+                    checkedPosition = -10
                     swipelayout.close(true)
                     viewBinderHelper.setOpenOnlyOne(true)
                 }

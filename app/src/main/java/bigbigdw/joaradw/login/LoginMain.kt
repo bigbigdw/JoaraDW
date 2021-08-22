@@ -126,16 +126,16 @@ class LoginMain : AppCompatActivity() {
                             if(status.equals("1")){
                                 Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
 
-                                savePreferences("LOGIN_TOKEN", token!!)
-                                savePreferences("LOGIN_NICKNAME", nickname!!)
-                                savePreferences("LOGIN_MANA", mana!!)
-                                savePreferences("LOGIN_EXPIRECASH", expireCash!!)
-                                savePreferences("LOGIN_CASH", cash!!)
-                                savePreferences("LOGIN_MANUSCRIPTCOUPON", manuscriptCoupon!!)
-                                savePreferences("LOGIN_SUPPORTCOUPON", supportCoupon!!)
-                                savePreferences("LOGIN_MEMBERID", memberId!!)
-                                savePreferences("LOGIN_STATUS", status!!)
-                                savePreferences("LOGIN_PROFILEIMG", profile!!)
+                                savePreferences("TOKEN", token!!)
+                                savePreferences("NICKNAME", nickname!!)
+                                savePreferences("MANA", mana!!)
+                                savePreferences("EXPIRECASH", expireCash!!)
+                                savePreferences("CASH", cash!!)
+                                savePreferences("MANUSCRIPTCOUPON", manuscriptCoupon!!)
+                                savePreferences("SUPPORTCOUPON", supportCoupon!!)
+                                savePreferences("MEMBERID", memberId!!)
+                                savePreferences("STATUS", status!!)
+                                savePreferences("PROFILEIMG", profile!!)
 
                                 finish()
                             } else {

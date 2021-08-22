@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.util
 
+import bigbigdw.joaradw.joara_post.PostsCommentValue
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -23,6 +24,13 @@ class LoginResult {
     @SerializedName("message")
     @Expose
     var message: String? = null
+}
+
+//로그아웃
+class LogoutResult {
+    @SerializedName("status")
+    @Expose
+    var status: String? = null
 }
 
 //로그인 - 유저 정보
@@ -62,5 +70,26 @@ class UserValue {
     @SerializedName("profile")
     @Expose
     var profile: String? = null
+}
 
+//인덱스 API
+class IndexAPIResult {
+    @SerializedName("status")
+    @Expose
+    var status: String? = null
+
+    @SerializedName("banner")
+    @Expose
+    val banner: List<String>? = null
+
+    @SerializedName("main_menu")
+    @Expose
+    val mainMenu: List<MainMenuValue>? = null
+}
+
+//메인 메뉴
+class MainMenuValue {
+    @SerializedName("menu_ver")
+    @Expose
+    var menuVer: String? = null
 }

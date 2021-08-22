@@ -18,7 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Splash : Activity() {
-    var token = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash)
@@ -43,16 +42,17 @@ class Splash : Activity() {
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(CheckTokenService::class.java)
-            .getRetrofit(token)
+            .getRetrofit(getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", ""))
 
         call!!.enqueue(object : Callback<CheckTokenResult?> {
             override fun onResponse(call: Call<CheckTokenResult?>, response: Response<CheckTokenResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val status = it.status
-
-                        if(!status.equals("1")){
-                            Config.deleteJSON()
+                        if(status != 1){
+                            val editor = getSharedPreferences("LOGIN", MODE_PRIVATE).edit()
+                            editor.clear()
+                            editor.apply()
                         }
                     }
                 }

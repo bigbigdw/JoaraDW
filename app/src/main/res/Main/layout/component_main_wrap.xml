@@ -26,8 +26,6 @@
                 app:srcCompat="@drawable/logo_white" />
 
         </androidx.appcompat.widget.Toolbar>
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/component_main_contents" />

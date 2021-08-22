@@ -81,7 +81,7 @@ class FragmentPostTabs : BookBaseFragment() {
         }
 
         context?.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
-            ?.getString("LOGIN_TOKEN", "")
+            ?.getString("TOKEN", "")
             ?.let {
                 token = it
             }
