@@ -833,12 +833,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMain.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMainTabFirst.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMore.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentTabMain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentTabMain.kt">
           <value>
             <set />
           </value>
@@ -1499,6 +1514,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_more_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_tab_main.xml">
           <value>
             <set />
           </value>
