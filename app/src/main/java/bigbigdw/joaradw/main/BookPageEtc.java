@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main;
+package bigbigdw.joaradw.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,14 +19,12 @@ import java.util.Objects;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.fragment_best.MainBookListAdapterBest;
 import bigbigdw.joaradw.base.BookBaseActivity;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
-import bigbigdw.joaradw.main.MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class BookPageEtc extends BookBaseActivity {
     private MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
     LinearLayout cover;
     LinearLayout blank;
@@ -86,7 +84,7 @@ public class BookPageEtc extends BookBaseActivity {
             recyclerView.setAdapter(bestAdapter);
 
             bestAdapter.setOnItemClickListener((v, position, value) -> {
-                MainBookListData item = adapter.getItem(position);
+                OLD_MainBookListData item = adapter.getItem(position);
                 adapterListener(item, value, queue);
             });
         } else {
@@ -97,7 +95,7 @@ public class BookPageEtc extends BookBaseActivity {
             recyclerView.setAdapter(adapter);
 
             adapter.setOnItemClickListener((v, position, value) -> {
-                MainBookListData item = adapter.getItem(position);
+                OLD_MainBookListData item = adapter.getItem(position);
                 adapterListener(item, value, queue);
             });
         }

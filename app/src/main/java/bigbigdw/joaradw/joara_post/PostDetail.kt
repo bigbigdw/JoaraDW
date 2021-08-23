@@ -213,22 +213,8 @@ class PostDetail : AppCompatActivity() {
         myAlertBuilder.setPositiveButton(
             "예"
         ) { _, _ ->
-            val call = Retrofit.Builder()
-                .baseUrl(HELPER.API)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(PostDeleteCommentService::class.java)
-                .postRetrofit(
-                    "2,9,6,3,4,5,19",
-                    commentId,
-                    HELPER.API_KEY,
-                    HELPER.VER,
-                    HELPER.DEVICE,
-                    HELPER.DEVICE_ID,
-                    HELPER.DEVICE_TOKEN,
-                    token
-                )
 
-            call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+            RetrofitPost.postCommentDelete(commentId,token)!!.enqueue(object : Callback<PostWriteCommentResult?> {
                 override fun onResponse(call: Call<PostWriteCommentResult?>, response: Response<PostWriteCommentResult?>) {
                     if (response.isSuccessful) {
                         response.body()?.let { it ->
@@ -260,23 +246,8 @@ class PostDetail : AppCompatActivity() {
 
     //댓글 수정
     fun putCommentEdit(comment : String?, commentId: String?, commentDate: String?, position: Int?){
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(PostEditCommentService::class.java)
-            .putRetrofit(
-                comment,
-                "2,9,6,3,4,5,19",
-                commentId,
-                HELPER.API_KEY,
-                HELPER.VER,
-                HELPER.DEVICE,
-                HELPER.DEVICE_ID,
-                HELPER.DEVICE_TOKEN,
-                token
-            )
 
-        call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+        RetrofitPost.putCommentEdit(comment, commentId, token)!!.enqueue(object : Callback<PostWriteCommentResult?> {
             override fun onResponse(call: Call<PostWriteCommentResult?>, response: Response<PostWriteCommentResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
@@ -313,25 +284,11 @@ class PostDetail : AppCompatActivity() {
 
     //댓글 쓰기
     private fun postWriteComment(v : View){
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(PostWriteCommentService::class.java)
-            .postRetrofit(
-                postId,
-                commentEditText!!.text.toString(),
-                HELPER.API_KEY,
-                HELPER.VER,
-                HELPER.DEVICE,
-                HELPER.DEVICE_ID,
-                HELPER.DEVICE_TOKEN,
-                token
-            )
 
         if(commentEditText!!.text.toString() == ""){
             Toast.makeText(applicationContext, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show()
         } else {
-            call!!.enqueue(object : Callback<PostWriteCommentResult?> {
+            RetrofitPost.postWriteComment(postId, commentEditText!!.text.toString(),token)!!.enqueue(object : Callback<PostWriteCommentResult?> {
                 override fun onResponse(
                     call: Call<PostWriteCommentResult?>,
                     response: Response<PostWriteCommentResult?>
@@ -401,22 +358,8 @@ class PostDetail : AppCompatActivity() {
 
     //게시물 추천
     private fun postRecommend(){
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(PostRecommendService::class.java)
-            .postRetrofit(
-                postId,
-                "1",
-                HELPER.API_KEY,
-                HELPER.VER,
-                HELPER.DEVICE,
-                HELPER.DEVICE_ID,
-                HELPER.DEVICE_TOKEN,
-                token
-            )
 
-        call!!.enqueue(object : Callback<PostRecommendResult?> {
+        RetrofitPost.postRecommend(postId, token)!!.enqueue(object : Callback<PostRecommendResult?> {
             override fun onResponse(
                 call: Call<PostRecommendResult?>,
                 response: Response<PostRecommendResult?>
@@ -446,14 +389,7 @@ class PostDetail : AppCompatActivity() {
     //상세 데이터
     private fun getPostDetailData() {
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(PostDetailService::class.java)
-            .getRetrofit(postId, token)
-
-        retrofit!!.enqueue(object : Callback<PostDetailResult?> {
+        RetrofitPost.getPostDetailData(postId,token)!!.enqueue(object : Callback<PostDetailResult?> {
             override fun onResponse(
                 call: Call<PostDetailResult?>,
                 response: Response<PostDetailResult?>
@@ -576,17 +512,8 @@ class PostDetail : AppCompatActivity() {
 
     //댓글 정보
     private fun getCommentData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(PostCommentListService::class.java)
-            .getRetrofit(
-                postId,
-                token,
-                page.toString()
-            )
 
-        retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
+        RetrofitPost.getCommentData(postId,token, page.toString())!!.enqueue(object : Callback<PostCommentListResult?> {
             override fun onResponse(
                 call: Call<PostCommentListResult?>,
                 response: Response<PostCommentListResult?>
@@ -652,17 +579,8 @@ class PostDetail : AppCompatActivity() {
 
     //댓글 최신화
     private fun refreshCommentData(type : String?, comment : String?, position : Int?) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(PostCommentListService::class.java)
-            .getRetrofit(
-                postId,
-                token,
-                page.toString()
-            )
 
-        retrofit!!.enqueue(object : Callback<PostCommentListResult?> {
+        RetrofitPost.getCommentData(postId,token, page.toString())!!.enqueue(object : Callback<PostCommentListResult?> {
             override fun onResponse(
                 call: Call<PostCommentListResult?>,
                 response: Response<PostCommentListResult?>

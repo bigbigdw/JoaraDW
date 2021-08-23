@@ -25,41 +25,27 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_ITEM) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
-            PostListViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.spinner, parent, false)
-            LoadingViewHolder(view)
-        }
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
+        return  PostListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PostListViewHolder) {
-            populateItemRows(holder, position)
+            val item = listData!![position]
+            Glide.with(holder.itemView.context)
+                .load(item!!.postImg)
+                .into(holder.post)
+            holder.title.text = listData!![position]!!.title
+            holder.categoryName.text = listData!![position]!!.categoryName
+            holder.cntRead.text = listData!![position]!!.cntRead
+            holder.cntRecom.text = listData!![position]!!.cntRecom
+            holder.cntComment.text = listData!![position]!!.cntComment
+            holder.postId.text = listData!![position]!!.postId
         }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val viewTypeLoading = 1
-        return if (listData!![position] == null) viewTypeLoading else VIEW_TYPE_ITEM
     }
 
     override fun getItemCount(): Int {
         return if (listData == null) 0 else listData!!.size
-    }
-
-    private fun populateItemRows(holder: PostListViewHolder, position: Int) {
-        val item = listData!![position]
-        Glide.with(holder.itemView.context)
-                .load(item!!.postImg)
-                .into(holder.post)
-        holder.title.text = listData!![position]!!.title
-        holder.categoryName.text = listData!![position]!!.categoryName
-        holder.cntRead.text = listData!![position]!!.cntRead
-        holder.cntRecom.text = listData!![position]!!.cntRecom
-        holder.cntComment.text = listData!![position]!!.cntComment
-        holder.postId.text = listData!![position]!!.postId
     }
 
     inner class PostListViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -91,22 +77,12 @@ class AdapterPostList(items: List<PostListData?>?) : RecyclerView.Adapter<Recycl
         }
     }
 
-    private class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        init {
-            itemView.findViewById<View>(R.id.progressBar)
-        }
-    }
-
     fun setItems(items: List<PostListData?>?) {
         listData = items as ArrayList<PostListData?>?
     }
 
     fun getItem(position: Int): PostListData? {
         return listData!![position]
-    }
-
-    companion object {
-        private const val VIEW_TYPE_ITEM = 0
     }
 
     init {

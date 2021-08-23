@@ -21,14 +21,14 @@ import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class DetailTab2 extends BookBaseFragment {
     private MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
     LinearLayout cover;
     LinearLayout blank;
@@ -60,7 +60,7 @@ public class DetailTab2 extends BookBaseFragment {
         initAdapter();
 
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             if(value.equals("FAV")){
                 BookPagination.favToggle(queue, item.getBookCode(), userToken);
             } else if (value.equals("BookDetail")){

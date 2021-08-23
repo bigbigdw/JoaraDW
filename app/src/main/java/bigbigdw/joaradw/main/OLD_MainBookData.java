@@ -18,11 +18,11 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.model.BookInfo;
 
-public class MainBookData {
+public class OLD_MainBookData {
 
-    ArrayList<MainBookListData> items = new ArrayList<>();
+    ArrayList<OLD_MainBookListData> items = new ArrayList<>();
 
-    public ArrayList<MainBookListData> getData(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, String type) {
+    public ArrayList<OLD_MainBookListData> getData(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, String type) {
         String resultURL = HELPER.API + apiUrl + HELPER.ETC + etc;
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
             try {
@@ -44,7 +44,7 @@ public class MainBookData {
                     BookInfo tempBookInfo = BookInfo.getParseData(jo);
                     BookInfo tempBookInfoBest = BookInfo.getParseBest(i);
 
-                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
+                    items.add(new OLD_MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                     wrap.setVisibility(View.VISIBLE);
                 }
 

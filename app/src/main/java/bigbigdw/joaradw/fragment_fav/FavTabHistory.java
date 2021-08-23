@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,14 +31,14 @@ import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.model.BookInfo;
 
 public class FavTabHistory extends BookBaseFragment {
     MainBookListAdapterHistory adapter;
     RecyclerView recyclerView;
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
     LinearLayout loginLayout;
     String userToken;
@@ -119,7 +118,7 @@ public class FavTabHistory extends BookBaseFragment {
                                     for (int i = 0; i < flag.length(); i++) {
                                         JSONObject jo = flag.getJSONObject(i);
                                         BookInfo tempBookInfo = BookInfo.getParseData(jo);
-                                        items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
+                                        items.add(new OLD_MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
                                         wrap.setVisibility(View.VISIBLE);
                                     }
 

@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main;
+package bigbigdw.joaradw.main;
 
 import android.view.LayoutInflater;
 import android.view.View;

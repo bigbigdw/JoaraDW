@@ -128,20 +128,10 @@ class Main : AppCompatActivity() {
     }
 
     fun getIndexAPI(){
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(IndexAPIService::class.java)
-            .getRetrofit(
-                getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0"),
-                HELPER.API_KEY,
-                HELPER.VER,
-                HELPER.DEVICE,
-                HELPER.DEVICE_ID,
-                HELPER.DEVICE_TOKEN
-            )
 
-        call!!.enqueue(object : Callback<IndexAPIResult?> {
+        var menuVer = getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0")
+
+        RetrofitMain.getIndexAPI(menuVer)!!.enqueue(object : Callback<IndexAPIResult?> {
             override fun onResponse(call: Call<IndexAPIResult?>, response: Response<IndexAPIResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
@@ -184,21 +174,10 @@ class Main : AppCompatActivity() {
     }
 
     fun onClickLogout(){
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(LogoutService::class.java)
-            .getRetrofit(
-                "22%2C2",
-                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString(),
-                HELPER.API_KEY,
-                HELPER.VER,
-                HELPER.DEVICE,
-                HELPER.DEVICE_ID,
-                HELPER.DEVICE_TOKEN
-            )
 
-        call!!.enqueue(object : Callback<LogoutResult?> {
+        val token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString()
+
+        RetrofitMain.onClickLogout(token)!!.enqueue(object : Callback<LogoutResult?> {
             override fun onResponse(call: Call<LogoutResult?>, response: Response<LogoutResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
@@ -226,13 +205,8 @@ class Main : AppCompatActivity() {
         drawerLogOut: LinearLayout?,
         navigationView: NavigationView?
     ) {
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(CheckTokenService::class.java)
-            .getRetrofit(usertoken)
 
-        call!!.enqueue(object : Callback<CheckTokenResult?> {
+        RetrofitMain.loginCheck(usertoken)!!.enqueue(object : Callback<CheckTokenResult?> {
             override fun onResponse(call: Call<CheckTokenResult?>, response: Response<CheckTokenResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->

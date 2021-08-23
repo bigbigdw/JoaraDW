@@ -55,6 +55,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <com.synnapps.carouselview.CarouselView
+                        android:id="@+id/Carousel_MainBanner_Mid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="#F9F9F9"
+                        android:visibility="gone"
+                        app:disableAutoPlayOnUserInteraction="false"
+                        app:indicatorVisibility="gone"
+                        tools:visibility="visible" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/MainBookList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Contents" />
+
                 <include
                     layout="@layout/fragment_main_booklist_festival"
                     android:layout_width="match_parent"
@@ -69,17 +93,6 @@
                     layout="@layout/fragment_main_booklist_kidamu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-                <com.synnapps.carouselview.CarouselView
-                    android:id="@+id/Carousel_MainBanner_Mid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#F9F9F9"
-                    android:visibility="gone"
-                    app:disableAutoPlayOnUserInteraction="false"
-                    app:indicatorVisibility="gone"
-                    tools:visibility="visible" />
 
                 <include
                     layout="@layout/fragment_main_booklist_userpicked"
@@ -117,7 +130,6 @@
                     layout="@layout/footer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
 
 
             </LinearLayout>

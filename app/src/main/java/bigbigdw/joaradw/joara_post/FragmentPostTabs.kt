@@ -13,13 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.main.TabViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class FragmentPostTabs : BookBaseFragment() {
@@ -88,21 +85,8 @@ class FragmentPostTabs : BookBaseFragment() {
     }
 
     private fun getPostData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
 
-        val service = retrofit.create(PostListService::class.java)
-
-        val call = service.getRetrofit(
-            "5f3d29431deb982466d8aa50cf0fc6ab",
-            "1",
-            "",
-            orderBy,
-            "10", "1"
-        )
-
-        call!!.enqueue(object : Callback<PostTabResult?> {
+        RetrofitPost.getPostData(token, orderBy)!!.enqueue(object : Callback<PostTabResult?> {
             override fun onResponse(
                 call: Call<PostTabResult?>,
                 response: Response<PostTabResult?>

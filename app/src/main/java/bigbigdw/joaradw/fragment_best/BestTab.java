@@ -25,13 +25,13 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
-import bigbigdw.joaradw.main.MainBookData;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.R;
 
 public class BestTab extends BookBaseFragment {
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
     private TabViewModel tabViewModel;
     String bestType = "weekly";
@@ -158,11 +158,11 @@ public class BestTab extends BookBaseFragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         LinearLayout wrap = root.findViewById(integerWrap);
-        adapter.setItems(new MainBookData().getData(API.BEST_BOOK_JOA, etc, queue, wrap, "BEST"));
+        adapter.setItems(new OLD_MainBookData().getData(API.BEST_BOOK_JOA, etc, queue, wrap, "BEST"));
         adapter.notifyDataSetChanged();
 
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
         });
     }

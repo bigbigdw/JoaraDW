@@ -12,12 +12,12 @@ import retrofit2.http.Body
 interface PostListService {
     @GET("v1/board/post_list.joa" + HELPER.ETC)
     fun getRetrofit(
-            @Query("token") token: String?,
-            @Query("category") category: String?,
-            @Query("category_id") categoryId: String?,
-            @Query("orderby") orderBy: String?,
-            @Query("offset") offset: String?,
-            @Query("page") page: String?,
+        @Query("token") token: String?,
+        @Query("category") category: String?,
+        @Query("category_id") categoryId: String?,
+        @Query("orderby") orderBy: String?,
+        @Query("offset") offset: String?,
+        @Query("page") page: String?,
     ): Call<PostTabResult?>?
 }
 

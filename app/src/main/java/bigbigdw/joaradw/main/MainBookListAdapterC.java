@@ -25,7 +25,7 @@ import bigbigdw.joaradw.R;
 
 
 public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<MainBookListData> listData;
+    ArrayList<OLD_MainBookListData> listData;
     private static final int VIEW_TYPE_ITEM = 0;
     String f = "FALSE";
 
@@ -39,8 +39,8 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
         this.listener = listener;
     }
 
-    public MainBookListAdapterC(List<MainBookListData> items) {
-        this.listData = (ArrayList<MainBookListData>) items;
+    public MainBookListAdapterC(List<OLD_MainBookListData> items) {
+        this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
 
@@ -76,7 +76,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private void populateItemRows(MainBookListViewHolderC holder, int position) {
-        MainBookListData item = listData.get(position);
+        OLD_MainBookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
@@ -223,11 +223,11 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
     }
 
 
-    public void setItems(List<MainBookListData> items) {
-        this.listData = (ArrayList<MainBookListData>) items;
+    public void setItems(List<OLD_MainBookListData> items) {
+        this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
-    public MainBookListData getItem(int position) {
+    public OLD_MainBookListData getItem(int position) {
         return listData.get(position);
     }
 }

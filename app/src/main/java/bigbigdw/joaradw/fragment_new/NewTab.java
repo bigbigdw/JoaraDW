@@ -1,9 +1,7 @@
 package bigbigdw.joaradw.fragment_new;
 
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +9,11 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,12 +25,12 @@ import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookDataJSON;
 import bigbigdw.joaradw.main.TabViewModel;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class NewTab extends BookBaseFragment {
     private MainBookListAdapterC adapter;
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
     private TabViewModel tabviewmodel;
     LinearLayout wrap;
@@ -134,7 +129,7 @@ public class NewTab extends BookBaseFragment {
         BookPagination.scrollListener(API.BOOK_LIST_JOA, queue, wrap, items, adapter, recyclerView, etc);
 
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
         });
     }

@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.etc
+package bigbigdw.joaradw.main
 
 import android.app.Activity
 import android.os.Bundle
@@ -7,15 +7,10 @@ import android.os.Looper
 import android.content.Intent
 import android.os.Handler
 import android.util.Log
-import bigbigdw.joaradw.Config
-import bigbigdw.joaradw.main.Main
 import bigbigdw.joaradw.util.CheckTokenResult
-import bigbigdw.joaradw.util.CheckTokenService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class Splash : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,18 +33,20 @@ class Splash : Activity() {
     override fun onResume() {
         super.onResume()
 
-        val call = Retrofit.Builder()
-            .baseUrl(HELPER.API)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(CheckTokenService::class.java)
-            .getRetrofit(getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", ""))
-
-        call!!.enqueue(object : Callback<CheckTokenResult?> {
-            override fun onResponse(call: Call<CheckTokenResult?>, response: Response<CheckTokenResult?>) {
+        RetrofitMain.loginCheck(
+            getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+                "TOKEN",
+                ""
+            )
+        )!!.enqueue(object : Callback<CheckTokenResult?> {
+            override fun onResponse(
+                call: Call<CheckTokenResult?>,
+                response: Response<CheckTokenResult?>
+            ) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val status = it.status
-                        if(status != 1){
+                        if (status != 1) {
                             val editor = getSharedPreferences("LOGIN", MODE_PRIVATE).edit()
                             editor.clear()
                             editor.apply()

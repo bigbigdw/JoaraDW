@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.etc.HELPER;
 
 public class MainBookDataWebtoon {
-    ArrayList<MainBookListData> items = new ArrayList<>();
+    ArrayList<OLD_MainBookListData> items = new ArrayList<>();
 
-    public ArrayList<MainBookListData> getData(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap) {
+    public ArrayList<OLD_MainBookListData> getData(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap) {
 
         String resultURL = HELPER.API + apiUrl + HELPER.ETC + etc;
 
@@ -32,7 +32,7 @@ public class MainBookDataWebtoon {
                     String bookImg = jo.getString("webtoon_img");
                     String title = jo.getString("webtoon_title");
 
-                    items.add(new MainBookListData("", title, bookImg, "", "", "", "", "", "", "", "", "", 0, "", "", "",""));
+                    items.add(new OLD_MainBookListData("", title, bookImg, "", "", "", "", "", "", "", "", "", 0, "", "", "",""));
                 }
 
                 wrap.setVisibility(View.VISIBLE);

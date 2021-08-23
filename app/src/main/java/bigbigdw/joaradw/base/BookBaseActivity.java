@@ -1,9 +1,6 @@
 package bigbigdw.joaradw.base;
 
 import android.content.Intent;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +22,7 @@ import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.book_detail.DetailBookPageData;
 import bigbigdw.joaradw.book_viewer.BookViewer;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 
 public class BookBaseActivity extends AppCompatActivity {
 
@@ -81,7 +78,7 @@ public class BookBaseActivity extends AppCompatActivity {
         }
     }
 
-    public void adapterListener(MainBookListData item, String value, RequestQueue queue) {
+    public void adapterListener(OLD_MainBookListData item, String value, RequestQueue queue) {
         if (value.equals("FAV")) {
             BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {

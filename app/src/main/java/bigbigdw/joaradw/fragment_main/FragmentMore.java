@@ -19,6 +19,9 @@ import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
+import bigbigdw.joaradw.main.MainMoreAadapter;
+import bigbigdw.joaradw.main.MainMoreEventData;
+import bigbigdw.joaradw.main.MainMoreNoticeData;
 import bigbigdw.joaradw.policy.Policy;
 
 public class FragmentMore extends BookBaseFragment {

@@ -20,11 +20,11 @@ import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.fragment_main.BookPageEtc;
-import bigbigdw.joaradw.main.MainBookListAdapterA;
+import bigbigdw.joaradw.main.BookPageEtc;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
 import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookListAdapterD;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 
 public class BookBaseFragment extends Fragment {
@@ -72,11 +72,11 @@ public class BookBaseFragment extends Fragment {
         }
     }
 
-    public void bookListA(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterA adapter, Integer wrap) {
+    public void bookListA(View root, String apiUrl, String etc, Integer recylerView, OLD_MainBookListAdapterA adapter, Integer wrap) {
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
         BookList.bookListA(root, apiUrl, etc, recylerView, adapter, queue, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue);
         });
     }
@@ -85,7 +85,7 @@ public class BookBaseFragment extends Fragment {
         RequestQueue queue2 = Volley.newRequestQueue(requireActivity());
         BookList.bookListC(root, apiUrl, etc, recylerView, adapter, queue2, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue2);
         });
     }
@@ -94,12 +94,12 @@ public class BookBaseFragment extends Fragment {
         RequestQueue queue3 = Volley.newRequestQueue(requireActivity());
         BookList.bookListD(root, apiUrl, etc, recylerView, adapter, queue3, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue3);
         });
     }
 
-    public void adapterListener(MainBookListData item, String value, RequestQueue queue) {
+    public void adapterListener(OLD_MainBookListData item, String value, RequestQueue queue) {
         if (value.equals("FAV")) {
             BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {

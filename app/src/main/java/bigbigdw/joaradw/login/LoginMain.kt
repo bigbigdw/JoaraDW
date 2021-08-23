@@ -8,18 +8,14 @@ import bigbigdw.joaradw.R
 import com.android.volley.toolbox.Volley
 import android.text.TextWatcher
 import android.text.Editable
-import bigbigdw.joaradw.etc.HELPER
 import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.*
 import bigbigdw.joaradw.main.Main
 import bigbigdw.joaradw.util.LoginResult
-import bigbigdw.joaradw.util.LoginService
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class LoginMain : AppCompatActivity() {
@@ -89,21 +85,7 @@ class LoginMain : AppCompatActivity() {
             val idCheck = Objects.requireNonNull(idtext!!.editText)?.text.toString()
             val pwCheck = Objects.requireNonNull(pwtext!!.editText)?.text.toString()
 
-            val call = Retrofit.Builder()
-                .baseUrl(HELPER.API)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(LoginService::class.java)
-                .postRetrofit(
-                    idCheck,
-                    pwCheck,
-                    HELPER.API_KEY,
-                    HELPER.VER,
-                    HELPER.DEVICE,
-                    HELPER.DEVICE_ID,
-                    HELPER.DEVICE_TOKEN
-                )
-
-            call!!.enqueue(object : Callback<LoginResult?> {
+            RetrofitLogin.postLogin(idCheck,pwCheck)!!.enqueue(object : Callback<LoginResult?> {
                 override fun onResponse(
                     call: Call<LoginResult?>,
                     response: retrofit2.Response<LoginResult?>

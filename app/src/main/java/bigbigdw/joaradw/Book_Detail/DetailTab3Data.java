@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.fragment_main.MainMoreListData;
+import bigbigdw.joaradw.main.MainMoreListData;
 
 public class DetailTab3Data {
     ArrayList<MainMoreListData> items = new ArrayList<>();

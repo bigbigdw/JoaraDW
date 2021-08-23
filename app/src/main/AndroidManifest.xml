@@ -13,7 +13,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
-            android:name="bigbigdw.joaradw.etc.Splash"
+            android:name="bigbigdw.joaradw.main.Splash"
             android:theme="@style/Theme.JoaraDWBookDetail">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.fragment_main.BookPageEtc"
+            android:name="bigbigdw.joaradw.main.BookPageEtc"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>

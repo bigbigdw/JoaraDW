@@ -20,9 +20,9 @@ import java.util.List;
 import bigbigdw.joaradw.R;
 
 
-public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class OLD_MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<MainBookListData> listData = new ArrayList<>();
+    private ArrayList<OLD_MainBookListData> listData = new ArrayList<>();
     String f = "FALSE";
     String t = "True";
 
@@ -39,36 +39,42 @@ public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_a, parent, false);
-        return new MainBookListViewHolderA(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booklist_a, parent, false);
+        return new OLD_MainBookListViewHolderA(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        MainBookListData item = listData.get(position);
-        ConstraintLayout cover = ((MainBookListViewHolderA) holder).underCover;
-        TextView text = ((MainBookListViewHolderA) holder).underCoverText;
+        OLD_MainBookListData item = listData.get(position);
+        ConstraintLayout cover = ((OLD_MainBookListViewHolderA) holder).underCover;
+        TextView text = ((OLD_MainBookListViewHolderA) holder).underCoverText;
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
-                .into(((MainBookListViewHolderA) holder).image);
+                .into(((OLD_MainBookListViewHolderA) holder).image);
 
-        ((MainBookListViewHolderA) holder).title.setText(listData.get(position).getTitle());
-        ((MainBookListViewHolderA) holder).writer.setText(listData.get(position).getWriter());
+        ((OLD_MainBookListViewHolderA) holder).title.setText(listData.get(position).getTitle());
+        ((OLD_MainBookListViewHolderA) holder).writer.setText(listData.get(position).getWriter());
 
         if (listData.get(position).getIsNobless().equals(t) && listData.get(position).getIsAdult().equals(f)) {
             textSetting(cover, text, R.string.NOBLESS, 0xAAa5c500);
+            cover.setVisibility(View.VISIBLE);
         } else if (listData.get(position).getIsPremium().equals(t) && listData.get(position).getIsAdult().equals(f)) {
             textSetting(cover, text, R.string.PREMIUM, 0xAA4971EF);
+            cover.setVisibility(View.VISIBLE);
         } else if (listData.get(position).getIsFinish().equals(t) && listData.get(position).getIsAdult().equals(f)) {
             textSetting(cover, text, R.string.FINISH, 0xAA767676);
+            cover.setVisibility(View.VISIBLE);
         } else if (listData.get(position).getIsNobless().equals(t) && listData.get(position).getIsAdult().equals(t)) {
             textSetting(cover, text, R.string.ADULT_NOBLESS, 0xAAF44336);
+            cover.setVisibility(View.VISIBLE);
         } else if (listData.get(position).getIsPremium().equals(t) && listData.get(position).getIsAdult().equals(t)) {
             textSetting(cover, text, R.string.ADULT_PREMIUM, 0xAA4971EF);
+            cover.setVisibility(View.VISIBLE);
         } else if (listData.get(position).getIsFinish().equals(t) && listData.get(position).getIsAdult().equals(t)) {
             textSetting(cover, text, R.string.ADULT_FINISH, 0xAA767676);
+            cover.setVisibility(View.VISIBLE);
         } else {
             cover.setVisibility(View.GONE);
         }
@@ -86,15 +92,15 @@ public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.View
         return listData.size();
     }
 
-    public void setItems(List<MainBookListData> items) {
-        this.listData = (ArrayList<MainBookListData>) items;
+    public void setItems(List<OLD_MainBookListData> items) {
+        this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
-    public MainBookListData getItem(int position) {
+    public OLD_MainBookListData getItem(int position) {
         return listData.get(position);
     }
 
-    public class MainBookListViewHolderA extends RecyclerView.ViewHolder {
+    public class OLD_MainBookListViewHolderA extends RecyclerView.ViewHolder {
 
         ImageView image;
         TextView title;
@@ -104,7 +110,7 @@ public class MainBookListAdapterA extends RecyclerView.Adapter<RecyclerView.View
         ConstraintLayout underCover;
         CardView imgWrap;
 
-        MainBookListViewHolderA(@NonNull View itemView) {
+        OLD_MainBookListViewHolderA(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.Img_BookA);
             title = itemView.findViewById(R.id.Text_TitleA);

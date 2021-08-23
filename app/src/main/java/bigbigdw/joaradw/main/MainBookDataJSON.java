@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.model.BookInfo;
 
 public class MainBookDataJSON {
-    ArrayList<MainBookListData> items = new ArrayList<>();
+    ArrayList<OLD_MainBookListData> items = new ArrayList<>();
 
-    public ArrayList<MainBookListData> getData(AssetManager assetManager, String bookType) {
+    public ArrayList<OLD_MainBookListData> getData(AssetManager assetManager, String bookType) {
 
         try {
             try(InputStream is = assetManager.open(bookType)){
@@ -41,7 +41,7 @@ public class MainBookDataJSON {
 
                     BookInfo tempBookInfo = BookInfo.getParseData(jo);
 
-                    items.add(new MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"","","",tempBookInfo.getCtnChapter()));
+                    items.add(new OLD_MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),"","","",0,"","","",tempBookInfo.getCtnChapter()));
                 }
             }
         } catch (IOException | JSONException e) {

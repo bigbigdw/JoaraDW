@@ -28,12 +28,12 @@ import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.main.MainBookListAdapterC;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.R;
 
 public class FinishTab extends BookBaseFragment {
-    private final ArrayList<MainBookListData> items = new ArrayList<>();
+    private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
     private TabViewModel tabViewModel;
     String finishType = "redate";
@@ -127,7 +127,7 @@ public class FinishTab extends BookBaseFragment {
         BookList.bookListC(root, API.BOOK_LIST_JOA, etc, recylerView, adapter, queue, wrap);
 
         adapter.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = adapter.getItem(position);
+            OLD_MainBookListData item = adapter.getItem(position);
             if (value.equals("FAV")) {
                 BookPagination.favToggle(queue, item.getBookCode(), userToken);
             } else if (value.equals("BookDetail")) {

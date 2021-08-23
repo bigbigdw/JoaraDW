@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigbigdw.joaradw.fragment_main.MainMoreListData;
+import bigbigdw.joaradw.main.MainMoreListData;
 import bigbigdw.joaradw.R;
 
 public class BookDetailPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

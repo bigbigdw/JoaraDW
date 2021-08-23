@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main;
+package bigbigdw.joaradw.main;
 
 public class MainMoreListData {
     String contents;

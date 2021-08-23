@@ -16,12 +16,12 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class MainBookListAdapterFav extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<MainBookListData> listData;
+    ArrayList<OLD_MainBookListData> listData;
     private static final int VIEW_TYPE_ITEM = 0;
 
     public interface OnItemClickListener {
@@ -34,8 +34,8 @@ public class MainBookListAdapterFav extends RecyclerView.Adapter<RecyclerView.Vi
         this.listener = listener;
     }
 
-    public MainBookListAdapterFav(List<MainBookListData> items) {
-        this.listData = (ArrayList<MainBookListData>) items;
+    public MainBookListAdapterFav(List<OLD_MainBookListData> items) {
+        this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
     @NonNull
@@ -70,7 +70,7 @@ public class MainBookListAdapterFav extends RecyclerView.Adapter<RecyclerView.Vi
 
 
     private void populateItemRows(MainBookListViewHolderNew holder, int position) {
-        MainBookListData item = listData.get(position);
+        OLD_MainBookListData item = listData.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getBookImg())
@@ -158,11 +158,11 @@ public class MainBookListAdapterFav extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public void setItems(List<MainBookListData> items) {
-        this.listData = (ArrayList<MainBookListData>) items;
+    public void setItems(List<OLD_MainBookListData> items) {
+        this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
-    public MainBookListData getItem(int position) {
+    public OLD_MainBookListData getItem(int position) {
         return listData.get(position);
     }
 }

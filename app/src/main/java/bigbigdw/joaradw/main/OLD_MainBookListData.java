@@ -1,6 +1,6 @@
 package bigbigdw.joaradw.main;
 
-public class MainBookListData {
+public class OLD_MainBookListData {
     String writer;
     String title;
     String bookImg;
@@ -19,7 +19,7 @@ public class MainBookListData {
     String cntChapter;
     int bookBestRank;
 
-    public MainBookListData(String writer, String title, String bookImg, String isAdult, String isFinish, String isPremium, String isNobless, String intro, String isFav, String bookViewed, String bookFavCount, String bookRecommend, int bookBestRank, String readCount, String bookCode, String bookCategory, String cntChapter) {
+    public OLD_MainBookListData(String writer, String title, String bookImg, String isAdult, String isFinish, String isPremium, String isNobless, String intro, String isFav, String bookViewed, String bookFavCount, String bookRecommend, int bookBestRank, String readCount, String bookCode, String bookCategory, String cntChapter) {
         this.writer = writer;
         this.title = title;
         this.bookImg = bookImg;

@@ -14,7 +14,7 @@ import bigbigdw.joaradw.test.FragmentTest
 import androidx.fragment.app.FragmentPagerAdapter
 import java.util.ArrayList
 
-class FragmentMain : BookBaseFragment(), InterfaceMainBannerAPI {
+class FragmentMain : BookBaseFragment() {
     var tabNum = 0
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class FragmentMain : BookBaseFragment(), InterfaceMainBannerAPI {
         val adapter = ViewPagerAdapter(
             childFragmentManager
         )
-        adapter.addFragment(FragmentMainTabFirst(), "선호 작품")
+        adapter.addFragment(FragmentMainTabFirst(), "전체")
         adapter.addFragment(FragmentTest(), "판타지")
         adapter.addFragment(FragmentTest(), "무협")
         adapter.addFragment(FragmentTest(), "퓨전")

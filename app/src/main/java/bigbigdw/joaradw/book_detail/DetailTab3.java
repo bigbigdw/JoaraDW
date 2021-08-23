@@ -17,13 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseFragment;
@@ -31,15 +27,15 @@ import bigbigdw.joaradw.book_viewer.ViewerSetting;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.fragment_main.MainMoreAadapter;
-import bigbigdw.joaradw.main.MainBookListAdapterA;
+import bigbigdw.joaradw.main.MainMoreAadapter;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.MainBookListData;
+import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class DetailTab3 extends BookBaseFragment {
-    private final MainBookListAdapterA bookListAdapterA = new MainBookListAdapterA();
+    private final OLD_MainBookListAdapterA bookListAdapterA = new OLD_MainBookListAdapterA();
     private final MainMoreAadapter moreAadapter = new MainMoreAadapter();
     private final MainMoreAadapter surveyAdapter = new MainMoreAadapter();
     private final MainMoreAadapter settingAdapter = new MainMoreAadapter();
@@ -119,7 +115,7 @@ public class DetailTab3 extends BookBaseFragment {
         BookList.bookListA(root, API.RECOMMEND_LIST_API_JOA, etc, R.id.BookDetail, bookListAdapterA, queue, R.id.TabWrap);
 
         bookListAdapterA.setOnItemClickListener((v, position, value) -> {
-            MainBookListData item = bookListAdapterA.getItem(position);
+            OLD_MainBookListData item = bookListAdapterA.getItem(position);
             if(value.equals("FAV")){
                 BookPagination.favToggle(queue, item.getBookCode(), userToken);
             } else if (value.equals("BookDetail")){
