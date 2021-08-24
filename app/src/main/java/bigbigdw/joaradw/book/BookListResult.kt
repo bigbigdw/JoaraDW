@@ -1,18 +1,34 @@
 package bigbigdw.joaradw.book
 
+import bigbigdw.joaradw.fragment_main.MainBannerValue
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+//이어보기
+class BookListResult {
 
-//작품 리스트
-class BookListAResult {
-    @SerializedName("books")
     @Expose
-    val banner: List<BooksValue>? = null
+    val books: List<BooksListValue>? = null
+
+    @Expose
+    val webtoons: List<WebtoonListValue>? = null
 }
 
-//작품 리스트 상세
-class BooksValue {
+class WebtoonListValue {
+    @SerializedName("webtoon_img")
+    @Expose
+    var webtoon_img: String? = null
+
+    @SerializedName("webtoon_title")
+    @Expose
+    var webtoon_title: String? = null
+
+    @SerializedName("is_adult")
+    @Expose
+    var is_adult: String? = null
+}
+
+class BooksListValue {
     @SerializedName("book_code")
     @Expose
     var bookCode: String? = null
@@ -21,9 +37,9 @@ class BooksValue {
     @Expose
     var bookImg: String? = null
 
-    @SerializedName("cnt_chapter")
+    @SerializedName("history_sortno")
     @Expose
-    var cntChapter: String? = null
+    var historySortno: String? = null
 
     @SerializedName("subject")
     @Expose
@@ -32,4 +48,8 @@ class BooksValue {
     @SerializedName("writer_name")
     @Expose
     var writerName: String? = null
+
+    @SerializedName("is_adult")
+    @Expose
+    var is_adult: String? = null
 }

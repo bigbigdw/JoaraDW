@@ -13,27 +13,41 @@ interface MainHistoryBookService {
         @Query("token") token: String?,
         @Query("page") page: String?,
         @Query("offset") offset: String?,
-    ): Call<MainBannerResult?>?
+        @Query("recommend_book") section_mode: String?,
+    ): Call<BookListResult?>?
 }
 
 //메인 북데이터 취향 저격
-interface MainRecommedBookService {
+interface MainRecommendBookService {
     @GET("v1/book/recommend_list_api" + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
         @Query("offset") offset: String?,
-    ): Call<MainBannerResult?>?
+        @Query("recommend_book") section_mode: String?,
+    ): Call<BookListResult?>?
 }
 
-//메인 북 리스트
-interface MainHomeListBookService {
+//메인 북 MD추천
+interface MainMDBookService {
     @GET("v1/home/list.joa" + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
         @Query("offset") offset: String?,
-    ): Call<MainBannerResult?>?
+        @Query("recommend_book") section_mode: String?,
+    ): Call<BookListResult?>?
+}
+
+//메인 북 웹툰
+interface MainMDWebtoonService {
+    @GET("v1/home/webtoon_list" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("page") page: String?,
+        @Query("offset") offset: String?,
+        @Query("recommend_book") section_mode: String?,
+    ): Call<BookListResult?>?
 }
 
 interface MainBookListBookService {
@@ -42,16 +56,8 @@ interface MainBookListBookService {
         @Query("token") token: String?,
         @Query("page") page: String?,
         @Query("offset") offset: String?,
-    ): Call<MainBannerResult?>?
+    ): Call<BookListResult?>?
 }
 
-//메인 북 웹툰
-interface MainWebtoonListBookService {
-    @GET("v1/home/webtoon_list" + HELPER.ETC)
-    fun getRetrofit(
-        @Query("token") token: String?,
-        @Query("page") page: String?,
-        @Query("offset") offset: String?,
-    ): Call<MainBannerResult?>?
-}
+
 

@@ -15,7 +15,7 @@ import bigbigdw.joaradw.main.MainBookListAdapterC;
 import bigbigdw.joaradw.main.OLD_MainBookData;
 import bigbigdw.joaradw.main.MainBookDataJSON;
 import bigbigdw.joaradw.main.MainBookDataWebtoon;
-import bigbigdw.joaradw.main.MainBookListAdapterB;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterB;
 
 
 public interface BookList {
@@ -30,7 +30,7 @@ public interface BookList {
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListB(View root, AssetManager assetManager, String bookType, Integer recylerView, MainBookListAdapterB adapter) {
+    static void bookListB(View root, AssetManager assetManager, String bookType, Integer recylerView, OLD_MainBookListAdapterB adapter) {
         RecyclerView recyclerView = root.findViewById(recylerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);

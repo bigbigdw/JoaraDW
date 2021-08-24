@@ -18,14 +18,14 @@ import java.util.List;
 import bigbigdw.joaradw.R;
 
 
-public class MainBookListAdapterB extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class OLD_MainBookListAdapterB extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<OLD_MainBookListData> listData = new ArrayList<>();
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_b, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booklist_b, parent, false);
         return new MainBooklistviewholderB(view);
     }
 

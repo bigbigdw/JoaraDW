@@ -8,116 +8,6 @@
             <set />
           </value>
         </entry>
-        <entry key="/a.dummy">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/foo.bar">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/build/generated/source/buildConfig/debug/com/joara/mobile/BuildConfig.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityBookDetail.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityInquiry.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityInquirySend.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityIntro.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityProfileManagement.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/dialog/AppAcessDialog.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/fragment/FragmentBookSupportBacking.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/model/ItemBookInfo.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/net/NetInfo.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/scheme/SchemePolicy.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/adapter/PostCommentAdapter.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c_btn.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c_cancel.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/layout/cu_dialog.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/layout/dialog_appacess.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/values/strings.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="/private/var/www/project/joara_android_v1/gradle.properties">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/../EXAMPLE/Nested-Json-Objects/app/src/main/java/com/snilloc/nestedjsonobjects/JsonPlaceHolderAPI.kt">
           <value>
             <set />
@@ -494,6 +384,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListA.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListB.kt">
           <value>
             <set />
           </value>
@@ -1308,6 +1203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListData.java">
           <value>
             <set />
@@ -1664,6 +1564,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_festival.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_mdnovel.xml">
           <value>
             <set />
           </value>
@@ -2054,6 +1959,116 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../code/joara_android_v1/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/foo.bar">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/build/generated/source/buildConfig/debug/com/joara/mobile/BuildConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityBookDetail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityInquiry.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityInquirySend.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityIntro.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/ActivityProfileManagement.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/dialog/AppAcessDialog.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/fragment/FragmentBookSupportBacking.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/model/ItemBookInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/net/NetInfo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/scheme/SchemePolicy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/util/Util.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/java/com/joara/mobile/view/contentboard/adapter/PostCommentAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c_btn.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/drawable/bg_shape_optalert_c_cancel.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/layout/cu_dialog.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/layout/dialog_appacess.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/private/var/www/project/joara_android_v1/gradle.properties">
           <value>
             <set />
           </value>
