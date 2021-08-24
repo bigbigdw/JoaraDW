@@ -19,7 +19,7 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
     var t = "True"
 
     interface OnItemClickListener {
-        fun onItemClick(v: View?, position: Int)
+        fun onItemClick(v: View?, position: Int, value: String?)
     }
 
     private var listener: OnItemClickListener? = null
@@ -36,9 +36,6 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MainBookViewHolder) {
 
-            val cover = holder.underCover
-            val text = holder.underCoverText
-
             val item = listData!![position]
             Glide.with(holder.itemView.context)
                 .load(item!!.bookImg)
@@ -46,36 +43,43 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
 
             holder.title.text = listData!![position]!!.title
             holder.writer.text = listData!![position]!!.writer
+            holder.underCoverText.text = listData!![position]!!.historySortno + "편"
 
-            if (listData!![position]!!.isNobless == t && listData!![position]!!.isAdult == f) {
-                textSetting(cover, text, R.string.NOBLESS, -0x555a3b00)
-                cover.visibility = View.VISIBLE
-            } else if (listData!![position]!!.isPremium == t && listData!![position]!!.isAdult == f) {
-                textSetting(cover, text, R.string.PREMIUM, -0x55b68e11)
-                cover.visibility = View.VISIBLE
-            } else if (listData!![position]!!.isFinish == t && listData!![position]!!.isAdult == f) {
-                textSetting(cover, text, R.string.FINISH, -0x5589898a)
-                cover.visibility = View.VISIBLE
-            } else if (listData!![position]!!.isNobless == t && listData!![position]!!.isAdult == t) {
-                textSetting(cover, text, R.string.ADULT_NOBLESS, -0x550bbcca)
-                cover.visibility = View.VISIBLE
-            } else if (listData!![position]!!.isPremium == t && listData!![position]!!.isAdult == t) {
-                textSetting(cover, text, R.string.ADULT_PREMIUM, -0x55b68e11)
-                cover.visibility = View.VISIBLE
-            } else if (listData!![position]!!.isFinish == t && listData!![position]!!.isAdult == t) {
-                textSetting(cover, text, R.string.ADULT_FINISH, -0x5589898a)
-                cover.visibility = View.VISIBLE
+            if(listData!![position]!!.listType.equals("HISTORY")){
+                holder.underCover.visibility = View.VISIBLE
             } else {
-                cover.visibility = View.GONE
+                holder.underCover.visibility = View.GONE
             }
+
+//            if (listData!![position]!!.isNobless == t && listData!![position]!!.isAdult == f) {
+//                textSetting(cover, text, R.string.NOBLESS, -0x555a3b00)
+//                cover.visibility = View.VISIBLE
+//            } else if (listData!![position]!!.isPremium == t && listData!![position]!!.isAdult == f) {
+//                textSetting(cover, text, R.string.PREMIUM, -0x55b68e11)
+//                cover.visibility = View.VISIBLE
+//            } else if (listData!![position]!!.isFinish == t && listData!![position]!!.isAdult == f) {
+//                textSetting(cover, text, R.string.FINISH, -0x5589898a)
+//                cover.visibility = View.VISIBLE
+//            } else if (listData!![position]!!.isNobless == t && listData!![position]!!.isAdult == t) {
+//                textSetting(cover, text, R.string.ADULT_NOBLESS, -0x550bbcca)
+//                cover.visibility = View.VISIBLE
+//            } else if (listData!![position]!!.isPremium == t && listData!![position]!!.isAdult == t) {
+//                textSetting(cover, text, R.string.ADULT_PREMIUM, -0x55b68e11)
+//                cover.visibility = View.VISIBLE
+//            } else if (listData!![position]!!.isFinish == t && listData!![position]!!.isAdult == t) {
+//                textSetting(cover, text, R.string.ADULT_FINISH, -0x5589898a)
+//                cover.visibility = View.VISIBLE
+//            } else {
+//                cover.visibility = View.GONE
+//            }
         }
     }
 
-    private fun textSetting(cover: ConstraintLayout, text: TextView, title: Int, color: Int) {
-        cover.visibility = View.VISIBLE
-        text.setText(title)
-        text.setTextColor(color)
-    }
+//    private fun textSetting(cover: ConstraintLayout, text: TextView, title: Int, color: Int) {
+//        cover.visibility = View.VISIBLE
+//        text.setText(title)
+//        text.setTextColor(color)
+//    }
 
 
     override fun getItemCount(): Int {
@@ -101,6 +105,12 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
             bookCode = itemView.findViewById(R.id.BookCodeText)
             imgWrap = itemView.findViewById(R.id.Img_Wrap)
 
+            imgWrap.setOnClickListener { v: View? ->
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(v, pos, "BookDetail")
+                }
+            }
         }
     }
 

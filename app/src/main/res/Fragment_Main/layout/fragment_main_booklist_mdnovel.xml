@@ -52,13 +52,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
-                android:text="@string/Common_SeeMore"
-                android:textColor="@color/Contents_Text2" />
-
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

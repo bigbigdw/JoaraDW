@@ -10,13 +10,8 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/toolbar_activity.xml" value="0.13958333333333334" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Fav/layout/fragment_fav.xml" value="0.2585128561501042" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main.xml" value="0.25833333333333336" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_festival.xml" value="0.25625" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_kidamu.xml" value="0.2548611111111111" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_mdwebtoon.xml" value="0.15416666666666667" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_tab_first.xml" value="0.15625" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_top_bar.xml" value="0.2569444444444444" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_tab_main.xml" value="0.16180555555555556" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/item_fragment_main_book.xml" value="0.15694444444444444" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/dialog_post.xml" value="0.1" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/fragment_post_list.xml" value="0.2423611111111111" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/fragment_post_tabs.xml" value="0.13402777777777777" />
@@ -28,10 +23,6 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_contents.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_drawer.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_wrap.xml" value="0.17401315789473684" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_booklist_a.xml" value="0.2534722222222222" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_a.xml" value="0.20716612377850163" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_b.xml" value="0.15694444444444444" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_best.xml" value="0.15694444444444444" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_c.xml" value="0.18848684210526315" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_comment_edittext.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape.xml" value="0.17152777777777778" />
@@ -44,6 +35,11 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_wrap.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/layout/fragment_main.xml" value="0.16180555555555556" />
         <entry key="app/src/main/res/Etc/layout/popup.xml" value="0.20625" />
+        <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_history.xml" value="0.23981481481481481" />
+        <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_hobby.xml" value="0.25" />
+        <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_mdnovel.xml" value="0.1" />
+        <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_mdwebtoon.xml" value="0.1" />
+        <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_tab_first.xml" value="0.1" />
         <entry key="app/src/main/res/Joara_Post/layout/item_post_comment.xml" value="0.1" />
         <entry key="app/src/main/res/Joara_Post/layout/post_detail.xml" value="0.20625" />
         <entry key="app/src/main/res/drawable/bg_comment_edittext.xml" value="0.23541666666666666" />

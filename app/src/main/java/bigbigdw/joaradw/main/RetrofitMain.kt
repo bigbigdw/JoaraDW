@@ -2,6 +2,7 @@ package bigbigdw.joaradw.main
 
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.fragment_main.MainBannerResult
+import bigbigdw.joaradw.fragment_main.MainBookResult
 import bigbigdw.joaradw.util.*
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -50,12 +51,22 @@ object RetrofitMain {
             )
     }
 
-    fun loginCheck(usertoken: String?): Call<CheckTokenResult?>? {
+    fun loginCheck(token: String?): Call<CheckTokenResult?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(CheckTokenService::class.java)
-            .getRetrofit(usertoken)
+            .getRetrofit(token)
+    }
+
+    fun getMainBookData(token: String?): Call<MainBookResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(MainBookService::class.java)
+            .getRetrofit(
+                token
+            )
     }
 }
 
