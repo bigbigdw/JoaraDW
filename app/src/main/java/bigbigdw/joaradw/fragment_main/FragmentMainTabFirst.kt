@@ -39,9 +39,10 @@ class FragmentMainTabFirst : BookBaseFragment() {
     private val mdNovelAdapter = OLD_MainBookListAdapterA()
     private val mdWebtoonAdapter =
         OLD_MainBookListAdapterA()
-    private val festivalAdapter = MainBookListAdapterB()
-    private val promiseAdapter = MainBookListAdapterB()
-    private val kidamuAdapter = MainBookListAdapterB()
+    private val festivalAdapter =
+        OLD_MainBookListAdapterB()
+    private val promiseAdapter = OLD_MainBookListAdapterB()
+    private val kidamuAdapter = OLD_MainBookListAdapterB()
     private val items = ArrayList<OLD_MainBookListData>()
 
     var etc = "&page=1&offset=10"
@@ -65,7 +66,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
     var mainHistoryBookList: RecyclerView? = null
     var main_booklist_history: LinearLayout? = null
 
-    private val bookListItemsAHooby = ArrayList<BookListDataA?>()
+    private val bookListItemsAHobby = ArrayList<BookListDataA?>()
     private var bookListAdapterARecommend: AdapterBookListA? = null
     var linearLayoutManagerRecommend: LinearLayoutManager? = null
     var bookSnipe: TextView? = null
@@ -164,7 +165,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
             linearLayoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             getBookListTypeA(main_booklist_history, bookListAdapterAHistory, linearLayoutManagerHistory,mainHistoryBookList, "HISTORY")
 
-            bookListAdapterARecommend = AdapterBookListA(requireContext(),bookListItemsAHooby)
+            bookListAdapterARecommend = AdapterBookListA(requireContext(),bookListItemsAHobby)
             linearLayoutManagerRecommend = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             getBookListTypeA(main_booklist_hobby, bookListAdapterARecommend, linearLayoutManagerRecommend,recyclerviewHobby, "RECOMMEND")
         }
@@ -339,7 +340,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
                     bookListItemsAHistory
                 }
                 type.equals("RECOMMEND") -> {
-                    bookListItemsAHooby
+                    bookListItemsAHobby
                 }
                 type.equals("MDNOVEL") -> {
                     bookListItemsAMDNovel
@@ -358,18 +359,18 @@ class FragmentMainTabFirst : BookBaseFragment() {
                             val books = it.webtoons
                             if (books != null) {
                                 for (i in books.indices) {
-                                    Log.d("@@@@","Webtoon")
                                     val bookImg = books[i].webtoon_img
                                     val isAdult = books[i].is_adult
                                     val subject = books[i].webtoon_title
 
                                     bookListItemsA.add(
                                         BookListDataA(
-                                            isAdult,
+                                            "",
                                             subject,
                                             bookImg,
                                             "",
                                             "",
+                                            isAdult,
                                             type
                                         )
                                     )
@@ -393,6 +394,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
                                     val historySortno = books[i].historySortno
                                     val subject = books[i].subject
                                     val writerName = books[i].writerName
+                                    val isAdult = books[i].is_adult
 
                                     bookListItemsA.add(
                                         BookListDataA(
@@ -401,6 +403,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
                                             bookImg,
                                             bookCode,
                                             historySortno,
+                                            isAdult,
                                             type
                                         )
                                     )
@@ -423,7 +426,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
         adapter!!.setOnItemClickListener(object : AdapterBookListA.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
                 if(!type.equals("WEBTOON")){
-                    val item: BookListDataA? = bookListAdapterAHistory!!.getItem(position)
+                    val item: BookListDataA? = adapter.getItem(position)
                     val intent = Intent(
                         requireContext().applicationContext,
                         BookDetailCover::class.java

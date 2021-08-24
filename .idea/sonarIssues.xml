@@ -388,6 +388,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListB.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/BookListData.kt">
           <value>
             <set />
@@ -1194,6 +1199,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterA.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterB.java">
           <value>
             <set />
           </value>

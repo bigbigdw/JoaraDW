@@ -42,6 +42,8 @@
         <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_tab_first.xml" value="0.1" />
         <entry key="app/src/main/res/Joara_Post/layout/item_post_comment.xml" value="0.1" />
         <entry key="app/src/main/res/Joara_Post/layout/post_detail.xml" value="0.20625" />
+        <entry key="app/src/main/res/Main_Fragment/layout/item_booklist_a.xml" value="0.1" />
+        <entry key="app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_b.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_comment_edittext.xml" value="0.23541666666666666" />
       </map>
     </option>

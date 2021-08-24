@@ -6,10 +6,21 @@ class BookListDataA(
     var bookImg: String ? = null,
     var bookCode: String ? = null,
     var historySortno: String ? = null,
+    var isAdult: String ? = null,
     var listType: String ? = null
 )
 
 class BookListDataB(
+    var writer: String ? = null,
+    var title: String ? = null,
+    var bookImg: String ? = null,
+    var bookCode: String ? = null,
+    var isAdult: String ? = null,
+    var listType: String ? = null
+)
+
+
+class BookListDataZ(
     var writer: String,
     var title: String,
     var bookImg: String,

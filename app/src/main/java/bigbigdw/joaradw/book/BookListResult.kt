@@ -48,4 +48,8 @@ class BooksListValue {
     @SerializedName("writer_name")
     @Expose
     var writerName: String? = null
+
+    @SerializedName("is_adult")
+    @Expose
+    var is_adult: String? = null
 }
