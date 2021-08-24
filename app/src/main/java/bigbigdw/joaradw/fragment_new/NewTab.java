@@ -22,14 +22,14 @@ import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.main.MainBookDataJSON;
 import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 public class NewTab extends BookBaseFragment {
-    private MainBookListAdapterC adapter;
+    private OLD_MainBookListAdapterC adapter;
     private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     private static final String ARG_SECTION_NUMBER = "section_number";
     private TabViewModel tabviewmodel;
@@ -71,7 +71,7 @@ public class NewTab extends BookBaseFragment {
         wrap = root.findViewById(R.id.TabWrap);
         cover = root.findViewById(R.id.LoadingLayout);
         blank = root.findViewById(R.id.BlankLayout);
-        adapter = new MainBookListAdapterC(items);
+        adapter = new OLD_MainBookListAdapterC(items);
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         checkToken();

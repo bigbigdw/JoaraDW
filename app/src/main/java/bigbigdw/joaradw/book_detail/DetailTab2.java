@@ -19,14 +19,14 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class DetailTab2 extends BookBaseFragment {
-    private MainBookListAdapterC adapter;
+    private OLD_MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
     private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
@@ -75,7 +75,7 @@ public class DetailTab2 extends BookBaseFragment {
     }
 
     private void initAdapter() {
-        adapter = new MainBookListAdapterC(items);
+        adapter = new OLD_MainBookListAdapterC(items);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter.notifyDataSetChanged();

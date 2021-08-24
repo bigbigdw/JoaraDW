@@ -35,29 +35,15 @@
 
                 </com.synnapps.carouselview.CarouselView>
 
-                <include
-                    layout="@layout/fragment_main_booklist_history"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/MainBookListFirst"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_hobby"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_mdnovel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_mdwebtoon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/Contents" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
@@ -74,62 +60,11 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/MainBookList"
+                    android:id="@+id/MainBookListSecond"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
                     android:background="@color/Contents" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_festival"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_promised"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_kidamu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_userpicked"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_noty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_booklist_recommeded"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
-
-                <include
-                    layout="@layout/fragment_main_nobelsstodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_main_premiumtodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
-
-                <include
-                    layout="@layout/fragment_main_coupontodaybest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/footer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>

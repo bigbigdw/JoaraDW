@@ -50,14 +50,49 @@ interface MainMDWebtoonService {
     ): Call<BookListResult?>?
 }
 
-interface MainBookListBookService {
+//메인 북 이벤트 리스트
+interface MainBookEventListService {
+    @GET("v1/home/md_theme_list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+    ): Call<BookEventListResult?>?
+}
+
+//77 페스티벌, 조아라 본
+interface MainBookListBService {
     @GET("v1/book/list.joa" + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
-        @Query("page") page: String?,
-        @Query("offset") offset: String?,
+        @Query("store") store: String?,
+        @Query("orderby") orderby: String?,
+        @Query("show_type") showType: String?,
     ): Call<BookListResult?>?
 }
+
+//독자가 픽한 작품
+interface MainBookListCService {
+    @GET("v1/home/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("section_mode") sectionMode: String?,
+        @Query("show_type") showType: String?,
+        @Query("noty_year") notyYear: String?,
+    ): Call<BookListResultC?>?
+}
+
+//베스트
+interface MainBookListDService {
+    @GET("v1/home/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("section_mode") sectionMode: String?,
+        @Query("store") store: String?,
+        @Query("orderby") orderby: String?,
+        @Query("show_type") showType: String?,
+        @Query("category") category: String?,
+    ): Call<BookListResult?>?
+}
+
 
 
 

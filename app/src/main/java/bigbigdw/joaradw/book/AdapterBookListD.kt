@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
-class AdapterBookListB(private val mContext: Context, items: List<BookListDataABD?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterBookListD(private val mContext: Context, items: List<BookListDataABD?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<BookListDataABD?>?
 
     interface OnItemClickListener {
@@ -27,7 +26,8 @@ class AdapterBookListB(private val mContext: Context, items: List<BookListDataAB
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_booklist_b, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_booklist_d, parent, false)
         return MainBookViewHolder(view)
     }
 
@@ -48,20 +48,19 @@ class AdapterBookListB(private val mContext: Context, items: List<BookListDataAB
         return if (listData == null) 0 else listData!!.size
     }
 
-    inner class MainBookViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MainBookViewHolder internal constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
 
         var image: ImageView
         var title: TextView
         var writer: TextView
         var bookCode: TextView
-        var underCover: ConstraintLayout
         var imgWrap: CardView
 
         init {
-            image = itemView.findViewById(R.id.Img_BookB)
-            title = itemView.findViewById(R.id.Text_TitleB)
-            writer = itemView.findViewById(R.id.Text_WriterB)
-            underCover = itemView.findViewById(R.id.BookImgUnderWrap)
+            image = itemView.findViewById(R.id.Img_BookD)
+            title = itemView.findViewById(R.id.Text_TitleD)
+            writer = itemView.findViewById(R.id.Text_WriterD)
             bookCode = itemView.findViewById(R.id.BookCodeText)
             imgWrap = itemView.findViewById(R.id.Img_Wrap)
 

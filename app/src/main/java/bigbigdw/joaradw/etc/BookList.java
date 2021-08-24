@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 
-import bigbigdw.joaradw.main.MainBookListAdapterD;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterD;
 import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.main.OLD_MainBookData;
 import bigbigdw.joaradw.main.MainBookDataJSON;
 import bigbigdw.joaradw.main.MainBookDataWebtoon;
@@ -39,7 +39,7 @@ public interface BookList {
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListC(View root, String apiUrl, String etc, Integer recylerview, MainBookListAdapterC adapter, RequestQueue queue, Integer integer) {
+    static void bookListC(View root, String apiUrl, String etc, Integer recylerview, OLD_MainBookListAdapterC adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -59,7 +59,7 @@ public interface BookList {
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListD(View root, String apiUrl, String etc, Integer recylerview, MainBookListAdapterD adapter, RequestQueue queue, Integer integer) {
+    static void bookListD(View root, String apiUrl, String etc, Integer recylerview, OLD_MainBookListAdapterD adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -69,7 +69,7 @@ public interface BookList {
         adapter.notifyDataSetChanged();
     }
 
-    static void initAdapterC(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, MainBookListAdapterC adapter) {
+    static void initAdapterC(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, OLD_MainBookListAdapterC adapter) {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);

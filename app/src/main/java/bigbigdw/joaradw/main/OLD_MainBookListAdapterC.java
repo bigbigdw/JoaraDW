@@ -24,7 +24,7 @@ import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.R;
 
 
-public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class OLD_MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<OLD_MainBookListData> listData;
     private static final int VIEW_TYPE_ITEM = 0;
     String f = "FALSE";
@@ -33,13 +33,13 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
         void onItemClick(View v, int position, String value);
     }
 
-    private MainBookListAdapterC.OnItemClickListener listener = null;
+    private OLD_MainBookListAdapterC.OnItemClickListener listener = null;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public MainBookListAdapterC(List<OLD_MainBookListData> items) {
+    public OLD_MainBookListAdapterC(List<OLD_MainBookListData> items) {
         this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
@@ -49,7 +49,7 @@ public class MainBookListAdapterC extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_c, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booklist_c, parent, false);
             return new MainBookListViewHolderC(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);

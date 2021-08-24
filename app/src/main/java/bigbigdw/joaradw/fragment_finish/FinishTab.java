@@ -27,7 +27,7 @@ import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.main.TabViewModel;
 import bigbigdw.joaradw.R;
@@ -94,9 +94,9 @@ public class FinishTab extends BookBaseFragment {
 
     public void setLayout(View root){
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
-        MainBookListAdapterC newAdapter = new MainBookListAdapterC(items);
-        MainBookListAdapterC noblessAdapter = new MainBookListAdapterC(items);
-        MainBookListAdapterC premiumAdapter = new MainBookListAdapterC(items);
+        OLD_MainBookListAdapterC newAdapter = new OLD_MainBookListAdapterC(items);
+        OLD_MainBookListAdapterC noblessAdapter = new OLD_MainBookListAdapterC(items);
+        OLD_MainBookListAdapterC premiumAdapter = new OLD_MainBookListAdapterC(items);
         String resultEtcUrl = etcUrl + finishType + tokenParam;
 
         tabViewModel.getText().observe(getViewLifecycleOwner(), tabNum -> {
@@ -123,7 +123,7 @@ public class FinishTab extends BookBaseFragment {
         gotoPremium.setOnClickListener(v -> goToBookPageEtc("최신작 프리미엄 완결", API.BOOK_LIST_JOA, resultEtcUrl));
     }
 
-    public void bookFinish(View root, String etc, Integer recylerView, MainBookListAdapterC adapter, RequestQueue queue, Integer wrap) {
+    public void bookFinish(View root, String etc, Integer recylerView, OLD_MainBookListAdapterC adapter, RequestQueue queue, Integer wrap) {
         BookList.bookListC(root, API.BOOK_LIST_JOA, etc, recylerView, adapter, queue, wrap);
 
         adapter.setOnItemClickListener((v, position, value) -> {

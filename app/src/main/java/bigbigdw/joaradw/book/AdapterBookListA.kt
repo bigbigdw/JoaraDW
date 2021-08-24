@@ -14,8 +14,8 @@ import bigbigdw.joaradw.R
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
-class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var listData: ArrayList<BookListDataA?>?
+class AdapterBookListA(private val mContext: Context, items: List<BookListDataABD?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var listData: ArrayList<BookListDataABD?>?
     var f = "FALSE"
     var t = "True"
 
@@ -46,13 +46,13 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
             holder.writer.text = listData!![position]!!.writer
             holder.bookCode.text = listData!![position]!!.bookCode
 
-            if(listData!![position]!!.listType.equals("HISTORY")){
+            if(listData!![position]!!.listType.equals("favoriteList")){
                 holder.underCover.visibility = View.VISIBLE
             } else {
                 holder.underCover.visibility = View.GONE
             }
 
-            if(!listData!![position]!!.listType.equals("HISTORY")){
+            if(!listData!![position]!!.listType.equals("favoriteList")){
                 if(listData!![position]!!.isAdult.equals("TRUE")){
                     holder.underCoverText.text = "성인"
                     holder.underCover.visibility = View.VISIBLE
@@ -125,15 +125,15 @@ class AdapterBookListA(private val mContext: Context, items: List<BookListDataA?
         }
     }
 
-    fun setItems(items: List<BookListDataA?>?) {
-        listData = items as ArrayList<BookListDataA?>?
+    fun setItems(items: List<BookListDataABD?>?) {
+        listData = items as ArrayList<BookListDataABD?>?
     }
 
-    fun getItem(position: Int): BookListDataA? {
+    fun getItem(position: Int): BookListDataABD? {
         return listData!![position]
     }
 
     init {
-        listData = items as ArrayList<BookListDataA?>?
+        listData = items as ArrayList<BookListDataABD?>?
     }
 }

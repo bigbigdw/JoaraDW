@@ -1,22 +1,37 @@
 package bigbigdw.joaradw.book
 
-class BookListDataA(
-    var writer: String ? = null,
-    var title: String ? = null,
-    var bookImg: String ? = null,
-    var bookCode: String ? = null,
-    var historySortno: String ? = null,
-    var isAdult: String ? = null,
-    var listType: String ? = null
+class BookListDataABD(
+    var writer: String? = null,
+    var title: String? = null,
+    var bookImg: String? = null,
+    var bookCode: String? = null,
+    var historySortno: String? = null,
+    var isAdult: String? = null,
+    var listType: String? = null
 )
 
-class BookListDataB(
+class BookEventListData(
+    var content: String? = null,
+    var eventImg: String? = null,
+    var enddate: String? = null,
+    var idx: String? = null,
+    var themeSubTitle: String? = null,
+    var title: String? = null,
+)
+
+class BookListDataC(
     var writer: String ? = null,
     var title: String ? = null,
     var bookImg: String ? = null,
-    var bookCode: String ? = null,
     var isAdult: String ? = null,
-    var listType: String ? = null
+    var isFinish: String ? = null,
+    var isPremium: String ? = null,
+    var isNobless: String ? = null,
+    var intro: String ? = null,
+    var isFav: String ? = null,
+    var bookCode: String ? = null,
+    var bookCategory: String ? = null,
+    var cntChapter: String ? = null
 )
 
 

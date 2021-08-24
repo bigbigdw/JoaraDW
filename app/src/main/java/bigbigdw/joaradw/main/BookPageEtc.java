@@ -22,7 +22,7 @@ import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.R;
 
 public class BookPageEtc extends BookBaseActivity {
-    private MainBookListAdapterC adapter;
+    private OLD_MainBookListAdapterC adapter;
     private RecyclerView recyclerView;
     private final ArrayList<OLD_MainBookListData> items = new ArrayList<>();
     LinearLayout wrap;
@@ -88,7 +88,7 @@ public class BookPageEtc extends BookBaseActivity {
                 adapterListener(item, value, queue);
             });
         } else {
-            adapter = new MainBookListAdapterC(items);
+            adapter = new OLD_MainBookListAdapterC(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(linearLayoutManager);
             adapter.notifyDataSetChanged();

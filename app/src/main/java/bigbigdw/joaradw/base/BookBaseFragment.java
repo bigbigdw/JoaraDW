@@ -22,8 +22,8 @@ import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.main.BookPageEtc;
 import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
-import bigbigdw.joaradw.main.MainBookListAdapterD;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterD;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 
@@ -81,7 +81,7 @@ public class BookBaseFragment extends Fragment {
         });
     }
 
-    public void bookListC(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterC adapter, Integer wrap) {
+    public void bookListC(View root, String apiUrl, String etc, Integer recylerView, OLD_MainBookListAdapterC adapter, Integer wrap) {
         RequestQueue queue2 = Volley.newRequestQueue(requireActivity());
         BookList.bookListC(root, apiUrl, etc, recylerView, adapter, queue2, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {
@@ -90,7 +90,7 @@ public class BookBaseFragment extends Fragment {
         });
     }
 
-    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, MainBookListAdapterD adapter, Integer wrap) {
+    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, OLD_MainBookListAdapterD adapter, Integer wrap) {
         RequestQueue queue3 = Volley.newRequestQueue(requireActivity());
         BookList.bookListD(root, apiUrl, etc, recylerView, adapter, queue3, wrap);
         adapter.setOnItemClickListener((v, position, value) -> {

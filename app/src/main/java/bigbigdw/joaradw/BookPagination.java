@@ -26,7 +26,7 @@ import java.util.Map;
 
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.main.MainBookListAdapterC;
+import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.model.BookInfo;
 
@@ -115,7 +115,7 @@ public interface BookPagination {
         queue.add(jsonRequest);
     }
 
-    static void scrollListener(String api, RequestQueue queue, LinearLayout wrap, ArrayList<OLD_MainBookListData> items, MainBookListAdapterC adpater, RecyclerView recyclerView, String etc) {
+    static void scrollListener(String api, RequestQueue queue, LinearLayout wrap, ArrayList<OLD_MainBookListData> items, OLD_MainBookListAdapterC adpater, RecyclerView recyclerView, String etc) {
 
         final boolean[] isLoading = {false};
         final int[] page = {2};
