@@ -12,7 +12,6 @@ import bigbigdw.joaradw.R
 import android.widget.Toast
 import android.content.Intent
 import bigbigdw.joaradw.login.LoginMain
-import bigbigdw.joaradw.etc.HELPER
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.NavDestination
@@ -26,12 +25,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
+import bigbigdw.joaradw.test.ActivityTest
 import bigbigdw.joaradw.util.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class Main : AppCompatActivity() {
     private var appBarConfiguration: AppBarConfiguration? = null
@@ -51,6 +49,8 @@ class Main : AppCompatActivity() {
     var navHeaderView: View? = null
     var drawer: DrawerLayout? = null
     private var mContext: Context? = null
+
+    val MenuList: MutableList<String> = ArrayList()
 
     override fun onResume() {
         super.onResume()
@@ -108,12 +108,11 @@ class Main : AppCompatActivity() {
         NavigationUI.setupWithNavController(navView, navController!!)
 
         homeImg!!.setOnClickListener { v: View? ->
-//            val activityTest = Intent(applicationContext, ActivityTest::class.java)
-//            startActivity(activityTest)
-            getIndexAPI()
+            val activityTest = Intent(applicationContext, ActivityTest::class.java)
+            startActivity(activityTest)
         }
 
-        navController!!.addOnDestinationChangedListener { controller: NavController?, destination: NavDestination, arguments: Bundle? ->
+        navController!!.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, arguments: Bundle? ->
             //바텀 내비게이션 바 비활성화
             if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List) {
                 setCheckable(navView, false)
@@ -141,7 +140,7 @@ class Main : AppCompatActivity() {
                         //배너 관련
                         if (banner != null) {
                             for (i in banner.indices) {
-                                if(!banner[i].equals("")){
+                                if(banner[i] != ""){
                                     dialogBanner = DialogBanner(
                                         mContext!!,
                                         btnLeftListener,
@@ -157,6 +156,20 @@ class Main : AppCompatActivity() {
                         //버전 관련
                         if (mainMenu != null) {
                             for (i in mainMenu.indices) {
+
+                                if(mainMenu[i].MainTab != null && mainMenu[i].TabInfo != null ){
+                                    val MainTab = mainMenu[i].MainTab
+                                    val tabname = mainMenu[i].TabInfo!!.tabname
+                                    if(tabname.equals("최신작품")){
+                                        for (j in MainTab!!.indices) {
+                                            MenuList.add(MainTab[j].title!!)
+                                        }
+                                        val editor = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
+                                        editor.putString("NEW", MenuList.toString())
+                                        editor.apply()
+                                    }
+                                }
+
                                 if(mainMenu[i].menuVer != null){
                                     savePreferences("MENU_VER", mainMenu[i].menuVer!!)
                                 }
@@ -173,7 +186,7 @@ class Main : AppCompatActivity() {
         })
     }
 
-    fun onClickLogout(){
+    private fun onClickLogout(){
 
         val token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString()
 
@@ -199,7 +212,7 @@ class Main : AppCompatActivity() {
     }
 
     //로그인 체크
-    fun loginCheck(
+    private fun loginCheck(
         usertoken: String?,
         drawerLogIn: LinearLayout?,
         drawerLogOut: LinearLayout?,
@@ -282,6 +295,17 @@ class Main : AppCompatActivity() {
                 menu.getItem(i).isCheckable = checkable
             }
         }
+    }
+
+    fun savePreferencesTab(value: String, type: String?, num : Int?) {
+        val getValues = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
+
+        if(type.equals("MAIN")){
+            getValues.putString("hi", value)
+        } else {
+            getValues.putString("hi", value)
+        }
+        getValues.apply()
     }
 
     fun savePreferences(value: String, token: String) {

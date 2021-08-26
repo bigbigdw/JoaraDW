@@ -18,7 +18,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.util.Util
 import com.ahmadnemati.clickablewebview.ClickableWebView
 import com.bumptech.glide.Glide
@@ -27,8 +26,6 @@ import com.synnapps.carouselview.ImageListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
@@ -58,6 +55,7 @@ class PostDetail : AppCompatActivity() {
     var recyclerView: RecyclerView? = null
     var commentWrap: LinearLayout? = null
     var nestWrap: NestedScrollView? = null
+    var progressBar: ProgressBar? = null
 
     private var postId : String? = null
     private var token : String? = null
@@ -89,6 +87,7 @@ class PostDetail : AppCompatActivity() {
         vCategoryID = findViewById(R.id.CategoryID)
         vRedate = findViewById(R.id.Redate)
         toolbarTitle = findViewById(R.id.toolbarTitle)
+        progressBar = findViewById(R.id.progressBar)
         wcontents = findViewById(R.id.Contents)
         carouselPostBanner = findViewById(R.id.Carousel_PostBanner)
         btnRecommend = findViewById(R.id.Btn_Recommend)
@@ -110,10 +109,10 @@ class PostDetail : AppCompatActivity() {
         val intent = intent
         postId = intent.getStringExtra("POSTID")
 
-        setlayout()
+        setLayout()
     }
 
-    fun setlayout() {
+    fun setLayout() {
         toolbarTitle!!.text = "조아라 포스트"
 
         carouselPostBanner!!.setImageListener(imageListener)
@@ -199,7 +198,7 @@ class PostDetail : AppCompatActivity() {
 
     private var commentScrollListener =
         NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight && page < ((totalCnt.toInt() / 25) + 2)) {
+            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight && page < ((totalCnt / 25) + 3)) {
                 page++
                 getCommentData()
             }
@@ -512,13 +511,14 @@ class PostDetail : AppCompatActivity() {
 
     //댓글 정보
     private fun getCommentData() {
-
+        progressBar!!.visibility = View.VISIBLE
         RetrofitPost.getCommentData(postId,token, page.toString())!!.enqueue(object : Callback<PostCommentListResult?> {
             override fun onResponse(
                 call: Call<PostCommentListResult?>,
                 response: Response<PostCommentListResult?>
             ) {
                 if (response.isSuccessful) {
+                    progressBar!!.visibility = View.GONE
                     response.body()?.let { it ->
                         val comments = it.comments
                         totalCnt = it.totalCnt

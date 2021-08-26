@@ -79,12 +79,6 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
             val nickName = mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
                 .getString("NICKNAME", "")
 
-            Log.d(
-                "@@@@",
-                "listData!![position]!!.sectionSubType  = " + listData!![position]!!.sectionSubType
-            )
-
-
             if (!token.equals("")) {
                 if (listData!![position]!!.sectionSubType.equals("favoriteList")) {
 

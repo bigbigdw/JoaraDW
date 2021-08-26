@@ -92,4 +92,26 @@ class MainMenuValue {
     @SerializedName("menu_ver")
     @Expose
     var menuVer: String? = null
+
+    @SerializedName("MainTab")
+    @Expose
+    var MainTab: List<MainTabInfoValue>? = null
+
+    @SerializedName("TabInfo")
+    @Expose
+    var TabInfo: TabInfoValue? = null
+}
+
+//탭 정보
+class TabInfoValue {
+    @SerializedName("tabname")
+    @Expose
+    var tabname: String? = null
+}
+
+//매인 정보
+class MainTabInfoValue {
+    @SerializedName("title")
+    @Expose
+    var title: String? = null
 }

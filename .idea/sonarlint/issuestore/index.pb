@@ -79,8 +79,6 @@ Capp/src/main/java/bigbigdw/joaradw/book_detail/BookSupportData.java,f\2\f2384e
 x
 Happ/src/main/java/bigbigdw/joaradw/book_detail/BookSupportersCoupon.java,5\f\5f10ca6f37d74fb6ddaaa9b6e728de5fb767be2d
 y
-Iapp/src/main/java/bigbigdw/joaradw/book_detail/DetailBookListAdapter.java,4\e\4e2deafe2cb1a0cdd410a2d870c3a5a645db5284
-y
 Iapp/src/main/java/bigbigdw/joaradw/book_detail/BookDetailPageAdapter.java,5\2\525531e72b8a3c09a011e23c89d398b1cea68f00
 _
 /app/src/main/java/bigbigdw/joaradw/JOARADW.java,a\3\a3573334c84d60a6bf3a46492bd331d34c77f340
@@ -112,8 +110,6 @@ g
 7app/src/main/java/bigbigdw/joaradw/main/TabViewModel.kt,7\9\791e9ffcd76fe797ed1d7b41fc735bcb77428cd3
 f
 6app/src/main/java/bigbigdw/joaradw/util/UserService.kt,1\6\169209f965a98213bb33129b1fcda9836f3128b4
-e
-5app/src/main/java/bigbigdw/joaradw/util/UtilResult.kt,2\b\2bda79d5f6cc9196569095e3c750ea9b9d380536
 r
 Bapp/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMore.java,2\b\2b9bf3b5781a9e140383c0ff8646fc9546d77b85
 i
@@ -126,14 +122,8 @@ g
 7app/src/main/java/bigbigdw/joaradw/main/DialogBanner.kt,4\c\4c08cdadcab5a679c21bbfe6036511f59d23296a
 p
 @app/src/main/java/bigbigdw/joaradw/fragment_fav/FragmentFav.java,f\b\fb4726a17a9f1bf92f3eaeda9621492c39f17201
-p
-@app/src/main/java/bigbigdw/joaradw/fragment_new/FragmentNew.java,d\5\d539054dd56644e39bcaf623cdb72a5877ca9b8c
-`
-0app/src/main/java/bigbigdw/joaradw/etc/HELPER.kt,c\1\c1c10193e8d4112089630ffdb2ff56ab8b2d0a27
 l
 <app/src/main/java/bigbigdw/joaradw/joara_post/PostService.kt,d\1\d16a7daa39dd513d43a3eae0d1fe22229349e646
-k
-;app/src/main/java/bigbigdw/joaradw/joara_post/PostResult.kt,f\d\fd20f72d088decc14e22b78159390b22693f6cb7
 n
 >app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab3.java,d\6\d6988808d73085e48d57252a9ec3728471bdef8f
 m
@@ -148,8 +138,6 @@ s
 Capp/src/main/java/bigbigdw/joaradw/joara_post/AdapterPostComment.kt,f\b\fb5ac67aa6de0016be486c5cc342d44959813a04
 i
 9app/src/main/java/bigbigdw/joaradw/joara_post/PostData.kt,e\5\e58a3778a8bbd8a2611f567d234860507a8f20ad
-]
--app/src/main/java/bigbigdw/joaradw/etc/API.kt,7\5\759171f9f6eee5e6400a322ed775a46fe50870c3
 u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterA.java,2\c\2c3d39fb245507085168bd545d388cf2736034c8
 p
@@ -172,8 +160,6 @@ o
 ?app/src/main/java/bigbigdw/joaradw/book/AdapterBookEventList.kt,3\e\3e909296645860c546e87ae42bf55f020f297959
 k
 ;app/src/main/java/bigbigdw/joaradw/book/AdapterBookListA.kt,3\4\3403e7f5bb532cce2c3406e44bd13c1748511828
-u
-Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterC.java,5\8\58b19cdd71104f0748bc818094b44e31bee9c970
 u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterD.java,f\7\f7ac172a2451a87d24b2f5be471c750469ed9299
 k
