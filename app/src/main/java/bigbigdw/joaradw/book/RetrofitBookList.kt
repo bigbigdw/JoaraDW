@@ -108,4 +108,16 @@ object RetrofitBookList {
                 category
             )
     }
+
+    fun getNewBook(token: String?, store: String?, page : Int?): Call<BookListResultC?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(NewBookService::class.java)
+            .getRetrofit(
+                token,
+                store,
+                page,
+            )
+    }
 }

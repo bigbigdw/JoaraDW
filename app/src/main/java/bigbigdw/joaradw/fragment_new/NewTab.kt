@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.fragment_new
 
+import android.content.Intent
 import bigbigdw.joaradw.base.BookBaseFragment
 import bigbigdw.joaradw.main.OLD_MainBookListAdapterC
 import bigbigdw.joaradw.main.OLD_MainBookListData
@@ -7,39 +8,38 @@ import bigbigdw.joaradw.main.TabViewModel
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.RequestQueue
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import bigbigdw.joaradw.fragment_new.NewTab
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import bigbigdw.joaradw.R
-import com.android.volley.toolbox.Volley
 import bigbigdw.joaradw.JOARADW
-import android.content.res.AssetManager
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import bigbigdw.joaradw.BookPagination
-import bigbigdw.joaradw.etc.API
-import bigbigdw.joaradw.etc.BookList
-import bigbigdw.joaradw.main.MainBookDataJSON
+import androidx.fragment.app.Fragment
+import bigbigdw.joaradw.book.*
+import bigbigdw.joaradw.book_detail.BookDetailCover
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.ArrayList
 
-class NewTab : BookBaseFragment() {
-    private var adapter: OLD_MainBookListAdapterC? = null
-    private val items = ArrayList<OLD_MainBookListData>()
+class NewTab : Fragment() {
+    private var adapter: AdapterBookListC? = null
+    private val items = ArrayList<BookListDataC?>()
     private var tabviewmodel: TabViewModel? = null
+
     var wrap: LinearLayout? = null
     var cover: LinearLayout? = null
     var blank: LinearLayout? = null
-    var store = ""
-    var userToken: String? = null
+    var token: String? = null
     var etc = ""
-    var classes = "&class="
+    var store = ""
     var linearLayoutManager: LinearLayoutManager? = null
     var recyclerView: RecyclerView? = null
-    var queue: RequestQueue? = null
+    var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,98 +58,147 @@ class NewTab : BookBaseFragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_new_tab, container, false)
-        val titleValues = requireContext()!!.getSharedPreferences("MAIN_MENU", AppCompatActivity.MODE_PRIVATE).getString("NEW_POSITION", "!!!!")!!.replace("[","").replace("]","")
+        val titleValues =
+            requireContext()!!.getSharedPreferences("MAIN_MENU", AppCompatActivity.MODE_PRIVATE)
+                .getString("NEW_TITLE", "")!!.replace("[", "").replace("]", "")
         val titleList: List<String> = titleValues!!.split(',').toList()
 
-        Log.d("@@@@", titleList.toString())
-
-
-        queue = Volley.newRequestQueue(requireActivity())
+        token = requireContext()!!.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+            .getString("TOKEN", "")
 
         recyclerView = root.findViewById(R.id.Main_NewBookList)
-
         wrap = root.findViewById(R.id.TabWrap)
-
         cover = root.findViewById(R.id.LoadingLayout)
-
         blank = root.findViewById(R.id.BlankLayout)
 
-        adapter = OLD_MainBookListAdapterC(items)
-
+        adapter = AdapterBookListC(requireContext(), items)
         linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        checkToken()
-
-        val app = requireActivity().applicationContext as JOARADW
-
-        userToken = app.token
-
-        val assetManager = requireActivity().assets
-
         tabviewmodel!!.text.observe(viewLifecycleOwner, { tabNum: String? ->
-            when (tabNum) {
-                "TAB1" -> {
+            when (titleList[tabNum!!.replace("TAB", "").replace(" ", "").toInt()]) {
+                "전체" -> {
                     store = ""
-                    newBookList()
+                    newBookList(page)
                 }
-                "TAB2" -> newBookListJSON(root, assetManager, "Main_Tab_Best_77FES.json")
-                "TAB3" -> newBookListJSON(root, assetManager, "Main_KidamuBookList.json")
-                "TAB4" -> newBookListJSON(root, assetManager, "Main_PromisedBookList.json")
-                "TAB5" -> {
+                " 77FES" -> {
+                    store = "festival"
+                    newBookList(page)
+                }
+                " BORN" -> {
+                    store = "joaraborn"
+                    newBookList(page)
+                }
+                " 노블성실" -> {
+                    store = "promise"
+                    newBookList(page)
+                }
+                " 노블레스" -> {
                     store = "nobless"
-                    newBookList()
+                    newBookList(page)
                 }
-                "TAB6" -> {
+                " 노블X프리" -> {
+                    store = "noblepre"
+                    newBookList(page)
+                }
+                " 프리미엄" -> {
                     store = "premium"
-                    newBookList()
+                    newBookList(page)
                 }
-                "TAB7" -> {
+                " 무료" -> {
                     store = "series"
-                    newBookList()
+                    newBookList(page)
                 }
-                "TAB8" -> {
+                " 완결" -> {
                     store = "finish"
-                    newBookList()
+                    newBookList(page)
                 }
                 else -> {
-                    classes = "&class=short"
-                    newBookList()
+                    store = "gidamu_event"
+                    newBookList(page)
                 }
             }
         })
+
+        recyclerView!!.addOnScrollListener(recyclerViewScroll)
+
         return root
     }
 
-    private fun newBookList() {
-        etc = "&store=$store&orderby=redate&offset=25&page=1&token=$userToken$classes"
-        BookPagination.populateData(API.BOOK_LIST_JOA, etc, queue, wrap, items, cover, blank)
-        BookList.initAdapterC(recyclerView, linearLayoutManager, adapter)
-        BookPagination.scrollListener(
-            API.BOOK_LIST_JOA,
-            queue,
-            wrap,
-            items,
-            adapter,
-            recyclerView,
-            etc
-        )
-        adapter!!.setOnItemClickListener { v: View?, position: Int, value: String? ->
-            val item = adapter!!.getItem(position)
-            adapterListener(item, value, queue)
-        }
+    private fun newBookList(page : Int?) {
+        RetrofitBookList.getNewBook(token, store, page)!!.enqueue(object : Callback<BookListResultC?> {
+            override fun onResponse(
+                call: Call<BookListResultC?>,
+                response: Response<BookListResultC?>
+            ) {
+
+                if (response.isSuccessful) {
+                    cover!!.visibility = View.GONE
+                    blank!!.visibility = View.GONE
+                    response.body()?.let { it ->
+                        val books = it.books
+                        if (books != null) {
+                            wrap!!.visibility = View.VISIBLE
+                            for (i in books.indices) {
+
+                                val writerName = books[i].writerName
+                                val subject = books[i].subject
+                                val bookImg = books[i].bookImg
+                                val isAdult = books[i].isAdult
+                                val isFinish = books[i].isFinish
+                                val isPremium = books[i].isPremium
+                                val isNobless = books[i].isNobless
+                                val intro = books[i].intro
+                                val isFavorite = books[i].isFavorite
+                                val bookCode = books[i].bookCode
+                                val categoryKoName = books[i].categoryKoName
+                                val cntChapter = books[i].cntChapter
+
+                                items.add(
+                                    BookListDataC(
+                                        writerName,
+                                        subject,
+                                        bookImg,
+                                        isAdult,
+                                        isFinish,
+                                        isPremium,
+                                        isNobless,
+                                        intro,
+                                        isFavorite,
+                                        bookCode,
+                                        categoryKoName,
+                                        cntChapter,
+                                    )
+                                )
+                            }
+                        } else {
+                            blank!!.visibility = View.VISIBLE
+                        }
+                    }
+                    adapter!!.notifyDataSetChanged()
+                    if(page == 1){
+                        recyclerView!!.layoutManager = linearLayoutManager
+                        recyclerView!!.adapter = adapter
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BookListResultC?>, t: Throwable) {
+                Log.d("onFailure", "실패")
+            }
+        })
+
     }
 
-    fun newBookListJSON(root: View, assetManager: AssetManager?, bookType: String?) {
-        wrap!!.visibility = View.VISIBLE
-        cover!!.visibility = View.GONE
-        blank!!.visibility = View.GONE
-        val recyclerViewJSON: RecyclerView = root.findViewById(R.id.Main_NewBookList)
-        val linearLayoutManagerJSON =
-            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        recyclerViewJSON.layoutManager = linearLayoutManagerJSON
-        recyclerViewJSON.adapter = adapter
-        adapter!!.setItems(MainBookDataJSON().getData(assetManager, bookType))
-        adapter!!.notifyDataSetChanged()
+    private var recyclerViewScroll: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if(!recyclerView.canScrollVertically(1)) {
+                cover!!.visibility = View.VISIBLE
+                page++
+                newBookList(page)
+            }
+
+        }
     }
 
     companion object {

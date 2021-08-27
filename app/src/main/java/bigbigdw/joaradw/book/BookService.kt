@@ -93,6 +93,15 @@ interface MainBookListDService {
     ): Call<BookListResult?>?
 }
 
+interface NewBookService {
+    @GET("v1/book/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("store") store: String?,
+        @Query("page") page: Int?,
+    ): Call<BookListResultC?>?
+}
+
 
 
 

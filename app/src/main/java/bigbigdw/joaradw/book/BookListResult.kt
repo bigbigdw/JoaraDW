@@ -93,6 +93,10 @@ class BookListResultC {
     @SerializedName("books")
     @Expose
     val books: List<BooksListValueC>? = null
+
+    @SerializedName("total_cnt")
+    @Expose
+    var totalCnt: String? = null
 }
 
 //작품 상세
@@ -144,4 +148,5 @@ class BooksListValueC {
     @SerializedName("cnt_chapter")
     @Expose
     var cntChapter: String? = null
+
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/LoadingLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LoadingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Contents"
+    android:background="#80070707"
     android:gravity="center">
 
 
@@ -32,6 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/loading"
             android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="15sp" />
 
     </LinearLayout>

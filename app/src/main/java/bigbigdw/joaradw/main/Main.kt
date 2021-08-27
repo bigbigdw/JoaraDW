@@ -168,7 +168,6 @@ class Main : AppCompatActivity() {
                                         }
                                         val editor = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
                                         editor.putString("NEW_TITLE", MenuList.toString())
-                                        editor.putString("NEW_POSITION", MenuListPosition.toString())
                                         editor.apply()
                                     }
                                 }

@@ -561,8 +561,10 @@ class PostDetail : AppCompatActivity() {
                         }
                     }
 
-                    recyclerView!!.layoutManager = linearLayoutManager
-                    recyclerView!!.adapter = adapter
+                    if(page == 1){
+                        recyclerView!!.layoutManager = linearLayoutManager
+                        recyclerView!!.adapter = adapter
+                    }
                     adapter!!.notifyDataSetChanged()
 
                 }

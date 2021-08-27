@@ -54,7 +54,7 @@ class FragmentNew : Fragment() {
         private val titleList: List<String> = titleValues!!.split(',').toList()
 
         override fun getItem(position: Int): Fragment {
-            return NewTab.newInstance(position + 1)
+            return NewTab.newInstance(position)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {

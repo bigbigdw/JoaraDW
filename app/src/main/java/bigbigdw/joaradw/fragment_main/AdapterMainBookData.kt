@@ -630,12 +630,11 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                         title
                                     )
                                 )
-
-                                recyclerView!!.layoutManager = linearLayoutManager
-                                recyclerView.adapter = adapter
                             }
                         }
                     }
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView.adapter = adapter
                     adapter!!.notifyDataSetChanged()
                 }
             }
@@ -711,12 +710,11 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                             type
                                         )
                                     )
-
-                                    recyclerView!!.layoutManager = linearLayoutManager
-                                    recyclerView.adapter = adapter
                                 }
                             }
                         }
+                        recyclerView!!.layoutManager = linearLayoutManager
+                        recyclerView.adapter = adapter
                         adapter!!.notifyDataSetChanged()
                     }
                 } else {
@@ -744,12 +742,11 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                             type
                                         )
                                     )
-
-                                    recyclerView!!.layoutManager = linearLayoutManager
-                                    recyclerView.adapter = adapter
                                 }
                             }
                         }
+                        recyclerView!!.layoutManager = linearLayoutManager
+                        recyclerView.adapter = adapter
                         adapter!!.notifyDataSetChanged()
                     }
                 }
@@ -852,12 +849,12 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                         )
                                     )
                                 }
-
-                                recyclerView!!.layoutManager = linearLayoutManager
-                                recyclerView.adapter = adapter
                             }
                         }
                     }
+
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView.adapter = adapter
                     adapter!!.notifyDataSetChanged()
                 }
             }
@@ -941,12 +938,11 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                         type
                                     )
                                 )
-
-                                recyclerView!!.layoutManager = linearLayoutManager
-                                recyclerView.adapter = adapter
                             }
                         }
                     }
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView.adapter = adapter
                     adapter!!.notifyDataSetChanged()
                 }
             }
@@ -1126,12 +1122,11 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                                         type
                                     )
                                 )
-
-                                recyclerView!!.layoutManager = linearLayoutManager
-                                recyclerView.adapter = adapter
                             }
                         }
                     }
+                    recyclerView!!.layoutManager = linearLayoutManager
+                    recyclerView.adapter = adapter
                     adapter!!.notifyDataSetChanged()
                 }
             }

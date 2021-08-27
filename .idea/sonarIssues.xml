@@ -1623,6 +1623,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Etc/layout/loading.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Etc/layout/popup.xml">
           <value>
             <set />
@@ -1764,6 +1769,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_New/layout/fragment_new.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_New/layout/fragment_new_tab.xml">
           <value>
             <set />
           </value>

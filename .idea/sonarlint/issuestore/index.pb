@@ -64,8 +64,6 @@ n
 >app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab2.java,f\5\f57aedb40825a0a81b9885a49c73f1465206dfea
 w
 Gapp/src/main/java/bigbigdw/joaradw/book_viewer/ViewerDrawerAdpater.java,0\1\0172f67e3d60d35cea2e39bcc7270c277ba4f407
-n
->app/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabFav.java,e\b\ebdb9114b59f9836cd9448a099aef9bb71eee631
 r
 Bapp/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabHistory.java,2\5\251d273fd915a7209fde4fc2169c467e34ba0ed1
 s
@@ -108,8 +106,6 @@ m
 .app/src/main/java/bigbigdw/joaradw/Config.java,9\b\9b3d6da40b1bf5789660d907570a2f1ad0f0b65f
 f
 6app/src/main/java/bigbigdw/joaradw/util/UserService.kt,1\6\169209f965a98213bb33129b1fcda9836f3128b4
-r
-Bapp/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMore.java,2\b\2b9bf3b5781a9e140383c0ff8646fc9546d77b85
 i
 9app/src/main/java/bigbigdw/joaradw/test/FragmentTest.java,6\3\63d4cc79201ad859f18b2844cd074d6df8f04b2a
 P
@@ -140,8 +136,6 @@ u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterA.java,2\c\2c3d39fb245507085168bd545d388cf2736034c8
 p
 @app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMain.kt,0\b\0b6e86a39405d4a7c85358a4f799ce02c0a26c60
-d
-4app/src/main/java/bigbigdw/joaradw/etc/BookList.java,f\6\f6b56eb0205ffb70790ba309786130c62a27dec7
 e
 5app/src/main/java/bigbigdw/joaradw/main/MainResult.kt,4\a\4a06519ec8e8280060232beb2ff8d6f7d4ffe310
 c
@@ -160,5 +154,3 @@ k
 ;app/src/main/java/bigbigdw/joaradw/book/AdapterBookListA.kt,3\4\3403e7f5bb532cce2c3406e44bd13c1748511828
 u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterD.java,f\7\f7ac172a2451a87d24b2f5be471c750469ed9299
-k
-;app/src/main/java/bigbigdw/joaradw/book/AdapterBookListC.kt,1\2\1207927f563e013096db9625b9d65b28286c6803
