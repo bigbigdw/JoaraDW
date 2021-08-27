@@ -114,4 +114,8 @@ class MainTabInfoValue {
     @SerializedName("title")
     @Expose
     var title: String? = null
+
+    @SerializedName("position")
+    @Expose
+    var position: String? = null
 }

@@ -4,21 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.FragmentPagerAdapter
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.databinding.FragmentNewBinding
-import bigbigdw.joaradw.fragment_new.NewTab
-import bigbigdw.joaradw.util.MainTabInfoValue
-import java.util.ArrayList
-import android.R.string
-import androidx.core.content.ContentProviderCompat.requireContext
 
 
 class FragmentNew : Fragment() {
@@ -43,7 +35,9 @@ class FragmentNew : Fragment() {
         viewPager.adapter = sectionsPagerAdapter
         val fragmentNewTab = fragmentNewBinding.postTab
         fragmentNewTab.setupWithViewPager(viewPager)
+
         val bundle = this.arguments
+
         if (bundle != null) {
             tabNum = bundle.getInt("TabNum")
             viewPager.currentItem = tabNum
@@ -52,36 +46,23 @@ class FragmentNew : Fragment() {
         return root
     }
 
-    class SectionsPagerAdapter(private val mContext: Context?, fm: FragmentManager?) :
+    class SectionsPagerAdapter(mContext: Context?, fm: FragmentManager?) :
         FragmentPagerAdapter(
             fm!!
         ) {
-        val TitleValues = mContext!!.getSharedPreferences("MAIN_MENU", AppCompatActivity.MODE_PRIVATE).getString("NEW", "!!!!")!!.replace("[","").replace("]","")
-
-        val TitleList: List<String> = TitleValues!!.split(',').toList()
-
-        private val tabTitles = intArrayOf(
-            R.string.New_Tab1,
-            R.string.New_Tab2,
-            R.string.New_Tab3,
-            R.string.New_Tab4,
-            R.string.New_Tab5,
-            R.string.New_Tab6,
-            R.string.New_Tab7,
-            R.string.New_Tab8,
-            R.string.New_Tab9
-        )
+        private val titleValues = mContext!!.getSharedPreferences("MAIN_MENU", AppCompatActivity.MODE_PRIVATE).getString("NEW_TITLE", "!!!!")!!.replace("[","").replace("]","")
+        private val titleList: List<String> = titleValues!!.split(',').toList()
 
         override fun getItem(position: Int): Fragment {
             return NewTab.newInstance(position + 1)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return TitleList[position]
+            return titleList[position]
         }
 
         override fun getCount(): Int {
-            return TitleList.size
+            return titleList.size
         }
     }
 }

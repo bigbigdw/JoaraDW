@@ -51,6 +51,7 @@ class Main : AppCompatActivity() {
     private var mContext: Context? = null
 
     val MenuList: MutableList<String> = ArrayList()
+    val MenuListPosition: MutableList<String> = ArrayList()
 
     override fun onResume() {
         super.onResume()
@@ -163,9 +164,11 @@ class Main : AppCompatActivity() {
                                     if(tabname.equals("최신작품")){
                                         for (j in MainTab!!.indices) {
                                             MenuList.add(MainTab[j].title!!)
+                                            MenuListPosition.add(MainTab[j].position!!)
                                         }
                                         val editor = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
-                                        editor.putString("NEW", MenuList.toString())
+                                        editor.putString("NEW_TITLE", MenuList.toString())
+                                        editor.putString("NEW_POSITION", MenuListPosition.toString())
                                         editor.apply()
                                     }
                                 }
