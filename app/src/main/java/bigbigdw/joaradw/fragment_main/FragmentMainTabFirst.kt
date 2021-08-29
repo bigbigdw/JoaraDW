@@ -61,22 +61,6 @@ class FragmentMainTabFirst : BookBaseFragment() {
         tabviewmodel!!.setIndex(index)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        mainBookItemsFirst.clear()
-        mainBookItemsSecond.clear()
-
-        //메인 북 데이터
-        mainBookAdapterFirst = AdapterMainBookData(requireContext(),mainBookItemsFirst)
-        linearLayoutManagerFirst = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst,MainBookListFirst,"FIRST")
-
-        mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
-        linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,MainBookListSecond,"SECOND")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
@@ -99,6 +83,18 @@ class FragmentMainTabFirst : BookBaseFragment() {
     }
 
     fun setLayout() {
+
+        mainBookItemsFirst.clear()
+        mainBookItemsSecond.clear()
+
+        //메인 북 데이터
+        mainBookAdapterFirst = AdapterMainBookData(requireContext(),mainBookItemsFirst)
+        linearLayoutManagerFirst = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst,MainBookListFirst,"FIRST")
+
+        mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
+        linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,MainBookListSecond,"SECOND")
 
         //배너
         getMainBanner("app_home_top_banner",mainBanner!!,mainBannerURLs)

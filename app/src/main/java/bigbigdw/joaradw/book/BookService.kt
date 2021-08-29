@@ -129,5 +129,15 @@ interface BookListBestService {
     ): Call<BookListBestResult?>?
 }
 
+//완결
+interface BookListFinishService {
+    @GET("v1/book/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("store") store: String?,
+        @Query("orderby") orderby: String?,
+    ): Call<BookListResultC?>?
+}
+
 
 

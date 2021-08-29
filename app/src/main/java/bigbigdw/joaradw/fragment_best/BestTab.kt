@@ -36,7 +36,7 @@ class BestTab : Fragment() {
     var best = "weekly"
     var token = ""
     var tabName = ""
-    var etcUrl = "&orderby=cnt_best&offset=100&page=1"
+    var etcUrl = ""
     var blankLayout: LinearLayout? = null
     var loadingLayout: LinearLayout? = null
     var footer: LinearLayout? = null
@@ -96,7 +96,7 @@ class BestTab : Fragment() {
         token = requireContext().getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
             .getString("TOKEN", "").toString()
 
-        contentsLayout!!.setOnScrollChangeListener(commentScrollListener)
+        contentsLayout!!.setOnScrollChangeListener(scrollListener)
 
         allAdapter = AdapterBookListBest(requireContext(),items1)
         noblessAdapter = AdapterBookListBest(requireContext(),items2)
@@ -134,7 +134,7 @@ class BestTab : Fragment() {
             }
 
             val resultEtc = etcUrl + token
-            val bestParam = "&best=$best"
+            val bestParam = ""
 
             getBookBest(
                 root,
@@ -277,7 +277,6 @@ class BestTab : Fragment() {
 
                             }
                         } else {
-//                            loadingLayout!!.visibility = View.VISIBLE
                             wrap!!.visibility = View.GONE
                         }
                     }
@@ -303,13 +302,10 @@ class BestTab : Fragment() {
 //        startActivity(intent)
     }
 
-    private var commentScrollListener =
+    private var scrollListener =
         NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-
                 loadingLayout!!.visibility = View.VISIBLE
-
-                Log.d("@@@@", type.toString())
 
                 when (type) {
                     1 -> {

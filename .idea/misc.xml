@@ -17,6 +17,11 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_list_premium.xml" value="0.10416666666666667" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_tab.xml" value="0.23055555555555557" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Fav/layout/fragment_fav.xml" value="0.2585128561501042" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish.xml" value="0.10138888888888889" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_list_all.xml" value="0.22847222222222222" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_list_nobless.xml" value="0.22847222222222222" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_list_premium.xml" value="0.22847222222222222" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_tab.xml" value="0.22847222222222222" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/booklist_etc.xml" value="0.2298611111111111" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main.xml" value="0.25833333333333336" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Main/layout/fragment_main_booklist_festival.xml" value="0.20521172638436483" />

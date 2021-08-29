@@ -191,4 +191,16 @@ object RetrofitBookList {
                 store
             )
     }
+
+    fun getBookFinish(token: String?, store: String?, orderby: String?): Call<BookListResultC?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListFinishService::class.java)
+            .getRetrofit(
+                token,
+                store,
+                orderby
+            )
+    }
 }

@@ -883,12 +883,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/FinishTab.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/Finish_Tab.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/FragmentFinish.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/FragmentFinish.kt">
           <value>
             <set />
           </value>
@@ -1729,6 +1739,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Fav/layout/fragment_fav.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Finish/layout/fragment_finish.xml">
           <value>
             <set />
           </value>
