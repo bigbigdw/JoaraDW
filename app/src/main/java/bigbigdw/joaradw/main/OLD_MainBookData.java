@@ -44,7 +44,24 @@ public class OLD_MainBookData {
                     BookInfo tempBookInfo = BookInfo.getParseData(jo);
                     BookInfo tempBookInfoBest = BookInfo.getParseBest(i);
 
-                    items.add(new OLD_MainBookListData(tempBookInfo.getWriter(), tempBookInfo.getTitle(), tempBookInfo.getBookImg(), tempBookInfo.getIsAdult(), tempBookInfo.getIsFinish(), tempBookInfo.getIsPremium(), tempBookInfo.getIsNobless(), tempBookInfo.getIntro(), tempBookInfo.getIsFavorite(),  tempBookInfo.getCntPageRead(), tempBookInfo.getCntFavorite(), tempBookInfo.getCntRecom(),tempBookInfoBest.getBookBestRank(),"1",tempBookInfo.getBookCode(),tempBookInfo.getCategoryKoName(),tempBookInfo.getCtnChapter()));
+                    items.add(new OLD_MainBookListData(
+                            tempBookInfo.getWriter(),
+                            tempBookInfo.getTitle(),
+                            tempBookInfo.getBookImg(),
+                            tempBookInfo.getIsAdult(),
+                            tempBookInfo.getIsFinish(),
+                            tempBookInfo.getIsPremium(),
+                            tempBookInfo.getIsNobless(),
+                            tempBookInfo.getIntro(),
+                            tempBookInfo.getIsFavorite(),
+                            tempBookInfo.getCntPageRead(),
+                            tempBookInfo.getCntFavorite(),
+                            tempBookInfo.getCntRecom(),
+                            tempBookInfoBest.getBookBestRank(),
+                            "1",
+                            tempBookInfo.getBookCode(),
+                            tempBookInfo.getCategoryKoName(),
+                            tempBookInfo.getCtnChapter()));
                     wrap.setVisibility(View.VISIBLE);
                 }
 

@@ -1,39 +1,38 @@
-package bigbigdw.joaradw.joara_post
+package bigbigdw.joaradw.fragment_best
 
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.FragmentPagerAdapter
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.databinding.FragmentPostListBinding
+import bigbigdw.joaradw.databinding.FragmentBestBinding
+import bigbigdw.joaradw.fragment_best.BestTab
 
-class FragmentPostList : Fragment() {
-
-    var tabNum = 0
-
+class FragmentBest : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentPostListBinding = FragmentPostListBinding.inflate(inflater, container, false)
-        val root: View = fragmentPostListBinding.root
+
+        val binding = FragmentBestBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
         val sectionsPagerAdapter = SectionsPagerAdapter(
             context, childFragmentManager
         )
-        val viewPager = fragmentPostListBinding.viewPager
+
+        val viewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
-        val fragmentPostTabs = fragmentPostListBinding.postTab
-        fragmentPostTabs.setupWithViewPager(viewPager)
-        val bundle = this.arguments
-        if (bundle != null) {
-            tabNum = bundle.getInt("TabNum")
-            viewPager.currentItem = tabNum
-        }
+
+        val fragmentBestTab = binding.tabs
+        fragmentBestTab.setupWithViewPager(viewPager)
 
         viewPager.offscreenPageLimit = 1
 
@@ -45,12 +44,14 @@ class FragmentPostList : Fragment() {
             fm!!
         ) {
         private val tabTitles = intArrayOf(
-            R.string.Post_Tab1,
-            R.string.Post_Tab2
+            R.string.Best_Tab1,
+            R.string.Best_Tab2,
+            R.string.Best_Tab3,
+            R.string.Best_Tab4
         )
 
         override fun getItem(position: Int): Fragment {
-            return FragmentPostTabs.newInstance(position + 1)
+            return BestTab.newInstance(position + 1)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {

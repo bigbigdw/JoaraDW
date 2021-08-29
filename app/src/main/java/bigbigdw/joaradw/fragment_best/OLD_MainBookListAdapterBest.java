@@ -24,7 +24,7 @@ import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
-public class MainBookListAdapterBest extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class OLD_MainBookListAdapterBest extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     ArrayList<OLD_MainBookListData> listData;
     private static final int VIEW_TYPE_ITEM = 0;
 
@@ -32,13 +32,13 @@ public class MainBookListAdapterBest extends RecyclerView.Adapter<RecyclerView.V
         void onItemClick(View v, int position, String value);
     }
 
-    private MainBookListAdapterBest.OnItemClickListener listener = null;
+    private OLD_MainBookListAdapterBest.OnItemClickListener listener = null;
 
-    public void setOnItemClickListener(MainBookListAdapterBest.OnItemClickListener listener) {
+    public void setOnItemClickListener(OLD_MainBookListAdapterBest.OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public MainBookListAdapterBest(List<OLD_MainBookListData> items) {
+    public OLD_MainBookListAdapterBest(List<OLD_MainBookListData> items) {
         this.listData = (ArrayList<OLD_MainBookListData>) items;
     }
 
@@ -46,7 +46,7 @@ public class MainBookListAdapterBest extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_booklistdata_booklist_best, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booklist_best, parent, false);
             return new MainBookListViewHolderBest(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner, parent, false);

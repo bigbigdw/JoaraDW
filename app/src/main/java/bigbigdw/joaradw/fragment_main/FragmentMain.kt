@@ -7,12 +7,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import bigbigdw.joaradw.R
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-import bigbigdw.joaradw.test.FragmentTest
 import androidx.fragment.app.FragmentPagerAdapter
-import java.util.ArrayList
+import bigbigdw.joaradw.databinding.FragmentMainBinding
 
 class FragmentMain : BookBaseFragment() {
     var tabNum = 0
@@ -21,62 +17,54 @@ class FragmentMain : BookBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val viewPager: ViewPager = root.findViewById(R.id.view_pager)
-        setupViewPager(viewPager)
-        val tabLayout: TabLayout = root.findViewById(R.id.tabs)
-        tabLayout.setupWithViewPager(viewPager)
+
+        val fragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
+
+        val root: View = fragmentMainBinding.root
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(
+            childFragmentManager
+        )
+
+        val viewPager = fragmentMainBinding.viewPager
+        viewPager.adapter = sectionsPagerAdapter
+
+        val fragmentNewTab = fragmentMainBinding.tabs
+        fragmentNewTab.setupWithViewPager(viewPager)
+
+        viewPager.offscreenPageLimit = 1
+
         val bundle = this.arguments
+
         if (bundle != null) {
             tabNum = bundle.getInt("TabNum")
             viewPager.currentItem = tabNum
         }
+
         return root
     }
 
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(
-            childFragmentManager
-        )
-        adapter.addFragment(FragmentMainTabFirst(), "전체")
-        adapter.addFragment(FragmentTest(), "판타지")
-        adapter.addFragment(FragmentTest(), "무협")
-        adapter.addFragment(FragmentTest(), "퓨전")
-        adapter.addFragment(FragmentTest(), "게임")
-        adapter.addFragment(FragmentTest(), "로맨스")
-        adapter.addFragment(FragmentTest(), "로맨스 판타지")
-        adapter.addFragment(FragmentTest(), "BL")
-        adapter.addFragment(FragmentTest(), "GL")
-        adapter.addFragment(FragmentTest(), "스포츠")
-        adapter.addFragment(FragmentTest(), "역사")
-        adapter.addFragment(FragmentTest(), "패러디")
-        adapter.addFragment(FragmentTest(), "팬픽")
-        adapter.addFragment(FragmentTest(), "라이트노벨")
-        adapter.addFragment(FragmentTest(), "일반작품")
-        adapter.addFragment(FragmentTest(), "문학작품")
-        viewPager.adapter = adapter
-    }
+    class SectionsPagerAdapter(fm: FragmentManager?) :
+        FragmentPagerAdapter(
+            fm!!
+        ) {
+        private val titleValues = "전체,판타지,무협,퓨전,게임,로맨스,로맨스 판타지,BL,GL,스포츠,역사,패러디,팬픽,라이트노벨,일반작품,문학작품"
+        private val titleList: List<String> = titleValues!!.split(',').toList()
 
-    class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(
-        manager!!
-    ) {
-        private val mFragmentList: MutableList<Fragment> = ArrayList()
-        private val mFragmentTitleList: MutableList<String> = ArrayList()
         override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
-        }
-
-        override fun getCount(): Int {
-            return mFragmentList.size
-        }
-
-        fun addFragment(fragment: Fragment, title: String) {
-            mFragmentList.add(fragment)
-            mFragmentTitleList.add(title)
+            return if(position == 0){
+                FragmentMainTabFirst.newInstance(position)
+            } else {
+                FragmentMainTabPage.newInstance(position)
+            }
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return mFragmentTitleList[position]
+            return titleList[position]
+        }
+
+        override fun getCount(): Int {
+            return titleList.size
         }
     }
 }

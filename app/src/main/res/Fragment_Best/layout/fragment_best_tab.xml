@@ -14,67 +14,82 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            layout="@layout/loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/ContentsLayout"
+            layout="@layout/blank"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:visibility="visible"
+            tools:visibility="gone" />
 
-            <LinearLayout
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/ContentsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/Contents_BG"
-                android:orientation="vertical">
+                android:fillViewport="true"
+                android:visibility="gone"
+                tools:visibility="visible">
 
-                <include
-                    layout="@layout/fragment_best_list_all"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_nobless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_premium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_free"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_series"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_finish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/fragment_best_list_noblessclassic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    layout="@layout/footer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:background="@color/Contents_BG"
+                    android:orientation="vertical">
 
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                    <include
+                        layout="@layout/fragment_best_list_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_nobless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_premium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_free"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_series"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_finish"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/fragment_best_list_noblessclassic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/footer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <include
+                layout="@layout/loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

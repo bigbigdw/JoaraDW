@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -126,6 +128,39 @@ class AdapterBookListC(private val mContext: Context, items: List<BookListDataC?
             category = itemView.findViewById(R.id.Category)
             textCntChapter = itemView.findViewById(R.id.Text_CntChapter)
 
+            val token = mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+            .getString("TOKEN", "")
+
+            bookContentsWrapC.setOnClickListener { v: View? ->
+                val pos = adapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener!!.onItemClick(v, pos, "BookDetail")
+                }
+            }
+
+            if (token != "") {
+                imgWrap.setOnClickListener { v: View? ->
+                    if (favoff.visibility == View.VISIBLE) {
+                        favoff.visibility = View.GONE
+                        favon.visibility = View.VISIBLE
+                    } else {
+                        favoff.visibility = View.VISIBLE
+                        favon.visibility = View.GONE
+                    }
+                    val pos = adapterPosition
+                    if (pos != RecyclerView.NO_POSITION) {
+                        listener!!.onItemClick(v, pos, "FAV")
+                    }
+                }
+            } else {
+                imgWrap.setOnClickListener {
+                    Toast.makeText(
+                        itemView.context,
+                        "선호작을 등록하려면 로그인이 필요합니다",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
         }
     }

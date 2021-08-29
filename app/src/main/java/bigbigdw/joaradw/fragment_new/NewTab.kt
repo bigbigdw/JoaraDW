@@ -19,6 +19,7 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import bigbigdw.joaradw.BookPagination
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
 import retrofit2.Call
@@ -120,6 +121,23 @@ class NewTab : Fragment() {
         })
 
         recyclerView!!.addOnScrollListener(recyclerViewScroll)
+
+        adapter!!.setOnItemClickListener(object : AdapterBookListC.OnItemClickListener {
+            override fun onItemClick(v: View?, position: Int, value: String?) {
+                    val item: BookListDataC? = adapter!!.getItem(position)
+                if (value == "FAV") {
+                    RetrofitBookList.postFav(item!!.bookCode, requireContext(),item!!.title)
+                } else if (value == "BookDetail") {
+                    val intent = Intent(
+                        requireContext().applicationContext,
+                        BookDetailCover::class.java
+                    )
+                    intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
+                    intent.putExtra("token", String.format("%s", token))
+                    requireContext().startActivity(intent)
+                }
+            }
+        })
 
         return root
     }

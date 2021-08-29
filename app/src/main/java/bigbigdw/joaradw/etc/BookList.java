@@ -30,15 +30,6 @@ public interface BookList {
         adapter.notifyDataSetChanged();
     }
 
-    static void bookListB(View root, AssetManager assetManager, String bookType, Integer recylerView, OLD_MainBookListAdapterB adapter) {
-        RecyclerView recyclerView = root.findViewById(recylerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-        adapter.setItems(new MainBookDataJSON().getData(assetManager, bookType));
-        adapter.notifyDataSetChanged();
-    }
-
     static void bookListC(View root, String apiUrl, String etc, Integer recylerview, OLD_MainBookListAdapterC adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -49,16 +40,6 @@ public interface BookList {
         recyclerView.setAdapter(adapter);
     }
 
-    static void bookListAWebToon(View root, String apiUrl, String etc, Integer recylerView, OLD_MainBookListAdapterA adapter, RequestQueue queue, Integer integer) {
-        RecyclerView recyclerView = root.findViewById(recylerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-        LinearLayout wrap = root.findViewById(integer);
-        adapter.setItems(new MainBookDataWebtoon().getData(apiUrl, etc, queue, wrap));
-        adapter.notifyDataSetChanged();
-    }
-
     static void bookListD(View root, String apiUrl, String etc, Integer recylerview, OLD_MainBookListAdapterD adapter, RequestQueue queue, Integer integer) {
         RecyclerView recyclerView = root.findViewById(recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -67,12 +48,6 @@ public interface BookList {
         LinearLayout wrap = root.findViewById(integer);
         adapter.setItems(new OLD_MainBookData().getData(apiUrl, etc, queue, wrap,""));
         adapter.notifyDataSetChanged();
-    }
-
-    static void initAdapterC(RecyclerView recyclerView, LinearLayoutManager linearLayoutManager, OLD_MainBookListAdapterC adapter) {
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
     }
 
 }

@@ -1,7 +1,13 @@
 package bigbigdw.joaradw.book
 
+import android.content.Context
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import bigbigdw.joaradw.etc.HELPER
+import bigbigdw.joaradw.util.LoginResult
+import bigbigdw.joaradw.util.LoginService
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -118,6 +124,71 @@ object RetrofitBookList {
                 token,
                 store,
                 page,
+            )
+    }
+
+    fun postFav(bookCode: String?, context: Context?, bookTitle : String?) {
+        val token = context!!.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+            .getString("TOKEN", "")
+
+        val call = Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(FavBookService::class.java)
+            .postRetrofit(
+                token,
+                bookCode,
+                "1",
+                HELPER.API_KEY,
+                HELPER.VER,
+                HELPER.DEVICE,
+                HELPER.DEVICE_ID,
+                HELPER.DEVICE_TOKEN
+            )!!
+
+            call.enqueue(object : Callback<BookFavResult?> {
+            override fun onResponse(
+                call: Call<BookFavResult?>,
+                response: retrofit2.Response<BookFavResult?>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let { it ->
+                        val status = it.status
+                        val favorite = it.favorite
+
+                        if(status.equals("1")){
+                            if(favorite!!){
+
+                                Toast.makeText(
+                                    context, "'$bookTitle'이(가) 선호작에 등록되었습니다",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    context, "'$bookTitle'을(를) 선호작에서 해제하였습니다",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BookFavResult?>, t: Throwable) {
+                Toast.makeText(context, "선호작 등록에 실패하였습니다", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun getBookBest(token: String?, best: String?, store: String?): Call<BookListBestResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListBestService::class.java)
+            .getRetrofit(
+                token,
+                best,
+                store
             )
     }
 }

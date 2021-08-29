@@ -759,16 +759,14 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
         adapter!!.setOnItemClickListener(object : AdapterBookListA.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
-                if (!type.equals("WEBTOON")) {
-                    val item: BookListDataABD? = adapter.getItem(position)
-                    val intent = Intent(
-                        mContext.applicationContext,
-                        BookDetailCover::class.java
-                    )
-                    intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
-                    intent.putExtra("token", String.format("%s", token))
-                    mContext.startActivity(intent)
-                }
+                val item: BookListDataABD? = adapter.getItem(position)
+                val intent = Intent(
+                    mContext.applicationContext,
+                    BookDetailCover::class.java
+                )
+                intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
+                intent.putExtra("token", String.format("%s", token))
+                mContext.startActivity(intent)
             }
         })
     }
@@ -866,8 +864,10 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
         adapter!!.setOnItemClickListener(object : AdapterBookListC.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
-                if (!type.equals("WEBTOON")) {
-                    val item: BookListDataC? = adapter.getItem(position)
+                val item: BookListDataC? = adapter!!.getItem(position)
+                if (value == "FAV") {
+                    RetrofitBookList.postFav(item!!.bookCode, mContext,item!!.title)
+                } else if (value == "BookDetail") {
                     val intent = Intent(
                         mContext.applicationContext,
                         BookDetailCover::class.java
@@ -1138,16 +1138,14 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
         adapter!!.setOnItemClickListener(object : AdapterBookListD.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
-                if (!type.equals("WEBTOON")) {
-                    val item: BookListDataABD? = adapter.getItem(position)
-                    val intent = Intent(
-                        mContext.applicationContext,
-                        BookDetailCover::class.java
-                    )
-                    intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
-                    intent.putExtra("token", String.format("%s", token))
-                    mContext.startActivity(intent)
-                }
+                val item: BookListDataABD? = adapter.getItem(position)
+                val intent = Intent(
+                    mContext.applicationContext,
+                    BookDetailCover::class.java
+                )
+                intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
+                intent.putExtra("token", String.format("%s", token))
+                mContext.startActivity(intent)
             }
         })
     }

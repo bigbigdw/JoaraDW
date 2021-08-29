@@ -508,12 +508,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListBest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListBest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListC.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListD.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterMainBookListBest.java">
           <value>
             <set />
           </value>
@@ -788,7 +803,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/BestTab.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/FragmentBest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/FragmentBest.kt">
           <value>
             <set />
           </value>
@@ -804,6 +829,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/Main_BookListAdapter_Best.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/OLD_MainBookListAdapterBest.java">
           <value>
             <set />
           </value>
@@ -919,6 +949,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMainTabFirst.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentMainTabPage.kt">
           <value>
             <set />
           </value>
@@ -1623,6 +1658,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Etc/layout/footer.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Etc/layout/loading.xml">
           <value>
             <set />
@@ -1749,6 +1789,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_more_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_tab.xml">
           <value>
             <set />
           </value>
@@ -1884,6 +1929,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/item_booklist_b.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/item_booklist_best.xml">
           <value>
             <set />
           </value>

@@ -2,9 +2,9 @@ package bigbigdw.joaradw.book
 
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.fragment_main.MainBannerResult
+import bigbigdw.joaradw.util.LoginResult
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 //메인 북데이터 이어보기
 interface MainHistoryBookService {
@@ -93,6 +93,7 @@ interface MainBookListDService {
     ): Call<BookListResult?>?
 }
 
+//최신 작품
 interface NewBookService {
     @GET("v1/book/list.joa" + HELPER.ETC)
     fun getRetrofit(
@@ -102,6 +103,31 @@ interface NewBookService {
     ): Call<BookListResultC?>?
 }
 
+//선호작 등록
+interface FavBookService {
+    @FormUrlEncoded
+    @POST("v1/user/favorite.joa")
+    fun postRetrofit(
+        @Field("token") token: String?,
+        @Field("book_code") bookCode: String?,
+        @Field("category") category: String?,
+        @Field("api_key") apiKey: String?,
+        @Field("ver") ver: String?,
+        @Field("device") device: String?,
+        @Field("deviceuid") deviceuid: String?,
+        @Field("devicetoken") devicetoken: String?,
+    ): Call<BookFavResult?>?
+}
+
+//베스트
+interface BookListBestService {
+    @GET("v1/best/book.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("best") best: String?,
+        @Query("store") store: String?,
+    ): Call<BookListBestResult?>?
+}
 
 
 

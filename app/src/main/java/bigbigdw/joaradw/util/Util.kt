@@ -43,7 +43,7 @@ object Util {
         sb.append("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>")
         sb.append("<meta name=\"viewport\" content=\"width=device-width\">")
         sb.append("</HEAD>")
-        sb.append("<STYLE>img{max-width:100%;width:auto;height:auto;}</STYLE>")
+        sb.append("<STYLE>img{max-width:100%;width:auto;height:auto;}a{display:contents;}</STYLE>")
         sb.append("<BODY style=\"margin:0; padding:0px; background-color:$bgColor;\">")
         sb.append("<DIV style=\"font-size:15px; color:#666666;\">")
         sb.append(data)

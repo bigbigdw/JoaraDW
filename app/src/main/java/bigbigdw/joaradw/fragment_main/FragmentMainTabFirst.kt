@@ -9,11 +9,14 @@ import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
+import bigbigdw.joaradw.fragment_new.NewTab
 import bigbigdw.joaradw.main.RetrofitMain
+import bigbigdw.joaradw.main.TabViewModel
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -23,6 +26,8 @@ import retrofit2.Response
 import java.util.*
 
 class FragmentMainTabFirst : BookBaseFragment() {
+
+    private var tabviewmodel: TabViewModel? = null
 
     var mainBanner: CarouselView? = null
     var mainBannerMid: CarouselView? = null
@@ -45,6 +50,16 @@ class FragmentMainTabFirst : BookBaseFragment() {
     var token: String? = null
     var userStatus: String? = null
     var paramToken: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        tabviewmodel = ViewModelProvider(this).get(TabViewModel::class.java)
+        var index = 1
+        if (arguments != null) {
+            index = requireArguments().getInt(FragmentMainTabFirst.ARG_SECTION_NUMBER)
+        }
+        tabviewmodel!!.setIndex(index)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -230,5 +245,16 @@ class FragmentMainTabFirst : BookBaseFragment() {
         super.onDestroyView()
         mainBanner!!.removeAllViews()
         mainBannerURLs = ArrayList()
+    }
+
+    companion object {
+        private const val ARG_SECTION_NUMBER = "section_number"
+        fun newInstance(index: Int): FragmentMainTabFirst {
+            val fragment = FragmentMainTabFirst()
+            val bundle = Bundle()
+            bundle.putInt(ARG_SECTION_NUMBER, index)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
