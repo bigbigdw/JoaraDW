@@ -13,835 +13,862 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.core.widget.NestedScrollView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/Contents_BG"
-                android:orientation="vertical">
+                android:fillViewport="true">
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/Contents_BG"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab1_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab1_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab1_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab1_RecyclerView"
+                        android:id="@+id/Wrap1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab1_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab1_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Tab1"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab1_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab1_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab2_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab2_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab2_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab2_RecyclerView"
+                        android:id="@+id/Wrap2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab2_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab2_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab2_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab2_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab3_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab3_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab3_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab3_RecyclerView"
+                        android:id="@+id/Wrap3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab3_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab3_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab3_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab3_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab4_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab4_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab4_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab4_RecyclerView"
+                        android:id="@+id/Wrap4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab4_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab4_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab4_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab4_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab5_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab5_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab5_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab5_RecyclerView"
+                        android:id="@+id/Wrap5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab5_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab5_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab5_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab5_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab6_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab6_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab6_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab6_RecyclerView"
+                        android:id="@+id/Wrap6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab6_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab6_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab6_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab6_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab7_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab7_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab7_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab7_RecyclerView"
+                        android:id="@+id/Wrap7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab7_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab7_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab7_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab7_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab8_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab8_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab8_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab8_RecyclerView"
+                        android:id="@+id/Wrap8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab8_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab8_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab8_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab8_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab9_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab9_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab9_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab9_RecyclerView"
+                        android:id="@+id/Wrap9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab9_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab9_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab9_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab9_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab10_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab10_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab10_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab10_RecyclerView"
+                        android:id="@+id/Wrap10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab10_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab10_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab10_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab10_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab11_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab11_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab11_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab11_RecyclerView"
+                        android:id="@+id/Wrap11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab11_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab11_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab11_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab11_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/Contents"
-                        android:orientation="horizontal"
-                        android:paddingStart="16dp"
-                        android:paddingTop="9dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="9dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/Tab12_Title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event1"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/Tab12_Title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="0dp"
-                                android:fontFamily="@font/noto_sans_bold"
-                                android:text="@string/Main_BookList_Event2"
-                                android:textColor="@color/Contents_Text2"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/Tab12_More"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/noto_sans"
-                            android:text="@string/Common_SeeMore"
-                            android:textColor="@color/Contents_Text2" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/Tab12_RecyclerView"
+                        android:id="@+id/Wrap12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/Contents"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="0dp"
-                        android:paddingBottom="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="60dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/Contents"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="9dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Tab12_Title1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event1"
+                                    android:textColor="@color/Contents_Text1"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Tab12_Title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:fontFamily="@font/noto_sans_bold"
+                                    android:text="@string/Main_BookList_Event2"
+                                    android:textColor="@color/Contents_Text2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Tab12_More"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_sans"
+                                android:text="@string/Common_SeeMore"
+                                android:textColor="@color/Contents_Text2" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Tab12_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Contents"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="16dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <include
+                layout="@layout/loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -215,7 +215,7 @@ class BestTab : Fragment() {
         val wrap : LinearLayout = root.findViewById(integerWrap!!)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        RetrofitBookList.getBookBest(token, best ,store)!!.enqueue(object :
+        RetrofitBookList.getBookBest(token, best ,store, "0")!!.enqueue(object :
             Callback<BookListBestResult?> {
             override fun onResponse(
                 call: Call<BookListBestResult?>,

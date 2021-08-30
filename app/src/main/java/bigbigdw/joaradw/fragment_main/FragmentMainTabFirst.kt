@@ -56,7 +56,7 @@ class FragmentMainTabFirst : BookBaseFragment() {
         tabviewmodel = ViewModelProvider(this).get(TabViewModel::class.java)
         var index = 1
         if (arguments != null) {
-            index = requireArguments().getInt(FragmentMainTabFirst.ARG_SECTION_NUMBER)
+            index = requireArguments().getInt(ARG_SECTION_NUMBER)
         }
         tabviewmodel!!.setIndex(index)
     }

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import bigbigdw.joaradw.BookPagination;
-import bigbigdw.joaradw.fragment_best.OLD_MainBookListAdapterBest;
 import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.R;
 
@@ -77,16 +76,7 @@ public class BookPageEtc extends BookBaseActivity {
 
     private void initAdapter() {
         if (type.equals("BEST")) {
-            OLD_MainBookListAdapterBest bestAdapter = new OLD_MainBookListAdapterBest(items);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            bestAdapter.notifyDataSetChanged();
-            recyclerView.setAdapter(bestAdapter);
 
-            bestAdapter.setOnItemClickListener((v, position, value) -> {
-                OLD_MainBookListData item = adapter.getItem(position);
-                adapterListener(item, value, queue);
-            });
         } else {
             adapter = new OLD_MainBookListAdapterC(items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

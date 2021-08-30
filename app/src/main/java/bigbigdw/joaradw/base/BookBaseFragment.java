@@ -23,7 +23,6 @@ import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.main.BookPageEtc;
 import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
 import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterD;
 import bigbigdw.joaradw.main.OLD_MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 
@@ -87,15 +86,6 @@ public class BookBaseFragment extends Fragment {
         adapter.setOnItemClickListener((v, position, value) -> {
             OLD_MainBookListData item = adapter.getItem(position);
             adapterListener(item, value, queue2);
-        });
-    }
-
-    public void bookListD(View root, String apiUrl, String etc, Integer recylerView, OLD_MainBookListAdapterD adapter, Integer wrap) {
-        RequestQueue queue3 = Volley.newRequestQueue(requireActivity());
-        BookList.bookListD(root, apiUrl, etc, recylerView, adapter, queue3, wrap);
-        adapter.setOnItemClickListener((v, position, value) -> {
-            OLD_MainBookListData item = adapter.getItem(position);
-            adapterListener(item, value, queue3);
         });
     }
 

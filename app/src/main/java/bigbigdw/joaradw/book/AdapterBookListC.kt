@@ -161,7 +161,6 @@ class AdapterBookListC(private val mContext: Context, items: List<BookListDataC?
                     ).show()
                 }
             }
-
         }
     }
 

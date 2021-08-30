@@ -180,7 +180,7 @@ object RetrofitBookList {
         })
     }
 
-    fun getBookBest(token: String?, best: String?, store: String?): Call<BookListBestResult?>? {
+    fun getBookBest(token: String?, best: String?, store: String?, category: String?): Call<BookListBestResult?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -188,7 +188,8 @@ object RetrofitBookList {
             .getRetrofit(
                 token,
                 best,
-                store
+                store,
+                category
             )
     }
 

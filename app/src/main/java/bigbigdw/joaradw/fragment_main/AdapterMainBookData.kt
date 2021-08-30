@@ -82,37 +82,20 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
             if (!token.equals("")) {
                 if (listData!![position]!!.sectionSubType.equals("favoriteList")) {
 
-                    val linearLayoutManagerA1: LinearLayoutManager?
-                    val adapterA1: AdapterBookListA?
-                    adapterA1 = AdapterBookListA(mContext, bookListItemsA1)
-                    linearLayoutManagerA1 =
-                        LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                     holder.wrap.visibility = View.VISIBLE
                     holder.titleFirst.text = nickName
                     holder.titleSecond.text = "님의 선호작 이어보기"
                     getBookListTypeA(
-                        adapterA1,
-                        linearLayoutManagerA1,
                         token,
                         "favoriteList",
                         holder.mainBookList
                     )
                 } else if (listData!![position]!!.sectionSubType.equals("recomList2")) {
+
                     holder.wrap.visibility = View.VISIBLE
-
-                    val adapterA2: AdapterBookListA?
-                    val linearLayoutManagerA2: LinearLayoutManager?
-
-                    adapterA2 = AdapterBookListA(mContext, bookListItemsA2)
-                    linearLayoutManagerA2 =
-                        LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                     holder.titleFirst.text = "당신의 취향"
                     holder.titleSecond.text = "을 저격할 작품"
                     getBookListTypeA(
-                        adapterA2,
-                        linearLayoutManagerA2,
                         token,
                         "recomList2",
                         holder.mainBookList
@@ -121,37 +104,22 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
             }
 
             if (listData!![position]!!.sectionSubType.equals("mdList")) {
-                holder.wrap.visibility = View.VISIBLE
-                val linearLayoutManagerA3: LinearLayoutManager?
-                val adapterA3: AdapterBookListA?
-                adapterA3 = AdapterBookListA(mContext, bookListItemsA3)
-                linearLayoutManagerA3 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
+                holder.wrap.visibility = View.VISIBLE
                 holder.wrap.visibility = View.VISIBLE
                 holder.titleFirst.text = "조아라"
                 holder.titleSecond.text = "가 추천하는 소설"
                 getBookListTypeA(
-                    adapterA3,
-                    linearLayoutManagerA3,
                     token,
                     "mdList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("webtoon")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerA4: LinearLayoutManager?
-                val adapterA4: AdapterBookListA?
-                adapterA4 = AdapterBookListA(mContext, bookListItemsA4)
-                linearLayoutManagerA4 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "조아라"
                 holder.titleSecond.text = "가 추천하는 웹툰"
                 getBookListTypeA(
-                    adapterA4,
-                    linearLayoutManagerA4,
                     token,
                     "webtoon",
                     holder.mainBookList
@@ -174,416 +142,228 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("festivalList")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerB1: LinearLayoutManager?
-                val adapterB1: AdapterBookListB?
-                adapterB1 = AdapterBookListB(mContext, bookListItemsB1)
-                linearLayoutManagerB1 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "77페스티벌"
                 holder.titleSecond.text = "최신작품"
                 getBookListTypeB(
-                    adapterB1,
-                    linearLayoutManagerB1,
                     token,
                     "festivalList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("joaraBornList")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerB2: LinearLayoutManager?
-                val adapterB2: AdapterBookListB?
-                adapterB2 = AdapterBookListB(mContext, bookListItemsB2)
-                linearLayoutManagerB2 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "JOARA"
                 holder.titleSecond.text = " BORN"
                 getBookListTypeB(
-                    adapterB2,
-                    linearLayoutManagerB2,
                     token,
                     "joaraBornList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("contestFreeAwardList")) {
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerC1: LinearLayoutManager?
-                val adapterC1: AdapterBookListC?
-                adapterC1 = AdapterBookListC(mContext, bookListItemsC1)
-                linearLayoutManagerC1 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-
                 holder.titleFirst.text = "독자가 픽한"
                 holder.titleSecond.text = " 공모전 수상작"
                 getBookListTypeC(
-                    adapterC1,
-                    linearLayoutManagerC1,
                     token,
                     "contestFreeAwardList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("notyList")) {
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerC2: LinearLayoutManager?
-                val adapterC2: AdapterBookListC?
-                adapterC2 = AdapterBookListC(mContext, bookListItemsC2)
-                linearLayoutManagerC2 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-
                 holder.titleFirst.text = "역대 조아라 NOTY"
                 holder.titleSecond.text = " 수상작"
                 getBookListTypeC(
-                    adapterC2,
-                    linearLayoutManagerC2,
                     token,
                     "notyList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("pageReadList")) {
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerC3: LinearLayoutManager?
-                val adapterC3: AdapterBookListC?
-                adapterC3 = AdapterBookListC(mContext, bookListItemsC3)
-                linearLayoutManagerC3 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-
                 holder.titleFirst.text = "천만명의 독자"
                 holder.titleSecond.text = "가 이미 본 작품"
                 getBookListTypeC(
-                    adapterC3,
-                    linearLayoutManagerC3,
                     token,
                     "pageReadList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("noblessBestList")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD1: LinearLayoutManager?
-                val adapterD1: AdapterBookListD?
-                adapterD1 = AdapterBookListD(mContext, bookListItemsD1)
-                linearLayoutManagerD1 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "노블레스"
                 holder.titleSecond.text = " 베스트"
 
                 getBookListTypeD(
-                    adapterD1,
-                    linearLayoutManagerD1,
                     token,
                     "noblessBestList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionSubType.equals("premiumBestList")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD2: LinearLayoutManager?
-                val adapterD2: AdapterBookListD?
-                adapterD2 = AdapterBookListD(mContext, bookListItemsD2)
-                linearLayoutManagerD2 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "프리미엄"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD2,
-                    linearLayoutManagerD2,
                     token,
                     "premiumBestList",
                     holder.mainBookList
                 )
             } else if (listData!![position]!!.sectionCategory.equals("1")) {
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD3: LinearLayoutManager?
-                val adapterD3: AdapterBookListD?
-                adapterD3 = AdapterBookListD(mContext, bookListItemsD3)
-                linearLayoutManagerD3 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "판타지"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD3,
-                    linearLayoutManagerD3,
                     token,
                     "1",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("2")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD4: LinearLayoutManager?
-                val adapterD4: AdapterBookListD?
-                adapterD4 = AdapterBookListD(mContext, bookListItemsD4)
-                linearLayoutManagerD4 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "무협"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD4,
-                    linearLayoutManagerD4,
                     token,
                     "2",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("5")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD5: LinearLayoutManager?
-                val adapterD5: AdapterBookListD?
-                adapterD5 = AdapterBookListD(mContext, bookListItemsD5)
-                linearLayoutManagerD5 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "로맨스"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD5,
-                    linearLayoutManagerD5,
                     token,
                     "5",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("3")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD6: LinearLayoutManager?
-                val adapterD6: AdapterBookListD?
-                adapterD6 = AdapterBookListD(mContext, bookListItemsD6)
-                linearLayoutManagerD6 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "퓨전"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD6,
-                    linearLayoutManagerD6,
                     token,
                     "3",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("4")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD7: LinearLayoutManager?
-                val adapterD7: AdapterBookListD?
-                adapterD7 = AdapterBookListD(mContext, bookListItemsD7)
-                linearLayoutManagerD7 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "게임"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD7,
-                    linearLayoutManagerD7,
                     token,
                     "4",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("22")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD8: LinearLayoutManager?
-                val adapterD8: AdapterBookListD?
-                adapterD8 = AdapterBookListD(mContext, bookListItemsD8)
-                linearLayoutManagerD8 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "로맨스판타지"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD8,
-                    linearLayoutManagerD8,
                     token,
                     "22",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("20")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD9: LinearLayoutManager?
-                val adapterD9: AdapterBookListD?
-                adapterD9 = AdapterBookListD(mContext, bookListItemsD9)
-                linearLayoutManagerD9 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "BL"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD9,
-                    linearLayoutManagerD9,
                     token,
                     "20",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("23")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD10: LinearLayoutManager?
-                val adapterD10: AdapterBookListD?
-                adapterD10 = AdapterBookListD(mContext, bookListItemsD10)
-                linearLayoutManagerD10 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "GL"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD10,
-                    linearLayoutManagerD10,
                     token,
                     "23",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("21")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD11: LinearLayoutManager?
-                val adapterD11: AdapterBookListD?
-                adapterD11 = AdapterBookListD(mContext, bookListItemsD11)
-                linearLayoutManagerD11 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "스포츠"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD11,
-                    linearLayoutManagerD11,
                     token,
                     "21",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("12")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD12: LinearLayoutManager?
-                val adapterD12: AdapterBookListD?
-                adapterD12 = AdapterBookListD(mContext, bookListItemsD12)
-                linearLayoutManagerD12 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "역사"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD12,
-                    linearLayoutManagerD12,
                     token,
                     "12",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("9")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD13: LinearLayoutManager?
-                val adapterD13: AdapterBookListD?
-                adapterD13 = AdapterBookListD(mContext, bookListItemsD13)
-                linearLayoutManagerD13 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "팬픽"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD13,
-                    linearLayoutManagerD13,
                     token,
                     "9",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("6")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD14: LinearLayoutManager?
-                val adapterD14: AdapterBookListD?
-                adapterD14 = AdapterBookListD(mContext, bookListItemsD14)
-                linearLayoutManagerD14 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "라이트노벨"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD14,
-                    linearLayoutManagerD14,
                     token,
                     "6",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("19")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD15: LinearLayoutManager?
-                val adapterD15: AdapterBookListD?
-                adapterD15 = AdapterBookListD(mContext, bookListItemsD15)
-                linearLayoutManagerD15 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "패러디"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD15,
-                    linearLayoutManagerD15,
                     token,
                     "19",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("60")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD16: LinearLayoutManager?
-                val adapterD16: AdapterBookListD?
-                adapterD16 = AdapterBookListD(mContext, bookListItemsD16)
-                linearLayoutManagerD16 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "일반작품"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD16,
-                    linearLayoutManagerD16,
                     token,
                     "60",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionCategory.equals("50")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD17: LinearLayoutManager?
-                val adapterD17: AdapterBookListD?
-                adapterD17 = AdapterBookListD(mContext, bookListItemsD17)
-                linearLayoutManagerD17 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "문학작품"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD17,
-                    linearLayoutManagerD17,
                     token,
                     "50",
                     holder.mainBookList
                 )
             }else if (listData!![position]!!.sectionSubType.equals("couponBestList")) {
+
                 holder.wrap.visibility = View.VISIBLE
-
-                val linearLayoutManagerD18: LinearLayoutManager?
-                val adapterD18: AdapterBookListD?
-                adapterD18 = AdapterBookListD(mContext, bookListItemsD18)
-                linearLayoutManagerD18 =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
                 holder.titleFirst.text = "후원쿠폰"
                 holder.titleSecond.text = " 베스트"
                 getBookListTypeD(
-                    adapterD18,
-                    linearLayoutManagerD18,
                     token,
                     "couponBestList",
                     holder.mainBookList
@@ -647,12 +427,13 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
     //이어보기, 추천작품, 웹툰
     private fun getBookListTypeA(
-        adapter: AdapterBookListA?,
-        linearLayoutManager: LinearLayoutManager?,
         token: String?,
         type: String?,
         recyclerView: RecyclerView?
     ) {
+
+        val linearLayoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
         val call: Call<BookListResult?>? =
             when {
@@ -683,6 +464,9 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 }
                 else -> bookListItemsA4
             }
+
+        val adapter: AdapterBookListA?
+        adapter = AdapterBookListA(mContext, bookListItemsABD)
 
         call!!.enqueue(object : Callback<BookListResult?> {
             override fun onResponse(
@@ -773,12 +557,13 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
     //77페스티벌, 조아라 본
     private fun getBookListTypeC(
-        adapter: AdapterBookListC?,
-        linearLayoutManager: LinearLayoutManager?,
         token: String?,
         type: String?,
         recyclerView: RecyclerView?
     ) {
+
+        val linearLayoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
         val call: Call<BookListResultC?>? =
             when {
@@ -803,6 +588,9 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 }
                 else -> bookListItemsC3
             }
+
+        val adapter: AdapterBookListC?
+        adapter = AdapterBookListC(mContext, bookListItemsC)
 
         call!!.enqueue(object : Callback<BookListResultC?> {
             override fun onResponse(
@@ -882,12 +670,13 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
     //77페스티벌, 조아라 본
     private fun getBookListTypeB(
-        adapter: AdapterBookListB?,
-        linearLayoutManager: LinearLayoutManager?,
         token: String?,
         type: String?,
         recyclerView: RecyclerView?
     ) {
+
+        val linearLayoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
         val call: Call<BookListResult?>? =
             when {
@@ -906,6 +695,9 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 }
                 else -> bookListItemsB2
             }
+
+        val adapter: AdapterBookListB?
+        adapter = AdapterBookListB(mContext, bookListItemsABD)
 
         call!!.enqueue(object : Callback<BookListResult?> {
             override fun onResponse(
@@ -970,12 +762,13 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
 
     //베스트들
     private fun getBookListTypeD(
-        adapter: AdapterBookListD?,
-        linearLayoutManager: LinearLayoutManager?,
         token: String?,
         type: String?,
         recyclerView: RecyclerView?
     ) {
+
+        val linearLayoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
         val call: Call<BookListResult?>? =
             when {
@@ -1090,6 +883,9 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 }
                 else -> bookListItemsD18
             }
+
+        val adapter: AdapterBookListD?
+        adapter = AdapterBookListD(mContext, bookListItemsABD)
 
         call!!.enqueue(object : Callback<BookListResult?> {
             override fun onResponse(

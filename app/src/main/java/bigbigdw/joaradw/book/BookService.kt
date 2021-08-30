@@ -126,6 +126,7 @@ interface BookListBestService {
         @Query("token") token: String?,
         @Query("best") best: String?,
         @Query("store") store: String?,
+        @Query("category") category: String?,
     ): Call<BookListBestResult?>?
 }
 

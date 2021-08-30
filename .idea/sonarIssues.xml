@@ -1283,6 +1283,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/BookPageEtc.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/main/DialogBanner.kt">
           <value>
             <set />
@@ -1504,6 +1509,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/test/FragmentTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/test/FragmentTest.kt">
           <value>
             <set />
           </value>
@@ -1934,6 +1944,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Main/navigation/main_fragment_navigation.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main/values/strings.xml">
           <value>
             <set />
           </value>
