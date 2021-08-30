@@ -1,0 +1,71 @@
+{
+  "status": 1,
+  "home_ver": "3.1",
+  "main_info": [
+    {
+      "section_type": "best",
+      "section_category": "1",
+      "section_sub_type": "all"
+    },
+    {
+      "section_type": "best",
+      "section_category": "2",
+      "section_sub_type": "nobless"
+    },
+    {
+      "section_type": "best",
+      "section_category": "3",
+      "section_sub_type": "premium"
+    },
+    {
+      "section_type": "best",
+      "section_category": "4",
+      "section_sub_type": "series"
+    },
+    {
+      "section_type": "new",
+      "section_category": "1",
+      "section_sub_type": "all"
+    },
+    {
+      "section_type": "new",
+      "section_category": "2",
+      "section_sub_type": "nobless"
+    },
+    {
+      "section_type": "new",
+      "section_category": "3",
+      "section_sub_type": "premium"
+    },
+    {
+      "section_type": "new",
+      "section_category": "4",
+      "section_sub_type": "series"
+    },
+    {
+      "section_type": "new",
+      "section_category": "4",
+      "section_sub_type": "finish"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "1",
+      "section_sub_type": "new"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "2",
+      "section_sub_type": "read"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "3",
+      "section_sub_type": "fav"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "4",
+      "section_sub_type": "recom"
+    }
+  ]
+}
