@@ -150,7 +150,6 @@ class FragmentMainTabFirst : BookBaseFragment() {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val mainInfo = it.mainInfo
-                        val homeVer = it.homeVer
 
                         if (mainInfo != null) {
                             for (i in mainInfo.indices) {

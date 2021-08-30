@@ -1,15 +1,13 @@
 package bigbigdw.joaradw.fragment_main
 
 import android.content.Intent
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,9 +16,14 @@ import bigbigdw.joaradw.R
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
 import bigbigdw.joaradw.main.TabViewModel
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.ArrayList
 
 class FragmentMainTabPage : Fragment() {
@@ -29,17 +32,19 @@ class FragmentMainTabPage : Fragment() {
     var category = "0"
     var token: String? = null
 
+    private var mainBookAdapter: AdapterMainBookTabs? = null
+    var linearLayoutManager: LinearLayoutManager? = null
+    private val mainBookItemsFirst = ArrayList<MainBookData?>()
 
-    override fun onResume() {
-        super.onResume()
-        setLayout()
-    }
+    var MainBookList: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         var root = inflater.inflate(R.layout.fragment_main_tab, container, false)
+        MainBookList = root.findViewById(R.id.MainBookList)
+
 
         tabviewmodel!!.text.observe(viewLifecycleOwner, { tabNum: String? ->
             when (tabNum) {
@@ -116,7 +121,56 @@ class FragmentMainTabPage : Fragment() {
     }
 
     fun setLayout() {
+        mainBookItemsFirst.clear()
+        val assetManager = requireActivity().assets
 
+        mainBookAdapter = AdapterMainBookTabs(requireContext(),mainBookItemsFirst)
+        linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getMainBookData(assetManager, "Main_Tab.json")
+    }
+
+    //메인 북 데이터
+    private fun getMainBookData(assetManager: AssetManager, BookType: String?) {
+        try {
+            val `is` = assetManager.open(BookType!!)
+            val isr = InputStreamReader(`is`)
+            val reader = BufferedReader(isr)
+            val buffer = StringBuilder()
+            var line = reader.readLine()
+            while (line != null) {
+                buffer.append(line).append("\n")
+                line = reader.readLine()
+            }
+            val jsonData = buffer.toString()
+            val jsonObject = JSONObject(jsonData)
+            val flag = jsonObject.getJSONArray("main_info")
+
+            for (i in 0 until flag.length()) {
+                val jo = flag.getJSONObject(i)
+                val sectionType = jo.getString("section_type")
+                val sectionCategory = jo.getString("section_category")
+                val sectionSubType = jo.getString("section_sub_type")
+
+                Log.d("@@@@", sectionSubType)
+
+                mainBookItemsFirst.add(
+                    MainBookData(
+                        sectionCategory,
+                        sectionSubType,
+                        sectionType
+                    )
+                )
+            }
+
+            MainBookList!!.layoutManager = linearLayoutManager
+            MainBookList!!.adapter = mainBookAdapter
+
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
     }
 
     private fun getBookListBest(

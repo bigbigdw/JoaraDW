@@ -8,12 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import bigbigdw.joaradw.R
-import com.android.volley.RequestQueue
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterC
 import bigbigdw.joaradw.etc.API
-import bigbigdw.joaradw.etc.BookList
-import bigbigdw.joaradw.BookPagination
-import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +17,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.book.*
-import bigbigdw.joaradw.book_detail.BookDetailCover
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

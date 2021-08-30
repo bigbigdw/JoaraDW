@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.book_detail.BookDetail;
-import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
@@ -82,7 +81,7 @@ public class BookBaseActivity extends AppCompatActivity {
         if (value.equals("FAV")) {
             BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {
-            Intent intent = new Intent(this.getApplicationContext().getApplicationContext(), BookDetailCover.class);
+            Intent intent = new Intent(this.getApplicationContext().getApplicationContext(), bigbigdw.joaradw.book_detail.BookDetailCover.class);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
             intent.putExtra("TOKEN", String.format("%s", token));
             startActivity(intent);

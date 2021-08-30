@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 
-import bigbigdw.joaradw.book_detail.BookDetailCover;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
@@ -93,7 +92,7 @@ public class BookBaseFragment extends Fragment {
         if (value.equals("FAV")) {
             BookPagination.favToggle(queue, item.getBookCode(), token);
         } else if (value.equals("BookDetail")) {
-            Intent intent = new Intent(requireContext().getApplicationContext(), BookDetailCover.class);
+            Intent intent = new Intent(requireContext().getApplicationContext(), bigbigdw.joaradw.book_detail.BookDetailCover.class);
             intent.putExtra("BookCode", String.format("%s", item.getBookCode()));
             intent.putExtra("token", String.format("%s", token));
             startActivity(intent);
