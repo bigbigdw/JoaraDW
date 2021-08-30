@@ -28,9 +28,11 @@
     <string name="Main_NotLogined">로그인이 필요합니다</string>
 
 <!--    메인 탭-->
-
-    <string name="Main_BookList_Tab1">전체 베스트</string>
-
+    <string name="Main_BookList_Tab10">주간 베스트</string>
+    <string name="Main_BookList_Tab11">전체</string>
+    <string name="Main_BookList_Tab12">노블레스</string>
+    <string name="Main_BookList_Tab13">프리미엄</string>
+    <string name="Main_BookList_Tab14">일반</string>
 
     <!-- 바텀 영역 -->
     <string name="app_bottom1">최신작품</string>

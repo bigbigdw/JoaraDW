@@ -130,6 +130,16 @@ interface BookListBestService {
     ): Call<BookListBestResult?>?
 }
 
+interface BookListBestServiceA {
+    @GET("v1/best/book.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("best") best: String?,
+        @Query("store") store: String?,
+        @Query("category") category: String?,
+    ): Call<BookListResult?>?
+}
+
 //완결
 interface BookListFinishService {
     @GET("v1/book/list.joa" + HELPER.ETC)

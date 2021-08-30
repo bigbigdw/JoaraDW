@@ -193,6 +193,19 @@ object RetrofitBookList {
             )
     }
 
+    fun getBookBestA(token: String?, best: String?, store: String?, category: String?): Call<BookListResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListBestServiceA::class.java)
+            .getRetrofit(
+                token,
+                best,
+                store,
+                category
+            )
+    }
+
     fun getBookFinish(token: String?, store: String?, orderby: String?): Call<BookListResultC?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)
