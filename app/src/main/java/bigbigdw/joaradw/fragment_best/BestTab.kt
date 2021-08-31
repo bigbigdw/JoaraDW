@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.fragment_best
 
+import android.content.Intent
 import bigbigdw.joaradw.main.TabViewModel
 import android.widget.LinearLayout
 import androidx.core.widget.NestedScrollView
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.book.*
+import bigbigdw.joaradw.book_detail.BookDetailCover
 import bigbigdw.joaradw.etc.API
 import retrofit2.Call
 import retrofit2.Callback
@@ -287,8 +289,27 @@ class BestTab : Fragment() {
                 }
             }
 
+
+
             override fun onFailure(call: Call<BookListBestResult?>, t: Throwable) {
                 Log.d("onFailure", "실패")
+            }
+        })
+
+        adapter!!.setOnItemClickListener(object : AdapterBookListBest.OnItemClickListener {
+            override fun onItemClick(v: View?, position: Int, value: String?) {
+                val item: BookListDataBest? = adapter!!.getItem(position)
+                if (value == "FAV") {
+                    RetrofitBookList.postFav(item!!.bookCode, requireContext(),item!!.title)
+                } else if (value == "BookDetail") {
+                    val intent = Intent(
+                        requireContext().applicationContext,
+                        BookDetailCover::class.java
+                    )
+                    intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
+                    intent.putExtra("token", String.format("%s", token))
+                    requireContext().startActivity(intent)
+                }
             }
         })
     }

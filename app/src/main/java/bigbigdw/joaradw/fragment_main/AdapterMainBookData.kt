@@ -88,7 +88,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     getBookListTypeA(
                         token,
                         "favoriteList",
-                        holder.mainBookList
+                        holder.recylerView
                     )
                 } else if (listData!![position]!!.sectionSubType.equals("recomList2")) {
 
@@ -98,7 +98,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     getBookListTypeA(
                         token,
                         "recomList2",
-                        holder.mainBookList
+                        holder.recylerView
                     )
                 }
             }
@@ -112,7 +112,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeA(
                     token,
                     "mdList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("webtoon")) {
 
@@ -122,7 +122,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeA(
                     token,
                     "webtoon",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("mdList2")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -139,7 +139,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     adapterBookEventList,
                     linearLayoutManagerBookEventList,
                     token,
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("festivalList")) {
 
@@ -149,7 +149,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeB(
                     token,
                     "festivalList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("joaraBornList")) {
 
@@ -159,7 +159,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeB(
                     token,
                     "joaraBornList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("contestFreeAwardList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -168,7 +168,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "contestFreeAwardList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("notyList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -177,7 +177,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "notyList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("pageReadList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -186,7 +186,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "pageReadList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("noblessBestList")) {
 
@@ -197,7 +197,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "noblessBestList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionSubType.equals("premiumBestList")) {
 
@@ -207,7 +207,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "premiumBestList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             } else if (listData!![position]!!.sectionCategory.equals("1")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -216,7 +216,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "1",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("2")) {
 
@@ -226,7 +226,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "2",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("5")) {
 
@@ -236,7 +236,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "5",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("3")) {
 
@@ -246,7 +246,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "3",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("4")) {
 
@@ -256,7 +256,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "4",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("22")) {
 
@@ -266,7 +266,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "22",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("20")) {
 
@@ -276,7 +276,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "20",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("23")) {
 
@@ -286,7 +286,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "23",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("21")) {
 
@@ -296,7 +296,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "21",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("12")) {
 
@@ -306,7 +306,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "12",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("9")) {
 
@@ -316,7 +316,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "9",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("6")) {
 
@@ -326,7 +326,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "6",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("19")) {
 
@@ -336,7 +336,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "19",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("60")) {
 
@@ -346,7 +346,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "60",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionCategory.equals("50")) {
 
@@ -356,7 +356,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "50",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }else if (listData!![position]!!.sectionSubType.equals("couponBestList")) {
 
@@ -366,7 +366,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "couponBestList",
-                    holder.mainBookList
+                    holder.recylerView
                 )
             }
         }
@@ -956,7 +956,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
         var titleFirst: TextView
         var titleSecond: TextView
         var gotoMore: TextView
-        var mainBookList: RecyclerView
+        var recylerView: RecyclerView
         var wrap: LinearLayout
 
         var sectionApiUrl: String? = null
@@ -968,7 +968,7 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
             titleFirst = itemView.findViewById(R.id.Title_First)
             titleSecond = itemView.findViewById(R.id.Title_Second)
             gotoMore = itemView.findViewById(R.id.GotoMore)
-            mainBookList = itemView.findViewById(R.id.MainBookListSecond)
+            recylerView = itemView.findViewById(R.id.RecyclerView)
             wrap = itemView.findViewById(R.id.Wrap)
 
         }

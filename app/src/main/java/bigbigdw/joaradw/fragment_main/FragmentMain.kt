@@ -8,10 +8,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import bigbigdw.joaradw.databinding.FragmentMainBinding
 
 class FragmentMain : BookBaseFragment() {
     var tabNum = 0
+    var viewPager :ViewPager? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,19 +29,19 @@ class FragmentMain : BookBaseFragment() {
             childFragmentManager
         )
 
-        val viewPager = fragmentMainBinding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
+        viewPager = fragmentMainBinding.viewPager
+        viewPager!!.adapter = sectionsPagerAdapter
 
         val fragmentNewTab = fragmentMainBinding.tabs
         fragmentNewTab.setupWithViewPager(viewPager)
 
-        viewPager.offscreenPageLimit = 1
+        viewPager!!.offscreenPageLimit = 1
 
         val bundle = this.arguments
 
         if (bundle != null) {
             tabNum = bundle.getInt("TabNum")
-            viewPager.currentItem = tabNum
+            viewPager!!.currentItem = tabNum
         }
 
         return root

@@ -70,12 +70,8 @@ e
 -app/src/main/java/bigbigdw/joaradw/etc/API.kt,7\5\759171f9f6eee5e6400a322ed775a46fe50870c3
 m
 =app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookData.java,c\8\c881807620084808bb7c1a31063910227cda40a1
-p
-@app/src/main/java/bigbigdw/joaradw/fragment_best/FragmentBest.kt,4\f\4fd38ec1af7aba231493120363c3c9550a4f9246
 g
 7app/src/main/java/bigbigdw/joaradw/book/BookListData.kt,7\e\7e71b16a27d3a59e16369b183a48fd6cd9eef250
-n
->app/src/main/java/bigbigdw/joaradw/fragment_new/FragmentNew.kt,4\7\47aff24e7a9f44f25f02f22997e12edbe76c522f
 i
 9app/src/main/java/bigbigdw/joaradw/book/BookListResult.kt,3\7\378286eca92b2ab54a2bd71e8aadd29db9c23f76
 n
@@ -84,10 +80,6 @@ u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterA.java,2\c\2c3d39fb245507085168bd545d388cf2736034c8
 h
 8app/src/main/java/bigbigdw/joaradw/main/BookPageEtc.java,e\b\eb3b43f8474ef21360a3cfb808ca93c337a50332
-n
->app/src/main/java/bigbigdw/joaradw/book/AdapterBookListBest.kt,e\e\eead3cf4d53cb3d52373a6c3b7fb388b348c0f33
-t
-Dapp/src/main/java/bigbigdw/joaradw/fragment_finish/FragmentFinish.kt,b\8\b82d1014159bd9d495e395a7c0f10465f897f7bb
 m
 =app/src/main/java/bigbigdw/joaradw/base/BookBaseFragment.java,7\2\72af8af717e8b7fb2aef60b46c9dafb87171ef95
 k

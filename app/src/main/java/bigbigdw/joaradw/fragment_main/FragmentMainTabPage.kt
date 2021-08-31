@@ -1,26 +1,18 @@
 package bigbigdw.joaradw.fragment_main
 
-import android.content.Intent
 import android.content.res.AssetManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.book.*
-import bigbigdw.joaradw.book_detail.BookDetailCover
 import bigbigdw.joaradw.main.TabViewModel
 import org.json.JSONException
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -32,9 +24,9 @@ class FragmentMainTabPage : Fragment() {
     var category = "0"
     var token: String? = null
 
-    private var mainBookAdapter: AdapterMainBookTabs? = null
+    private var adapter: AdapterMainBookTabs? = null
     var linearLayoutManager: LinearLayoutManager? = null
-    private val mainBookItemsFirst = ArrayList<MainBookData?>()
+    private val items = ArrayList<MainBookData?>()
 
     var MainBookList: RecyclerView? = null
 
@@ -50,61 +42,48 @@ class FragmentMainTabPage : Fragment() {
             when (tabNum) {
                 "TAB1" -> {
                     category = "1"
-                    setLayout()
                 }
                 "TAB2" -> {
                     category = "2"
-                    setLayout()
                 }
                 "TAB3" -> {
                     category = "3"
-                    setLayout()
                 }
                 "TAB4" -> {
                     category = "4"
-                    setLayout()
                 }
                 "TAB5" -> {
                     category = "5"
-                    setLayout()
                 }
                 "TAB6" -> {
                     category = "6"
-                    setLayout()
                 }
                 "TAB7" -> {
                     category = "7"
-                    setLayout()
                 }
                 "TAB8" -> {
                     category = "8"
-                    setLayout()
                 }
                 "TAB9" -> {
                     category = "9"
-                    setLayout()
                 }
                 "TAB10" -> {
                     category = "10"
-                    setLayout()
                 }
                 "TAB11" -> {
                     category = "11"
-                    setLayout()
                 }
                 "TAB12" -> {
                     category = "12"
-                    setLayout()
                 }
                 "TAB13" -> {
                     category = "13"
-                    setLayout()
                 }
                 else -> {
                     category = "14"
-                    setLayout()
                 }
             }
+            setLayout()
         })
 
         return root
@@ -121,13 +100,110 @@ class FragmentMainTabPage : Fragment() {
     }
 
     fun setLayout() {
-        mainBookItemsFirst.clear()
+        items.clear()
         val assetManager = requireActivity().assets
 
-        mainBookAdapter = AdapterMainBookTabs(requireContext(),mainBookItemsFirst)
+//        val bestCarousel = JSONObject()
+//        try {
+//            bestCarousel.put("writerName", writerName)
+//            bestCarousel.put("subject", subject)
+//            bestCarousel.put("bookImg", bookImg)
+//            bestCarousel.put("isAdult", isAdult)
+//            bestCarousel.put("isAdult", isAdult)
+//            bestCarousel.put("isFinish", isFinish)
+//            bestCarousel.put("isPremium", isPremium)
+//            bestCarousel.put("isNobless", isNobless)
+//            bestCarousel.put("intro", intro)
+//            bestCarousel.put("isFavorite", isFavorite)
+//            bestCarousel.put("bookCode", bookCode)
+//            bestCarousel.put("categoryKoName", categoryKoName)
+//            bestCarousel.put("cntChapter", cntChapter)
+//            bestCarousel.put("cntFavorite", cntFavorite)
+//            bestCarousel.put("cntRecom", cntRecom)
+//            bestCarousel.put("cntPageRead", cntPageRead)
+//        } catch (e: JSONException) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace()
+//        }
+//
+//        if(i < 5){
+//            bestCarouselURL.add(bestCarousel)
+//        }
+
+        adapter = AdapterMainBookTabs(requireContext(),items, category)
         linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         getMainBookData(assetManager, "Main_Tab.json")
     }
+
+//    val viewListener =
+//        ViewListener { position ->
+//
+//            val image: ImageView = customViewValue!!.findViewById(R.id.Img_BookBest)
+//            val bestRankImage: ImageView = customViewValue.findViewById(R.id.BestRankImg)
+//            val title: TextView = customViewValue.findViewById(R.id.Text_Title_Best)
+//            val writer: TextView = customViewValue.findViewById(R.id.Text_Writer_Best)
+//            val intro: TextView = customViewValue.findViewById(R.id.Text_Intro_Best)
+//            val bestViewCount: TextView = customViewValue.findViewById(R.id.Text_BestViewed)
+//            val bestFav: TextView = customViewValue.findViewById(R.id.Text_BestFav)
+//            val bestRecommend: TextView = customViewValue.findViewById(R.id.Text_BestRecommend)
+//            val bookCode: TextView = customViewValue.findViewById(R.id.BookCodeText)
+//            val topText: TextView = customViewValue.findViewById(R.id.TopText)
+//            val category: TextView = customViewValue.findViewById(R.id.Category)
+//            val textCntChapter: TextView = customViewValue.findViewById(R.id.Text_CntChapter)
+//            val bookLabel: LinearLayout = customViewValue.findViewById(R.id.BookLabel)
+//
+//            Glide.with(mContext.applicationContext).load(bestCarouselURL[position].getString("bookImg"))
+//                .into(image)
+//
+//            when (position) {
+//                0 -> {
+//                    bestRankImage.setImageResource(R.drawable.icon_best_1)
+//                }
+//                1 -> {
+//                    bestRankImage.setImageResource(R.drawable.icon_best_2)
+//                }
+//                2 -> {
+//                    bestRankImage.setImageResource(R.drawable.icon_best_3)
+//                }
+//                3 -> {
+//                    bestRankImage.setImageResource(R.drawable.icon_best_4)
+//                }
+//                4 -> {
+//                    bestRankImage.setImageResource(R.drawable.icon_best_5)
+//                }
+//                else -> {
+//                    Log.d("bestRankImage","NO_IMAGE")
+//                }
+//            }
+//
+//            title.text = bestCarouselURL[position].getString("subject")
+//            writer.text = bestCarouselURL[position].getString("writerName")
+//            intro.text = bestCarouselURL[position].getString("intro")
+//            bestViewCount.text = bestCarouselURL[position].getString("cntPageRead")
+//            bestFav.text = bestCarouselURL[position].getString("cntFavorite")
+//            bestRecommend.text = bestCarouselURL[position].getString("cntRecom")
+//            bookCode.text = bestCarouselURL[position].getString("bookCode")
+//            category.text = bestCarouselURL[position].getString("categoryKoName")
+//            textCntChapter.text = bestCarouselURL[position].getString("cntChapter")
+//
+//            if (bestCarouselURL[position].getString("isNobless") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "FALSE") {
+//                textSetting(topText, bookLabel, R.string.NOBLESS, -0x555a3b00)
+//            } else if (bestCarouselURL[position].getString("isPremium") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "FALSE") {
+//                textSetting(topText, bookLabel, R.string.PREMIUM, -0x55b68e11)
+//            } else if (bestCarouselURL[position].getString("isFinish") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "FALSE") {
+//                textSetting(topText, bookLabel, R.string.FINISH, -0x555a3b00)
+//            } else if (bestCarouselURL[position].getString("isNobless") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "TRUE") {
+//                textSetting(topText, bookLabel, R.string.ADULT_NOBLESS, -0x550bbcca)
+//            } else if (bestCarouselURL[position].getString("isPremium") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "TRUE") {
+//                textSetting(topText, bookLabel, R.string.ADULT_PREMIUM, -0x550bbcca)
+//            } else if (bestCarouselURL[position].getString("isFinish") == "TRUE" && bestCarouselURL[position].getString("isAdult") == "TRUE") {
+//                textSetting(topText, bookLabel, R.string.ADULT_FINISH, -0x550bbcca)
+//            }
+//
+//
+//            holder.carousel!!.indicatorGravity = Gravity.CENTER_HORIZONTAL or Gravity.TOP
+//            customViewValue
+//        }
 
     //메인 북 데이터
     private fun getMainBookData(assetManager: AssetManager, BookType: String?) {
@@ -151,20 +227,20 @@ class FragmentMainTabPage : Fragment() {
                 val sectionCategory = jo.getString("section_category")
                 val sectionSubType = jo.getString("section_sub_type")
 
-                Log.d("@@@@", sectionSubType)
-
-                mainBookItemsFirst.add(
-                    MainBookData(
-                        sectionCategory,
-                        sectionSubType,
-                        sectionType
+                if(i < 4){
+                    items.add(
+                        MainBookData(
+                            sectionCategory,
+                            sectionSubType,
+                            sectionType
+                        )
                     )
-                )
+                }
             }
 
             MainBookList!!.layoutManager = linearLayoutManager
-            MainBookList!!.adapter = mainBookAdapter
-
+            MainBookList!!.adapter = adapter
+            adapter!!.notifyDataSetChanged()
 
         } catch (e: IOException) {
             e.printStackTrace()
@@ -173,169 +249,6 @@ class FragmentMainTabPage : Fragment() {
         }
     }
 
-    private fun getBookListBest(
-        recyclerView: RecyclerView?,
-        wrap: LinearLayout,
-        items : ArrayList<BookListDataBest?>?,
-        best: String?,
-        store : String?
-    ) {
-        val adapter: AdapterBookListBest?
-        adapter = AdapterBookListBest(requireContext(), items)
-        items!!.clear()
-        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-
-        RetrofitBookList.getBookBest(token, best , store, category)!!.enqueue(object :
-            Callback<BookListBestResult?> {
-            override fun onResponse(
-                call: Call<BookListBestResult?>,
-                response: Response<BookListBestResult?>
-            ) {
-
-                if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        val books = it.books
-                        if (books != null) {
-                            wrap.visibility = View.VISIBLE
-
-                            if(books.isEmpty()){
-                                wrap.visibility = View.GONE
-                            }
-
-                            for (i in books.indices) {
-                                val writerName = books[i].writerName
-                                val subject = books[i].subject
-                                val bookImg = books[i].bookImg
-                                val isAdult = books[i].isAdult
-                                val isFinish = books[i].isFinish
-                                val isPremium = books[i].isPremium
-                                val isNobless = books[i].isNobless
-                                val intro = books[i].intro
-                                val isFavorite = books[i].isFavorite
-                                val bookCode = books[i].bookCode
-                                val categoryKoName = books[i].categoryKoName
-                                val cntChapter = books[i].cntChapter
-                                val cntFavorite = books[i].cntFavorite
-                                val cntRecom = books[i].cntRecom
-                                val cntPageRead = books[i].cntPageRead
-
-                                if(i < 5){
-                                    items!!.add(
-                                        BookListDataBest(
-                                            writerName,
-                                            subject,
-                                            bookImg,
-                                            isAdult,
-                                            isFinish,
-                                            isPremium,
-                                            isNobless,
-                                            intro,
-                                            isFavorite,
-                                            bookCode,
-                                            categoryKoName,
-                                            cntChapter,
-                                            cntFavorite,
-                                            cntRecom,
-                                            cntPageRead
-                                        )
-                                    )
-                                }
-
-
-                            }
-                        } else {
-                            wrap!!.visibility = View.GONE
-                        }
-                    }
-                    adapter!!.notifyDataSetChanged()
-                    recyclerView!!.layoutManager = linearLayoutManager
-                    recyclerView!!.adapter = adapter
-                }
-            }
-
-            override fun onFailure(call: Call<BookListBestResult?>, t: Throwable) {
-                Log.d("onFailure", "실패")
-            }
-        })
-    }
-
-    private fun getBookListA(
-        recyclerView: RecyclerView?,
-        wrap: LinearLayout,
-        items : ArrayList<BookListDataABD?>?,
-        best: String?,
-        store : String?
-    ) {
-        val adapter: AdapterBookListA?
-        adapter = AdapterBookListA(requireContext(), items)
-        items!!.clear()
-        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-
-        RetrofitBookList.getBookBestA(token, best , store, category)!!.enqueue(object : Callback<BookListResult?> {
-            override fun onResponse(
-                call: Call<BookListResult?>,
-                response: Response<BookListResult?>
-            ) {
-
-                if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        val books = it.books
-                        if (books != null) {
-                            wrap.visibility = View.VISIBLE
-
-                            if(books.isEmpty()){
-                                wrap.visibility = View.GONE
-                            }
-
-                            for (i in books.indices) {
-
-                                val bookCode = books[i].bookCode
-                                val bookImg = books[i].bookImg
-                                val historySortno = books[i].historySortno
-                                val subject = books[i].subject
-                                val writerName = books[i].writerName
-                                val isAdult = books[i].is_adult
-
-                                items!!.add(
-                                    BookListDataABD(
-                                        writerName,
-                                        subject,
-                                        bookImg,
-                                        bookCode,
-                                        historySortno,
-                                        isAdult,
-                                        ""
-                                    )
-                                )
-                            }
-                        } else {
-                            wrap!!.visibility = View.GONE
-                        }
-                    }
-                    adapter!!.notifyDataSetChanged()
-                    recyclerView!!.layoutManager = linearLayoutManager
-                    recyclerView!!.adapter = adapter
-                }
-            }
-
-            override fun onFailure(call: Call<BookListResult?>, t: Throwable) {
-                Log.d("onFailure", "실패")
-            }
-        })
-
-        adapter!!.setOnItemClickListener(object : AdapterBookListA.OnItemClickListener {
-            override fun onItemClick(v: View?, position: Int, value: String?) {
-                val item: BookListDataABD? = adapter.getItem(position)
-                val intent = Intent(
-                    requireContext().applicationContext,
-                    BookDetailCover::class.java
-                )
-                intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
-                intent.putExtra("token", String.format("%s", token))
-                requireContext().startActivity(intent)
-            }
-        })
-    }
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"

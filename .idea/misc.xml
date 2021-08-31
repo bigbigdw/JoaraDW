@@ -13,6 +13,7 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/spinner.xml" value="0.16217105263157894" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/test.xml" value="0.1" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Etc/layout/toolbar_activity.xml" value="0.13958333333333334" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best.xml" value="0.21180555555555555" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_list_nobless.xml" value="0.10416666666666667" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_list_premium.xml" value="0.10416666666666667" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_tab.xml" value="0.23055555555555557" />
@@ -63,7 +64,7 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_edit.xml" value="0.27569444444444446" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_img.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape_comment_wrap.xml" value="0.19671052631578947" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/layout/fragment_main.xml" value="0.16180555555555556" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/layout/fragment_main.xml" value="0.14652777777777778" />
         <entry key="app/src/main/res/Etc/layout/popup.xml" value="0.20625" />
         <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_history.xml" value="0.23981481481481481" />
         <entry key="app/src/main/res/Fragment_Main/layout/fragment_main_booklist_hobby.xml" value="0.25" />

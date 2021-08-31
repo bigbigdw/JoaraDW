@@ -65,7 +65,7 @@ class AdapterBookListBest(private val mContext: Context, items: List<BookListDat
             } else if (position == 8) {
                 holder.bestRankImage.setImageResource(R.drawable.icon_best_9)
             } else {
-                Log.d("@@@@","NO_IMAGE")
+                Log.d("bestRankImage","NO_IMAGE")
             }
 
             holder.title.text = listData!![position]!!.title
