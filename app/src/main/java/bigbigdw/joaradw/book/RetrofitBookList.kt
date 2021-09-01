@@ -207,7 +207,7 @@ object RetrofitBookList {
             )
     }
 
-    fun getBookFinish(token: String?, store: String?, orderby: String?): Call<BookListResultC?>? {
+    fun getBookFinish(token: String?, store: String?, orderby: String?, category: String?): Call<BookListResultC?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -215,7 +215,33 @@ object RetrofitBookList {
             .getRetrofit(
                 token,
                 store,
-                orderby
+                orderby,
+                category
+            )
+    }
+
+    fun getNewBookD(token: String?, store: String?, page : Int? , category: String?): Call<BookListResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(NewBookDService::class.java)
+            .getRetrofit(
+                token,
+                store,
+                page,
+                category
+            )
+    }
+
+    fun getBookFinishD(token: String?, store: String?, page : Int? , category: String?): Call<BookListResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListFinishDService::class.java)
+            .getRetrofit(
+                token,
+                store,
+                category
             )
     }
 }

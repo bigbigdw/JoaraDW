@@ -104,6 +104,16 @@ interface NewBookService {
     ): Call<BookListResultC?>?
 }
 
+interface NewBookDService {
+    @GET("v1/book/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("store") store: String?,
+        @Query("page") page: Int?,
+        @Query("category") category: String?,
+    ): Call<BookListResult?>?
+}
+
 //선호작 등록
 interface FavBookService {
     @FormUrlEncoded
@@ -148,7 +158,17 @@ interface BookListFinishService {
         @Query("token") token: String?,
         @Query("store") store: String?,
         @Query("orderby") orderby: String?,
+        @Query("category") category: String?,
     ): Call<BookListResultC?>?
+}
+
+interface BookListFinishDService {
+    @GET("v1/book/list.joa" + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("store") store: String?,
+        @Query("category") category: String?,
+    ): Call<BookListResult?>?
 }
 
 

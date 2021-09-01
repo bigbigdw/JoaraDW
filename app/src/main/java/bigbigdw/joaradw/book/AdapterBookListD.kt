@@ -1,12 +1,15 @@
 package bigbigdw.joaradw.book
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import com.bumptech.glide.Glide
@@ -41,6 +44,12 @@ class AdapterBookListD(private val mContext: Context, items: List<BookListDataAB
 
             holder.title.text = listData!![position]!!.title
             holder.writer.text = listData!![position]!!.writer
+
+            if(listData!![position]!!.isAdult.equals("TRUE")){
+                holder.UnderCoverText.text = "성인"
+                holder.BookImgUnderWrap.visibility = View.VISIBLE
+                holder.UnderCoverText.setTextColor(Color.parseColor("#FFFF0000"))
+            }
         }
     }
 
@@ -56,6 +65,8 @@ class AdapterBookListD(private val mContext: Context, items: List<BookListDataAB
         var writer: TextView
         var bookCode: TextView
         var imgWrap: CardView
+        var BookImgUnderWrap: ConstraintLayout
+        var UnderCoverText: TextView
 
         init {
             image = itemView.findViewById(R.id.Img_BookD)
@@ -63,6 +74,8 @@ class AdapterBookListD(private val mContext: Context, items: List<BookListDataAB
             writer = itemView.findViewById(R.id.Text_WriterD)
             bookCode = itemView.findViewById(R.id.BookCodeText)
             imgWrap = itemView.findViewById(R.id.Img_Wrap)
+            BookImgUnderWrap = itemView.findViewById(R.id.BookImgUnderWrap)
+            UnderCoverText = itemView.findViewById(R.id.UnderCoverText)
 
             imgWrap.setOnClickListener { v: View? ->
                 val pos = adapterPosition

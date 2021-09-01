@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import bigbigdw.joaradw.databinding.FragmentMainBinding
+import java.util.ArrayList
 
 class FragmentMain : BookBaseFragment() {
     var tabNum = 0
@@ -39,12 +40,19 @@ class FragmentMain : BookBaseFragment() {
 
         val bundle = this.arguments
 
+        viewPager!!.currentItem = 0
+
         if (bundle != null) {
             tabNum = bundle.getInt("TabNum")
             viewPager!!.currentItem = tabNum
         }
 
         return root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewPager!!.currentItem = 0
     }
 
     class SectionsPagerAdapter(fm: FragmentManager?) :

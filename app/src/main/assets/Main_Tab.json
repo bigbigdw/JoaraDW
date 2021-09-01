@@ -4,68 +4,73 @@
   "main_info": [
     {
       "section_type": "best",
-      "section_category": "1",
+      "section_category": "0",
       "section_sub_type": "all"
     },
     {
       "section_type": "best",
-      "section_category": "2",
-      "section_sub_type": "nobless"
-    },
-    {
-      "section_type": "best",
-      "section_category": "3",
-      "section_sub_type": "premium"
-    },
-    {
-      "section_type": "best",
-      "section_category": "4",
-      "section_sub_type": "series"
-    },
-    {
-      "section_type": "new",
       "section_category": "1",
-      "section_sub_type": "all"
-    },
-    {
-      "section_type": "new",
-      "section_category": "2",
       "section_sub_type": "nobless"
     },
     {
-      "section_type": "new",
-      "section_category": "3",
+      "section_type": "best",
+      "section_category": "2",
       "section_sub_type": "premium"
     },
     {
-      "section_type": "new",
-      "section_category": "4",
+      "section_type": "best",
+      "section_category": "3",
       "section_sub_type": "series"
     },
     {
       "section_type": "new",
       "section_category": "4",
-      "section_sub_type": "finish"
+      "section_sub_type": "all"
+    },
+    {
+      "section_type": "new",
+      "section_category": "5",
+      "section_sub_type": "joaraborn"
+    },
+    {
+      "section_type": "new",
+      "section_category": "6",
+      "section_sub_type": "promise"
+    },
+    {
+      "section_type": "new",
+      "section_category": "7",
+      "section_sub_type": "nobless"
+    },
+    {
+      "section_type": "new",
+      "section_category": "8",
+      "section_sub_type": "noblepre"
+    },
+    {
+      "section_type": "new",
+      "section_category": "9",
+      "section_sub_type": "premium"
+    },
+    {
+      "section_type": "new",
+      "section_category": "10",
+      "section_sub_type": "series"
     },
     {
       "section_type": "finish",
-      "section_category": "1",
-      "section_sub_type": "new"
+      "section_category": "11",
+      "section_sub_type": "all"
     },
     {
       "section_type": "finish",
-      "section_category": "2",
-      "section_sub_type": "read"
+      "section_category": "12",
+      "section_sub_type": "nobless"
     },
     {
       "section_type": "finish",
-      "section_category": "3",
-      "section_sub_type": "fav"
-    },
-    {
-      "section_type": "finish",
-      "section_category": "4",
-      "section_sub_type": "recom"
+      "section_category": "13",
+      "section_sub_type": "premium"
     }
   ]
 }

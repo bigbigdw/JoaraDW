@@ -147,7 +147,7 @@ class FinishTab : Fragment() {
         val wrap : LinearLayout = root!!.findViewById(integerWrap!!)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        RetrofitBookList.getBookFinish(token ,store, finishType)!!.enqueue(object :
+        RetrofitBookList.getBookFinish(token ,store, finishType,"")!!.enqueue(object :
             Callback<BookListResultC?> {
             override fun onResponse(
                 call: Call<BookListResultC?>,

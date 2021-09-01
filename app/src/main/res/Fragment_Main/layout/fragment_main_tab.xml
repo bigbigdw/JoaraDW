@@ -10,6 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
         android:background="@color/Contents_BG"
         android:fillViewport="true">
 
@@ -28,7 +29,7 @@
                 android:paddingEnd="16dp"
                 app:disableAutoPlayOnUserInteraction="false"
                 app:indicatorGravity="left"
-                app:indicatorVisibility="visible">
+                app:indicatorVisibility="gone">
 
             </com.synnapps.carouselview.CarouselView>
 
@@ -40,7 +41,7 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/Carousel_New"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/Contents"
                 android:paddingStart="16dp"
@@ -48,7 +49,7 @@
                 android:paddingEnd="16dp"
                 app:disableAutoPlayOnUserInteraction="false"
                 app:indicatorGravity="left"
-                app:indicatorVisibility="visible">
+                app:indicatorVisibility="gone">
 
             </com.synnapps.carouselview.CarouselView>
 
@@ -60,11 +61,15 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/Carousel_Finish"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#000000"
-                android:visibility="visible"
+                android:layout_height="170dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/Contents"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
                 app:disableAutoPlayOnUserInteraction="false"
-                tools:visibility="visible">
+                app:indicatorGravity="left"
+                app:indicatorVisibility="gone">
 
             </com.synnapps.carouselview.CarouselView>
 

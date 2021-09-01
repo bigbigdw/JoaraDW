@@ -42,8 +42,10 @@ class FragmentMainTabPage : Fragment() {
 
     private var adapterFirst: AdapterMainBookTabs? = null
     private var adapterSecond: AdapterMainBookTabs? = null
+    private var adapterThird: AdapterMainBookTabs? = null
     private val items1 = ArrayList<MainBookData?>()
     private val items2 = ArrayList<MainBookData?>()
+    private val items3 = ArrayList<MainBookData?>()
 
     var Carousel_Best: CarouselView? = null
     var RecyclerView_Best: RecyclerView? = null
@@ -51,6 +53,11 @@ class FragmentMainTabPage : Fragment() {
 
     var Carousel_New: CarouselView? = null
     var Carousel_NewArray: MutableList<JSONObject> = ArrayList()
+    var RecyclerView_New: RecyclerView? = null
+
+    var Carousel_Finish: CarouselView? = null
+    var Carousel_FinishArray: MutableList<JSONObject> = ArrayList()
+    var RecyclerView_Finish: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +67,11 @@ class FragmentMainTabPage : Fragment() {
         RecyclerView_Best = root.findViewById(R.id.RecyclerView_Best)
         Carousel_Best = root.findViewById(R.id.Carousel_Best)
 
+        RecyclerView_New = root.findViewById(R.id.RecyclerView_New)
         Carousel_New = root.findViewById(R.id.Carousel_New)
+
+        RecyclerView_Finish = root.findViewById(R.id.RecyclerView_Finish)
+        Carousel_Finish = root.findViewById(R.id.Carousel_Finish)
 
         token = requireContext().getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
             .getString("TOKEN", "")
@@ -83,13 +94,13 @@ class FragmentMainTabPage : Fragment() {
                     category = "5"
                 }
                 "TAB6" -> {
-                    category = "6"
+                    category = "22"
                 }
                 "TAB7" -> {
-                    category = "7"
+                    category = "20"
                 }
                 "TAB8" -> {
-                    category = "8"
+                    category = "23"
                 }
                 "TAB9" -> {
                     category = "9"
@@ -130,6 +141,8 @@ class FragmentMainTabPage : Fragment() {
         super.onDestroyView()
         Carousel_Best!!.removeAllViews()
         Carousel_BestArray = ArrayList()
+        RecyclerView_New!!.removeAllViews()
+        Carousel_NewArray = ArrayList()
     }
 
     fun setLayout() {
@@ -138,9 +151,11 @@ class FragmentMainTabPage : Fragment() {
 
         adapterFirst = AdapterMainBookTabs(requireContext(),items1, category)
         adapterSecond = AdapterMainBookTabs(requireContext(),items2, category)
+        adapterThird = AdapterMainBookTabs(requireContext(),items3, category)
 
-        getMainBookData(assetManager, "Main_Tab.json","1")
-        getMainBookData(assetManager, "Main_Tab.json","2")
+        getMainBookData(RecyclerView_Best, adapterFirst, assetManager, "Main_Tab.json","1")
+        getMainBookData(RecyclerView_New, adapterSecond, assetManager, "Main_Tab.json","2")
+        getMainBookData(RecyclerView_Finish, adapterThird, assetManager, "Main_Tab.json","3")
 
         getBookListBestCarousel()
 
@@ -157,8 +172,10 @@ class FragmentMainTabPage : Fragment() {
         }
 
         getBookListCCarousel("1",Carousel_New,Carousel_NewArray)
+        getBookListCCarousel("2",Carousel_Finish,Carousel_FinishArray)
 
         Carousel_New!!.setViewListener(viewListenerNew)
+        Carousel_Finish!!.setViewListener(viewListenerFinish)
 
         Carousel_New!!.setImageClickListener { position ->
             val intent = Intent(
@@ -172,7 +189,7 @@ class FragmentMainTabPage : Fragment() {
     }
 
     //메인 북 데이터
-    private fun getMainBookData(assetManager: AssetManager, BookType: String?, type: String?) {
+    private fun getMainBookData(recyclerView: RecyclerView?, adapter : AdapterMainBookTabs?, assetManager: AssetManager, BookType: String?, type: String?) {
 
         val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -206,12 +223,9 @@ class FragmentMainTabPage : Fragment() {
                             )
                         )
                     }
-                    RecyclerView_Best!!.layoutManager = linearLayoutManager
-                    RecyclerView_Best!!.adapter = adapterFirst
-                    adapterFirst!!.notifyDataSetChanged()
 
-                } else {
-                    if(i in 4..6){
+                } else if(type.equals("2")){
+                    if(i in 4..10){
                         items2.add(
                             MainBookData(
                                 sectionCategory,
@@ -220,13 +234,22 @@ class FragmentMainTabPage : Fragment() {
                             )
                         )
                     }
+                } else {
+                    if(i in 11..13){
+                        items3.add(
+                            MainBookData(
+                                sectionCategory,
+                                sectionSubType,
+                                sectionType
+                            )
+                        )
+                    }
                 }
-                RecyclerView_Best!!.layoutManager = linearLayoutManager
-                RecyclerView_Best!!.adapter = adapterFirst
-                adapterFirst!!.notifyDataSetChanged()
             }
 
-
+            recyclerView!!.layoutManager = linearLayoutManager
+            recyclerView!!.adapter = adapter
+            adapter!!.notifyDataSetChanged()
 
         } catch (e: IOException) {
             e.printStackTrace()
@@ -286,11 +309,10 @@ class FragmentMainTabPage : Fragment() {
                                     bestCarousel.put("cntRecom", cntRecom)
                                     bestCarousel.put("cntPageRead", cntPageRead)
                                 } catch (e: JSONException) {
-                                    // TODO Auto-generated catch block
                                     e.printStackTrace()
                                 }
 
-                                if(i < 10){
+                                if(i < 9){
                                     Carousel_BestArray.add(bestCarousel)
                                 }
                             }
@@ -345,6 +367,18 @@ class FragmentMainTabPage : Fragment() {
                 4 -> {
                     bestRankImage.setImageResource(R.drawable.icon_best_5)
                 }
+                5 -> {
+                    bestRankImage.setImageResource(R.drawable.icon_best_6)
+                }
+                6 -> {
+                    bestRankImage.setImageResource(R.drawable.icon_best_7)
+                }
+                7 -> {
+                    bestRankImage.setImageResource(R.drawable.icon_best_8)
+                }
+                8 -> {
+                    bestRankImage.setImageResource(R.drawable.icon_best_9)
+                }
                 else -> {
                     Log.d("bestRankImage","NO_IMAGE")
                 }
@@ -393,7 +427,7 @@ class FragmentMainTabPage : Fragment() {
                     RetrofitBookList.getNewBook(token, "", 1, category)
                 }
                 else -> {
-                    RetrofitBookList.getBookListC(token, "page_read_book", "home","")
+                    RetrofitBookList.getBookFinish(token ,"", "redate", category)
                 }
             }
 
@@ -507,6 +541,56 @@ class FragmentMainTabPage : Fragment() {
             }
 
             Carousel_New!!.indicatorGravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+            itemView
+        }
+
+    private val viewListenerFinish =
+        ViewListener { position ->
+            val itemView: View = layoutInflater.inflate(R.layout.item_booklist_c, null)
+
+            val image: ImageView = itemView.findViewById(R.id.Img_Book)
+            val favon: ImageView = itemView.findViewById(R.id.FavON)
+            val favoff: ImageView = itemView.findViewById(R.id.FavOff)
+            val title: TextView = itemView.findViewById(R.id.Text_Title)
+            val writer: TextView = itemView.findViewById(R.id.Text_Writer)
+            val intro: TextView = itemView.findViewById(R.id.Text_Intro)
+            val topText: TextView = itemView.findViewById(R.id.TopText)
+            val bookCodeWrap: TextView = itemView.findViewById(R.id.BookCodeText)
+            val textCntChapter: TextView = itemView.findViewById(R.id.Text_CntChapter)
+            val bar: TextView = itemView.findViewById(R.id.Bar)
+            val category: TextView = itemView.findViewById(R.id.Category)
+
+            favoff.visibility = View.GONE
+            favon.visibility = View.GONE
+
+            Glide.with(requireContext().applicationContext).load(Carousel_FinishArray[position].getString("bookImg"))
+                .into(image)
+
+            title.text = Carousel_FinishArray[position].getString("subject")
+            writer.text = Carousel_FinishArray[position].getString("writerName")
+            intro.text = Carousel_FinishArray[position].getString("intro")
+            category.text = Carousel_FinishArray[position].getString("categoryKoName")
+            textCntChapter.text = Carousel_FinishArray[position].getString("cntChapter")
+            bookCodeWrap.text = Carousel_FinishArray[position].getString("bookCode")
+
+            if (Carousel_FinishArray[position].getString("isNobless") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "FALSE") {
+                textSettingC(R.string.NOBLESS, -0x555a3b00, topText, bar, category)
+            } else if (Carousel_FinishArray[position].getString("isPremium") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "FALSE") {
+                textSettingC(R.string.FINISH, -0x5589898a, topText, bar, category)
+            } else if (Carousel_FinishArray[position].getString("isFinish") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "FALSE") {
+                textSettingC(R.string.ADULT_NOBLESS, -0x550bbcca, topText, bar, category)
+            } else if (Carousel_FinishArray[position].getString("isNobless") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "TRUE") {
+                textSettingC(R.string.ADULT_PREMIUM, -0x55b68e11, topText, bar, category)
+            } else if (Carousel_FinishArray[position].getString("isPremium") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "TRUE") {
+                textSettingC(R.string.ADULT_PREMIUM, -0x55b68e11, topText, bar, category)
+            } else if (Carousel_FinishArray[position].getString("isFinish") == "TRUE" && Carousel_FinishArray[position].getString("isAdult") == "TRUE") {
+                textSettingC(R.string.ADULT_FINISH, -0x5589898a, topText, bar, category)
+            } else {
+                topText.text = "무료"
+                textSettingC(R.string.FREE, -0x56000000, topText, bar, category)
+            }
+
+            Carousel_Finish!!.indicatorGravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
             itemView
         }
 

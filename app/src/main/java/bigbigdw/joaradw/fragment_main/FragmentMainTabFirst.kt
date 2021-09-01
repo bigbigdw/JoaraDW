@@ -9,12 +9,12 @@ import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.fragment_new.NewTab
 import bigbigdw.joaradw.main.RetrofitMain
 import bigbigdw.joaradw.main.TabViewModel
 import com.bumptech.glide.Glide
@@ -42,8 +42,8 @@ class FragmentMainTabFirst : BookBaseFragment() {
     var linearLayoutManagerSecond: LinearLayoutManager? = null
     private val mainBookItemsSecond = ArrayList<MainBookData?>()
 
-    var MainBookListFirst: RecyclerView? = null
-    var MainBookListSecond: RecyclerView? = null
+    var RecyclerViewFirst: RecyclerView? = null
+    var RecyclerViewSecond: RecyclerView? = null
 
     var token: String? = null
     var userStatus: String? = null
@@ -64,8 +64,8 @@ class FragmentMainTabFirst : BookBaseFragment() {
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main_tab_first, container, false)
-        MainBookListSecond = root.findViewById(R.id.MainBookListSecond)
-        MainBookListFirst = root.findViewById(R.id.MainBookListFirst)
+        RecyclerViewSecond = root.findViewById(R.id.MainBookListSecond)
+        RecyclerViewFirst = root.findViewById(R.id.MainBookListFirst)
 
         mainBanner = root.findViewById(R.id.Carousel_MainBanner)
         mainBannerMid = root.findViewById(R.id.Carousel_MainBanner_Mid)
@@ -88,11 +88,11 @@ class FragmentMainTabFirst : BookBaseFragment() {
         //메인 북 데이터
         mainBookAdapterFirst = AdapterMainBookData(requireContext(),mainBookItemsFirst)
         linearLayoutManagerFirst = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst,MainBookListFirst,"FIRST")
+        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst,RecyclerViewFirst,"FIRST")
 
         mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
         linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,MainBookListSecond,"SECOND")
+        getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,RecyclerViewSecond,"SECOND")
 
         //배너
         getMainBanner("app_home_top_banner",mainBanner!!,mainBannerURLs)
@@ -193,6 +193,18 @@ class FragmentMainTabFirst : BookBaseFragment() {
                 Log.d("onFailure", "실패")
             }
         })
+    }
+
+    private var recyclerViewScroll: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if(!recyclerView.canScrollVertically(1)) {
+                mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
+                linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,RecyclerViewSecond,"SECOND")
+            }
+
+        }
     }
 
     var imageListener = ImageListener { position: Int, imageView: ImageView ->
