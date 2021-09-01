@@ -29,7 +29,6 @@ import org.json.JSONObject
 class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookData?>?, category : String?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<MainBookData?>?
-    private val bookListItemsBest1 = ArrayList<BookListDataBest?>()
     private val bookListItemsA1 = ArrayList<BookListDataABD?>()
     private val bookListItemsA2 = ArrayList<BookListDataABD?>()
     private val bookListItemsA3 = ArrayList<BookListDataABD?>()
@@ -87,20 +86,6 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
             holder.sectionType = listData!![position]!!.sectionType
 
             if (listData!![position]!!.sectionType.equals("best")
-                && listData!![position]!!.sectionSubType.equals("all")) {
-
-                holder.wrap.visibility = View.VISIBLE
-
-                holder.titleFirst.text = "베스트"
-                holder.titleSecond.text = " 주간 전체"
-                getBookListBestVertical(
-                    token,
-                    holder.wrap,
-                    holder.recyclerView
-                )
-
-            }
-            else if (listData!![position]!!.sectionType.equals("best")
                 && listData!![position]!!.sectionSubType.equals("nobless")) {
 
                 holder.wrap.visibility = View.VISIBLE
@@ -141,93 +126,6 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
             }
         }
     }
-
-    private fun getBookListBestVertical(
-        token: String?,
-        wrap : LinearLayout?,
-        recyclerView: RecyclerView?,
-    ) {
-
-        RetrofitBookList.getBookBest(token, "weekly" , "", categoryValue)!!.enqueue(object :
-            Callback<BookListBestResult?> {
-            override fun onResponse(
-                call: Call<BookListBestResult?>,
-                response: Response<BookListBestResult?>
-            ) {
-
-                val linearLayoutManager =
-                    LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-
-                val adapter: AdapterBookListBest?
-                adapter = AdapterBookListBest(mContext, bookListItemsBest1)
-
-                if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        val books = it.books
-                        if (books != null) {
-                            wrap!!.visibility = View.VISIBLE
-
-                            if(books.isEmpty()){
-                                wrap!!.visibility = View.GONE
-                            }
-
-                            for (i in books.indices) {
-                                val writerName = books[i].writerName
-                                val subject = books[i].subject
-                                val bookImg = books[i].bookImg
-                                val isAdult = books[i].isAdult
-                                val isFinish = books[i].isFinish
-                                val isPremium = books[i].isPremium
-                                val isNobless = books[i].isNobless
-                                val intro = books[i].intro
-                                val isFavorite = books[i].isFavorite
-                                val bookCode = books[i].bookCode
-                                val categoryKoName = books[i].categoryKoName
-                                val cntChapter = books[i].cntChapter
-                                val cntFavorite = books[i].cntFavorite
-                                val cntRecom = books[i].cntRecom
-                                val cntPageRead = books[i].cntPageRead
-
-                                if(i < 5){
-                                    bookListItemsBest1!!.add(
-                                        BookListDataBest(
-                                            writerName,
-                                            subject,
-                                            bookImg,
-                                            isAdult,
-                                            isFinish,
-                                            isPremium,
-                                            isNobless,
-                                            intro,
-                                            isFavorite,
-                                            bookCode,
-                                            categoryKoName,
-                                            cntChapter,
-                                            cntFavorite,
-                                            cntRecom,
-                                            cntPageRead
-                                        )
-                                    )
-                                }
-                            }
-                        } else {
-                            wrap!!.visibility = View.GONE
-                        }
-                        recyclerView!!.layoutManager = linearLayoutManager
-                        recyclerView.adapter = adapter
-                        adapter!!.notifyDataSetChanged()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<BookListBestResult?>, t: Throwable) {
-                Log.d("onFailure", "실패")
-            }
-        })
-
-    }
-
-
 
     private fun getBookListTypeA(
         token: String?,

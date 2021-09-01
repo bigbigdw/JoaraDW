@@ -115,7 +115,7 @@ object RetrofitBookList {
             )
     }
 
-    fun getNewBook(token: String?, store: String?, page : Int?): Call<BookListResultC?>? {
+    fun getNewBook(token: String?, store: String?, page : Int? , category: String?): Call<BookListResultC?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -124,6 +124,7 @@ object RetrofitBookList {
                 token,
                 store,
                 page,
+                category
             )
     }
 

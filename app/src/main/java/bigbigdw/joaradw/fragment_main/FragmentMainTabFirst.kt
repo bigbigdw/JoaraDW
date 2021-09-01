@@ -42,10 +42,8 @@ class FragmentMainTabFirst : BookBaseFragment() {
     var linearLayoutManagerSecond: LinearLayoutManager? = null
     private val mainBookItemsSecond = ArrayList<MainBookData?>()
 
-
     var MainBookListFirst: RecyclerView? = null
     var MainBookListSecond: RecyclerView? = null
-
 
     var token: String? = null
     var userStatus: String? = null
@@ -240,6 +238,8 @@ class FragmentMainTabFirst : BookBaseFragment() {
         super.onDestroyView()
         mainBanner!!.removeAllViews()
         mainBannerURLs = ArrayList()
+        mainBannerMid!!.removeAllViews()
+        mainBannerMidURLs = ArrayList()
     }
 
     companion object {

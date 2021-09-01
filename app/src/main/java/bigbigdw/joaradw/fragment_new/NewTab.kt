@@ -143,7 +143,7 @@ class NewTab : Fragment() {
     }
 
     private fun newBookList(page : Int?) {
-        RetrofitBookList.getNewBook(token, store, page)!!.enqueue(object : Callback<BookListResultC?> {
+        RetrofitBookList.getNewBook(token, store, page, "")!!.enqueue(object : Callback<BookListResultC?> {
             override fun onResponse(
                 call: Call<BookListResultC?>,
                 response: Response<BookListResultC?>

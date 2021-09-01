@@ -100,6 +100,7 @@ interface NewBookService {
         @Query("token") token: String?,
         @Query("store") store: String?,
         @Query("page") page: Int?,
+        @Query("category") category: String?,
     ): Call<BookListResultC?>?
 }
 
