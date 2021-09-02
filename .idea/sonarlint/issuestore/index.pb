@@ -38,14 +38,10 @@ r
 Bapp/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabHistory.java,2\5\251d273fd915a7209fde4fc2169c467e34ba0ed1
 _
 /app/src/main/java/bigbigdw/joaradw/JOARADW.java,a\3\a3573334c84d60a6bf3a46492bd331d34c77f340
-i
-9app/src/main/java/bigbigdw/joaradw/login/LoginRegister.kt,c\0\c09f5a5c178cbefd60d2d7b32bcc9c339df2065b
 g
 7app/src/main/java/bigbigdw/joaradw/login/LoginFindPW.kt,2\5\259675e78d6cfb59fa9382038f3feabb4191a4fe
 g
 7app/src/main/java/bigbigdw/joaradw/login/LoginFindID.kt,d\9\d987516da4cf4fec913bc0368a23dc1f8489ab42
-m
-=app/src/main/java/bigbigdw/joaradw/base/BookBaseActivity.java,3\8\388c0d9f666de7ff58c305350b88aaf334b7572d
 ^
 .app/src/main/java/bigbigdw/joaradw/Config.java,9\b\9b3d6da40b1bf5789660d907570a2f1ad0f0b65f
 p
@@ -64,8 +60,6 @@ e
 -app/src/main/java/bigbigdw/joaradw/etc/API.kt,7\5\759171f9f6eee5e6400a322ed775a46fe50870c3
 m
 =app/src/main/java/bigbigdw/joaradw/main/OLD_MainBookData.java,c\8\c881807620084808bb7c1a31063910227cda40a1
-n
->app/src/main/java/bigbigdw/joaradw/book_detail/DetailTab3.java,d\6\d6988808d73085e48d57252a9ec3728471bdef8f
 u
 Eapp/src/main/java/bigbigdw/joaradw/main/OLD_MainBookListAdapterA.java,2\c\2c3d39fb245507085168bd545d388cf2736034c8
 h

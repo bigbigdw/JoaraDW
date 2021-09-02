@@ -5,11 +5,13 @@ import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
@@ -34,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.ArrayList
+import java.util.*
 
 class Genre : AppCompatActivity(){
 
@@ -63,6 +65,12 @@ class Genre : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_genre)
+
+        val mToolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(mToolbar)
+        Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
+        val tviewTitle = findViewById<TextView>(R.id.toolbarTitle)
+        tviewTitle.text = "판타지 장르관"
 
         RecyclerView_Best = findViewById(R.id.RecyclerView_Best)
         Carousel_Best = findViewById(R.id.Carousel_Best)
@@ -541,5 +549,13 @@ class Genre : AppCompatActivity(){
         Carousel_BestArray = ArrayList()
         RecyclerView_New!!.removeAllViews()
         Carousel_NewArray = ArrayList()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

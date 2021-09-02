@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="60dp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -41,7 +42,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -67,7 +68,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap2"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -104,7 +105,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap3"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/TODO"
@@ -115,7 +116,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -148,7 +149,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap4"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -157,7 +158,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -184,7 +185,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap5"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -194,7 +195,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -220,7 +221,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap6"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -230,7 +231,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -263,7 +264,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap7"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -273,7 +274,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -301,7 +302,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap8"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -310,7 +311,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -337,7 +338,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap09"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -347,7 +348,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -379,7 +380,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap10"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -389,7 +390,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -416,7 +417,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap11"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -426,7 +427,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -453,7 +454,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap12"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -462,7 +463,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -495,7 +496,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap13"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -505,7 +506,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -531,7 +532,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap14"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -541,7 +542,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
@@ -568,7 +569,7 @@
 
                         <ImageView
                             android:id="@+id/Img_Wrap15"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:contentDescription="@string/TODO"
                             android:scaleType="centerCrop"
@@ -577,7 +578,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 

@@ -1848,6 +1848,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Genre/layout/activity_genre.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Genre/layout/fragment_genre.xml">
           <value>
             <set />
