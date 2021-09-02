@@ -13,6 +13,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <include
+            layout="@layout/fragment_main_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/ContentsLayout"
             android:layout_width="match_parent"

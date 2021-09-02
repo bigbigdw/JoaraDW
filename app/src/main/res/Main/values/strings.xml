@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 메인 -->
-    <string name="Main_Top_Lavel1">77페스티벌</string>
-    <string name="Main_Top_Lavel2">기다무</string>
-    <string name="Main_Top_Lavel3">NOTY</string>
-    <string name="Main_Top_Lavel4">노블성실</string>
+    <string name="Main_Top_Lavel1">이벤트</string>
+    <string name="Main_Top_Lavel2">공지사항</string>
+    <string name="Main_Top_Lavel3">자유게시판</string>
+    <string name="Main_Top_Lavel4">작품서평</string>
     <string name="Main_BookList_History">님의 선호작 이어보기</string>
     <string name="Main_BookList_Hobby1">당신의</string>
     <string name="Main_BookList_Hobby2">취향을</string>
@@ -39,7 +39,7 @@
     <string name="app_bottom2">더보기</string>
     <string name="app_bottom3">베스트</string>
     <string name="app_bottom4">완결작품</string>
-    <string name="app_bottom5">내 서재</string>
+    <string name="app_bottom5">장르관</string>
     <!-- 팝업 -->
     <string name="popup_left">하루동안 보지 않기</string>
     <string name="popup_right">닫기</string>

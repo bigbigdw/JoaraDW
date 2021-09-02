@@ -88,7 +88,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     getBookListTypeA(
                         token,
                         "favoriteList",
-                        holder.recylerView
+                        holder.recylerView,
+                        holder.wrap
                     )
                 } else if (listData!![position]!!.sectionSubType.equals("recomList2")) {
 
@@ -98,7 +99,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     getBookListTypeA(
                         token,
                         "recomList2",
-                        holder.recylerView
+                        holder.recylerView,
+                        holder.wrap
                     )
                 }
             }
@@ -112,7 +114,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeA(
                     token,
                     "mdList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("webtoon")) {
 
@@ -122,7 +125,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeA(
                     token,
                     "webtoon",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("mdList2")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -149,7 +153,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeB(
                     token,
                     "festivalList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("joaraBornList")) {
 
@@ -159,7 +164,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeB(
                     token,
                     "joaraBornList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("contestFreeAwardList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -168,7 +174,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "contestFreeAwardList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("notyList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -177,7 +184,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "notyList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("pageReadList")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -186,7 +194,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeC(
                     token,
                     "pageReadList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("noblessBestList")) {
 
@@ -197,7 +206,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "noblessBestList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionSubType.equals("premiumBestList")) {
 
@@ -207,7 +217,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "premiumBestList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             } else if (listData!![position]!!.sectionCategory.equals("1")) {
                 holder.wrap.visibility = View.VISIBLE
@@ -216,7 +227,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "1",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("2")) {
 
@@ -226,7 +238,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "2",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("5")) {
 
@@ -236,7 +249,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "5",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("3")) {
 
@@ -246,7 +260,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "3",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("4")) {
 
@@ -256,7 +271,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "4",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("22")) {
 
@@ -266,7 +282,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "22",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("20")) {
 
@@ -276,7 +293,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "20",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("23")) {
 
@@ -286,7 +304,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "23",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("21")) {
 
@@ -296,7 +315,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "21",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("12")) {
 
@@ -306,7 +326,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "12",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("9")) {
 
@@ -316,7 +337,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "9",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("6")) {
 
@@ -326,7 +348,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "6",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("19")) {
 
@@ -336,7 +359,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "19",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("60")) {
 
@@ -346,7 +370,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "60",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionCategory.equals("50")) {
 
@@ -356,7 +381,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "50",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }else if (listData!![position]!!.sectionSubType.equals("couponBestList")) {
 
@@ -366,7 +392,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "couponBestList",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
         }
@@ -429,7 +456,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
     private fun getBookListTypeA(
         token: String?,
         type: String?,
-        recyclerView: RecyclerView?
+        recyclerView: RecyclerView?,
+        wrap: LinearLayout?
     ) {
 
         val linearLayoutManager =
@@ -477,24 +505,27 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                     if (response.isSuccessful) {
                         response.body()?.let { it ->
                             val books = it.webtoons
-                            if (books != null) {
-                                for (i in books.indices) {
-                                    val bookImg = books[i].webtoon_img
-                                    val isAdult = books[i].is_adult
-                                    val subject = books[i].webtoon_title
 
-                                    bookListItemsABD.add(
-                                        BookListDataABD(
-                                            "",
-                                            subject,
-                                            bookImg,
-                                            "",
-                                            "",
-                                            isAdult,
-                                            type
-                                        )
+                            if(books!!.isEmpty()){
+                                wrap!!.visibility = View.GONE
+                            }
+
+                            for (i in books.indices) {
+                                val bookImg = books[i].webtoon_img
+                                val isAdult = books[i].is_adult
+                                val subject = books[i].webtoon_title
+
+                                bookListItemsABD.add(
+                                    BookListDataABD(
+                                        "",
+                                        subject,
+                                        bookImg,
+                                        "",
+                                        "",
+                                        isAdult,
+                                        type
                                     )
-                                }
+                                )
                             }
                         }
                         recyclerView!!.layoutManager = linearLayoutManager
@@ -559,7 +590,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
     private fun getBookListTypeC(
         token: String?,
         type: String?,
-        recyclerView: RecyclerView?
+        recyclerView: RecyclerView?,
+        wrap: LinearLayout?
     ) {
 
         val linearLayoutManager =
@@ -601,40 +633,43 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
-                        if (books != null) {
-                            for (i in books.indices) {
 
-                                val writerName = books[i].writerName
-                                val subject = books[i].subject
-                                val bookImg = books[i].bookImg
-                                val isAdult = books[i].isAdult
-                                val isFinish = books[i].isFinish
-                                val isPremium = books[i].isPremium
-                                val isNobless = books[i].isNobless
-                                val intro = books[i].intro
-                                val isFavorite = books[i].isFavorite
-                                val bookCode = books[i].bookCode
-                                val categoryKoName = books[i].categoryKoName
-                                val cntChapter = books[i].cntChapter
+                        if(books!!.isEmpty()){
+                            wrap!!.visibility = View.GONE
+                        }
 
-                                if(i < 11){
-                                    bookListItemsC.add(
-                                        BookListDataC(
-                                            writerName,
-                                            subject,
-                                            bookImg,
-                                            isAdult,
-                                            isFinish,
-                                            isPremium,
-                                            isNobless,
-                                            intro,
-                                            isFavorite,
-                                            bookCode,
-                                            categoryKoName,
-                                            cntChapter,
-                                        )
+                        for (i in books.indices) {
+
+                            val writerName = books[i].writerName
+                            val subject = books[i].subject
+                            val bookImg = books[i].bookImg
+                            val isAdult = books[i].isAdult
+                            val isFinish = books[i].isFinish
+                            val isPremium = books[i].isPremium
+                            val isNobless = books[i].isNobless
+                            val intro = books[i].intro
+                            val isFavorite = books[i].isFavorite
+                            val bookCode = books[i].bookCode
+                            val categoryKoName = books[i].categoryKoName
+                            val cntChapter = books[i].cntChapter
+
+                            if(i < 11){
+                                bookListItemsC.add(
+                                    BookListDataC(
+                                        writerName,
+                                        subject,
+                                        bookImg,
+                                        isAdult,
+                                        isFinish,
+                                        isPremium,
+                                        isNobless,
+                                        intro,
+                                        isFavorite,
+                                        bookCode,
+                                        categoryKoName,
+                                        cntChapter,
                                     )
-                                }
+                                )
                             }
                         }
                     }
@@ -672,7 +707,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
     private fun getBookListTypeB(
         token: String?,
         type: String?,
-        recyclerView: RecyclerView?
+        recyclerView: RecyclerView?,
+        wrap: LinearLayout?
     ) {
 
         val linearLayoutManager =
@@ -708,29 +744,32 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
-                        if (books != null) {
-                            for (i in books.indices) {
 
-                                val bookCode = books[i].bookCode
-                                val bookImg = books[i].bookImg
-                                val historySortno = books[i].historySortno
-                                val subject = books[i].subject
-                                val writerName = books[i].writerName
-                                val isAdult = books[i].is_adult
+                        if(books!!.isEmpty()){
+                            wrap!!.visibility = View.GONE
+                        }
+
+                        for (i in books.indices) {
+
+                            val bookCode = books[i].bookCode
+                            val bookImg = books[i].bookImg
+                            val historySortno = books[i].historySortno
+                            val subject = books[i].subject
+                            val writerName = books[i].writerName
+                            val isAdult = books[i].is_adult
 
 
-                                bookListItemsABD.add(
-                                    BookListDataABD(
-                                        writerName,
-                                        subject,
-                                        bookImg,
-                                        bookCode,
-                                        historySortno,
-                                        isAdult,
-                                        type
-                                    )
+                            bookListItemsABD.add(
+                                BookListDataABD(
+                                    writerName,
+                                    subject,
+                                    bookImg,
+                                    bookCode,
+                                    historySortno,
+                                    isAdult,
+                                    type
                                 )
-                            }
+                            )
                         }
                     }
                     recyclerView!!.layoutManager = linearLayoutManager
@@ -764,7 +803,8 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
     private fun getBookListTypeD(
         token: String?,
         type: String?,
-        recyclerView: RecyclerView?
+        recyclerView: RecyclerView?,
+        wrap: LinearLayout?
     ) {
 
         val linearLayoutManager =
@@ -896,29 +936,32 @@ class AdapterMainBookData(private val mContext: Context, items: List<MainBookDat
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
-                        if (books != null) {
-                            for (i in books.indices) {
 
-                                val bookCode = books[i].bookCode
-                                val bookImg = books[i].bookImg
-                                val historySortno = books[i].historySortno
-                                val subject = books[i].subject
-                                val writerName = books[i].writerName
-                                val isAdult = books[i].is_adult
+                        if(books!!.isEmpty()){
+                            wrap!!.visibility = View.GONE
+                        }
+
+                        for (i in books.indices) {
+
+                            val bookCode = books[i].bookCode
+                            val bookImg = books[i].bookImg
+                            val historySortno = books[i].historySortno
+                            val subject = books[i].subject
+                            val writerName = books[i].writerName
+                            val isAdult = books[i].is_adult
 
 
-                                bookListItemsABD.add(
-                                    BookListDataABD(
-                                        writerName,
-                                        subject,
-                                        bookImg,
-                                        bookCode,
-                                        historySortno,
-                                        isAdult,
-                                        type
-                                    )
+                            bookListItemsABD.add(
+                                BookListDataABD(
+                                    writerName,
+                                    subject,
+                                    bookImg,
+                                    bookCode,
+                                    historySortno,
+                                    isAdult,
+                                    type
                                 )
-                            }
+                            )
                         }
                     }
                     recyclerView!!.layoutManager = linearLayoutManager

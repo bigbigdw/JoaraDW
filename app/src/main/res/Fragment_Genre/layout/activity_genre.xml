@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:background="@color/Contents_BG"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/Contents"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre11"
+                        android:textColor="@color/Contents_Text1"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre12"
+                        android:textColor="@color/Contents_Text2"
+                        android:textSize="15sp"
+                        android:layout_marginStart="4dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/GotoBest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans"
+                    android:text="@string/Common_SeeMore"
+                    android:textColor="@color/Contents_Text2" />
+
+            </LinearLayout>
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/Carousel_Best"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/Contents"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                app:disableAutoPlayOnUserInteraction="false"
+                app:indicatorGravity="left"
+                app:indicatorVisibility="gone">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_Best"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/Contents"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre21"
+                        android:textColor="@color/Contents_Text1"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre22"
+                        android:textColor="@color/Contents_Text2"
+                        android:textSize="15sp"
+                        android:layout_marginStart="4dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/GotoNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans"
+                    android:text="@string/Common_SeeMore"
+                    android:textColor="@color/Contents_Text2" />
+
+            </LinearLayout>
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/Carousel_New"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@color/Contents"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                app:disableAutoPlayOnUserInteraction="false"
+                app:indicatorGravity="left"
+                app:indicatorVisibility="gone">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_New"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/Contents"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre31"
+                        android:textColor="@color/Contents_Text1"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:text="@string/Fragment_Genre32"
+                        android:textColor="@color/Contents_Text2"
+                        android:textSize="15sp"
+                        android:layout_marginStart="4dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/GotoFinish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans"
+                    android:text="@string/Common_SeeMore"
+                    android:textColor="@color/Contents_Text2" />
+
+            </LinearLayout>
+
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/Carousel_Finish"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@color/Contents"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                app:disableAutoPlayOnUserInteraction="false"
+                app:indicatorGravity="left"
+                app:indicatorVisibility="gone">
+
+            </com.synnapps.carouselview.CarouselView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_Finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

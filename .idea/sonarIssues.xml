@@ -218,6 +218,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/assets/Best_Tab.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/assets/Main_Tab.json">
           <value>
             <set />
@@ -813,6 +818,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/AdapterBookTabBest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_best/BestTab.java">
           <value>
             <set />
@@ -923,6 +933,36 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_genre/AdapterGenreTabs.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_genre/FragmentGenre.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_genre/FragmentGenreTabPage.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_genre/Genre.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_genre/GenreTab.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/AdapterGenreTabs.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/AdapterMainBooDataItem.kt">
           <value>
             <set />
@@ -959,6 +999,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/BookPageEtc.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentGenre.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_main/FragmentGenreTabPage.kt">
           <value>
             <set />
           </value>
@@ -1798,6 +1848,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Genre/layout/fragment_genre.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Genre/values/string.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/booklist_etc.xml">
           <value>
             <set />
@@ -1844,6 +1904,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_tab_first.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Fragment_Main/layout/fragment_main_top_bar.xml">
           <value>
             <set />
           </value>
@@ -1959,6 +2024,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Main/layout/component_main_wrap.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main/menu/bottom_nav_menu.xml">
           <value>
             <set />
           </value>
@@ -2079,6 +2149,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/bg_shape_comment_wrap.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/asdasd.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/ddd.xml">
           <value>
             <set />
           </value>

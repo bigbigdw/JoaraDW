@@ -34,8 +34,6 @@ class FragmentBest : Fragment() {
         val fragmentBestTab = binding.tabs
         fragmentBestTab.setupWithViewPager(viewPager)
 
-        viewPager.offscreenPageLimit = 1
-
         return root
     }
 

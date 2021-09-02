@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Contents_BG"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre01" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab01"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre02"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab02"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre03"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab03"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre04" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab04"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre05"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab05"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre06"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab06"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre07"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab07"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                tools:ignore="TextContrastCheck" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre08" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab08"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap09"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre09"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab09"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre10"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab10"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre11"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab11"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre12" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab12"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre13"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab13"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre14"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab14"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flayout_Wrap15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/Img_Wrap15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/TODO"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_genre15" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#B3000000"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:text="@string/Fragment_Tab15"
+                                android:textAlignment="center"
+                                android:textColor="@color/Contents_Text1"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </TableRow>
+
+
+            </TableLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

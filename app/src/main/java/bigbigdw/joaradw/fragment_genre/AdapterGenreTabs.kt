@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main
+package bigbigdw.joaradw.fragment_genre
 
 import android.content.Context
 import android.content.Intent
@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
+import bigbigdw.joaradw.fragment_main.MainBookData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
 
-class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookData?>?, category : String?) :
+class AdapterGenreTabs(private val mContext: Context, items: List<MainBookData?>?, category : String?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<MainBookData?>?
     private val bookListItemsA1 = ArrayList<BookListDataABD?>()
@@ -109,7 +110,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newNobless",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -121,7 +123,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newJoaraBorn",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -133,7 +136,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newPromise",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -145,7 +149,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newNoblepre",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -157,7 +162,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newPremium",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -169,7 +175,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 getBookListTypeD(
                     token,
                     "newSeries",
-                    holder.recylerView
+                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("new")
@@ -182,18 +189,7 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                     token,
                     "newFinish",
                     holder.recylerView,
-                )
-            }
-            else if (listData!![position]!!.sectionType.equals("finish")
-                && listData!![position]!!.sectionSubType.equals("all")) {
-
-                holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "완결"
-                holder.titleSecond.text = " 전체"
-                getBookListTypeD(
-                    token,
-                    "finishAll",
-                    holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("finish")
@@ -206,6 +202,7 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                     token,
                     "finishNobless",
                     holder.recylerView,
+                    holder.wrap
                 )
             }
             else if (listData!![position]!!.sectionType.equals("finish")
@@ -218,6 +215,7 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                     token,
                     "finishPremium",
                     holder.recylerView,
+                    holder.wrap
                 )
             }
         }
@@ -268,36 +266,31 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
-                        if (books != null) {
-                            wrap!!.visibility = View.VISIBLE
 
-                            if(books.isEmpty()){
-                                wrap!!.visibility = View.GONE
-                            }
-
-                            for (i in books.indices) {
-
-                                val bookCode = books[i].bookCode
-                                val bookImg = books[i].bookImg
-                                val historySortno = books[i].historySortno
-                                val subject = books[i].subject
-                                val writerName = books[i].writerName
-                                val isAdult = books[i].is_adult
-
-                                bookListItemsABD!!.add(
-                                    BookListDataABD(
-                                        writerName,
-                                        subject,
-                                        bookImg,
-                                        bookCode,
-                                        historySortno,
-                                        isAdult,
-                                        ""
-                                    )
-                                )
-                            }
-                        } else {
+                        if(books!!.isEmpty()){
                             wrap!!.visibility = View.GONE
+                        }
+
+                        for (i in books.indices) {
+
+                            val bookCode = books[i].bookCode
+                            val bookImg = books[i].bookImg
+                            val historySortno = books[i].historySortno
+                            val subject = books[i].subject
+                            val writerName = books[i].writerName
+                            val isAdult = books[i].is_adult
+
+                            bookListItemsABD!!.add(
+                                BookListDataABD(
+                                    writerName,
+                                    subject,
+                                    bookImg,
+                                    bookCode,
+                                    historySortno,
+                                    isAdult,
+                                    ""
+                                )
+                            )
                         }
                     }
                     recyclerView!!.layoutManager = linearLayoutManager
@@ -329,7 +322,8 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
     private fun getBookListTypeD(
         token: String?,
         type: String?,
-        recyclerView: RecyclerView?
+        recyclerView: RecyclerView?,
+        wrap : LinearLayout?
     ) {
 
         val linearLayoutManager =
@@ -412,29 +406,32 @@ class AdapterMainBookTabs(private val mContext: Context, items: List<MainBookDat
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
-                        if (books != null) {
-                            for (i in books.indices) {
 
-                                val bookCode = books[i].bookCode
-                                val bookImg = books[i].bookImg
-                                val historySortno = books[i].historySortno
-                                val subject = books[i].subject
-                                val writerName = books[i].writerName
-                                val isAdult = books[i].is_adult
+                        if(books!!.isEmpty()){
+                            wrap!!.visibility = View.GONE
+                        }
+
+                        for (i in books.indices) {
+
+                            val bookCode = books[i].bookCode
+                            val bookImg = books[i].bookImg
+                            val historySortno = books[i].historySortno
+                            val subject = books[i].subject
+                            val writerName = books[i].writerName
+                            val isAdult = books[i].is_adult
 
 
-                                bookListItemsABD.add(
-                                    BookListDataABD(
-                                        writerName,
-                                        subject,
-                                        bookImg,
-                                        bookCode,
-                                        historySortno,
-                                        isAdult,
-                                        type
-                                    )
+                            bookListItemsABD.add(
+                                BookListDataABD(
+                                    writerName,
+                                    subject,
+                                    bookImg,
+                                    bookCode,
+                                    historySortno,
+                                    isAdult,
+                                    type
                                 )
-                            }
+                            )
                         }
                     }
                     recyclerView!!.layoutManager = linearLayoutManager

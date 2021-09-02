@@ -117,10 +117,10 @@ class Main : AppCompatActivity() {
             //바텀 내비게이션 바 비활성화
             if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List) {
                 setCheckable(navView, false)
-                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
+//                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
             } else {
                 setCheckable(navView, true)
-                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_AUTO
+//                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_AUTO
             }
         }
 

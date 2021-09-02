@@ -103,7 +103,7 @@ class AdapterPostComment(private val mContext: Context, items: List<PostCommentD
 
             // 본인이 작성한 코멘트 인지 확인
             if (mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
-                    .getString("LOGIN_MEMBERID", "").equals(listData!![position]!!.userId)
+                    .getString("MEMBERID", "").equals(listData!![position]!!.userId)
             ) {
 
                 viewBinderHelper.setOpenOnlyOne(true)

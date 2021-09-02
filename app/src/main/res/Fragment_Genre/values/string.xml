@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Fragment_Genre11">베스트</string>
+    <string name="Fragment_Genre12">주간 전체</string>
+    <string name="Fragment_Genre21">최신</string>
+    <string name="Fragment_Genre22">전체</string>
+    <string name="Fragment_Genre31">완결</string>
+    <string name="Fragment_Genre32">전체</string>
+
+    <string name="Fragment_Tab01">판타지</string>
+    <string name="Fragment_Tab02">무협</string>
+    <string name="Fragment_Tab03">퓨전</string>
+    <string name="Fragment_Tab04">게임</string>
+    <string name="Fragment_Tab05">로맨스</string>
+    <string name="Fragment_Tab06">로맨스 판타지</string>
+    <string name="Fragment_Tab07">BL</string>
+    <string name="Fragment_Tab08">GL</string>
+    <string name="Fragment_Tab09">스포츠</string>
+    <string name="Fragment_Tab10">역사</string>
+    <string name="Fragment_Tab11">패러디</string>
+    <string name="Fragment_Tab12">팬픽</string>
+    <string name="Fragment_Tab13">라이트노벨</string>
+    <string name="Fragment_Tab14">일반작품</string>
+    <string name="Fragment_Tab15">문학작품</string>
+    <string name="Fragment_Tab16">문학작품</string>
+</resources>

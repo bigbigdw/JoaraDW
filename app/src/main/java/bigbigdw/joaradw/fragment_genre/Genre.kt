@@ -1,26 +1,26 @@
-package bigbigdw.joaradw.fragment_main
+package bigbigdw.joaradw.fragment_genre
 
 import android.content.Intent
 import android.content.res.AssetManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.book.*
+import bigbigdw.joaradw.book.BookListBestResult
+import bigbigdw.joaradw.book.BookListResultC
+import bigbigdw.joaradw.book.RetrofitBookList
 import bigbigdw.joaradw.book_detail.BookDetailCover
+import bigbigdw.joaradw.fragment_main.MainBookData
 import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.test.RetrofitService
+import bigbigdw.joaradw.test.Test_PostResult
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ViewListener
@@ -29,20 +29,21 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.ArrayList
 
-class FragmentMainTabPage : Fragment() {
+class Genre : AppCompatActivity(){
 
-    private var tabviewmodel: TabViewModel? = null
     var category = "0"
     var token: String? = null
 
-    private var adapterFirst: AdapterMainBookTabs? = null
-    private var adapterSecond: AdapterMainBookTabs? = null
-    private var adapterThird: AdapterMainBookTabs? = null
+    private var adapterFirst: AdapterGenreTabs? = null
+    private var adapterSecond: AdapterGenreTabs? = null
+    private var adapterThird: AdapterGenreTabs? = null
     private val items1 = ArrayList<MainBookData?>()
     private val items2 = ArrayList<MainBookData?>()
     private val items3 = ArrayList<MainBookData?>()
@@ -59,99 +60,32 @@ class FragmentMainTabPage : Fragment() {
     var Carousel_FinishArray: MutableList<JSONObject> = ArrayList()
     var RecyclerView_Finish: RecyclerView? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_main_tab, container, false)
-        RecyclerView_Best = root.findViewById(R.id.RecyclerView_Best)
-        Carousel_Best = root.findViewById(R.id.Carousel_Best)
-
-        RecyclerView_New = root.findViewById(R.id.RecyclerView_New)
-        Carousel_New = root.findViewById(R.id.Carousel_New)
-
-        RecyclerView_Finish = root.findViewById(R.id.RecyclerView_Finish)
-        Carousel_Finish = root.findViewById(R.id.Carousel_Finish)
-
-        token = requireContext().getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
-            .getString("TOKEN", "")
-
-        tabviewmodel!!.text.observe(viewLifecycleOwner, { tabNum: String? ->
-            when (tabNum) {
-                "TAB1" -> {
-                    category = "1"
-                }
-                "TAB2" -> {
-                    category = "2"
-                }
-                "TAB3" -> {
-                    category = "3"
-                }
-                "TAB4" -> {
-                    category = "4"
-                }
-                "TAB5" -> {
-                    category = "5"
-                }
-                "TAB6" -> {
-                    category = "22"
-                }
-                "TAB7" -> {
-                    category = "20"
-                }
-                "TAB8" -> {
-                    category = "23"
-                }
-                "TAB9" -> {
-                    category = "9"
-                }
-                "TAB10" -> {
-                    category = "10"
-                }
-                "TAB11" -> {
-                    category = "11"
-                }
-                "TAB12" -> {
-                    category = "12"
-                }
-                "TAB13" -> {
-                    category = "13"
-                }
-                else -> {
-                    category = "14"
-                }
-            }
-            setLayout()
-        })
-
-        return root
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tabviewmodel = ViewModelProvider(this).get(TabViewModel::class.java)
-        var index = 1
-        if (arguments != null) {
-            index = requireArguments().getInt(ARG_SECTION_NUMBER)
-        }
-        tabviewmodel!!.setIndex(index)
+        setContentView(R.layout.activity_genre)
+
+        RecyclerView_Best = findViewById(R.id.RecyclerView_Best)
+        Carousel_Best = findViewById(R.id.Carousel_Best)
+
+        RecyclerView_New = findViewById(R.id.RecyclerView_New)
+        Carousel_New = findViewById(R.id.Carousel_New)
+
+        RecyclerView_Finish = findViewById(R.id.RecyclerView_Finish)
+        Carousel_Finish = findViewById(R.id.Carousel_Finish)
+
+        token = getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+            .getString("TOKEN", "")
+
+        setLayout()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Carousel_Best!!.removeAllViews()
-        Carousel_BestArray = ArrayList()
-        RecyclerView_New!!.removeAllViews()
-        Carousel_NewArray = ArrayList()
-    }
-
-    fun setLayout() {
+    fun setLayout(){
         items1.clear()
-        val assetManager = requireActivity().assets
+        val assetManager = assets
 
-        adapterFirst = AdapterMainBookTabs(requireContext(),items1, category)
-        adapterSecond = AdapterMainBookTabs(requireContext(),items2, category)
-        adapterThird = AdapterMainBookTabs(requireContext(),items3, category)
+        adapterFirst = AdapterGenreTabs(this,items1, category)
+        adapterSecond = AdapterGenreTabs(this,items2, category)
+        adapterThird = AdapterGenreTabs(this,items3, category)
 
         getMainBookData(RecyclerView_Best, adapterFirst, assetManager, "Main_Tab.json","1")
         getMainBookData(RecyclerView_New, adapterSecond, assetManager, "Main_Tab.json","2")
@@ -163,12 +97,12 @@ class FragmentMainTabPage : Fragment() {
 
         Carousel_Best!!.setImageClickListener { position ->
             val intent = Intent(
-                requireContext().applicationContext,
+                this.applicationContext,
                 BookDetailCover::class.java
             )
             intent.putExtra("BookCode", String.format("%s", Carousel_BestArray[position].getString("bookCode")))
             intent.putExtra("token", String.format("%s", token))
-            requireContext().startActivity(intent)
+            this.startActivity(intent)
         }
 
         getBookListCCarousel("1",Carousel_New,Carousel_NewArray)
@@ -179,19 +113,19 @@ class FragmentMainTabPage : Fragment() {
 
         Carousel_New!!.setImageClickListener { position ->
             val intent = Intent(
-                requireContext().applicationContext,
+                this.applicationContext,
                 BookDetailCover::class.java
             )
             intent.putExtra("BookCode", String.format("%s", Carousel_NewArray[position].getString("bookCode")))
             intent.putExtra("token", String.format("%s", token))
-            requireContext().startActivity(intent)
+            this.startActivity(intent)
         }
     }
 
     //메인 북 데이터
-    private fun getMainBookData(recyclerView: RecyclerView?, adapter : AdapterMainBookTabs?, assetManager: AssetManager, BookType: String?, type: String?) {
+    private fun getMainBookData(recyclerView: RecyclerView?, adapter : AdapterGenreTabs?, assetManager: AssetManager, BookType: String?, type: String?) {
 
-        val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         try {
             val `is` = assetManager.open(BookType!!)
@@ -330,7 +264,7 @@ class FragmentMainTabPage : Fragment() {
         })
     }
 
-        private val viewListenerBest =
+    private val viewListenerBest =
         ViewListener { position ->
             val customView: View = layoutInflater.inflate(R.layout.item_booklist_best, null)
 
@@ -348,7 +282,7 @@ class FragmentMainTabPage : Fragment() {
             val textCntChapter: TextView = customView.findViewById(R.id.Text_CntChapter)
             val bookLabel: LinearLayout = customView.findViewById(R.id.BookLabel)
 
-            Glide.with(requireContext().applicationContext).load(Carousel_BestArray[position].getString("bookImg"))
+            Glide.with(applicationContext).load(Carousel_BestArray[position].getString("bookImg"))
                 .into(image)
 
             when (position) {
@@ -427,7 +361,7 @@ class FragmentMainTabPage : Fragment() {
                     RetrofitBookList.getNewBook(token, "", 1, category)
                 }
                 else -> {
-                    RetrofitBookList.getBookFinish(token ,"", "redate", category)
+                    RetrofitBookList.getBookFinish(token ,"finish", "redate", category)
                 }
             }
 
@@ -513,7 +447,7 @@ class FragmentMainTabPage : Fragment() {
             favoff.visibility = View.GONE
             favon.visibility = View.GONE
 
-            Glide.with(requireContext().applicationContext).load(Carousel_NewArray[position].getString("bookImg"))
+            Glide.with(applicationContext).load(Carousel_NewArray[position].getString("bookImg"))
                 .into(image)
 
             title.text = Carousel_NewArray[position].getString("subject")
@@ -563,7 +497,7 @@ class FragmentMainTabPage : Fragment() {
             favoff.visibility = View.GONE
             favon.visibility = View.GONE
 
-            Glide.with(requireContext().applicationContext).load(Carousel_FinishArray[position].getString("bookImg"))
+            Glide.with(applicationContext).load(Carousel_FinishArray[position].getString("bookImg"))
                 .into(image)
 
             title.text = Carousel_FinishArray[position].getString("subject")
@@ -601,14 +535,11 @@ class FragmentMainTabPage : Fragment() {
         category.setTextColor(color)
     }
 
-    companion object {
-        private const val ARG_SECTION_NUMBER = "section_number"
-        fun newInstance(index: Int): FragmentMainTabPage {
-            val fragment = FragmentMainTabPage()
-            val bundle = Bundle()
-            bundle.putInt(ARG_SECTION_NUMBER, index)
-            fragment.arguments = bundle
-            return fragment
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        Carousel_Best!!.removeAllViews()
+        Carousel_BestArray = ArrayList()
+        RecyclerView_New!!.removeAllViews()
+        Carousel_NewArray = ArrayList()
     }
 }

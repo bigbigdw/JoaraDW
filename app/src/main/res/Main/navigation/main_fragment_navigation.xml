@@ -15,7 +15,7 @@
             app:destination="@id/Fragment_New" />
         <action
             android:id="@+id/action_Fragment_Main_to_Fragment_Fav"
-            app:destination="@id/Fragment_Fav" />
+            app:destination="@id/Fragment_Genre" />
         <action
             android:id="@+id/action_Fragment_Main_to_Fragment_Detail_1"
             app:destination="@id/Fragment_Detail_1" />
@@ -72,9 +72,9 @@
         tools:layout="@layout/fragment_best" />
 
     <fragment
-        android:id="@+id/Fragment_Fav"
-        android:name="bigbigdw.joaradw.fragment_fav.FragmentFav"
+        android:id="@+id/Fragment_Genre"
+        android:name="bigbigdw.joaradw.fragment_genre.FragmentGenre"
         android:label=""
-        tools:layout="@layout/fragment_best" />
+        tools:layout="@layout/activity_genre" />
 
 </navigation>

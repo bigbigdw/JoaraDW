@@ -1,0 +1,41 @@
+{
+  "status": 1,
+  "home_ver": "3.1",
+  "main_info": [
+    {
+      "section_type": "best",
+      "section_category": "0",
+      "section_sub_type": "All"
+    },
+    {
+      "section_type": "best",
+      "section_category": "1",
+      "section_sub_type": "Nobless"
+    },
+    {
+      "section_type": "best",
+      "section_category": "2",
+      "section_sub_type": "Premium"
+    },
+    {
+      "section_type": "best",
+      "section_category": "3",
+      "section_sub_type": "Series"
+    },
+    {
+      "section_type": "best",
+      "section_category": "4",
+      "section_sub_type": "Lately"
+    },
+    {
+      "section_type": "best",
+      "section_category": "5",
+      "section_sub_type": "Finish"
+    },
+    {
+      "section_type": "best",
+      "section_category": "6",
+      "section_sub_type": "Nobless_Classic"
+    }
+  ]
+}

@@ -37,8 +37,6 @@ class FragmentNew : Fragment() {
         val fragmentNewTab = fragmentNewBinding.postTab
         fragmentNewTab.setupWithViewPager(viewPager)
 
-        viewPager.offscreenPageLimit = 1
-
         val bundle = this.arguments
 
         if (bundle != null) {
