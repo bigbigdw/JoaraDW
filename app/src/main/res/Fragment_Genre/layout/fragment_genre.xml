@@ -46,18 +46,21 @@
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:text="@string/Fragment_Tab01"
-                                android:textAlignment="center"
-                                android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="@string/Fragment_Tab01"
+                            android:textAlignment="center"
+                            android:textColor="@color/Contents_Text1"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
                     </FrameLayout>
 
                     <FrameLayout
@@ -78,20 +81,21 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#B3000000"
+                            android:background="#66000000"
                             android:gravity="center_horizontal|center_vertical"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab02"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -123,13 +127,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab03"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -165,13 +170,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab04"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -202,13 +208,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab05"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </FrameLayout>
@@ -238,13 +245,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab06"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -281,13 +289,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab07"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
                                 tools:ignore="TextContrastCheck" />
                         </LinearLayout>
@@ -318,13 +327,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab08"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -355,13 +365,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab09"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </FrameLayout>
@@ -397,13 +408,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab10"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -434,13 +446,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab11"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -470,13 +483,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab12"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -513,13 +527,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab13"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </FrameLayout>
@@ -549,13 +564,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab14"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -585,13 +601,14 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:layout_marginEnd="8dp"
                                 android:layout_weight="1"
                                 android:text="@string/Fragment_Tab15"
                                 android:textAlignment="center"
                                 android:textColor="@color/Contents_Text1"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
