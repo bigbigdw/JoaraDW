@@ -21,8 +21,9 @@
             android:visibility="visible"
             tools:visibility="gone" />
 
+
         <LinearLayout
-            android:id="@+id/Tab_History"
+            android:id="@+id/Wrap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -30,10 +31,24 @@
             tools:visibility="visible">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/Fav_HistoryBookList"
+                android:id="@+id/rview_History"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="60dp" />
+
+            <include
+                layout="@layout/loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+            <include
+                layout="@layout/etc_blank"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                tools:visibility="gone" />
 
         </LinearLayout>
     </LinearLayout>

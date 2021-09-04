@@ -20,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-class Fragment_Fav : Fragment() {
+class FragmentFav : Fragment() {
 
     private var adapter: AdapterBookListFav? = null
     private val items = ArrayList<BookListDataFav?>()
@@ -46,7 +46,7 @@ class Fragment_Fav : Fragment() {
         cover = root.findViewById(R.id.LoadingLayout)
         blank = root.findViewById(R.id.BlankLayout)
         login = root.findViewById(R.id.LoginLayout)
-        adapter = AdapterBookListFav(requireContext(), items)
+        adapter = AdapterBookListFav(items)
         linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
         token = requireContext()!!.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
@@ -92,8 +92,7 @@ class Fragment_Fav : Fragment() {
                                 val intro = books[i].intro
                                 val isFavorite = books[i].isFavorite
                                 val bookCode = books[i].bookCode
-                                val categoryKoName = books[i].categoryKoName
-                                val cntChapter = books[i].cntChapter
+                                val cntChapter = "총" + books[i].cntChapter + "편"
 
                                 items.add(
                                     BookListDataFav(
@@ -107,7 +106,6 @@ class Fragment_Fav : Fragment() {
                                         intro,
                                         isFavorite,
                                         bookCode,
-                                        categoryKoName,
                                         cntChapter,
                                     )
                                 )

@@ -26,7 +26,7 @@
                     android:title="@string/drawer_Bottom_subTitle13" />
 
                 <item
-                    android:id="@id/Fragment_Main"
+                    android:id="@id/Fragment_History"
                     android:icon="@drawable/icon_lnb_3_2"
                     android:title="@string/drawer_Bottom_subTitle14" />
 

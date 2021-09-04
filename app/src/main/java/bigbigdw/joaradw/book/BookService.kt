@@ -182,5 +182,14 @@ interface BookListFavService {
     ): Call<BookListResultC?>?
 }
 
+//이어보기
+interface BookListHistoryService {
+    @GET(API.USER_HISTORYBOOKS_JOA + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("page") page: Int?
+    ): Call<BookListResult?>?
+}
+
 
 

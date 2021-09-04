@@ -70,7 +70,7 @@ class LoginFindPW : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                phoneCheck(text, phone, onClickPhone)
+                phoneCheck(text, phone!!, onClickPhone!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -83,7 +83,7 @@ class LoginFindPW : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                numCheck(text, num, phone, onClickNum)
+                numCheck(text, num!!, phone!!, onClickNum!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -97,7 +97,7 @@ class LoginFindPW : RegisterActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        onClickPhone!!.setOnClickListener { v: View? -> sendNumMsg(num) }
+        onClickPhone!!.setOnClickListener { v: View? -> sendNumMsg(num!!) }
         onClickNum!!.setOnClickListener { v: View? ->
             Toast.makeText(
                 applicationContext,

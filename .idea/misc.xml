@@ -20,6 +20,7 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Best/layout/fragment_best_tab.xml" value="0.23055555555555557" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Fav/layout/fragment_fav.xml" value="0.2585128561501042" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Fav/layout/fragment_fav_list_fav.xml" value="0.24166666666666667" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Fav/layout/fragment_history.xml" value="0.12430555555555556" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish.xml" value="0.10138888888888889" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_list_all.xml" value="0.22847222222222222" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Fragment_Finish/layout/fragment_finish_list_nobless.xml" value="0.22847222222222222" />
@@ -52,6 +53,7 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_wrap.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/menu/bottom_nav_menu.xml" value="0.17039473684210527" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/menu/drawer_menu.xml" value="0.20846905537459284" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_book_list_history.xml" value="0.12430555555555556" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_booklist_a.xml" value="0.17105263157894737" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_booklist_b.xml" value="0.12986111111111112" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_booklist_best.xml" value="0.10486111111111111" />

@@ -13,7 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import java.util.ArrayList
 
-class AdapterBookListFav(mContext: Context, items: List<BookListDataFav?>?) :
+class AdapterBookListFav(items: List<BookListDataFav?>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<BookListDataFav?>?
 
@@ -51,11 +51,6 @@ class AdapterBookListFav(mContext: Context, items: List<BookListDataFav?>?) :
                 holder.favon.visibility = View.GONE
             }
         }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val viewTypeLoading = 1
-        return if (listData!![position] == null) viewTypeLoading else VIEW_TYPE_ITEM
     }
 
     override fun getItemCount(): Int {
@@ -128,10 +123,6 @@ class AdapterBookListFav(mContext: Context, items: List<BookListDataFav?>?) :
 
     fun getItem(position: Int): BookListDataFav? {
         return listData!![position]
-    }
-
-    companion object {
-        private const val VIEW_TYPE_ITEM = 0
     }
 
     init {

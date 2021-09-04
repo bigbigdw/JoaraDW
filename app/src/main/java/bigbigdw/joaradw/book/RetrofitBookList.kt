@@ -256,4 +256,15 @@ object RetrofitBookList {
                 page
             )
     }
+
+    fun getBookHistory(token: String?, page : Int? ): Call<BookListResult?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListHistoryService::class.java)
+            .getRetrofit(
+                token,
+                page
+            )
+    }
 }

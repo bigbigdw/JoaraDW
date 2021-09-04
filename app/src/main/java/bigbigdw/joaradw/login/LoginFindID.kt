@@ -49,7 +49,7 @@ class LoginFindID : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                phoneCheck(text, phone, onclickphone)
+                phoneCheck(text, phone!!, onclickphone!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -62,14 +62,14 @@ class LoginFindID : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                numCheck(text, num, phone, onclicknum)
+                numCheck(text, num!!, phone!!, onclicknum!!)
             }
 
             override fun afterTextChanged(s: Editable) {
                 Log.d("afterTextChanged", "num")
             }
         })
-        onclickphone!!.setOnClickListener { v: View? -> sendNumMsg(num) }
+        onclickphone!!.setOnClickListener { v: View? -> sendNumMsg(num!!) }
         onclicknum!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "인증이 완료되었습니다", Toast.LENGTH_SHORT).show()
             id!!.visibility = View.VISIBLE

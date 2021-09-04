@@ -63,7 +63,6 @@ class BookListDataFav(
     var intro: String ? = null,
     var isFav: String ? = null,
     var bookCode: String ? = null,
-    var bookCategory: String ? = null,
     var cntChapter: String ? = null
 )
 

@@ -4,6 +4,7 @@
     android:id="@+id/Img_Wrap"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/Contents"
     android:orientation="horizontal"
     android:paddingStart="16dp"
     android:paddingTop="16dp"

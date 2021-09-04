@@ -55,7 +55,12 @@ class Main : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loginCheck(getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", ""), drawerLogin, drawerLogout, navigationView)
+        loginCheck(
+            getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", ""),
+            drawerLogin,
+            drawerLogout,
+            navigationView
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,7 +120,7 @@ class Main : AppCompatActivity() {
 
         navController!!.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? ->
             //바텀 내비게이션 바 비활성화
-            if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List || destination.id == R.id.Fragment_Fav) {
+            if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List || destination.id == R.id.Fragment_Fav || destination.id == R.id.Fragment_History) {
                 setCheckable(navView, false)
                 navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
             } else {
@@ -127,12 +132,15 @@ class Main : AppCompatActivity() {
         getIndexAPI()
     }
 
-    fun getIndexAPI(){
+    fun getIndexAPI() {
 
         var menuVer = getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0")
 
         RetrofitMain.getIndexAPI(menuVer)!!.enqueue(object : Callback<IndexAPIResult?> {
-            override fun onResponse(call: Call<IndexAPIResult?>, response: Response<IndexAPIResult?>) {
+            override fun onResponse(
+                call: Call<IndexAPIResult?>,
+                response: Response<IndexAPIResult?>
+            ) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val banner = it.banner
@@ -141,7 +149,7 @@ class Main : AppCompatActivity() {
                         //배너 관련
                         if (banner != null) {
                             for (i in banner.indices) {
-                                if(banner[i] != ""){
+                                if (banner[i] != "") {
                                     dialogBanner = DialogBanner(
                                         mContext!!,
                                         btnLeftListener,
@@ -158,21 +166,22 @@ class Main : AppCompatActivity() {
                         if (mainMenu != null) {
                             for (i in mainMenu.indices) {
 
-                                if(mainMenu[i].MainTab != null && mainMenu[i].TabInfo != null ){
+                                if (mainMenu[i].MainTab != null && mainMenu[i].TabInfo != null) {
                                     val MainTab = mainMenu[i].MainTab
                                     val tabname = mainMenu[i].TabInfo!!.tabname
-                                    if(tabname.equals("최신작품")){
+                                    if (tabname.equals("최신작품")) {
                                         for (j in MainTab!!.indices) {
                                             MenuList.add(MainTab[j].title!!)
                                             MenuListPosition.add(MainTab[j].position!!)
                                         }
-                                        val editor = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
+                                        val editor =
+                                            getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
                                         editor.putString("NEW_TITLE", MenuList.toString())
                                         editor.apply()
                                     }
                                 }
 
-                                if(mainMenu[i].menuVer != null){
+                                if (mainMenu[i].menuVer != null) {
                                     savePreferences("MENU_VER", mainMenu[i].menuVer!!)
                                 }
                             }
@@ -188,7 +197,7 @@ class Main : AppCompatActivity() {
         })
     }
 
-    private fun onClickLogout(){
+    private fun onClickLogout() {
 
         val token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString()
 
@@ -200,7 +209,7 @@ class Main : AppCompatActivity() {
 
                         hideItem(navigationView, status.equals("1"))
 
-                        if(status.equals("1")){
+                        if (status.equals("1")) {
                             deleteSignedInfo()
                         }
                     }
@@ -222,21 +231,38 @@ class Main : AppCompatActivity() {
     ) {
 
         RetrofitMain.loginCheck(usertoken)!!.enqueue(object : Callback<CheckTokenResult?> {
-            override fun onResponse(call: Call<CheckTokenResult?>, response: Response<CheckTokenResult?>) {
+            override fun onResponse(
+                call: Call<CheckTokenResult?>,
+                response: Response<CheckTokenResult?>
+            ) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val status = it.status
                         hideItem(navigationView, status == 1)
 
-                        if(status == 1){
+                        if (status == 1) {
                             drawerLogOut!!.visibility = View.GONE
                             drawerLogIn!!.visibility = View.VISIBLE
-                            viewMana!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("MANA", "마나")
-                            coupon!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("EXPIRECASH", "이용권")
-                            viewCash!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("CASH", "딱지")
-                            userName!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("NICKNAME", "NICKNAME")
-                            viewManuscriptCoupon!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("MANUSCRIPTCOUPON", "후원쿠폰")
-                            viewSupportCoupon!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("SUPPORTCOUPON", "원고료쿠폰")
+                            viewMana!!.text =
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("MANA", "마나")
+                            coupon!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+                                "EXPIRECASH",
+                                "이용권"
+                            )
+                            viewCash!!.text =
+                                getSharedPreferences("LOGIN", MODE_PRIVATE).getString("CASH", "딱지")
+                            userName!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+                                "NICKNAME",
+                                "NICKNAME"
+                            )
+                            viewManuscriptCoupon!!.text = getSharedPreferences(
+                                "LOGIN",
+                                MODE_PRIVATE
+                            ).getString("MANUSCRIPTCOUPON", "후원쿠폰")
+                            viewSupportCoupon!!.text = getSharedPreferences(
+                                "LOGIN",
+                                MODE_PRIVATE
+                            ).getString("SUPPORTCOUPON", "원고료쿠폰")
                         } else {
                             drawerLogOut!!.visibility = View.VISIBLE
                             drawerLogIn!!.visibility = View.GONE
@@ -299,10 +325,10 @@ class Main : AppCompatActivity() {
         }
     }
 
-    fun savePreferencesTab(value: String, type: String?, num : Int?) {
+    fun savePreferencesTab(value: String, type: String?, num: Int?) {
         val getValues = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
 
-        if(type.equals("MAIN")){
+        if (type.equals("MAIN")) {
             getValues.putString("hi", value)
         } else {
             getValues.putString("hi", value)

@@ -65,7 +65,7 @@ class LoginRegister : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                idCheck(text, inputID)
+                idCheck(text, inputID!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -89,7 +89,7 @@ class LoginRegister : RegisterActivity() {
                     before: Int,
                     count: Int
                 ) {
-                    pwCheck(text, initPW, inputPWcheck)
+                    pwCheck(text, initPW!!, inputPWcheck!!)
                 }
 
                 override fun afterTextChanged(s: Editable) {
@@ -102,7 +102,7 @@ class LoginRegister : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                phoneCheck(text, phone, onClickPhone)
+                phoneCheck(text, phone!!, onClickPhone!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -115,7 +115,7 @@ class LoginRegister : RegisterActivity() {
             }
 
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                numCheck(text, num, phone, onClickNum)
+                numCheck(text, num!!, phone!!, onClickNum!!)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -133,7 +133,7 @@ class LoginRegister : RegisterActivity() {
                     .show()
             }
         }
-        onClickPhone!!.setOnClickListener { v: View? -> sendNumMsg(num) }
+        onClickPhone!!.setOnClickListener { v: View? -> sendNumMsg(num!!) }
         onClickNum!!.setOnClickListener { v: View? ->
             Toast.makeText(
                 applicationContext,
