@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.book
 
+import bigbigdw.joaradw.etc.API
 import bigbigdw.joaradw.etc.HELPER
 import bigbigdw.joaradw.fragment_main.MainBannerResult
 import bigbigdw.joaradw.util.LoginResult
@@ -8,7 +9,7 @@ import retrofit2.http.*
 
 //메인 북데이터 이어보기
 interface MainHistoryBookService {
-    @GET("v1/user/historybooks.joa" + HELPER.ETC)
+    @GET(API.USER_HISTORYBOOKS_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
@@ -19,7 +20,7 @@ interface MainHistoryBookService {
 
 //메인 북데이터 취향 저격
 interface MainRecommendBookService {
-    @GET("v1/book/recommend_list_api" + HELPER.ETC)
+    @GET(API.BOOK_RECOMMEND_LIST_API_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
@@ -30,7 +31,7 @@ interface MainRecommendBookService {
 
 //메인 북 MD추천
 interface MainMDBookService {
-    @GET("v1/home/list.joa" + HELPER.ETC)
+    @GET(API.HOME_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
@@ -41,7 +42,7 @@ interface MainMDBookService {
 
 //메인 북 웹툰
 interface MainMDWebtoonService {
-    @GET("v1/home/webtoon_list" + HELPER.ETC)
+    @GET(API.HOME_WEBTOON_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("page") page: String?,
@@ -52,7 +53,7 @@ interface MainMDWebtoonService {
 
 //메인 북 이벤트 리스트
 interface MainBookEventListService {
-    @GET("v1/home/md_theme_list.joa" + HELPER.ETC)
+    @GET(API.HOME_MD_THEME + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
     ): Call<BookEventListResult?>?
@@ -60,7 +61,7 @@ interface MainBookEventListService {
 
 //77 페스티벌, 조아라 본
 interface MainBookListBService {
-    @GET("v1/book/list.joa" + HELPER.ETC)
+    @GET(API.BOOK_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("store") store: String?,
@@ -71,7 +72,7 @@ interface MainBookListBService {
 
 //독자가 픽한 작품
 interface MainBookListCService {
-    @GET("v1/home/list.joa" + HELPER.ETC)
+    @GET(API.HOME_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("section_mode") sectionMode: String?,
@@ -82,7 +83,7 @@ interface MainBookListCService {
 
 //베스트
 interface MainBookListDService {
-    @GET("v1/home/list.joa" + HELPER.ETC)
+    @GET(API.HOME_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("section_mode") sectionMode: String?,
@@ -95,7 +96,7 @@ interface MainBookListDService {
 
 //최신 작품
 interface NewBookService {
-    @GET("v1/book/list.joa" + HELPER.ETC)
+    @GET(API.BOOK_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("store") store: String?,
@@ -105,7 +106,7 @@ interface NewBookService {
 }
 
 interface NewBookDService {
-    @GET("v1/book/list.joa" + HELPER.ETC)
+    @GET(API.BOOK_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("store") store: String?,
@@ -117,7 +118,7 @@ interface NewBookDService {
 //선호작 등록
 interface FavBookService {
     @FormUrlEncoded
-    @POST("v1/user/favorite.joa")
+    @POST(API.USER_FAVORATE)
     fun postRetrofit(
         @Field("token") token: String?,
         @Field("book_code") bookCode: String?,
@@ -132,7 +133,7 @@ interface FavBookService {
 
 //베스트
 interface BookListBestService {
-    @GET("v1/best/book.joa" + HELPER.ETC)
+    @GET(API.BEST_BOOK_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("best") best: String?,
@@ -142,7 +143,7 @@ interface BookListBestService {
 }
 
 interface BookListBestServiceA {
-    @GET("v1/best/book.joa" + HELPER.ETC)
+    @GET(API.BEST_BOOK_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("best") best: String?,
@@ -153,7 +154,7 @@ interface BookListBestServiceA {
 
 //완결
 interface BookListFinishService {
-    @GET("v1/book/list.joa" + HELPER.ETC)
+    @GET(API.BOOK_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("store") store: String?,
@@ -163,12 +164,22 @@ interface BookListFinishService {
 }
 
 interface BookListFinishDService {
-    @GET("v1/book/list.joa" + HELPER.ETC)
+    @GET(API.BOOK_LIST_JOA + HELPER.ETC)
     fun getRetrofit(
         @Query("token") token: String?,
         @Query("store") store: String?,
         @Query("category") category: String?,
     ): Call<BookListResult?>?
+}
+
+//선호작
+interface BookListFavService {
+    @GET(API.USER_FAVORITE_JOA + HELPER.ETC)
+    fun getRetrofit(
+        @Query("token") token: String?,
+        @Query("orderby") orderby: String?,
+        @Query("page") page: Int?
+    ): Call<BookListResultC?>?
 }
 
 

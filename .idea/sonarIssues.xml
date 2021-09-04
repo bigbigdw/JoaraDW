@@ -223,6 +223,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/assets/Finish_Tab.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/assets/Main_Tab.json">
           <value>
             <set />
@@ -548,6 +553,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterBookListFav.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/book/AdapterMainBookListBest.java">
           <value>
             <set />
@@ -863,7 +873,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/AdapterBookListFav.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabFav.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/FavTabFav.kt">
           <value>
             <set />
           </value>
@@ -893,12 +913,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/Fragment_Fav.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/MainBookListAdapterFav.java">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/MainBookListAdapterFav.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_fav/MainBookListAdapterHistory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/AdapterBookTabFinish.kt">
           <value>
             <set />
           </value>
@@ -909,6 +944,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/FinishTab.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/bigbigdw/joaradw/fragment_finish/FinishTabPage.kt">
           <value>
             <set />
           </value>
@@ -2069,6 +2109,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/item_booklist_d.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/Main_Fragment/layout/item_booklist_fav.xml">
           <value>
             <set />
           </value>

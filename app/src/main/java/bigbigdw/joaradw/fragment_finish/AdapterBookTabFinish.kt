@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_best
+package bigbigdw.joaradw.fragment_finish
 
 import android.content.Context
 import android.content.Intent
@@ -20,22 +20,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-
-class AdapterBookTabBest(
+class AdapterBookTabFinish(
     private val mContext: Context,
     items: List<MainBookData?>?,
-    bestValue: String?
+    finishValue: String?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listData: ArrayList<MainBookData?>?
-    private val bookListItemsBest1 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest2 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest3 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest4 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest5 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest6 = ArrayList<BookListDataBest?>()
-    private val bookListItemsBest7 = ArrayList<BookListDataBest?>()
-    val best = bestValue
+    private val bookListItemsC1 = ArrayList<BookListDataC?>()
+    private val bookListItemsC2 = ArrayList<BookListDataC?>()
+    private val bookListItemsC3 = ArrayList<BookListDataC?>()
+    val finish = finishValue
 
     val token = mContext.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
         .getString("TOKEN", "")
@@ -63,94 +58,42 @@ class AdapterBookTabBest(
             holder.sectionSubType = listData!![position]!!.sectionSubType
             holder.sectionType = listData!![position]!!.sectionType
 
-            if (listData!![position]!!.sectionType.equals("best")
+            if (listData!![position]!!.sectionType.equals("finish")
                 && listData!![position]!!.sectionSubType.equals("All")
             ) {
 
                 holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "전체"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
+                holder.titleFirst.text = "완결"
+                holder.titleSecond.text = " 전체"
+                getBookListTypeC(
                     token,
-                    "bestAll",
+                    "finishAll",
                     holder.recylerView,
                     holder.wrap
                 )
-            } else if (listData!![position]!!.sectionType.equals("best")
+            } else if (listData!![position]!!.sectionType.equals("finish")
                 && listData!![position]!!.sectionSubType.equals("Nobless")
             ) {
 
                 holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "노블레스"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
+                holder.titleFirst.text = "완결"
+                holder.titleSecond.text = " 노블레스"
+                getBookListTypeC(
                     token,
-                    "bestNobless",
+                    "finishNobless",
                     holder.recylerView,
                     holder.wrap
                 )
-            } else if (listData!![position]!!.sectionType.equals("best")
+            } else if (listData!![position]!!.sectionType.equals("finish")
                 && listData!![position]!!.sectionSubType.equals("Premium")
             ) {
 
                 holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "프리미엄"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
-                    token,
-                    "bestPremium",
-                    holder.recylerView,
-                    holder.wrap
-                )
-            } else if (listData!![position]!!.sectionType.equals("best")
-                && listData!![position]!!.sectionSubType.equals("Series")
-            ) {
-
-                holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "무료"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
-                    token,
-                    "bestSeries",
-                    holder.recylerView,
-                    holder.wrap
-                )
-            } else if (listData!![position]!!.sectionType.equals("best")
-                && listData!![position]!!.sectionSubType.equals("Lately")
-            ) {
-
-                holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "신규"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
-                    token,
-                    "bestLately",
-                    holder.recylerView,
-                    holder.wrap
-                )
-            } else if (listData!![position]!!.sectionType.equals("best")
-                && listData!![position]!!.sectionSubType.equals("Finish")
-            ) {
-
-                holder.wrap.visibility = View.VISIBLE
                 holder.titleFirst.text = "완결"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
+                holder.titleSecond.text = " 프리미엄"
+                getBookListTypeC(
                     token,
-                    "bestFinish",
-                    holder.recylerView,
-                    holder.wrap
-                )
-            } else if (listData!![position]!!.sectionType.equals("best")
-                && listData!![position]!!.sectionSubType.equals("Nobless_Classic")
-            ) {
-
-                holder.wrap.visibility = View.VISIBLE
-                holder.titleFirst.text = "노블레스 클래식"
-                holder.titleSecond.text = " 베스트"
-                getBookListBest(
-                    token,
-                    "bestNobless_Classic",
+                    "finishPremium",
                     holder.recylerView,
                     holder.wrap
                 )
@@ -158,77 +101,54 @@ class AdapterBookTabBest(
         }
     }
 
-    private fun getBookListBest(
+    private fun getBookListTypeC(
         token: String?,
         type: String?,
         recyclerView: RecyclerView?,
         wrap: LinearLayout?
     ) {
+
         val linearLayoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
 
-        val call: Call<BookListBestResult?>? =
+        val call: Call<BookListResultC?>? =
             when {
-                type.equals("bestAll") -> {
-                    RetrofitBookList.getBookBest(token, best, "", "0")
+                type.equals("finishAll") -> {
+                    RetrofitBookList.getBookFinish(token ,"finish", "redate","0")
                 }
-                type.equals("bestNobless") -> {
-                    RetrofitBookList.getBookBest(token, best, "nobless", "0")
-                }
-                type.equals("bestPremium") -> {
-                    RetrofitBookList.getBookBest(token, best, "premium", "0")
-                }
-                type.equals("bestSeries") -> {
-                    RetrofitBookList.getBookBest(token, best, "series", "0")
-                }
-                type.equals("bestLately") -> {
-                    RetrofitBookList.getBookBest(token, best, "lately", "0")
-                }
-                type.equals("bestFinish") -> {
-                    RetrofitBookList.getBookBest(token, best, "finish", "0")
+                type.equals("finishNobless") -> {
+                    RetrofitBookList.getBookFinish(token ,"nobless_finish", "redate","0")
                 }
                 else -> {
-                    RetrofitBookList.getBookBest(token, best, "nobless_classic", "0")
+                    RetrofitBookList.getBookFinish(token ,"premium_finish", "redate","0")
                 }
             }
 
-        val bookListItemsBest: ArrayList<BookListDataBest?> =
+        val bookListItemsC: ArrayList<BookListDataC?> =
             when {
-                type.equals("bestAll") -> {
-                    bookListItemsBest1
+                type.equals("finishAll") -> {
+                    bookListItemsC1
                 }
-                type.equals("bestNobless") -> {
-                    bookListItemsBest2
+                type.equals("finishNobless") -> {
+                    bookListItemsC2
                 }
-                type.equals("bestPremium") -> {
-                    bookListItemsBest3
-                }
-                type.equals("bestSeries") -> {
-                    bookListItemsBest4
-                }
-                type.equals("bestLately") -> {
-                    bookListItemsBest5
-                }
-                type.equals("bestFinish") -> {
-                    bookListItemsBest6
-                }
-                else -> bookListItemsBest7
+                else -> bookListItemsC3
             }
 
-        val adapter: AdapterBookListBest?
-        adapter = AdapterBookListBest(mContext, bookListItemsBest)
+        val adapter: AdapterBookListC?
+        adapter = AdapterBookListC(mContext, bookListItemsC)
 
-        call!!.enqueue(object : Callback<BookListBestResult?> {
+        call!!.enqueue(object : Callback<BookListResultC?> {
             override fun onResponse(
-                call: Call<BookListBestResult?>,
-                response: Response<BookListBestResult?>
+                call: Call<BookListResultC?>,
+                response: Response<BookListResultC?>
             ) {
 
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
                         val books = it.books
 
-                        if (books!!.isEmpty()) {
+                        if(books!!.isEmpty()){
                             wrap!!.visibility = View.GONE
                         }
 
@@ -246,13 +166,10 @@ class AdapterBookTabBest(
                             val bookCode = books[i].bookCode
                             val categoryKoName = books[i].categoryKoName
                             val cntChapter = books[i].cntChapter
-                            val cntFavorite = books[i].cntFavorite
-                            val cntRecom = books[i].cntRecom
-                            val cntPageRead = books[i].cntPageRead
 
-                            if (i < 9) {
-                                bookListItemsBest!!.add(
-                                    BookListDataBest(
+                            if(i < 11){
+                                bookListItemsC.add(
+                                    BookListDataC(
                                         writerName,
                                         subject,
                                         bookImg,
@@ -265,32 +182,28 @@ class AdapterBookTabBest(
                                         bookCode,
                                         categoryKoName,
                                         cntChapter,
-                                        cntFavorite,
-                                        cntRecom,
-                                        cntPageRead
                                     )
                                 )
                             }
-
-
                         }
                     }
+
                     recyclerView!!.layoutManager = linearLayoutManager
                     recyclerView.adapter = adapter
                     adapter!!.notifyDataSetChanged()
                 }
             }
 
-            override fun onFailure(call: Call<BookListBestResult?>, t: Throwable) {
+            override fun onFailure(call: Call<BookListResultC?>, t: Throwable) {
                 Log.d("onFailure", "실패")
             }
         })
 
-        adapter!!.setOnItemClickListener(object : AdapterBookListBest.OnItemClickListener {
+        adapter!!.setOnItemClickListener(object : AdapterBookListC.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
-                val item: BookListDataBest? = adapter!!.getItem(position)
+                val item: BookListDataC? = adapter!!.getItem(position)
                 if (value == "FAV") {
-                    RetrofitBookList.postFav(item!!.bookCode, mContext, item!!.title)
+                    RetrofitBookList.postFav(item!!.bookCode, mContext,item!!.title)
                 } else if (value == "BookDetail") {
                     val intent = Intent(
                         mContext.applicationContext,

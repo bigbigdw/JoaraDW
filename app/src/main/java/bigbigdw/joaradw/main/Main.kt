@@ -113,14 +113,14 @@ class Main : AppCompatActivity() {
             startActivity(activityTest)
         }
 
-        navController!!.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, arguments: Bundle? ->
+        navController!!.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? ->
             //바텀 내비게이션 바 비활성화
-            if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List) {
+            if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List || destination.id == R.id.Fragment_Fav) {
                 setCheckable(navView, false)
-//                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
+                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
             } else {
                 setCheckable(navView, true)
-//                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_AUTO
+                navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_AUTO
             }
         }
 

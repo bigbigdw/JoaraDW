@@ -57,6 +57,8 @@ public interface BookPagination {
     static void populateDataFav(String apiUrl, String etc, RequestQueue queue, LinearLayout wrap, ArrayList<OLD_MainBookListData> items, LinearLayout cover, String type) {
         String resultURL = HELPER.API + apiUrl + HELPER.ETC + etc;
 
+        Log.d("@@@@", resultURL);
+
         final JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, resultURL, null, response -> {
             try {
                     JSONArray flag = response.getJSONArray(BOOKS);

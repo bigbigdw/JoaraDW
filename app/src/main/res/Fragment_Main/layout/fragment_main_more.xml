@@ -121,7 +121,7 @@
                 android:contentDescription="@string/TODO"
                 app:srcCompat="@drawable/joara_footer" />
 
-            <include layout="@layout/footer" />
+            <include layout="@layout/etc_footer" />
 
         </LinearLayout>
 

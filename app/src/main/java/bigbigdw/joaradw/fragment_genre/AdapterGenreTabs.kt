@@ -51,7 +51,7 @@ class AdapterGenreTabs(private val mContext: Context, items: List<MainBookData?>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_fragment_main_book, parent, false)
+            .inflate(R.layout.item_fragment_main, parent, false)
         return MainBookViewHolder(view)
     }
 

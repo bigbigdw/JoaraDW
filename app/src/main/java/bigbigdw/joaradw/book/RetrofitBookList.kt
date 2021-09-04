@@ -244,4 +244,16 @@ object RetrofitBookList {
                 category
             )
     }
+
+    fun getBookFav(token: String?, orderby: String?, page : Int? ): Call<BookListResultC?>? {
+        return Retrofit.Builder()
+            .baseUrl(HELPER.API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(BookListFavService::class.java)
+            .getRetrofit(
+                token,
+                orderby,
+                page
+            )
+    }
 }

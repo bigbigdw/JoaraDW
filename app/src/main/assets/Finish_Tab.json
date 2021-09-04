@@ -1,0 +1,21 @@
+{
+  "status": 1,
+  "home_ver": "3.1",
+  "main_info": [
+    {
+      "section_type": "finish",
+      "section_category": "0",
+      "section_sub_type": "All"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "1",
+      "section_sub_type": "Nobless"
+    },
+    {
+      "section_type": "finish",
+      "section_category": "2",
+      "section_sub_type": "Premium"
+    }
+  ]
+}

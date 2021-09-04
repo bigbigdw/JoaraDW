@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            layout="@layout/blank"
+            layout="@layout/etc_blank"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"

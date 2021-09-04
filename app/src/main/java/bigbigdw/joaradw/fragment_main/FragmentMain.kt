@@ -75,8 +75,12 @@ class FragmentMain : BookBaseFragment() {
             .getString("STATUS", "")
         paramToken = "&token=$token"
 
-        setLayout()
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setLayout()
     }
 
     fun setLayout() {

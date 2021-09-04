@@ -68,4 +68,7 @@
     <string name="drawer_Bottom_subTitle10">조아라 웹툰</string>
     <string name="drawer_Bottom_subTitle11">자유게시판</string>
     <string name="drawer_Bottom_subTitle12">조아라 포스트</string>
+    <string name="drawer_Bottom_subTitle13">선호작품</string>
+    <string name="drawer_Bottom_subTitle14">이어보기</string>
+    <string name="drawer_Bottom_subTitle15">구매작품</string>
 </resources>

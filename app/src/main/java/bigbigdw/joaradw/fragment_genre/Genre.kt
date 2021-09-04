@@ -40,7 +40,7 @@ import java.util.*
 
 class Genre : AppCompatActivity(){
 
-    var category = "0"
+    var category : String? = null
     var token: String? = null
 
     private var adapterFirst: AdapterGenreTabs? = null
@@ -70,7 +70,7 @@ class Genre : AppCompatActivity(){
         setSupportActionBar(mToolbar)
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
         val tviewTitle = findViewById<TextView>(R.id.toolbarTitle)
-        tviewTitle.text = "판타지 장르관"
+
 
         RecyclerView_Best = findViewById(R.id.RecyclerView_Best)
         Carousel_Best = findViewById(R.id.Carousel_Best)
@@ -83,6 +83,42 @@ class Genre : AppCompatActivity(){
 
         token = getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
             .getString("TOKEN", "")
+
+        val intent = intent
+        category = intent.getStringExtra("CATEGORY")
+
+        if(category.equals("1")){
+            tviewTitle.text = "판타지 장르관"
+        } else if(category.equals("2")){
+            tviewTitle.text = "무협 장르관"
+        }else if(category.equals("3")){
+            tviewTitle.text = "퓨전 장르관"
+        }else if(category.equals("4")){
+            tviewTitle.text = "게임 장르관"
+        }else if(category.equals("5")){
+            tviewTitle.text = "로맨스 장르관"
+        }else if(category.equals("22")){
+            tviewTitle.text = "로맨스 판타지 장르관"
+        }else if(category.equals("20")){
+            tviewTitle.text = "BL 장르관"
+        }else if(category.equals("23")){
+            tviewTitle.text = "GL 장르관"
+        }else if(category.equals("21")){
+            tviewTitle.text = "스포츠 장르관"
+        }else if(category.equals("12")){
+            tviewTitle.text = "역사 장르관"
+        }else if(category.equals("9")){
+            tviewTitle.text = "패러디 장르관"
+        }else if(category.equals("6")){
+            tviewTitle.text = "팬픽 장르관"
+        }else if(category.equals("19")){
+            tviewTitle.text = "라이트노벨 장르관"
+        }else if(category.equals("60,11,7,15,8,14")){
+            tviewTitle.text = "일반작품 장르관"
+        }else if(category.equals("50,10,18,13,16,17")){
+            tviewTitle.text = "문학작품 장르관"
+        }
+
 
         setLayout()
     }

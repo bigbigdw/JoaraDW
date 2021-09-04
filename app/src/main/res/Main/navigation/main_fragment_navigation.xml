@@ -77,4 +77,10 @@
         android:label=""
         tools:layout="@layout/activity_genre" />
 
+    <fragment
+        android:id="@+id/Fragment_Fav"
+        android:name="bigbigdw.joaradw.fragment_fav.Fragment_Fav"
+        android:label=""
+        tools:layout="@layout/activity_genre" />
+
 </navigation>
