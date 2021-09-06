@@ -64,7 +64,9 @@ dependencies {
     // Gson 변환기 라이브러리
     implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
     // Scalars 변환기 라이브러리
-    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'\
+    //수직 뷰페이저
+    implementation 'com.github.castorflex.verticalviewpager:library:19.0.1'
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.google.android.material:material:1.5.0-alpha02'

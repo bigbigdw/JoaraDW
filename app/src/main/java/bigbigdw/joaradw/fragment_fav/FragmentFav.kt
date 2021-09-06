@@ -130,7 +130,17 @@ class FragmentFav : Fragment() {
         adapter!!.setOnItemClickListener(object : AdapterBookListFav.OnItemClickListener {
             override fun onItemClick(v: View?, position: Int, value: String?) {
                 val item: BookListDataFav? = adapter!!.getItem(position)
-                RetrofitBookList.postFav(item!!.bookCode, requireContext(),item!!.title)
+                if (value == "FAV") {
+                    RetrofitBookList.postFav(item!!.bookCode, requireContext(), item!!.title)
+                } else if (value == "BookDetail") {
+                    val intent = Intent(
+                        requireContext().applicationContext,
+                        BookDetailCover::class.java
+                    )
+                    intent.putExtra("BookCode", String.format("%s", item!!.bookCode))
+                    intent.putExtra("token", String.format("%s", token))
+                    requireActivity().startActivity(intent)
+                }
             }
         })
 

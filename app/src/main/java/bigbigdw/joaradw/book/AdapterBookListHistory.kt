@@ -13,7 +13,8 @@ import java.util.ArrayList
 
 class AdapterBookListHistory(items: List<BookListDataABD?>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var listData: ArrayList<BookListDataABD?>? = null
+
+    var listData: ArrayList<BookListDataABD?>?
 
     interface OnItemClickListener {
         fun onItemClick(v: View?, position: Int, value: String?)
@@ -31,7 +32,7 @@ class AdapterBookListHistory(items: List<BookListDataABD?>?) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is AdapterBookListHistory.MainBookListViewHolderHistory) {
+        if (holder is MainBookListViewHolderHistory) {
             val item = listData!![position]
 
             Glide.with(holder.itemView.context)
@@ -54,7 +55,7 @@ class AdapterBookListHistory(items: List<BookListDataABD?>?) :
         var title: TextView
         var writer: TextView
         var readCount: TextView
-        var Img_Wrap: LinearLayout
+        var Img_Wrap : LinearLayout
 
         init {
             image = itemView.findViewById(R.id.Img_BookFav)
@@ -79,4 +80,9 @@ class AdapterBookListHistory(items: List<BookListDataABD?>?) :
     fun getItem(position: Int): BookListDataABD? {
         return listData!![position]
     }
+
+    init {
+        listData = items as ArrayList<BookListDataABD?>?
+    }
+
 }

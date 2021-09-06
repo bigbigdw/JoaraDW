@@ -157,11 +157,11 @@ class FragmentHistory : BookBaseFragment() {
     private var recyclerViewScroll: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-//            if(!recyclerView.canScrollVertically(1)) {
-//                cover!!.visibility = View.VISIBLE
-//                page++
-//                favBookList(page)
-//            }
+            if(!recyclerView.canScrollVertically(1)) {
+                cover!!.visibility = View.VISIBLE
+                page++
+                favBookList(page)
+            }
 
         }
     }
