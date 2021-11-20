@@ -39,6 +39,24 @@ android {
             }
         }
     }
+    flavorDimensions "flavors"
+    productFlavors {
+        novel {
+            dimension "flavors"
+            applicationIdSuffix ".novel"
+            versionCode 1
+            versionName "1.0.0"
+            manifestPlaceholders = [ appLabel: "조아라DW" ]
+        }
+
+        writer {
+            dimension "flavors"
+            applicationIdSuffix ".writer"
+            versionCode 2
+            versionName "1.0.1"
+            manifestPlaceholders = [ appLabel: "작품관리DW" ]
+        }
+    }
 }
 
 apply plugin: 'org.sonarqube'
