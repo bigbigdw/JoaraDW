@@ -85,7 +85,7 @@ class LoginMain : AppCompatActivity() {
             val idCheck = Objects.requireNonNull(idtext!!.editText)?.text.toString()
             val pwCheck = Objects.requireNonNull(pwtext!!.editText)?.text.toString()
 
-            RetrofitLogin.postLogin(idCheck,pwCheck)!!.enqueue(object : Callback<LoginResult?> {
+            RetrofitLogin.postLogin(idCheck,pwCheck, this)!!.enqueue(object : Callback<LoginResult?> {
                 override fun onResponse(
                     call: Call<LoginResult?>,
                     response: retrofit2.Response<LoginResult?>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Splash_Year">ⓒ JOARA-DW 2021</string>
+    <string name="Splash_Year_Writer">ⓒ 작품관리-DW 2021-2022</string>
+    <string name="Splash_Year">ⓒ JOARA-DW 2021-2022</string>
     <string name="Splash_Name">By 김대우</string>
     <string name="List_Blank">등록된 리스트가 없습니다</string>
 </resources>

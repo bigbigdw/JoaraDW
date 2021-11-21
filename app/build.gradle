@@ -47,6 +47,8 @@ android {
             versionCode 1
             versionName "1.0.0"
             manifestPlaceholders = [ appLabel: "조아라DW" ]
+            buildConfigField 'boolean', 'IS_DEV', "false"
+            buildConfigField 'boolean', 'IS_NOVEL', "false"
         }
 
         writer {
@@ -55,6 +57,8 @@ android {
             versionCode 2
             versionName "1.0.1"
             manifestPlaceholders = [ appLabel: "작품관리DW" ]
+            buildConfigField 'boolean', 'IS_DEV', "true"
+            buildConfigField 'boolean', 'IS_NOVEL', "true"
         }
     }
 }
