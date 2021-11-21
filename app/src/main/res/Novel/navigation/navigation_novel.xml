@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_navigation"
-    app:startDestination="@+id/Fragment_Main">
+    app:startDestination="@+id/Fragment_Novel">
 
     <fragment
-        android:id="@+id/Fragment_Main"
-        android:name="bigbigdw.joaradw.fragment_main.FragmentMain"
+        android:id="@+id/Fragment_Novel"
+        android:name="bigbigdw.joaradw.fragment_novel.FragmentNovel"
         android:label=""
         tools:layout="@layout/fragment_main_tab_first">
         <action
@@ -35,6 +35,13 @@
         tools:layout="@layout/test" >
     </fragment>
 
+    <activity
+        android:id="@+id/Activity_Writer"
+        android:name="bigbigdw.joaradw.writer.ActivityWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" >
+    </activity>
+
     <fragment
         android:id="@+id/Fragment_Detail_1"
         android:name="bigbigdw.joaradw.book_detail.DetailTab1"
@@ -44,7 +51,7 @@
 
     <fragment
         android:id="@+id/Fragment_More"
-        android:name="bigbigdw.joaradw.fragment_main.FragmentMore"
+        android:name="bigbigdw.joaradw.fragment_novel.FragmentMore"
         android:label=""
         tools:layout="@layout/fragment_main_more" >
         <action

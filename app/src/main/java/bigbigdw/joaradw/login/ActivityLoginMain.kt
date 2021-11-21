@@ -121,7 +121,7 @@ class ActivityLoginMain : AppCompatActivity() {
                                 savePreferences("STATUS", status!!)
                                 savePreferences("PROFILEIMG", profile!!)
 
-                                if (BuildConfig.IS_NOVEL) {
+                                if (BuildConfig.IS_WRTIER) {
                                     //작품관리 진입
                                     val intent = Intent(applicationContext, ActivityWriter::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT

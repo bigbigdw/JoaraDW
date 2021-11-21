@@ -11,6 +11,7 @@ import android.widget.TextView
 import bigbigdw.joaradw.BuildConfig
 import bigbigdw.joaradw.login.ActivityLoginMain
 import bigbigdw.joaradw.util.CheckTokenResult
+import bigbigdw.joaradw.writer.ActivityWriter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,21 +23,23 @@ class Splash : Activity() {
 
         val tviewTitle: TextView? = findViewById(R.id.tview_title)
 
-        if (BuildConfig.IS_NOVEL) {
+        if (BuildConfig.IS_WRTIER) {
             tviewTitle!!.text = "ⓒ 작품관리-DW 2021-2022"
         } else {
             tviewTitle!!.text = "ⓒ JOARA-DW 2021-2022"
         }
 
         if (BuildConfig.IS_DEV) {
-            val pref = getSharedPreferences("HELPER", MODE_PRIVATE)
-            val editor = pref.edit()
-            editor.putString("API", "https://api.joara.com")
-            editor.apply()
-        } else {
+            Log.d("IS_DEV", "DEV")
             val pref = getSharedPreferences("HELPER", MODE_PRIVATE)
             val editor = pref.edit()
             editor.putString("API", "https://api-dev1.joara.com:7443")
+            editor.apply()
+        } else {
+            Log.d("IS_DEV", "STG")
+            val pref = getSharedPreferences("HELPER", MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putString("API", "https://api.joara.com")
             editor.apply()
         }
     }
@@ -44,17 +47,56 @@ class Splash : Activity() {
     private fun startLoading() {
         Handler(Looper.myLooper()!!).postDelayed(
             {
-                if (BuildConfig.IS_NOVEL) {
-                    //작품관리 진입
-                    val intent = Intent(applicationContext, ActivityLoginMain::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                    startActivityIfNeeded(intent, 0)
-                    finish()
+                if (BuildConfig.IS_WRTIER) {
+                    Log.d("IS_WRTIER", "WRITER")
+
+                    RetrofitNovel.loginCheck(
+                        getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+                            "TOKEN",
+                            ""
+                        ),
+                        this
+                    )!!.enqueue(object : Callback<CheckTokenResult?> {
+                        override fun onResponse(
+                            call: Call<CheckTokenResult?>,
+                            response: Response<CheckTokenResult?>
+                        ) {
+                            if (response.isSuccessful) {
+                                response.body()?.let { it ->
+                                    val status = it.status
+                                    if (status != 1) {
+                                        val editor = getSharedPreferences("LOGIN", MODE_PRIVATE).edit()
+                                        editor.clear()
+                                        editor.apply()
+                                    } else {
+                                        Log.d("IS_WRTIER", "NOVEL")
+                                        //작품관리 진입
+                                        val intent = Intent(applicationContext, ActivityWriter::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                        startActivityIfNeeded(intent, 0)
+                                        finish()
+                                    }
+                                }
+                            } else {
+                                //작품관리 진입
+                                val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                startActivityIfNeeded(intent, 0)
+                                finish()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<CheckTokenResult?>, t: Throwable) {
+                            Log.d("Splash: onResponse", "실패")
+                        }
+                    })
+
+
                 } else {
                     //소설 진입
-                    val intent = Intent(this, ActivityNovel::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                    startActivityIfNeeded(intent, 0)
+                    val novelIntent = Intent(applicationContext, ActivityNovel::class.java)
+                    novelIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                    startActivityIfNeeded(novelIntent, 0)
                     finish()
                 }
             },
@@ -69,7 +111,8 @@ class Splash : Activity() {
             getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
                 "TOKEN",
                 ""
-            )
+            ),
+            this
         )!!.enqueue(object : Callback<CheckTokenResult?> {
             override fun onResponse(
                 call: Call<CheckTokenResult?>,

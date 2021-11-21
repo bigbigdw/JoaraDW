@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <!--Main Layout-->
+    <!--Novel Layout-->
     <LinearLayout
         android:id="@+id/Comment_Contents"
         android:layout_width="match_parent"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:title="@string/drawer_Bottom_title1">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_1"
+                    android:title="@string/drawer_Bottom_subTitle1" />
+                <item
+                    android:id="@id/Activity_Writer"
+                    android:icon="@drawable/icon_lnb_2"
+                    android:title="@string/drawer_Bottom_subTitle2" />
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_3"
+                    android:title="@string/drawer_Bottom_subTitle3" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/drawer_Writer_Bottom_title1">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_1"
+                    android:title="@string/Drawer_writer1" />
+                <item
+                    android:id="@id/Activity_Writer"
+                    android:icon="@drawable/icon_lnb_2"
+                    android:title="@string/Drawer_writer2" />
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_3"
+                    android:title="@string/Drawer_writer3" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/drawer_Writer_Bottom_title2">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_1"
+                    android:title="@string/Drawer_writer4" />
+                <item
+                    android:id="@id/Activity_Writer"
+                    android:icon="@drawable/icon_lnb_2"
+                    android:title="@string/Drawer_writer5" />
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_3"
+                    android:title="@string/Drawer_writer6" />
+                <item
+                    android:id="@id/Fragment_Novel"
+                    android:icon="@drawable/icon_lnb_3"
+                    android:title="@string/Drawer_writer7" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

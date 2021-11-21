@@ -16,7 +16,6 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.R;
 
@@ -65,12 +64,12 @@ public class BookPageEtc extends BookBaseActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        BookPagination.populateData(apiUrl, etcUrl + "&page=1", queue, wrap, items, cover, blank);
-        initAdapter();
-
-        if(type.equals("FINISH")){
-            BookPagination.scrollListener(apiUrl, queue, wrap, items, adapter, recyclerView, etcUrl);
-        }
+//        BookPagination.populateData(apiUrl, etcUrl + "&page=1", queue, wrap, items, cover, blank);
+//        initAdapter();
+//
+//        if(type.equals("FINISH")){
+//            BookPagination.scrollListener(apiUrl, queue, wrap, items, adapter, recyclerView, etcUrl);
+//        }
 
     }
 

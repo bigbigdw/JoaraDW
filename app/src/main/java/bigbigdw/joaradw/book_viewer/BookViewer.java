@@ -91,7 +91,7 @@ public class BookViewer extends BookBaseActivity {
         NavigationView navigationView = findViewById(R.id.viewer_navigation);
 
         appBarConfiguration = new AppBarConfiguration.Builder(R.id.Fragment_Viewer).setOpenableLayout(drawer).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_novel);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -185,7 +185,7 @@ public class BookViewer extends BookBaseActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_novel);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }

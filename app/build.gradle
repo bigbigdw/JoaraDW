@@ -32,7 +32,7 @@ android {
     sourceSets {
         main {
             res {
-                srcDirs 'src\\main\\res', 'src\\main\\res\\Etc', 'src\\main\\res\\assets', 'src\\main\\res\\Main', 'src\\main\\res\\Main_Fragment', 'src\\main\\res\\Login', 'src\\main\\res\\Fragment_Main', 'src\\main\\res\\Fragment_Best', 'src\\main\\res\\Fragment_New', 'src\\main\\res\\Fragment_Finish', 'src\\main\\res\\Fragment_Fav', 'src\\main\\res\\BookDetail', 'src\\main\\res\\BookViewer', 'src\\main\\res\\Book_Detail', 'src\\main\\res\\Book_Viewer', 'src\\main\\res\\Policy', 'src\\main\\res\\Joara_Post', 'src\\main\\res\\Fragment_Genre', 'src\\main\\res\\Writer'
+                srcDirs 'src\\main\\res', 'src\\main\\res\\Etc', 'src\\main\\res\\assets', 'src\\main\\res\\Novel', 'src\\main\\res\\Fragment_Novel', 'src\\main\\res\\Login', 'src\\main\\res\\Fragment_Main', 'src\\main\\res\\Fragment_Best', 'src\\main\\res\\Fragment_New', 'src\\main\\res\\Fragment_Finish', 'src\\main\\res\\Fragment_Fav', 'src\\main\\res\\BookDetail', 'src\\main\\res\\BookViewer', 'src\\main\\res\\Book_Detail', 'src\\main\\res\\Book_Viewer', 'src\\main\\res\\Policy', 'src\\main\\res\\Joara_Post', 'src\\main\\res\\Fragment_Genre', 'src\\main\\res\\Writer', 'src\\main\\res\\Fragment_Writer'
             }
             assets {
                 srcDirs 'src\\main\\assets', 'src\\main\\assets\\Login2'
@@ -48,7 +48,7 @@ android {
             versionName "1.0.0"
             manifestPlaceholders = [ appLabel: "조아라DW" ]
             buildConfigField 'boolean', 'IS_DEV', "false"
-            buildConfigField 'boolean', 'IS_NOVEL', "false"
+            buildConfigField 'boolean', 'IS_WRTIER', "false"
         }
 
         writer {
@@ -58,7 +58,7 @@ android {
             versionName "1.0.1"
             manifestPlaceholders = [ appLabel: "작품관리DW" ]
             buildConfigField 'boolean', 'IS_DEV', "true"
-            buildConfigField 'boolean', 'IS_NOVEL', "true"
+            buildConfigField 'boolean', 'IS_WRTIER', "true"
         }
     }
 }

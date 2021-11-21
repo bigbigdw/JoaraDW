@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main;
+package bigbigdw.joaradw.fragment_novel;
 
 import android.content.Intent;
 import android.os.Bundle;

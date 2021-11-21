@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_navigation"
+    app:startDestination="@+id/Fragment_Writer">
+
+    <fragment
+        android:id="@+id/Fragment_Writer"
+        android:name="bigbigdw.joaradw.fragment_writer.FragmentWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" />
+
+</navigation>

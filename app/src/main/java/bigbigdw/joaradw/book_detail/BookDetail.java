@@ -37,7 +37,6 @@ import java.util.Objects;
 import bigbigdw.joaradw.base.BookBaseActivity;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.model.BookInfo;
@@ -169,12 +168,12 @@ public class BookDetail extends BookBaseActivity {
 
         bookCover.setOnClickListener(v -> {
             if(btnFavOff.getVisibility() == View.VISIBLE){
-                BookPagination.favToggle(queue, bookCode, userToken);
+//                BookPagination.favToggle(queue, bookCode, userToken);
                 Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'이(가) 선호작에 등록되었습니다.", Toast.LENGTH_SHORT).show();
                 btnFavOn.setVisibility(View.VISIBLE);
                 btnFavOff.setVisibility(View.GONE);
             } else if (btnFavOn.getVisibility() == View.VISIBLE) {
-                BookPagination.favToggle(queue, bookCode, userToken);
+//                BookPagination.favToggle(queue, bookCode, userToken);
                 Toast.makeText(getApplicationContext(), "'" + bookTitleText + "'을(를) 선호작에서 해제하였습니다.", Toast.LENGTH_SHORT).show();
                 btnFavOn.setVisibility(View.GONE);
                 btnFavOff.setVisibility(View.VISIBLE);

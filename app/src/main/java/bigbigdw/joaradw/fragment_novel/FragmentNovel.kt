@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.fragment_main
+package bigbigdw.joaradw.fragment_novel
 
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +27,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class FragmentMain : BookBaseFragment() {
+class FragmentNovel : BookBaseFragment() {
 
     private var tabviewmodel: TabViewModel? = null
 
@@ -92,17 +92,24 @@ class FragmentMain : BookBaseFragment() {
         mainBookItemsSecond.clear()
 
         //메인 북 데이터
-        mainBookAdapterFirst = AdapterMainBookData(requireContext(),mainBookItemsFirst)
-        linearLayoutManagerFirst = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst,RecyclerViewFirst,"FIRST")
+        mainBookAdapterFirst = AdapterMainBookData(requireContext(), mainBookItemsFirst)
+        linearLayoutManagerFirst =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getMainBookData(mainBookAdapterFirst, linearLayoutManagerFirst, RecyclerViewFirst, "FIRST")
 
-        mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
-        linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,RecyclerViewSecond,"SECOND")
+        mainBookAdapterSecond = AdapterMainBookData(requireContext(), mainBookItemsSecond)
+        linearLayoutManagerSecond =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getMainBookData(
+            mainBookAdapterSecond,
+            linearLayoutManagerSecond,
+            RecyclerViewSecond,
+            "SECOND"
+        )
 
         //배너
-        getMainBanner("app_home_top_banner",mainBanner!!,mainBannerURLs)
-        getMainBanner("app_main2016_event",mainBannerMid!!,mainBannerMidURLs)
+        getMainBanner("app_home_top_banner", mainBanner!!, mainBannerURLs)
+        getMainBanner("app_main2016_event", mainBannerMid!!, mainBannerMidURLs)
 
         mainBanner!!.setImageListener(imageListener)
         mainBannerMid!!.setImageListener(imageListenerMid)
@@ -116,37 +123,43 @@ class FragmentMain : BookBaseFragment() {
         bannerURLs: MutableList<String> = ArrayList(),
     ) {
 
-        RetrofitNovel.getMainBanner(token,bannerType)!!.enqueue(object : Callback<MainBannerResult?> {
-            override fun onResponse(
-                call: Call<MainBannerResult?>,
-                response: Response<MainBannerResult?>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let { it ->
-                        val bannerArray = it.banner
+        RetrofitNovel.getMainBanner(token, bannerType, context)!!
+            .enqueue(object : Callback<MainBannerResult?> {
+                override fun onResponse(
+                    call: Call<MainBannerResult?>,
+                    response: Response<MainBannerResult?>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            val bannerArray = it.banner
 
-                        if (bannerArray != null) {
-                            for (i in bannerArray.indices) {
-                                val img = bannerArray[i].imgfile
-                                bannerURLs.add(img!!)
+                            if (bannerArray != null) {
+                                for (i in bannerArray.indices) {
+                                    val img = bannerArray[i].imgfile
+                                    bannerURLs.add(img!!)
+                                }
                             }
+                            banner.pageCount = bannerURLs.size
+                            banner.slideInterval = 4000
+                            banner.visibility = View.VISIBLE
                         }
-                        banner.pageCount = bannerURLs.size
-                        banner.slideInterval = 4000
-                        banner.visibility = View.VISIBLE
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<MainBannerResult?>, t: Throwable) {
-                Log.d("onFailure", "실패")
-            }
-        })
+                override fun onFailure(call: Call<MainBannerResult?>, t: Throwable) {
+                    Log.d("onFailure", "실패")
+                }
+            })
     }
 
     //메인 북 데이터
-    private fun getMainBookData(adapter: AdapterMainBookData?, linearLayoutManager : LinearLayoutManager?, recyclerView: RecyclerView?, type:String?) {
-        RetrofitNovel.getMainBookData(token)!!.enqueue(object : Callback<MainBookResult?> {
+    private fun getMainBookData(
+        adapter: AdapterMainBookData?,
+        linearLayoutManager: LinearLayoutManager?,
+        recyclerView: RecyclerView?,
+        type: String?
+    ) {
+        RetrofitNovel.getMainBookData(token, context)!!.enqueue(object : Callback<MainBookResult?> {
             override fun onResponse(
                 call: Call<MainBookResult?>,
                 response: Response<MainBookResult?>
@@ -163,8 +176,8 @@ class FragmentMain : BookBaseFragment() {
                                 val sectionSubType = mainInfo[i].sectionSubType
                                 val sectionType = mainInfo[i].sectionType
 
-                                if(type.equals("FIRST")){
-                                    if(i in 2..6 && !sectionApiUrl.equals("")){
+                                if (type.equals("FIRST")) {
+                                    if (i in 2..6 && !sectionApiUrl.equals("")) {
                                         mainBookItemsFirst.add(
                                             MainBookData(
                                                 sectionCategory,
@@ -175,7 +188,7 @@ class FragmentMain : BookBaseFragment() {
                                     }
                                 } else {
                                     //뒤에꺼만 들고옴 + 맨 마지막 빈거 제거
-                                    if(i > 7 && !sectionApiUrl.equals("")){
+                                    if (i > 7 && !sectionApiUrl.equals("")) {
                                         mainBookItemsSecond.add(
                                             MainBookData(
                                                 sectionCategory,
@@ -201,17 +214,25 @@ class FragmentMain : BookBaseFragment() {
         })
     }
 
-    private var recyclerViewScroll: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-            if(!recyclerView.canScrollVertically(1)) {
-                mainBookAdapterSecond = AdapterMainBookData(requireContext(),mainBookItemsSecond)
-                linearLayoutManagerSecond = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                getMainBookData(mainBookAdapterSecond, linearLayoutManagerSecond,RecyclerViewSecond,"SECOND")
-            }
+    private var recyclerViewScroll: RecyclerView.OnScrollListener =
+        object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!recyclerView.canScrollVertically(1)) {
+                    mainBookAdapterSecond =
+                        AdapterMainBookData(requireContext(), mainBookItemsSecond)
+                    linearLayoutManagerSecond =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    getMainBookData(
+                        mainBookAdapterSecond,
+                        linearLayoutManagerSecond,
+                        RecyclerViewSecond,
+                        "SECOND"
+                    )
+                }
 
+            }
         }
-    }
 
     var imageListener = ImageListener { position: Int, imageView: ImageView ->
         imageView.adjustViewBounds = true
@@ -262,8 +283,8 @@ class FragmentMain : BookBaseFragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-        fun newInstance(index: Int): FragmentMain {
-            val fragment = FragmentMain()
+        fun newInstance(index: Int): FragmentNovel {
+            val fragment = FragmentNovel()
             val bundle = Bundle()
             bundle.putInt(ARG_SECTION_NUMBER, index)
             fragment.arguments = bundle

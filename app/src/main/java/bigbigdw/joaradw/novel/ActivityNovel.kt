@@ -33,7 +33,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ActivityNovel: AppCompatActivity() {
+class ActivityNovel : AppCompatActivity() {
     private var appBarConfiguration: AppBarConfiguration? = null
     private var dialogBanner: DialogBanner? = null
     var drawerLogout: LinearLayout? = null
@@ -75,7 +75,7 @@ class ActivityNovel: AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         drawer = findViewById(R.id.drawer_layout)
-        navigationView = findViewById(R.id.nav_vie)
+        navigationView = findViewById(R.id.nav_main)
         homeImg = findViewById(R.id.HomeImg)
 
         navHeaderView = navigationView!!.getHeaderView(0)
@@ -89,7 +89,7 @@ class ActivityNovel: AppCompatActivity() {
         userName = navHeaderView!!.findViewById(R.id.UserName)
         btnLogout = navHeaderView!!.findViewById(R.id.Btn_Logout)
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_novel)
 
         setLayout()
     }
@@ -107,7 +107,7 @@ class ActivityNovel: AppCompatActivity() {
         }
 
         appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.Fragment_Main
+            R.id.Fragment_Novel
         ).setOpenableLayout(drawer).build()
 
         NavigationUI.setupActionBarWithNavController(this, navController!!, appBarConfiguration!!)
@@ -122,7 +122,7 @@ class ActivityNovel: AppCompatActivity() {
 
         navController!!.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? ->
             //바텀 내비게이션 바 비활성화
-            if (destination.id == R.id.Fragment_Main || destination.id == R.id.Joara_Post_List || destination.id == R.id.Fragment_Fav || destination.id == R.id.Fragment_History) {
+            if (destination.id == R.id.Fragment_Novel || destination.id == R.id.Joara_Post_List || destination.id == R.id.Fragment_Fav || destination.id == R.id.Fragment_History) {
                 setCheckable(navView, false)
                 navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_UNLABELED
             } else {
@@ -134,11 +134,11 @@ class ActivityNovel: AppCompatActivity() {
         getIndexAPI()
     }
 
-    fun getIndexAPI() {
+    private fun getIndexAPI() {
 
         val menuVer = getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0")
 
-        RetrofitNovel.getIndexAPI(menuVer)!!.enqueue(object : Callback<IndexAPIResult?> {
+        RetrofitNovel.getIndexAPI(menuVer, this)!!.enqueue(object : Callback<IndexAPIResult?> {
             override fun onResponse(
                 call: Call<IndexAPIResult?>,
                 response: Response<IndexAPIResult?>
@@ -194,7 +194,7 @@ class ActivityNovel: AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<IndexAPIResult?>, t: Throwable) {
-                Log.d("Main: onResponse", "실패")
+                Log.d("Novel: onResponse", "실패")
             }
         })
     }
@@ -203,7 +203,7 @@ class ActivityNovel: AppCompatActivity() {
 
         val token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString()
 
-        RetrofitNovel.onClickLogout(token)!!.enqueue(object : Callback<LogoutResult?> {
+        RetrofitNovel.onClickLogout(token, this)!!.enqueue(object : Callback<LogoutResult?> {
             override fun onResponse(call: Call<LogoutResult?>, response: Response<LogoutResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
@@ -232,7 +232,7 @@ class ActivityNovel: AppCompatActivity() {
         navigationView: NavigationView?
     ) {
 
-        RetrofitNovel.loginCheck(usertoken)!!.enqueue(object : Callback<CheckTokenResult?> {
+        RetrofitNovel.loginCheck(usertoken, this)!!.enqueue(object : Callback<CheckTokenResult?> {
             override fun onResponse(
                 call: Call<CheckTokenResult?>,
                 response: Response<CheckTokenResult?>
@@ -275,14 +275,14 @@ class ActivityNovel: AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<CheckTokenResult?>, t: Throwable) {
-                Log.d("Main: onResponse", "실패")
+                Log.d("Novel: onResponse", "실패")
             }
         })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuInflater = menuInflater
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.novel_menu, menu)
         return true
     }
 
@@ -292,7 +292,7 @@ class ActivityNovel: AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navControllerUp = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navControllerUp = Navigation.findNavController(this, R.id.nav_host_fragment_novel)
         return (NavigationUI.navigateUp(navControllerUp, appBarConfiguration!!)
                 || super.onSupportNavigateUp())
     }
@@ -304,7 +304,7 @@ class ActivityNovel: AppCompatActivity() {
     fun deleteSignedInfo() {
         val alBuilder = AlertDialog.Builder(this)
         alBuilder.setMessage("로그아웃하시겠습니까?")
-        alBuilder.setPositiveButton("예") { dialog: DialogInterface?, _: Int ->
+        alBuilder.setPositiveButton("예") { _: DialogInterface?, _: Int ->
             val editor = getSharedPreferences("LOGIN", MODE_PRIVATE).edit()
             editor.clear()
             editor.apply()
@@ -325,17 +325,6 @@ class ActivityNovel: AppCompatActivity() {
                 menu.getItem(i).isCheckable = checkable
             }
         }
-    }
-
-    fun savePreferencesTab(value: String, type: String?, num: Int?) {
-        val getValues = getSharedPreferences("MAIN_MENU", MODE_PRIVATE).edit()
-
-        if (type.equals("MAIN")) {
-            getValues.putString("hi", value)
-        } else {
-            getValues.putString("hi", value)
-        }
-        getValues.apply()
     }
 
     fun savePreferences(value: String, token: String) {

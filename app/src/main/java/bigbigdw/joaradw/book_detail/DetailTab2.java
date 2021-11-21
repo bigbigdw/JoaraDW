@@ -16,7 +16,6 @@ import com.android.volley.toolbox.Volley;
 
 
 import java.util.ArrayList;
-import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.novel.OLD_MainBookListAdapterC;
@@ -56,13 +55,13 @@ public class DetailTab2 extends BookBaseFragment {
 
         RequestQueue queue = Volley.newRequestQueue(requireActivity());
 
-        BookPagination.populateData(API.BOOK_OTHER_JOA, etc, queue, wrap, items, cover, blank);
+//        BookPagination.populateData(API.BOOK_OTHER_JOA, etc, queue, wrap, items, cover, blank);
         initAdapter();
 
         adapter.setOnItemClickListener((v, position, value) -> {
             OLD_MainBookListData item = adapter.getItem(position);
             if(value.equals("FAV")){
-                BookPagination.favToggle(queue, item.getBookCode(), userToken);
+//                BookPagination.favToggle(queue, item.getBookCode(), userToken);
             } else if (value.equals("BookDetail")){
                 Intent intent = new Intent(requireContext().getApplicationContext(), BookDetailCover.class);
                 intent.putExtra("BookCode",String.format("%s", item.getBookCode()));

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="drawer_Writer_Bottom_title1">작품관리</string>
+    <string name="drawer_Writer_Bottom_title2">내 작품</string>
+    <string name="Drawer_writer1">작가지원정책</string>
+    <string name="Drawer_writer2">프리미엄 신청</string>
+    <string name="Drawer_writer3">노블X프리 신청</string>
+    <string name="Drawer_writer4">연재작품</string>
+    <string name="Drawer_writer5">완결</string>
+    <string name="Drawer_writer6">습작</string>
+    <string name="Drawer_writer7">단편</string>
+
+    <string name="Drawer_Bottom1">작가보드</string>
+    <string name="Drawer_Bottom2">작품등록</string>
+    <string name="Drawer_Bottom3">작품예약</string>
+    <string name="Drawer_Bottom4">노트</string>
+</resources>

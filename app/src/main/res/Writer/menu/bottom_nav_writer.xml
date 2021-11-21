@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/Fragment_New"
+        android:icon="@drawable/bottom_icon_new"
+        android:title="@string/Drawer_Bottom1" />
+
+    <item
+        android:id="@id/Fragment_Best"
+        android:icon="@drawable/bottom_icon_best"
+        android:title="@string/Drawer_Bottom2" />
+
+    <item
+        android:id="@id/Fragment_Finish"
+        android:icon="@drawable/bottom_icon_finish"
+        android:title="@string/Drawer_Bottom3" />
+
+    <item
+        android:id="@id/Fragment_Genre"
+        android:icon="@drawable/bottom_icon_prefer"
+        android:title="@string/Drawer_Bottom4" />
+
+</menu>

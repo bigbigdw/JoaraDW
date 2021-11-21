@@ -7,7 +7,7 @@
     android:background="#4D525F"
     android:gravity="bottom|center_vertical"
     android:orientation="vertical"
-    android:paddingTop="16dp"
+    android:paddingTop="32dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <LinearLayout

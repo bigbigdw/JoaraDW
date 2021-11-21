@@ -116,7 +116,7 @@ interface NewBookDService {
 //선호작 등록
 interface FavBookService {
     @FormUrlEncoded
-    @POST(API.USER_FAVORATE)
+    @POST(API.USER_FAVORITE_JOA)
     fun postRetrofit(
         @Field("token") token: String?,
         @Field("book_code") bookCode: String?,
