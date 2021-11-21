@@ -23,7 +23,7 @@ class Splash : Activity() {
 
         val tviewTitle: TextView? = findViewById(R.id.tview_title)
 
-        if (BuildConfig.IS_WRTIER) {
+        if (BuildConfig.IS_WRITER) {
             tviewTitle!!.text = "ⓒ 작품관리-DW 2021-2022"
         } else {
             tviewTitle!!.text = "ⓒ JOARA-DW 2021-2022"
@@ -47,8 +47,8 @@ class Splash : Activity() {
     private fun startLoading() {
         Handler(Looper.myLooper()!!).postDelayed(
             {
-                if (BuildConfig.IS_WRTIER) {
-                    Log.d("IS_WRTIER", "WRITER")
+                if (BuildConfig.IS_WRITER) {
+                    Log.d("IS_WRITER", "IS_WRITER")
 
                     RetrofitNovel.loginCheck(
                         getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
@@ -62,12 +62,19 @@ class Splash : Activity() {
                             response: Response<CheckTokenResult?>
                         ) {
                             if (response.isSuccessful) {
+                                Log.d("IS_WRITER", "isSuccessful")
                                 response.body()?.let { it ->
                                     val status = it.status
+                                    Log.d("IS_WRITER", status.toString())
                                     if (status != 1) {
                                         val editor = getSharedPreferences("LOGIN", MODE_PRIVATE).edit()
                                         editor.clear()
                                         editor.apply()
+
+                                        val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                        startActivityIfNeeded(intent, 0)
+                                        finish()
                                     } else {
                                         Log.d("IS_WRTIER", "NOVEL")
                                         //작품관리 진입
@@ -77,12 +84,6 @@ class Splash : Activity() {
                                         finish()
                                     }
                                 }
-                            } else {
-                                //작품관리 진입
-                                val intent = Intent(applicationContext, ActivityLoginMain::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                startActivityIfNeeded(intent, 0)
-                                finish()
                             }
                         }
 
