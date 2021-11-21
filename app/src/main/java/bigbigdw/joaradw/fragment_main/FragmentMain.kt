@@ -14,8 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.main.RetrofitMain
-import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.novel.RetrofitNovel
+import bigbigdw.joaradw.novel.MainBannerResult
+import bigbigdw.joaradw.novel.MainBookData
+import bigbigdw.joaradw.novel.MainBookResult
+import bigbigdw.joaradw.novel.TabViewModel
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -113,7 +116,7 @@ class FragmentMain : BookBaseFragment() {
         bannerURLs: MutableList<String> = ArrayList(),
     ) {
 
-        RetrofitMain.getMainBanner(token,bannerType)!!.enqueue(object : Callback<MainBannerResult?> {
+        RetrofitNovel.getMainBanner(token,bannerType)!!.enqueue(object : Callback<MainBannerResult?> {
             override fun onResponse(
                 call: Call<MainBannerResult?>,
                 response: Response<MainBannerResult?>
@@ -143,7 +146,7 @@ class FragmentMain : BookBaseFragment() {
 
     //메인 북 데이터
     private fun getMainBookData(adapter: AdapterMainBookData?, linearLayoutManager : LinearLayoutManager?, recyclerView: RecyclerView?, type:String?) {
-        RetrofitMain.getMainBookData(token)!!.enqueue(object : Callback<MainBookResult?> {
+        RetrofitNovel.getMainBookData(token)!!.enqueue(object : Callback<MainBookResult?> {
             override fun onResponse(
                 call: Call<MainBookResult?>,
                 response: Response<MainBookResult?>

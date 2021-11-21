@@ -21,7 +21,7 @@ import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.book_detail.DetailBookPageData;
 import bigbigdw.joaradw.book_viewer.BookViewer;
-import bigbigdw.joaradw.main.OLD_MainBookListData;
+import bigbigdw.joaradw.novel.OLD_MainBookListData;
 
 public class BookBaseActivity extends AppCompatActivity {
 

@@ -1,37 +1,39 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import android.content.Context
-import androidx.navigation.ui.AppBarConfiguration
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.navigation.NavController
-import com.google.android.material.navigation.NavigationView
-import androidx.drawerlayout.widget.DrawerLayout
-import android.os.Bundle
-import bigbigdw.joaradw.R
-import android.widget.Toast
-import android.content.Intent
-import bigbigdw.joaradw.login.LoginMain
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.NavDestination
-import com.google.android.material.navigation.NavigationBarView
 import android.content.DialogInterface
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import bigbigdw.joaradw.R
+import bigbigdw.joaradw.login.ActivityLoginMain
 import bigbigdw.joaradw.test.ActivityTest
-import bigbigdw.joaradw.util.*
+import bigbigdw.joaradw.util.CheckTokenResult
+import bigbigdw.joaradw.util.IndexAPIResult
+import bigbigdw.joaradw.util.LogoutResult
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Main : AppCompatActivity() {
+class ActivityNovel: AppCompatActivity() {
     private var appBarConfiguration: AppBarConfiguration? = null
     private var dialogBanner: DialogBanner? = null
     var drawerLogout: LinearLayout? = null
@@ -65,7 +67,7 @@ class Main : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.component_main)
+        setContentView(R.layout.component_novel)
 
         mContext = this
 
@@ -96,7 +98,7 @@ class Main : AppCompatActivity() {
 
         drawerLogout!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
             startActivity(intent)
         }
 
@@ -134,9 +136,9 @@ class Main : AppCompatActivity() {
 
     fun getIndexAPI() {
 
-        var menuVer = getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0")
+        val menuVer = getSharedPreferences("INDEX_API", MODE_PRIVATE).getString("MENU_VER", "0")
 
-        RetrofitMain.getIndexAPI(menuVer)!!.enqueue(object : Callback<IndexAPIResult?> {
+        RetrofitNovel.getIndexAPI(menuVer)!!.enqueue(object : Callback<IndexAPIResult?> {
             override fun onResponse(
                 call: Call<IndexAPIResult?>,
                 response: Response<IndexAPIResult?>
@@ -201,7 +203,7 @@ class Main : AppCompatActivity() {
 
         val token = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("TOKEN", "").toString()
 
-        RetrofitMain.onClickLogout(token)!!.enqueue(object : Callback<LogoutResult?> {
+        RetrofitNovel.onClickLogout(token)!!.enqueue(object : Callback<LogoutResult?> {
             override fun onResponse(call: Call<LogoutResult?>, response: Response<LogoutResult?>) {
                 if (response.isSuccessful) {
                     response.body()?.let { it ->
@@ -230,7 +232,7 @@ class Main : AppCompatActivity() {
         navigationView: NavigationView?
     ) {
 
-        RetrofitMain.loginCheck(usertoken)!!.enqueue(object : Callback<CheckTokenResult?> {
+        RetrofitNovel.loginCheck(usertoken)!!.enqueue(object : Callback<CheckTokenResult?> {
             override fun onResponse(
                 call: Call<CheckTokenResult?>,
                 response: Response<CheckTokenResult?>
@@ -308,7 +310,7 @@ class Main : AppCompatActivity() {
             editor.apply()
 
             Toast.makeText(applicationContext, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, Main::class.java)
+            val intent = Intent(applicationContext, ActivityNovel::class.java)
             startActivity(intent)
             finish()
         }

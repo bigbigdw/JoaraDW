@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
-import bigbigdw.joaradw.main.TabViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

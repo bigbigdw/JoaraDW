@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.main;
+package bigbigdw.joaradw.novel;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import bigbigdw.joaradw.R;
 
-public class MainMoreAadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AadapterMainMore extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<MainMoreListData> listData = new ArrayList<>();
 

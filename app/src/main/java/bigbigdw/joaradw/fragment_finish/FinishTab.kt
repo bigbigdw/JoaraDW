@@ -2,7 +2,6 @@ package bigbigdw.joaradw.fragment_finish
 
 import android.content.res.AssetManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.fragment_main.MainBookData
-import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.novel.MainBookData
+import bigbigdw.joaradw.novel.TabViewModel
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader

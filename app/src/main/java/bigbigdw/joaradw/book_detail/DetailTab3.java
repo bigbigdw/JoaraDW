@@ -27,18 +27,18 @@ import bigbigdw.joaradw.book_viewer.ViewerSetting;
 import bigbigdw.joaradw.etc.API;
 import bigbigdw.joaradw.etc.BookList;
 import bigbigdw.joaradw.etc.HELPER;
-import bigbigdw.joaradw.main.MainMoreAadapter;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
+import bigbigdw.joaradw.novel.AadapterMainMore;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterA;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.OLD_MainBookListData;
+import bigbigdw.joaradw.novel.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 
 public class DetailTab3 extends BookBaseFragment {
     private final OLD_MainBookListAdapterA bookListAdapterA = new OLD_MainBookListAdapterA();
-    private final MainMoreAadapter moreAadapter = new MainMoreAadapter();
-    private final MainMoreAadapter surveyAdapter = new MainMoreAadapter();
-    private final MainMoreAadapter settingAdapter = new MainMoreAadapter();
+    private final AadapterMainMore moreAadapter = new AadapterMainMore();
+    private final AadapterMainMore surveyAdapter = new AadapterMainMore();
+    private final AadapterMainMore settingAdapter = new AadapterMainMore();
     LinearLayout wrap;
     LinearLayout cover;
     LinearLayout blank;

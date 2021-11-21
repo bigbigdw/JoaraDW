@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
+import bigbigdw.joaradw.novel.MainBookData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

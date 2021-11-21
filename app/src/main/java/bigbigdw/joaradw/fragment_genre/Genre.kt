@@ -19,10 +19,7 @@ import bigbigdw.joaradw.book.BookListBestResult
 import bigbigdw.joaradw.book.BookListResultC
 import bigbigdw.joaradw.book.RetrofitBookList
 import bigbigdw.joaradw.book_detail.BookDetailCover
-import bigbigdw.joaradw.fragment_main.MainBookData
-import bigbigdw.joaradw.main.TabViewModel
-import bigbigdw.joaradw.test.RetrofitService
-import bigbigdw.joaradw.test.Test_PostResult
+import bigbigdw.joaradw.novel.MainBookData
 import com.bumptech.glide.Glide
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ViewListener
@@ -31,8 +28,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

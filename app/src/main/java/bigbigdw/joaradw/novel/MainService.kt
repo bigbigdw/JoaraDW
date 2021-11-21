@@ -1,8 +1,6 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import bigbigdw.joaradw.etc.HELPER
-import bigbigdw.joaradw.fragment_main.MainBannerResult
-import bigbigdw.joaradw.fragment_main.MainBookResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

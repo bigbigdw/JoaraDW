@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.main;
+package bigbigdw.joaradw.novel;
 
 public class OLD_MainBookListData {
     String writer;

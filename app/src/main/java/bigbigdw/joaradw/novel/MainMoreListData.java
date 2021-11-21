@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.main;
+package bigbigdw.joaradw.novel;
 
 public class MainMoreListData {
     String contents;

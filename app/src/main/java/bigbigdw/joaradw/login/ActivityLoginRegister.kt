@@ -12,12 +12,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import bigbigdw.joaradw.login.LoginMain
-import bigbigdw.joaradw.login.LoginCardPW
 import bigbigdw.joaradw.policy.Policy
 import java.util.*
 
-class LoginRegister : RegisterActivity() {
+class ActivityLoginRegister : RegisterActivity() {
     var inputPW: TextInputLayout? = null
     var inputPWcheck: TextInputLayout? = null
     var inputID: TextInputLayout? = null
@@ -37,7 +35,7 @@ class LoginRegister : RegisterActivity() {
     var policy2: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_register)
+        setContentView(R.layout.activity_login_register)
         val mToolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(mToolbar)
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
@@ -143,7 +141,7 @@ class LoginRegister : RegisterActivity() {
         }
         btnBack!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "로그인 화면으로 돌아갑니다", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
             startActivity(intent)
         }
         btnContinue!!.setOnClickListener { v: View? ->
@@ -152,7 +150,7 @@ class LoginRegister : RegisterActivity() {
             pwCheck = Objects.requireNonNull(inputPWcheck!!.editText)!!.text
             if (promise1!!.isChecked && promise2!!.isChecked && numCheck.toString().length != 0 && phoneCheck.toString().length != 0 && pwCheck.toString() == initPW.toString()) {
                 Toast.makeText(applicationContext, "결제 비밀번호 설정으로 이동합니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(applicationContext, LoginCardPW::class.java)
+                val intent = Intent(applicationContext, AcitivityLoginCardPW::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext, "회원가입이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show()

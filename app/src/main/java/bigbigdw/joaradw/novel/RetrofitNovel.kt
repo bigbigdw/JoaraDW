@@ -1,14 +1,12 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import bigbigdw.joaradw.etc.HELPER
-import bigbigdw.joaradw.fragment_main.MainBannerResult
-import bigbigdw.joaradw.fragment_main.MainBookResult
 import bigbigdw.joaradw.util.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitMain {
+object RetrofitNovel {
     fun getMainBanner(token: String?, bannerType: String?): Call<MainBannerResult?>? {
         return Retrofit.Builder()
             .baseUrl(HELPER.API)

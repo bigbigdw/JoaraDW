@@ -28,7 +28,7 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/component_main_contents" />
+    <include layout="@layout/component_novel_contents" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Bottom_Navigation"

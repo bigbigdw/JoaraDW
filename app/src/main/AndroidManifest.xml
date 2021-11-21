@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
-            android:name="bigbigdw.joaradw.main.Splash"
+            android:name="bigbigdw.joaradw.novel.Splash"
             android:theme="@style/Theme.JoaraDWBookDetail">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="bigbigdw.joaradw.main.Main"
+            android:name="bigbigdw.joaradw.novel.ActivityNovel"
             android:theme="@style/Theme.JoaraDW.NoActionBar">
         </activity>
 
@@ -34,7 +34,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.LoginMain"
+            android:name="bigbigdw.joaradw.login.ActivityLoginMain"
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>
@@ -60,7 +60,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.main.BookPageEtc"
+            android:name="bigbigdw.joaradw.novel.BookPageEtc"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
@@ -78,25 +78,25 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.LoginRegister"
+            android:name="bigbigdw.joaradw.login.ActivityLoginRegister"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.LoginCardPW"
+            android:name="bigbigdw.joaradw.login.AcitivityLoginCardPW"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.LoginFindID"
+            android:name="bigbigdw.joaradw.login.ActivityLoginFindID"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.LoginFindPW"
+            android:name="bigbigdw.joaradw.login.ActivityLoginFindPW"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>
@@ -127,6 +127,12 @@
 
         <activity
             android:name="bigbigdw.joaradw.fragment_genre.Genre"
+            android:label=""
+            android:theme="@style/Theme.JoaraDWBookDetail">
+        </activity>
+
+        <activity
+            android:name="bigbigdw.joaradw.writer.ActivityWriter"
             android:label=""
             android:theme="@style/Theme.JoaraDWBookDetail">
         </activity>

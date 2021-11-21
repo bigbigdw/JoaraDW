@@ -1,5 +1,6 @@
 package bigbigdw.joaradw.util
 
+import bigbigdw.joaradw.etc.API
 import bigbigdw.joaradw.etc.HELPER
 import retrofit2.Call
 import retrofit2.http.*
@@ -10,14 +11,14 @@ import retrofit2.http.GET
 
 //토큰 체크
 interface CheckTokenService {
-    @GET("v1/user/token_check.joa" + HELPER.ETC)
+    @GET(API.USER_TOKEN_CHECK_JOA + HELPER.ETC)
     fun getRetrofit(@Query("token") token: String?): Call<CheckTokenResult?>?
 }
 
 //로그인
 interface LoginService {
     @FormUrlEncoded
-    @POST("v1/user/auth.joa")
+    @POST(API.USER_AUTH_JOA)
     fun postRetrofit(
         @Field("member_id") memberId: String?,
         @Field("passwd") passwd: String?,
@@ -31,7 +32,7 @@ interface LoginService {
 
 //로그아웃
 interface LogoutService {
-    @GET("v1/user/deauth.joa")
+    @GET(API.USER_DEAUTH_JOA)
     fun getRetrofit(
         @Query("category") category: String?,
         @Query("token") token: String?,
@@ -45,7 +46,7 @@ interface LogoutService {
 
 //인덱스 API
 interface IndexAPIService {
-    @GET("api/info/index.joa")
+    @GET(API.INFO_INDEX_JOA)
     fun getRetrofit(
         @Query("menu_ver") menuVer: String?,
         @Query("api_key") apiKey: String?,

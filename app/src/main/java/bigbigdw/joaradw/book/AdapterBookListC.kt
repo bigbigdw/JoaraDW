@@ -10,12 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.main.OLD_MainBookListData
 import com.bumptech.glide.Glide
-import org.json.JSONObject
 import java.util.ArrayList
 
 class AdapterBookListC(private val mContext: Context, items: List<BookListDataC?>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

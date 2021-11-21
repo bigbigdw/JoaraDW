@@ -2,8 +2,6 @@ package bigbigdw.joaradw.book
 
 import bigbigdw.joaradw.etc.API
 import bigbigdw.joaradw.etc.HELPER
-import bigbigdw.joaradw.fragment_main.MainBannerResult
-import bigbigdw.joaradw.util.LoginResult
 import retrofit2.Call
 import retrofit2.http.*
 

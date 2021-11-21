@@ -12,13 +12,15 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.*
-import bigbigdw.joaradw.main.Main
+import bigbigdw.joaradw.BuildConfig
+import bigbigdw.joaradw.novel.ActivityNovel
 import bigbigdw.joaradw.util.LoginResult
+import bigbigdw.joaradw.writer.ActivityWriter
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
 
-class LoginMain : AppCompatActivity() {
+class ActivityLoginMain : AppCompatActivity() {
     var idtext: TextInputLayout? = null
     var pwtext: TextInputLayout? = null
     var loginMainFindID: TextView? = null
@@ -32,7 +34,7 @@ class LoginMain : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        setContentView(R.layout.activity_login)
         idtext = findViewById(R.id.IDtext)
         pwtext = findViewById(R.id.PWtext)
         loginBtn = findViewById(R.id.LoginBtn)
@@ -119,7 +121,16 @@ class LoginMain : AppCompatActivity() {
                                 savePreferences("STATUS", status!!)
                                 savePreferences("PROFILEIMG", profile!!)
 
-                                finish()
+                                if (BuildConfig.IS_NOVEL) {
+                                    //작품관리 진입
+                                    val intent = Intent(applicationContext, ActivityWriter::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                    startActivityIfNeeded(intent, 0)
+                                    finish()
+                                } else {
+                                    finish()
+                                }
+
                             } else {
                                 Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
                             }
@@ -138,30 +149,30 @@ class LoginMain : AppCompatActivity() {
 
         loginMainFindID!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "아이디 찾기로 이동합니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginFindID::class.java)
+            val intent = Intent(applicationContext, ActivityLoginFindID::class.java)
             startActivity(intent)
         }
 
         loginMainFIndPW!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "비밀번호 찾기로 이동합니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginFindPW::class.java)
+            val intent = Intent(applicationContext, ActivityLoginFindPW::class.java)
             startActivity(intent)
         }
 
         registerBtn!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "회원가입 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginRegister::class.java)
+            val intent = Intent(applicationContext, ActivityLoginRegister::class.java)
             startActivity(intent)
         }
 
         logo!!.setOnClickListener { v: View? ->
-            val intent = Intent(applicationContext, Main::class.java)
+            val intent = Intent(applicationContext, ActivityNovel::class.java)
             startActivity(intent)
         }
     }
 
     override fun onBackPressed() {
-        val intent = Intent(applicationContext, Main::class.java)
+        val intent = Intent(applicationContext, ActivityNovel::class.java)
         intent.putExtra("IsFirstPage", false)
         intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         startActivityIfNeeded(intent, 0)

@@ -19,15 +19,15 @@ import bigbigdw.joaradw.JOARADW;
 import bigbigdw.joaradw.R;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
-import bigbigdw.joaradw.main.MainMoreAadapter;
-import bigbigdw.joaradw.main.MainMoreEventData;
-import bigbigdw.joaradw.main.MainMoreNoticeData;
+import bigbigdw.joaradw.novel.AadapterMainMore;
+import bigbigdw.joaradw.novel.MainMoreEventData;
+import bigbigdw.joaradw.novel.MainMoreNoticeData;
 import bigbigdw.joaradw.policy.Policy;
 
 public class FragmentMore extends BookBaseFragment {
 
-    private final MainMoreAadapter noticeAdapter = new MainMoreAadapter();
-    private final MainMoreAadapter eventAdapter = new MainMoreAadapter();
+    private final AadapterMainMore noticeAdapter = new AadapterMainMore();
+    private final AadapterMainMore eventAdapter = new AadapterMainMore();
     LinearLayout noticeList;
     LinearLayout eventList;
     LinearLayout wrap77Fes;

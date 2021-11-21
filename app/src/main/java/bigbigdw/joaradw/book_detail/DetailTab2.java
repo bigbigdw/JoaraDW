@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.base.BookBaseFragment;
 import bigbigdw.joaradw.etc.API;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterC;
 import bigbigdw.joaradw.JOARADW;
-import bigbigdw.joaradw.main.OLD_MainBookListData;
+import bigbigdw.joaradw.novel.OLD_MainBookListData;
 import bigbigdw.joaradw.R;
 
 

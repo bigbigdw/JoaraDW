@@ -14,10 +14,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import bigbigdw.joaradw.login.LoginMain
 import java.util.*
 
-class LoginCardPW : AppCompatActivity() {
+class AcitivityLoginCardPW : AppCompatActivity() {
     var pwFirst: EditText? = null
     var pwSecond: EditText? = null
     var pwText1: TextView? = null
@@ -28,7 +27,7 @@ class LoginCardPW : AppCompatActivity() {
     var before: LinearLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_cardpw)
+        setContentView(R.layout.activity_login_cardpw)
         val mToolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(mToolbar)
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
@@ -86,7 +85,7 @@ class LoginCardPW : AppCompatActivity() {
         pwSecond!!.setOnKeyListener { v: View?, keyCode: Int, event: KeyEvent ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 val imm =
-                    this@LoginCardPW.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    this@AcitivityLoginCardPW.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(pwSecond!!.windowToken, 0)
                 return@setOnKeyListener true
             }
@@ -100,7 +99,7 @@ class LoginCardPW : AppCompatActivity() {
         }
         onClickDone!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "조아라에 가입하신 것을 환영합니다!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, LoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
             startActivity(intent)
         }
     }

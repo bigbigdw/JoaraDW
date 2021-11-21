@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData

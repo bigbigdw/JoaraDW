@@ -5,7 +5,6 @@ import com.google.android.material.textfield.TextInputLayout
 import android.widget.TextView
 import android.os.Bundle
 import bigbigdw.joaradw.R
-import android.widget.EditText
 import android.text.TextWatcher
 import android.text.Editable
 import android.widget.Toast
@@ -15,10 +14,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.widget.Toolbar
-import bigbigdw.joaradw.login.LoginFindPW
 import java.util.*
 
-class LoginFindID : RegisterActivity() {
+class ActivityLoginFindID : RegisterActivity() {
     var phone: TextInputLayout? = null
     var num: TextInputLayout? = null
     var id: TextView? = null
@@ -28,7 +26,7 @@ class LoginFindID : RegisterActivity() {
     var btnFindPW: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_findid)
+        setContentView(R.layout.activity_login_findid)
         val mToolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(mToolbar)
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
@@ -76,7 +74,7 @@ class LoginFindID : RegisterActivity() {
         }
         btnGoBack!!.setOnClickListener { v: View? -> goToMain() }
         btnFindPW!!.setOnClickListener { v: View? ->
-            val intent = Intent(applicationContext, LoginFindPW::class.java)
+            val intent = Intent(applicationContext, ActivityLoginFindPW::class.java)
             startActivity(intent)
         }
     }

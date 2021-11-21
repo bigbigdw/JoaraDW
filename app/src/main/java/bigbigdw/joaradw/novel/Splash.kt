@@ -1,4 +1,4 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import bigbigdw.joaradw.BuildConfig
-import bigbigdw.joaradw.login.LoginMain
+import bigbigdw.joaradw.login.ActivityLoginMain
 import bigbigdw.joaradw.util.CheckTokenResult
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,13 +46,13 @@ class Splash : Activity() {
             {
                 if (BuildConfig.IS_NOVEL) {
                     //작품관리 진입
-                    val intent = Intent(applicationContext, LoginMain::class.java)
+                    val intent = Intent(applicationContext, ActivityLoginMain::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     startActivityIfNeeded(intent, 0)
                     finish()
                 } else {
                     //소설 진입
-                    val intent = Intent(this, Main::class.java)
+                    val intent = Intent(this, ActivityNovel::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     startActivityIfNeeded(intent, 0)
                     finish()
@@ -65,7 +65,7 @@ class Splash : Activity() {
     override fun onResume() {
         super.onResume()
 
-        RetrofitMain.loginCheck(
+        RetrofitNovel.loginCheck(
             getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
                 "TOKEN",
                 ""

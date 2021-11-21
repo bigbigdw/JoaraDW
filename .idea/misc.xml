@@ -48,11 +48,13 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/item_post_comment.xml" value="0.29891304347826086" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/item_post_list.xml" value="0.22" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Joara_Post/layout/post_detail.xml" value="0.22" />
-        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Login/layout/login.xml" value="0.2423611111111111" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Login/layout/activity_login_cardpw.xml" value="0.14166666666666666" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Login/layout/login.xml" value="0.15112540192926044" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main.xml" value="0.17389875082182774" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_contents.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_drawer.xml" value="0.17401315789473684" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_main_wrap.xml" value="0.17401315789473684" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/layout/component_novel.xml" value="0.14166666666666666" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/menu/bottom_nav_menu.xml" value="0.17039473684210527" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main/menu/drawer_menu.xml" value="0.20846905537459284" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/item_book_list_history.xml" value="0.12430555555555556" />
@@ -67,6 +69,8 @@
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_d.xml" value="0.20488599348534203" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_fav.xml" value="0.17105263157894737" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Main_Fragment/layout/main_booklistdata_booklist_history.xml" value="0.12986111111111112" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Policy/layout/policy.xml" value="0.1" />
+        <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/Writer/layout/activity_wrtier.xml" value="0.14166666666666666" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_comment_edittext.xml" value="0.19671052631578947" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape.xml" value="0.17152777777777778" />
         <entry key="..\:/ANDROID_EX/JoaraDW/app/src/main/res/drawable/bg_shape1.xml" value="0.27708333333333335" />

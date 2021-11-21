@@ -1,22 +1,19 @@
 package bigbigdw.joaradw.fragment_best
 
 import android.content.res.AssetManager
-import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.novel.TabViewModel
 import android.widget.LinearLayout
-import androidx.core.widget.NestedScrollView
 import android.os.Bundle
-import android.os.Handler
 import androidx.lifecycle.ViewModelProvider
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import bigbigdw.joaradw.R
-import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import bigbigdw.joaradw.fragment_main.MainBookData
+import bigbigdw.joaradw.novel.MainBookData
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader

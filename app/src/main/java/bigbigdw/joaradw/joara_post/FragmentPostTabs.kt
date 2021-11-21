@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.novel.TabViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

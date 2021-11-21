@@ -1,6 +1,5 @@
-package bigbigdw.joaradw.fragment_main
+package bigbigdw.joaradw.novel
 
-import bigbigdw.joaradw.joara_post.PostsCommentValue
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

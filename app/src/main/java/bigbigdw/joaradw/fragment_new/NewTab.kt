@@ -1,10 +1,7 @@
 package bigbigdw.joaradw.fragment_new
 
 import android.content.Intent
-import bigbigdw.joaradw.base.BookBaseFragment
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterC
-import bigbigdw.joaradw.main.OLD_MainBookListData
-import bigbigdw.joaradw.main.TabViewModel
+import bigbigdw.joaradw.novel.TabViewModel
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.JOARADW
 import android.util.Log
 import android.view.View
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import bigbigdw.joaradw.BookPagination
 import bigbigdw.joaradw.book.*
 import bigbigdw.joaradw.book_detail.BookDetailCover
 import retrofit2.Call

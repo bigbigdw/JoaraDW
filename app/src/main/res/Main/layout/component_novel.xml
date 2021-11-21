@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/component_main_wrap"
+        layout="@layout/component_novel_wrap"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/component_main_drawer"
+        app:headerLayout="@layout/component_novel_drawer"
         app:menu="@menu/drawer_menu" />
 
 

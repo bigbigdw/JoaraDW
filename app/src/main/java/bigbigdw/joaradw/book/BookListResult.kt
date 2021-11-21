@@ -1,7 +1,5 @@
 package bigbigdw.joaradw.book
 
-import bigbigdw.joaradw.fragment_main.MainBannerValue
-import bigbigdw.joaradw.util.UserValue
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

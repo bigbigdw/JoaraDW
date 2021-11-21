@@ -1,8 +1,7 @@
-package bigbigdw.joaradw.main
+package bigbigdw.joaradw.novel
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper

@@ -19,10 +19,10 @@ import java.nio.charset.StandardCharsets;
 import bigbigdw.joaradw.BookPagination;
 import bigbigdw.joaradw.Config;
 import bigbigdw.joaradw.etc.BookList;
-import bigbigdw.joaradw.main.BookPageEtc;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
-import bigbigdw.joaradw.main.OLD_MainBookListData;
+import bigbigdw.joaradw.novel.BookPageEtc;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterA;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterC;
+import bigbigdw.joaradw.novel.OLD_MainBookListData;
 import bigbigdw.joaradw.JOARADW;
 
 public class BookBaseFragment extends Fragment {

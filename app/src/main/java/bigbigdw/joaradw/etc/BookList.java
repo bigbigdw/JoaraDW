@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterA;
-import bigbigdw.joaradw.main.OLD_MainBookListAdapterC;
-import bigbigdw.joaradw.main.OLD_MainBookData;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterA;
+import bigbigdw.joaradw.novel.OLD_MainBookListAdapterC;
+import bigbigdw.joaradw.novel.OLD_MainBookData;
 
 
 public interface BookList {
