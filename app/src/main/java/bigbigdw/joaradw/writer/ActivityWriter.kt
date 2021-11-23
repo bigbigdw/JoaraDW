@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,12 +21,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import bigbigdw.joaradw.R
 import bigbigdw.joaradw.login.ActivityLoginMain
-import bigbigdw.joaradw.novel.ActivityNovel
 import bigbigdw.joaradw.novel.RetrofitNovel
 import bigbigdw.joaradw.test.ActivityTest
 import bigbigdw.joaradw.util.LogoutResult
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,6 +42,8 @@ class ActivityWriter : AppCompatActivity() {
 
     var homeImg: ImageView? = null
     var btnLogout: ImageView? = null
+    var userName: TextView? = null
+    var iviewBadge: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,13 @@ class ActivityWriter : AppCompatActivity() {
 
         navHeaderView = navigationView!!.getHeaderView(0)
         btnLogout = navHeaderView!!.findViewById(R.id.Btn_Logout)
+        userName = navHeaderView!!.findViewById(R.id.UserName)
+        iviewBadge = navHeaderView!!.findViewById(R.id.iview_badge)
+
+        userName!!.text = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+            "NICKNAME",
+            "NICKNAME"
+        )
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_writer)
 
@@ -75,7 +83,7 @@ class ActivityWriter : AppCompatActivity() {
         val navView = findViewById<BottomNavigationView>(R.id.nav_bottom)
         NavigationUI.setupWithNavController(navView, navController!!)
 
-        homeImg!!.setOnClickListener { v: View? ->
+        homeImg!!.setOnClickListener {
             val activityTest = Intent(applicationContext, ActivityTest::class.java)
             startActivity(activityTest)
         }
@@ -86,6 +94,56 @@ class ActivityWriter : AppCompatActivity() {
         btnLogout!!.setOnClickListener {
             onClickLogout()
         }
+
+        val grade = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+            "GRADE",
+            "blue"
+        )
+
+        when {
+            grade.equals("blue") -> {
+                iviewBadge!!.setImageResource(R.drawable.icon_user_blue)
+            }
+            grade.equals("silver") -> {
+                iviewBadge!!.setImageResource(R.drawable.icon_user_silver)
+            }
+            grade.equals("gold") -> {
+                iviewBadge!!.setImageResource(R.drawable.icon_user_gold)
+            }
+            grade.equals("vip") -> {
+                iviewBadge!!.setImageResource(R.drawable.icon_user_vip)
+            }
+        }
+
+        val token = mContext!!.getSharedPreferences("LOGIN", MODE_PRIVATE)
+            .getString("TOKEN", "")
+
+        RetrofitWriter.getBookNum(token,mContext)!!
+            .enqueue(object : Callback<WriterBookCountResult?> {
+                override fun onResponse(
+                    call: Call<WriterBookCountResult?>,
+                    response: Response<WriterBookCountResult?>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let { it ->
+                            val exerCount = it.bookCount?.exerCount
+                            val finishCount = it.bookCount?.finishCount
+                            val seriesCount = it.bookCount?.seriesCount
+                            val shortCount = it.bookCount?.shortCount
+
+                            val navMenu = navigationView!!.menu
+                            navMenu.findItem(R.id.Fragment_BookSeries).title = "연재작품 ($seriesCount)"
+                            navMenu.findItem(R.id.Fragment_BookFinish).title = "완결 ($finishCount)"
+                            navMenu.findItem(R.id.Fragment_BookExer).title = "습작 ($exerCount)"
+                            navMenu.findItem(R.id.Fragment_BookShort).title = "단편 ($shortCount)"
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<WriterBookCountResult?>, t: Throwable) {
+                    Log.d("onFailure", "실패")
+                }
+            })
     }
 
     private fun onClickLogout() {

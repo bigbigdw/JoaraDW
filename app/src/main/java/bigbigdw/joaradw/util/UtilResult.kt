@@ -70,6 +70,10 @@ class UserValue {
     @SerializedName("profile")
     @Expose
     var profile: String? = null
+
+    @SerializedName("grade")
+    @Expose
+    var grade: String? = null
 }
 
 //인덱스 API

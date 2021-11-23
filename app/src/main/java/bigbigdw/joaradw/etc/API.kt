@@ -13,10 +13,13 @@ interface API {
         const val BOOK_OTHER_JOA = "v1/book/other.joa"
         const val BOOK_CHAPTER_VALID_JOA = "v1/book/chapter_valid.joa"
         const val BOOK_CHAPTER_JOA = "v1/book/chapter.joa"
+        const val BOOK_CATEGORY_BOOKCOUNT_JOA = "v1/book/category_bookcount.joa"
+        const val BOOK_WRITER_LEVEL_JOA = "v1/book/writer_level_list.joa"
 
         const val BEST_BOOK_JOA = "v1/best/book.joa"
 
         const val BANNER_MAIN_POPUP_JOA = "v1/banner/main_popup.joa"
+        const val BANNER_HOME_BANNER_JOA = "v1/banner/home_banner.joa"
 
         const val RECOMMEND_LIST_API_JOA = "v1/book/recommend_list_api.joa"
         const val BOARD_BOOK_NOTICE_JOA = "v1/board/book_notice.joa"
@@ -31,6 +34,11 @@ interface API {
         const val USER_DEAUTH_JOA = "v1/user/deauth.joa"
 
         const val INFO_INDEX_JOA = "api/info/index.joa"
+        const val INFO_MAIN_INFO_JOA = "api/info/main_info.joa"
+
+        const val INFO_WRITER_INFO_JOA = "api/info/write_info.joa"
+
+
 
     }
 }

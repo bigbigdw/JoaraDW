@@ -81,11 +81,6 @@ class FragmentNovel : BookBaseFragment() {
         return root
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     fun setLayout() {
 
         mainBookItemsFirst.clear()

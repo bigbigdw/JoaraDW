@@ -50,19 +50,19 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@id/Fragment_Novel"
+                    android:id="@id/Fragment_BookSeries"
                     android:icon="@drawable/icon_lnb_1"
                     android:title="@string/Drawer_writer4" />
                 <item
-                    android:id="@id/Activity_Writer"
+                    android:id="@id/Fragment_BookFinish"
                     android:icon="@drawable/icon_lnb_2"
                     android:title="@string/Drawer_writer5" />
                 <item
-                    android:id="@id/Fragment_Novel"
+                    android:id="@id/Fragment_BookExer"
                     android:icon="@drawable/icon_lnb_3"
                     android:title="@string/Drawer_writer6" />
                 <item
-                    android:id="@id/Fragment_Novel"
+                    android:id="@id/Fragment_BookShort"
                     android:icon="@drawable/icon_lnb_3"
                     android:title="@string/Drawer_writer7" />
             </group>

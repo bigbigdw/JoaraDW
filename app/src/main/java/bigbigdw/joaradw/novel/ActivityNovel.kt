@@ -26,6 +26,7 @@ import bigbigdw.joaradw.test.ActivityTest
 import bigbigdw.joaradw.util.CheckTokenResult
 import bigbigdw.joaradw.util.IndexAPIResult
 import bigbigdw.joaradw.util.LogoutResult
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
@@ -44,6 +45,7 @@ class ActivityNovel : AppCompatActivity() {
     var viewManuscriptCoupon: TextView? = null
     var viewSupportCoupon: TextView? = null
     var userName: TextView? = null
+    var iviewBadge: ImageView? = null
     var btnLogout: ImageView? = null
     var homeImg: ImageView? = null
     var navController: NavController? = null
@@ -87,6 +89,7 @@ class ActivityNovel : AppCompatActivity() {
         viewManuscriptCoupon = navHeaderView!!.findViewById(R.id.Manuscript_Coupon)
         viewSupportCoupon = navHeaderView!!.findViewById(R.id.Support_Coupon)
         userName = navHeaderView!!.findViewById(R.id.UserName)
+        iviewBadge = navHeaderView!!.findViewById(R.id.iview_badge)
         btnLogout = navHeaderView!!.findViewById(R.id.Btn_Logout)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_novel)
@@ -257,6 +260,27 @@ class ActivityNovel : AppCompatActivity() {
                                 "NICKNAME",
                                 "NICKNAME"
                             )
+
+                            val grade = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
+                                "GRADE",
+                                "blue"
+                            )
+
+                            when {
+                                grade.equals("blue") -> {
+                                    iviewBadge!!.setImageResource(R.drawable.icon_user_blue)
+                                }
+                                grade.equals("silver") -> {
+                                    iviewBadge!!.setImageResource(R.drawable.icon_user_silver)
+                                }
+                                grade.equals("gold") -> {
+                                    iviewBadge!!.setImageResource(R.drawable.icon_user_gold)
+                                }
+                                grade.equals("vip") -> {
+                                    iviewBadge!!.setImageResource(R.drawable.icon_user_vip)
+                                }
+                            }
+
                             viewManuscriptCoupon!!.text = getSharedPreferences(
                                 "LOGIN",
                                 MODE_PRIVATE

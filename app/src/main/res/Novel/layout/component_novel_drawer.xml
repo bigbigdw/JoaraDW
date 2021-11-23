@@ -29,6 +29,7 @@
             android:paddingEnd="16dp">
 
             <ImageView
+                android:id="@+id/iview_badge"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:layout_marginEnd="5dp"

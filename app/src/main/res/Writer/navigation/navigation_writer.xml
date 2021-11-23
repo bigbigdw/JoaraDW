@@ -11,4 +11,28 @@
         android:label=""
         tools:layout="@layout/fragment_writer" />
 
+    <fragment
+        android:id="@+id/Fragment_BookSeries"
+        android:name="bigbigdw.joaradw.fragment_writer.FragmentWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" />
+
+    <fragment
+        android:id="@+id/Fragment_BookFinish"
+        android:name="bigbigdw.joaradw.fragment_writer.FragmentWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" />
+
+    <fragment
+        android:id="@+id/Fragment_BookShort"
+        android:name="bigbigdw.joaradw.fragment_writer.FragmentWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" />
+
+    <fragment
+        android:id="@+id/Fragment_BookExer"
+        android:name="bigbigdw.joaradw.fragment_writer.FragmentWriter"
+        android:label=""
+        tools:layout="@layout/fragment_writer" />
+
 </navigation>

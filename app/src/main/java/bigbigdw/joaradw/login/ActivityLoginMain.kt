@@ -106,6 +106,7 @@ class ActivityLoginMain : AppCompatActivity() {
                             val supportCoupon = it.user?.supportCoupon
                             val memberId = it.user?.memberId
                             val profile = it.user?.profile
+                            val grade = it.user?.grade
 
                             if(status.equals("1")){
                                 Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
@@ -120,6 +121,7 @@ class ActivityLoginMain : AppCompatActivity() {
                                 savePreferences("MEMBERID", memberId!!)
                                 savePreferences("STATUS", status!!)
                                 savePreferences("PROFILEIMG", profile!!)
+                                savePreferences("GRADE", grade!!)
 
                                 if (BuildConfig.IS_WRITER) {
                                     //작품관리 진입
@@ -147,36 +149,40 @@ class ActivityLoginMain : AppCompatActivity() {
 
         }
 
-        loginMainFindID!!.setOnClickListener { v: View? ->
+        loginMainFindID!!.setOnClickListener {
             Toast.makeText(applicationContext, "아이디 찾기로 이동합니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(applicationContext, ActivityLoginFindID::class.java)
             startActivity(intent)
         }
 
-        loginMainFIndPW!!.setOnClickListener { v: View? ->
+        loginMainFIndPW!!.setOnClickListener {
             Toast.makeText(applicationContext, "비밀번호 찾기로 이동합니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(applicationContext, ActivityLoginFindPW::class.java)
             startActivity(intent)
         }
 
-        registerBtn!!.setOnClickListener { v: View? ->
+        registerBtn!!.setOnClickListener {
             Toast.makeText(applicationContext, "회원가입 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(applicationContext, ActivityLoginRegister::class.java)
             startActivity(intent)
         }
 
-        logo!!.setOnClickListener { v: View? ->
+        logo!!.setOnClickListener {
             val intent = Intent(applicationContext, ActivityNovel::class.java)
             startActivity(intent)
         }
     }
 
     override fun onBackPressed() {
-        val intent = Intent(applicationContext, ActivityNovel::class.java)
-        intent.putExtra("IsFirstPage", false)
-        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-        startActivityIfNeeded(intent, 0)
-        finish()
+        if (BuildConfig.IS_WRITER) {
+            finish()
+        } else {
+            val intent = Intent(applicationContext, ActivityNovel::class.java)
+            intent.putExtra("IsFirstPage", false)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivityIfNeeded(intent, 0)
+            finish()
+        }
     }
 
     fun savePreferences(value: String, token: String) {

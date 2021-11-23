@@ -1,24 +1,36 @@
 package bigbigdw.joaradw.writer
 
-import bigbigdw.joaradw.etc.HELPER
-import bigbigdw.joaradw.novel.MainBannerResult
-import bigbigdw.joaradw.novel.MainBannerService
-import bigbigdw.joaradw.novel.MainBookResult
-import bigbigdw.joaradw.novel.MainBookService
-import bigbigdw.joaradw.util.*
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitWriter {
-    fun getMainBanner(token: String?, bannerType: String?): Call<MainBannerResult?>? {
+
+    fun getBookNum(token: String?, mContext: Context?): Call<WriterBookCountResult?>? {
+
+        val API = mContext!!.getSharedPreferences("HELPER", AppCompatActivity.MODE_PRIVATE).getString("API", "")
+
         return Retrofit.Builder()
-            .baseUrl(HELPER.API)
+            .baseUrl(API)
             .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(MainBannerService::class.java)
+            .create(WrtierBookCount::class.java)
             .getRetrofit(
-                token,
-                bannerType
+                token
+            )
+    }
+
+    fun getWriterLevel(token: String?, mContext: Context?): Call<WriterMemberLevelResult?>? {
+
+        val API = mContext!!.getSharedPreferences("HELPER", AppCompatActivity.MODE_PRIVATE).getString("API", "")
+
+        return Retrofit.Builder()
+            .baseUrl(API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(WrtierLevel::class.java)
+            .getRetrofit(
+                token
             )
     }
 }
