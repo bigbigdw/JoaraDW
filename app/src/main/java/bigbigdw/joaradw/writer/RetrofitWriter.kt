@@ -33,4 +33,21 @@ object RetrofitWriter {
                 token
             )
     }
+
+    fun getMyBookList(token: String?, page: String?, store: String?, finish: String?, classString: String?, mContext: Context?): Call<MyListResult?>? {
+
+        val API = mContext!!.getSharedPreferences("HELPER", AppCompatActivity.MODE_PRIVATE).getString("API", "")
+
+        return Retrofit.Builder()
+            .baseUrl(API)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(MyBookList::class.java)
+            .getRetrofit(
+                token,
+                page,
+                store,
+                finish,
+                classString
+            )
+    }
 }

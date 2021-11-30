@@ -15,6 +15,7 @@ interface API {
         const val BOOK_CHAPTER_JOA = "v1/book/chapter.joa"
         const val BOOK_CATEGORY_BOOKCOUNT_JOA = "v1/book/category_bookcount.joa"
         const val BOOK_WRITER_LEVEL_JOA = "v1/book/writer_level_list.joa"
+        const val BOOK_MYLIST_JOA = "v1/book/mylist.joa"
 
         const val BEST_BOOK_JOA = "v1/best/book.joa"
 

@@ -95,10 +95,7 @@ class ActivityWriter : AppCompatActivity() {
             onClickLogout()
         }
 
-        val grade = getSharedPreferences("LOGIN", MODE_PRIVATE).getString(
-            "GRADE",
-            "blue"
-        )
+        val grade = getSharedPreferences("LOGIN", MODE_PRIVATE).getString("GRADE", "blue")
 
         when {
             grade.equals("blue") -> {

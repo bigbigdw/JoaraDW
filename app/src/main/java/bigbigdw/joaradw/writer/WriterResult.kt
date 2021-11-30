@@ -1,5 +1,7 @@
 package bigbigdw.joaradw.writer
 
+import bigbigdw.joaradw.book.BooksListValueC
+import bigbigdw.joaradw.util.MainMenuValue
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -28,14 +30,16 @@ class WriterBookCount {
     var shortCount: String? = null
 }
 
-//작가 작품 갯수
+//작가 펜
 class WriterMemberLevelResult {
-    @SerializedName("member_level")
+
+    @SerializedName("writer_level")
     @Expose
-    val member_level: WriterMemberLevel? = null
+    val writerLevel: WriterMemberLevel? = null
+
 }
 
-//작가 작품 갯수 상세
+//작가 펜 상세
 class WriterMemberLevel {
     @SerializedName("icon")
     @Expose
@@ -46,9 +50,95 @@ class WriterMemberLevel {
 
     @SerializedName("pen_exp")
     @Expose
-    var pen_exp: String? = null
+    var penExp: String? = null
 
     @SerializedName("pen_name")
     @Expose
-    var pen_name: String? = null
+    var penName: String? = null
+
+    @SerializedName("1")
+    @Expose
+    val memberLevel: MemberPenLevel? = null
+}
+
+class MemberPenLevel {
+    @SerializedName("icon")
+    @Expose
+    var icon: String? = null
+
+    @SerializedName("level")
+    var level: String? = null
+
+    @SerializedName("pen_exp")
+    @Expose
+    var penExp: String? = null
+
+    @SerializedName("pen_name")
+    @Expose
+    var penName: String? = null
+
+    @SerializedName("member_level")
+    @Expose
+    val memberLevel: WriterMemberLevel? = null
+}
+
+class MyListResult {
+    @SerializedName("books")
+    @Expose
+    val books: List<BooksListValueMyList>? = null
+}
+
+//작품 상세
+class BooksListValueMyList {
+    @SerializedName("writer_name")
+    @Expose
+    var writerName: String? = null
+
+    @SerializedName("subject")
+    @Expose
+    var subject: String? = null
+
+    @SerializedName("book_img")
+    @Expose
+    var bookImg: String? = null
+
+    @SerializedName("is_adult")
+    @Expose
+    var isAdult: String? = null
+
+    @SerializedName("is_premium")
+    @Expose
+    var isPremium: String? = null
+
+    @SerializedName("is_nobless")
+    @Expose
+    var isNobless: String? = null
+
+    @SerializedName("book_code")
+    @Expose
+    var bookCode: String? = null
+
+    @SerializedName("category_ko_name")
+    @Expose
+    var categoryKoName: String? = null
+
+    @SerializedName("cnt_chapter")
+    @Expose
+    var cntChapter: String? = null
+
+    @SerializedName("created")
+    @Expose
+    var created: String? = null
+
+    @SerializedName("cnt_page_read")
+    @Expose
+    var cntPageRead: String? = null
+
+    @SerializedName("cnt_favorite")
+    @Expose
+    var cntFavorite: String? = null
+
+    @SerializedName("cnt_recom")
+    @Expose
+    var cntRecom: String? = null
 }

@@ -14,4 +14,9 @@
     <string name="Drawer_Bottom2">작품등록</string>
     <string name="Drawer_Bottom3">작품예약</string>
     <string name="Drawer_Bottom4">노트</string>
+
+    <string name="Writer_Tab1">연재작품</string>
+    <string name="Writer_Tab2">완결작품</string>
+    <string name="Writer_Tab4">습작작품</string>
+    <string name="Writer_Tab3">단편작품</string>
 </resources>
