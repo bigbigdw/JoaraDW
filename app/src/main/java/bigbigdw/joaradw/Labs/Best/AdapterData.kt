@@ -46,10 +46,11 @@ class AdapterBestData(
                     tviewData.text = data.date
 
                     if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() > 0){
-                        tviewData1.text = "_${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
+                        tviewData1.text = "+${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
                         tviewData1.setTextColor(context.resources.getColor(R.color.Contents_Text1))
                     } else if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() == 0){
                         tviewData1.setTextColor(context.resources.getColor(R.color.Contents_Text2))
+                        tviewData1.text = data.cntRead
                     } else {
                         tviewData1.text = "-${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
                         tviewData1.setTextColor(Color.parseColor("#FF2366"))
