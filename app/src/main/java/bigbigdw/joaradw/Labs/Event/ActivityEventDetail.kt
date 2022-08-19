@@ -11,6 +11,7 @@ import com.example.moavara.Retrofit.RetrofitDataListener
 import com.example.moavara.Retrofit.RetrofitJoara
 import com.example.moavara.Search.AnayzeData
 import com.example.moavara.Search.EventDetailData
+import com.example.moavara.Util.Mining
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -29,7 +30,7 @@ class ActivityEventDetail : AppCompatActivity() {
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        Mining.runMiningEvent(applicationContext)
+        Mining.runMiningEvent(applicationContext)
 
         EventRef.addListenerForSingleValueEvent(object :
             ValueEventListener {

@@ -1,14 +1,18 @@
 package com.example.moavara.Best
 
+import android.content.Context
 import android.graphics.Color
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import bigbigdw.joaradw.R
 import bigbigdw.joaradw.databinding.ItemBestDetailDataBinding
 import com.example.moavara.Search.AnayzeData
 
 class AdapterBestData(
+    private var context: Context,
     private var items: ArrayList<AnayzeData>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -43,9 +47,9 @@ class AdapterBestData(
 
                     if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() > 0){
                         tviewData1.text = "_${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
-                        tviewData1.setTextColor(Color.parseColor("#02BC77"))
+                        tviewData1.setTextColor(context.resources.getColor(R.color.Contents_Text1))
                     } else if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() == 0){
-                        tviewData1.setTextColor(Color.parseColor("#ffffff"))
+                        tviewData1.setTextColor(context.resources.getColor(R.color.Contents_Text2))
                     } else {
                         tviewData1.text = "-${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
                         tviewData1.setTextColor(Color.parseColor("#FF2366"))

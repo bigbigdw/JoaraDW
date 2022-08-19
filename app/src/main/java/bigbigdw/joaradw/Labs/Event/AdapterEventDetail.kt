@@ -56,7 +56,7 @@ class AdapterEventDetail(
                 tviewCntRead.text = "오늘 조회수 : ${item.cntRead}"
             }
 
-            val adapter = item.data?.let { AdapterBestData(it) }
+            val adapter = item.data?.let { AdapterBestData(context, it) }
 
             holder.binding.rview.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
