@@ -6,11 +6,13 @@ import android.os.Looper
 import android.content.Intent
 import android.os.Handler
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import bigbigdw.joaradw.BuildConfig
 import bigbigdw.joaradw.databinding.ActivitySplashBinding
 import bigbigdw.joaradw.login.ActivityLogin
 import bigbigdw.joaradw.util.CheckTokenResult
 import bigbigdw.joaradw.writer.ActivityWriter
+import com.example.moavara.Soon.Event.ActivityEventDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +26,7 @@ class ActivitySplash : Activity() {
         setContentView(binding.root)
 
         with(binding){
-            if (BuildConfig.IS_WRITER) {
+            if (BuildConfig.IS_LABS) {
                 tviewTitle.text = "ⓒ 이벤트-DW 2022"
             } else if (BuildConfig.IS_WRITER) {
                 tviewTitle.text = "ⓒ 작품관리-DW 2021-2022"
@@ -100,11 +102,22 @@ class ActivitySplash : Activity() {
 
 
                     } else if (BuildConfig.IS_LABS){
-                        //소설 진입
-                        val novelIntent = Intent(applicationContext, ActivityLogin::class.java)
-                        novelIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                        startActivityIfNeeded(novelIntent, 0)
-                        finish()
+
+                        val token = getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
+                            ?.getString("TOKEN", "").toString()
+
+                        if(token.isNotEmpty()){
+                            val novelIntent = Intent(applicationContext, ActivityEventDetail::class.java)
+                            novelIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                            startActivityIfNeeded(novelIntent, 0)
+                            finish()
+                        } else {
+                            val novelIntent = Intent(applicationContext, ActivityLogin::class.java)
+                            novelIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                            startActivityIfNeeded(novelIntent, 0)
+                            finish()
+                        }
+
                     } else {
                         //소설 진입
                         val novelIntent = Intent(applicationContext, ActivityNovel::class.java)

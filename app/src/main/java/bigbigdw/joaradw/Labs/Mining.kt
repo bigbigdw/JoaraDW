@@ -5,48 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import bigbigdw.joaradw.util.DBDate
 import bigbigdw.joaradw.util.Param
 import com.example.moavara.Retrofit.*
-import com.example.moavara.Search.EventDetailDataMining
+import com.example.moavara.Search.AnayzeData
 import com.google.firebase.database.FirebaseDatabase
 
 object Mining {
 
     fun runMiningEvent(context: Context) {
-        getNoticeJoara(context)
         getEventJoara(context)
-    }
-
-    private fun getNoticeJoara(context: Context) {
-
-        val apiJoara = RetrofitJoara()
-        val param = Param.getItemAPI(context)
-        param["board"] = ""
-        param["page"] = "1"
-        param["token"] = context.getSharedPreferences("pref", AppCompatActivity.MODE_PRIVATE)
-            ?.getString("TOKEN", "").toString()
-        var num = 0
-        val EventRef = FirebaseDatabase.getInstance().reference.child("Notice").child(DBDate.DateMMDD())
-
-        apiJoara.getNoticeList(
-            param,
-            object : RetrofitDataListener<JoaraNoticeResult> {
-                override fun onSuccess(data: JoaraNoticeResult) {
-
-                    val data = data.notices
-
-                    if (data != null) {
-                        for (item in data) {
-                            EventRef.child(DBDate.Week() + ((DBDate.DayInt() * 1000) + num).toString())
-                                .setValue(
-                                    EventDetailDataMining(
-                                        DBDate.DateMMDD(),
-                                        item.cnt_read,
-                                    )
-                                )
-                        }
-                        num += 1
-                    }
-                }
-            })
     }
 
     private fun getEventJoara(context: Context) {
@@ -56,8 +21,8 @@ object Mining {
         param["page"] = "1"
         param["show_type"] = "android"
         param["event_type"] = "normal"
-        param["offset"] = "25"
-        param["token"] = context.getSharedPreferences("pref", AppCompatActivity.MODE_PRIVATE)
+        param["offset"] = "100"
+        param["token"] = context.getSharedPreferences("LOGIN", AppCompatActivity.MODE_PRIVATE)
             ?.getString("TOKEN", "").toString()
 
         var num = 0
@@ -74,7 +39,7 @@ object Mining {
                         for (item in data) {
                             EventRef.child(item.idx).child(DBDate.DateMMDD())
                                 .setValue(
-                                    EventDetailDataMining(
+                                    AnayzeData(
                                         DBDate.DateMMDD(),
                                         item.cnt_read,
                                     )

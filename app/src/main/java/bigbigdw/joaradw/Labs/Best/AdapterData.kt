@@ -41,20 +41,18 @@ class AdapterBestData(
                 if(position > 0){
                     tviewData.text = data.date
 
-                    if(items[position].info.toInt() - items[position - 1].info.toInt() > 0){
-                        tviewData1.text = "_${data.info}(${(items[position].info.toInt() - items[position - 1].info.toInt()).toString().replace(".0", "")})"
+                    if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() > 0){
+                        tviewData1.text = "_${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
                         tviewData1.setTextColor(Color.parseColor("#02BC77"))
-                    } else if(items[position].info.toInt() - items[position - 1].info.toInt() == 0){
+                    } else if(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt() == 0){
                         tviewData1.setTextColor(Color.parseColor("#ffffff"))
-                        iviewArrow.visibility = View.GONE
                     } else {
-                        tviewData1.text = "-${data.info}(${(items[position].info.toInt() - items[position - 1].info.toInt()).toString().replace(".0", "")})"
+                        tviewData1.text = "-${data.cntRead}(${(items[position].cntRead.toInt() - items[position - 1].cntRead.toInt()).toString().replace(".0", "")})"
                         tviewData1.setTextColor(Color.parseColor("#FF2366"))
                     }
                 } else {
                     tviewData.text = data.date
-                    tviewData1.text = data.info
-                    iviewArrow.visibility = View.GONE
+                    tviewData1.text = data.cntRead
                 }
             }
         }

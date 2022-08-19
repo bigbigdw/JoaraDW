@@ -12,13 +12,26 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
 import bigbigdw.joaradw.BuildConfig
 import bigbigdw.joaradw.databinding.ActivityLoginBinding
 import bigbigdw.joaradw.databinding.ActivitySplashBinding
 import bigbigdw.joaradw.novel.ActivityNovel
 import bigbigdw.joaradw.util.LoginResult
+import bigbigdw.joaradw.util.Param
 import bigbigdw.joaradw.writer.ActivityWriter
+import com.example.moavara.Retrofit.JoaraEventsResult
+import com.example.moavara.Retrofit.RetrofitDataListener
+import com.example.moavara.Retrofit.RetrofitJoara
+import com.example.moavara.Search.AnayzeData
+import com.example.moavara.Search.EventDetailData
+import com.example.moavara.Search.UserInfo
 import com.example.moavara.Soon.Event.ActivityEventDetail
+import com.example.moavara.Soon.Event.AdapterEventDetail
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
@@ -79,76 +92,27 @@ class ActivityLogin : AppCompatActivity() {
             })
 
             loginBtn.setOnClickListener { v: View? ->
-                val idCheck = Objects.requireNonNull(tviewID.editText)?.text.toString()
-                val pwCheck = Objects.requireNonNull(tviewPW.editText)?.text.toString()
 
-                RetrofitLogin.postLogin(idCheck,pwCheck, this@ActivityLogin)!!.enqueue(object : Callback<LoginResult?> {
-                    override fun onResponse(
-                        call: Call<LoginResult?>,
-                        response: retrofit2.Response<LoginResult?>
-                    ) {
-                        if (response.isSuccessful) {
+                if(BuildConfig.IS_LABS){
+                    FirebaseDatabase.getInstance().reference.child("Login").addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val group: UserInfo? =
+                                dataSnapshot.getValue(UserInfo::class.java)
 
-                            response.body()?.let { it ->
-                                val status = it.status
-                                val message = it.message
-                                val nickname = it.user?.nickname
-                                val token = it.user?.token
-                                val mana = it.user?.mana
-                                val expireCash = it.user?.expireCash
-                                val cash = it.user?.cash
-                                val manuscriptCoupon = it.user?.manuscriptCoupon
-                                val supportCoupon = it.user?.supportCoupon
-                                val memberId = it.user?.memberId
-                                val profile = it.user?.profile
-                                val grade = it.user?.grade
-
-                                if(status.equals("1")){
-                                    Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
-
-                                    savePreferences("TOKEN", token!!)
-                                    savePreferences("NICKNAME", nickname!!)
-                                    savePreferences("MANA", mana!!)
-                                    savePreferences("EXPIRECASH", expireCash!!)
-                                    savePreferences("CASH", cash!!)
-                                    savePreferences("MANUSCRIPTCOUPON", manuscriptCoupon!!)
-                                    savePreferences("SUPPORTCOUPON", supportCoupon!!)
-                                    savePreferences("MEMBERID", memberId!!)
-                                    savePreferences("STATUS", status)
-                                    savePreferences("PROFILEIMG", profile!!)
-                                    savePreferences("GRADE", grade!!)
-
-                                    if (BuildConfig.IS_WRITER) {
-                                        //작품관리 진입
-                                        val intent = Intent(applicationContext, ActivityWriter::class.java)
-                                        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                        startActivityIfNeeded(intent, 0)
-                                        finish()
-                                    } else if (BuildConfig.IS_LABS) {
-                                        //작품관리 진입
-                                        val intent =
-                                            Intent(applicationContext, ActivityEventDetail::class.java)
-                                        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                        startActivityIfNeeded(intent, 0)
-                                        finish()
-                                    } else {
-                                        finish()
-                                    }
-
-                                } else {
-                                    Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-                                }
+                            if (group != null) {
+                                Login(group.id, group.pw)
                             }
-                        } else {
-                            Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()
                         }
-                    }
 
-                    override fun onFailure(call: Call<LoginResult?>, t: Throwable) {
-                        Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    })
+                } else {
+                    val idCheck = Objects.requireNonNull(tviewID.editText)?.text.toString()
+                    val pwCheck = Objects.requireNonNull(tviewPW.editText)?.text.toString()
 
+                    Login(idCheck, pwCheck)
+                }
             }
 
             tviewFindID.setOnClickListener {
@@ -174,9 +138,75 @@ class ActivityLogin : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        
-        
+    }
 
+    fun Login(idCheck : String, pwCheck : String ){
+        RetrofitLogin.postLogin(idCheck,pwCheck, this@ActivityLogin)!!.enqueue(object : Callback<LoginResult?> {
+            override fun onResponse(
+                call: Call<LoginResult?>,
+                response: retrofit2.Response<LoginResult?>
+            ) {
+                if (response.isSuccessful) {
+
+                    response.body()?.let { it ->
+                        val status = it.status
+                        val message = it.message
+                        val nickname = it.user?.nickname
+                        val token = it.user?.token
+                        val mana = it.user?.mana
+                        val expireCash = it.user?.expireCash
+                        val cash = it.user?.cash
+                        val manuscriptCoupon = it.user?.manuscriptCoupon
+                        val supportCoupon = it.user?.supportCoupon
+                        val memberId = it.user?.memberId
+                        val profile = it.user?.profile
+                        val grade = it.user?.grade
+
+                        if(status.equals("1")){
+                            Toast.makeText(applicationContext,"환영합니다!" + " " + nickname + "님!", Toast.LENGTH_SHORT).show()
+
+                            savePreferences("TOKEN", token!!)
+                            savePreferences("NICKNAME", nickname!!)
+                            savePreferences("MANA", mana!!)
+                            savePreferences("EXPIRECASH", expireCash!!)
+                            savePreferences("CASH", cash!!)
+                            savePreferences("MANUSCRIPTCOUPON", manuscriptCoupon!!)
+                            savePreferences("SUPPORTCOUPON", supportCoupon!!)
+                            savePreferences("MEMBERID", memberId!!)
+                            savePreferences("STATUS", status)
+                            savePreferences("PROFILEIMG", profile!!)
+                            savePreferences("GRADE", grade!!)
+
+                            if (BuildConfig.IS_WRITER) {
+                                //작품관리 진입
+                                val intent = Intent(applicationContext, ActivityWriter::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                startActivityIfNeeded(intent, 0)
+                                finish()
+                            } else if (BuildConfig.IS_LABS) {
+                                //작품관리 진입
+                                val intent =
+                                    Intent(applicationContext, ActivityEventDetail::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                                startActivityIfNeeded(intent, 0)
+                                finish()
+                            } else {
+                                finish()
+                            }
+
+                        } else {
+                            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResult?>, t: Throwable) {
+                Toast.makeText(applicationContext, loginFailMsg, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onBackPressed() {

@@ -89,11 +89,7 @@ class EventDetailData(
     var wDate: String = "",
     var sDate: String = "",
     var cntRead: String = "",
-)
-
-class EventDetailDataMining(
-    var date: String = "",
-    var cntRead: String = "",
+    var data: ArrayList<AnayzeData>? = null
 )
 
 class EventData(
@@ -125,7 +121,7 @@ data class BestChart(
 
 data class AnayzeData(
     var date: String = "",
-    var info: String = "",
+    var cntRead: String = "",
 )
 
 data class BestLineChart(
@@ -137,8 +133,8 @@ data class BestLineChart(
 )
 
 data class UserInfo(
-    var Nickname: String = "",
-    var Genre: String = "",
+    var id: String = "",
+    var pw: String = "",
 )
 
 data class UserPickEvent(

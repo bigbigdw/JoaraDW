@@ -2,6 +2,7 @@ package com.example.moavara.Soon.Event
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,6 @@ import kotlin.collections.ArrayList
 class AdapterEventDetail(
     private var context: Context,
     private var holder: List<EventDetailData>,
-    private var dataItem: ArrayList<AnayzeData>,
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -52,12 +52,11 @@ class AdapterEventDetail(
 
             with(holder.binding){
                 tviewTitle.text = item.title
-                tviewSDate.text = item.sDate
-                tviewEDate.text = item.wDate
+                tviewDate.text = "${item.sDate} ~ ${item.wDate}"
                 tviewCntRead.text = "오늘 조회수 : ${item.cntRead}"
             }
 
-            val adapter = AdapterBestData(dataItem)
+            val adapter = item.data?.let { AdapterBestData(it) }
 
             holder.binding.rview.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -66,7 +65,7 @@ class AdapterEventDetail(
     }
 
     override fun getItemCount(): Int {
-        return if (holder == null) 0 else holder.size
+        return holder.size
     }
 
     inner class ViewHoderEvent internal constructor(val binding: ItemEventDetailBinding) :
