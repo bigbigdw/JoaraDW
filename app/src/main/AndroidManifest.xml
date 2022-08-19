@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="bigbigdw.joaradw">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         tools:replace="android:label"
         android:name="bigbigdw.joaradw.JOARADW"
@@ -15,8 +18,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.JoaraDW">
         <activity
-            android:name="bigbigdw.joaradw.novel.Splash"
-            android:theme="@style/Theme.JoaraDWBookDetail">
+            android:name="bigbigdw.joaradw.novel.ActivitySplash"
+            android:theme="@style/Theme.JoaraDWBookDetail"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,6 +31,19 @@
             android:theme="@style/Theme.JoaraDW.NoActionBar">
         </activity>
 
+        <receiver android:name=".util.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.example.moavara.Soon.Event.ActivityEventDetail"
+            android:theme="@style/Theme.JoaraDWBookDetail">
+
+        </activity>
+
         <activity
             android:name="bigbigdw.joaradw.test.ActivityTest"
             android:theme="@style/Theme.JoaraDWBookDetail">
@@ -34,7 +51,7 @@
         </activity>
 
         <activity
-            android:name="bigbigdw.joaradw.login.ActivityLoginMain"
+            android:name="bigbigdw.joaradw.login.ActivityLogin"
             android:theme="@style/Theme.JoaraDWBookDetail">
 
         </activity>

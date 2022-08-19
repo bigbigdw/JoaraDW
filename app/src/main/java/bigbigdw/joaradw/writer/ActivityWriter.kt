@@ -20,7 +20,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.login.ActivityLoginMain
+import bigbigdw.joaradw.login.ActivityLogin
 import bigbigdw.joaradw.novel.RetrofitNovel
 import bigbigdw.joaradw.test.ActivityTest
 import bigbigdw.joaradw.util.LogoutResult
@@ -176,7 +176,7 @@ class ActivityWriter : AppCompatActivity() {
             editor.apply()
 
             Toast.makeText(applicationContext, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLogin::class.java)
             startActivity(intent)
             finish()
         }

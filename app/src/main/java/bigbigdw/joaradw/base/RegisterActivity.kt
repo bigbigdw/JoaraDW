@@ -8,7 +8,7 @@ import android.widget.Toast
 import android.content.Intent
 import android.view.View
 import android.widget.Button
-import bigbigdw.joaradw.login.ActivityLoginMain
+import bigbigdw.joaradw.login.ActivityLogin
 
 open class RegisterActivity : AppCompatActivity() {
     fun idCheck(text: CharSequence, inputID: TextInputLayout) {
@@ -71,7 +71,7 @@ open class RegisterActivity : AppCompatActivity() {
     }
 
     fun goToMain() {
-        val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+        val intent = Intent(applicationContext, ActivityLogin::class.java)
         startActivity(intent)
     }
 }

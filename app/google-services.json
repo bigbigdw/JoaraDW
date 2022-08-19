@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "82890675135",
+    "project_id": "joara-dw",
+    "storage_bucket": "joara-dw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82890675135:android:faaee28ca9e1b7c87ac70a",
+        "android_client_info": {
+          "package_name": "Bigbigdw.JoaraDW.labs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82890675135-12s1gpghttg0ogm142ofoosa20sabl2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bigbigdw.joaradw.JOARADW",
+            "certificate_hash": "85e71a7ef15b496cfdaf73949bcfc8ef62790a93"
+          }
+        },
+        {
+          "client_id": "82890675135-dbt8tfq8b5uelqdcg5b3igemgifl14gh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYR3aMK-icDmEswta5B6cvbWIy00FRt_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82890675135-dbt8tfq8b5uelqdcg5b3igemgifl14gh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

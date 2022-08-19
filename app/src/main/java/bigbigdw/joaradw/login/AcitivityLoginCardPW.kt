@@ -99,7 +99,7 @@ class AcitivityLoginCardPW : AppCompatActivity() {
         }
         onClickDone!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "조아라에 가입하신 것을 환영합니다!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLogin::class.java)
             startActivity(intent)
         }
     }

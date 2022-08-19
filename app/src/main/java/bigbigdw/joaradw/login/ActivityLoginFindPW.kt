@@ -104,7 +104,7 @@ class ActivityLoginFindPW : RegisterActivity() {
             ).show()
         }
         btnBack!!.setOnClickListener { v: View? ->
-            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLogin::class.java)
             startActivity(intent)
         }
         btnFindID!!.setOnClickListener { v: View? -> goToMain() }

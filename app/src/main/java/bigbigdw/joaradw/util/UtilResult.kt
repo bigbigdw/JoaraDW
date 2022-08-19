@@ -19,68 +19,68 @@ class LoginResult {
 
     @SerializedName("status")
     @Expose
-    var status: String? = null
+    var status: String = ""
 
     @SerializedName("message")
     @Expose
-    var message: String? = null
+    var message: String = ""
 }
 
 //로그아웃
 class LogoutResult {
     @SerializedName("status")
     @Expose
-    var status: String? = null
+    var status: String = ""
 }
 
 //로그인 - 유저 정보
 class UserValue {
     @SerializedName("nickname")
     @Expose
-    var nickname: String? = null
+    var nickname: String = ""
 
     @SerializedName("token")
     @Expose
-    var token: String? = null
+    var token: String = ""
 
     @SerializedName("mana")
     @Expose
-    var mana: String? = null
+    var mana: String = ""
 
     @SerializedName("expire_cash")
     @Expose
-    var expireCash: String? = null
+    var expireCash: String = ""
 
     @SerializedName("cash")
     @Expose
-    var cash: String? = null
+    var cash: String = ""
 
     @SerializedName("manuscript_coupon")
     @Expose
-    var manuscriptCoupon: String? = null
+    var manuscriptCoupon: String = ""
 
     @SerializedName("support_coupon")
     @Expose
-    var supportCoupon: String? = null
+    var supportCoupon: String = ""
 
     @SerializedName("member_id")
     @Expose
-    var memberId: String? = null
+    var memberId: String = ""
 
     @SerializedName("profile")
     @Expose
-    var profile: String? = null
+    var profile: String = ""
 
     @SerializedName("grade")
     @Expose
-    var grade: String? = null
+    var grade: String = ""
 }
 
 //인덱스 API
 class IndexAPIResult {
     @SerializedName("status")
     @Expose
-    var status: String? = null
+    var status: String = ""
 
     @SerializedName("banner")
     @Expose
@@ -95,7 +95,7 @@ class IndexAPIResult {
 class MainMenuValue {
     @SerializedName("menu_ver")
     @Expose
-    var menuVer: String? = null
+    var menuVer: String = ""
 
     @SerializedName("MainTab")
     @Expose
@@ -110,16 +110,16 @@ class MainMenuValue {
 class TabInfoValue {
     @SerializedName("tabname")
     @Expose
-    var tabname: String? = null
+    var tabname: String = ""
 }
 
 //매인 정보
 class MainTabInfoValue {
     @SerializedName("title")
     @Expose
-    var title: String? = null
+    var title: String = ""
 
     @SerializedName("position")
     @Expose
-    var position: String? = null
+    var position: String = ""
 }

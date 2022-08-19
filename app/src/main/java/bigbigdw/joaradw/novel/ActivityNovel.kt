@@ -21,12 +21,11 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import bigbigdw.joaradw.R
-import bigbigdw.joaradw.login.ActivityLoginMain
+import bigbigdw.joaradw.login.ActivityLogin
 import bigbigdw.joaradw.test.ActivityTest
 import bigbigdw.joaradw.util.CheckTokenResult
 import bigbigdw.joaradw.util.IndexAPIResult
 import bigbigdw.joaradw.util.LogoutResult
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
@@ -101,7 +100,7 @@ class ActivityNovel : AppCompatActivity() {
 
         drawerLogout!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLogin::class.java)
             startActivity(intent)
         }
 

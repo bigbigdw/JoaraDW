@@ -30,7 +30,7 @@ import java.util.*
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 
-import bigbigdw.joaradw.login.ActivityLoginMain
+import bigbigdw.joaradw.login.ActivityLogin
 import java.text.SimpleDateFormat
 
 class PostDetail : AppCompatActivity() {
@@ -152,7 +152,7 @@ class PostDetail : AppCompatActivity() {
                     ) { _, _ ->
                         Toast.makeText(applicationContext, "로그인 페이지로 이동합니다.", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+                        val intent = Intent(applicationContext, ActivityLogin::class.java)
                         startActivityIfNeeded(intent, 0)
                     }
                     myAlertBuilder.setNegativeButton(

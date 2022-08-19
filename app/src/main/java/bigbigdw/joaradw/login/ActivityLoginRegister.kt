@@ -141,7 +141,7 @@ class ActivityLoginRegister : RegisterActivity() {
         }
         btnBack!!.setOnClickListener { v: View? ->
             Toast.makeText(applicationContext, "로그인 화면으로 돌아갑니다", Toast.LENGTH_SHORT).show()
-            val intent = Intent(applicationContext, ActivityLoginMain::class.java)
+            val intent = Intent(applicationContext, ActivityLogin::class.java)
             startActivity(intent)
         }
         btnContinue!!.setOnClickListener { v: View? ->
