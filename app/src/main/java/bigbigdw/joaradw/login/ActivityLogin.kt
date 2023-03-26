@@ -93,26 +93,31 @@ class ActivityLogin : AppCompatActivity() {
 
             loginBtn.setOnClickListener { v: View? ->
 
-                if(BuildConfig.IS_LABS){
-                    FirebaseDatabase.getInstance().reference.child("Login").addListenerForSingleValueEvent(object :
-                        ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val group: UserInfo? =
-                                dataSnapshot.getValue(UserInfo::class.java)
+//                if(BuildConfig.IS_LABS){
+//                    FirebaseDatabase.getInstance().reference.child("Login").addListenerForSingleValueEvent(object :
+//                        ValueEventListener {
+//                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                            val group: UserInfo? =
+//                                dataSnapshot.getValue(UserInfo::class.java)
+//
+//                            if (group != null) {
+//                                Login(group.id, group.pw)
+//                            }
+//                        }
+//
+//                        override fun onCancelled(databaseError: DatabaseError) {}
+//                    })
+//                } else {
+//                    val idCheck = Objects.requireNonNull(tviewID.editText)?.text.toString()
+//                    val pwCheck = Objects.requireNonNull(tviewPW.editText)?.text.toString()
+//
+//                    Login(idCheck, pwCheck)
+//                }
 
-                            if (group != null) {
-                                Login(group.id, group.pw)
-                            }
-                        }
+                val idCheck = Objects.requireNonNull(tviewID.editText)?.text.toString()
+                val pwCheck = Objects.requireNonNull(tviewPW.editText)?.text.toString()
 
-                        override fun onCancelled(databaseError: DatabaseError) {}
-                    })
-                } else {
-                    val idCheck = Objects.requireNonNull(tviewID.editText)?.text.toString()
-                    val pwCheck = Objects.requireNonNull(tviewPW.editText)?.text.toString()
-
-                    Login(idCheck, pwCheck)
-                }
+                Login(idCheck, pwCheck)
             }
 
             tviewFindID.setOnClickListener {
@@ -177,22 +182,24 @@ class ActivityLogin : AppCompatActivity() {
                             savePreferences("PROFILEIMG", profile!!)
                             savePreferences("GRADE", grade!!)
 
-                            if (BuildConfig.IS_WRITER) {
-                                //작품관리 진입
-                                val intent = Intent(applicationContext, ActivityWriter::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                startActivityIfNeeded(intent, 0)
-                                finish()
-                            } else if (BuildConfig.IS_LABS) {
-                                //작품관리 진입
-                                val intent =
-                                    Intent(applicationContext, ActivityEventDetail::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-                                startActivityIfNeeded(intent, 0)
-                                finish()
-                            } else {
-                                finish()
-                            }
+//                            if (BuildConfig.IS_WRITER) {
+//                                //작품관리 진입
+//                                val intent = Intent(applicationContext, ActivityWriter::class.java)
+//                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+//                                startActivityIfNeeded(intent, 0)
+//                                finish()
+//                            } else if (BuildConfig.IS_LABS) {
+//                                //작품관리 진입
+//                                val intent =
+//                                    Intent(applicationContext, ActivityEventDetail::class.java)
+//                                intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+//                                startActivityIfNeeded(intent, 0)
+//                                finish()
+//                            } else {
+//                                finish()
+//                            }
+
+                            finish()
 
                         } else {
                             Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
@@ -210,15 +217,21 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (BuildConfig.IS_WRITER) {
-            finish()
-        } else {
-            val intent = Intent(applicationContext, ActivityNovel::class.java)
-            intent.putExtra("IsFirstPage", false)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
-            startActivityIfNeeded(intent, 0)
-            finish()
-        }
+//        if (BuildConfig.IS_WRITER) {
+//            finish()
+//        } else {
+//            val intent = Intent(applicationContext, ActivityNovel::class.java)
+//            intent.putExtra("IsFirstPage", false)
+//            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+//            startActivityIfNeeded(intent, 0)
+//            finish()
+//        }
+
+        val intent = Intent(applicationContext, ActivityNovel::class.java)
+        intent.putExtra("IsFirstPage", false)
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        startActivityIfNeeded(intent, 0)
+        finish()
     }
 
     fun savePreferences(value: String, token: String) {

@@ -5,15 +5,15 @@ plugins {
     id 'com.google.gms.google-services'
 }
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
     viewBinding {
         enabled = true
     }
     defaultConfig {
-        applicationId "Bigbigdw.JoaraDW"
+        applicationId "bigbigdw.joaradw"
         minSdkVersion 28
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -43,40 +43,40 @@ android {
             }
         }
     }
-    flavorDimensions "flavors"
-    productFlavors {
-        novel {
-            dimension "flavors"
-            applicationIdSuffix ".novel"
-            versionCode 1
-            versionName "1.0.0"
-            manifestPlaceholders = [ appLabel: "조아라DW" ]
-            buildConfigField 'boolean', 'IS_DEV', "false"
-            buildConfigField 'boolean', 'IS_WRITER', "false"
-            buildConfigField 'boolean', 'IS_LABS', "false"
-        }
-
-        writer {
-            dimension "flavors"
-            applicationIdSuffix ".writer"
-            versionCode 2
-            versionName "1.0.1"
-            manifestPlaceholders = [ appLabel: "작품관리DW" ]
-            buildConfigField 'boolean', 'IS_DEV', "true"
-            buildConfigField 'boolean', 'IS_WRITER', "true"
-            buildConfigField 'boolean', 'IS_LABS', "false"
-        }
-        labs {
-            dimension "flavors"
-            applicationIdSuffix ".labs"
-            versionCode 3
-            versionName "1.0.1"
-            manifestPlaceholders = [ appLabel: "이벤트DW" ]
-            buildConfigField 'boolean', 'IS_DEV', "false"
-            buildConfigField 'boolean', 'IS_WRITER', "false"
-            buildConfigField 'boolean', 'IS_LABS', "true"
-        }
-    }
+//    flavorDimensions "flavors"
+//    productFlavors {
+//        novel {
+//            dimension "flavors"
+//            applicationIdSuffix ".novel"
+//            versionCode 1
+//            versionName "1.0.0"
+//            manifestPlaceholders = [ appLabel: "조아라DW" ]
+//            buildConfigField 'boolean', 'IS_DEV', "false"
+//            buildConfigField 'boolean', 'IS_WRITER', "false"
+//            buildConfigField 'boolean', 'IS_LABS', "false"
+//        }
+//
+//        writer {
+//            dimension "flavors"
+//            applicationIdSuffix ".writer"
+//            versionCode 2
+//            versionName "1.0.1"
+//            manifestPlaceholders = [ appLabel: "작품관리DW" ]
+//            buildConfigField 'boolean', 'IS_DEV', "true"
+//            buildConfigField 'boolean', 'IS_WRITER', "true"
+//            buildConfigField 'boolean', 'IS_LABS', "false"
+//        }
+//        labs {
+//            dimension "flavors"
+//            applicationIdSuffix ".labs"
+//            versionCode 3
+//            versionName "1.0.1"
+//            manifestPlaceholders = [ appLabel: "이벤트DW" ]
+//            buildConfigField 'boolean', 'IS_DEV', "false"
+//            buildConfigField 'boolean', 'IS_WRITER', "false"
+//            buildConfigField 'boolean', 'IS_LABS', "true"
+//        }
+//    }
 }
 
 apply plugin: 'org.sonarqube'

@@ -1,24 +1,25 @@
 {
   "project_info": {
     "project_number": "82890675135",
+    "firebase_url": "https://joara-dw-default-rtdb.firebaseio.com",
     "project_id": "joara-dw",
     "storage_bucket": "joara-dw.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:82890675135:android:faaee28ca9e1b7c87ac70a",
+        "mobilesdk_app_id": "1:82890675135:android:0a95be79c949a8e07ac70a",
         "android_client_info": {
-          "package_name": "Bigbigdw.JoaraDW.labs"
+          "package_name": "bigbigdw.joaradw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "82890675135-12s1gpghttg0ogm142ofoosa20sabl2u.apps.googleusercontent.com",
+          "client_id": "82890675135-7jkn8kcm2t4ggipbboiv6h49a3g62ful.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "bigbigdw.joaradw.JOARADW",
-            "certificate_hash": "85e71a7ef15b496cfdaf73949bcfc8ef62790a93"
+            "package_name": "bigbigdw.joaradw",
+            "certificate_hash": "6f14e2ab6a8f0976b1db61a2156ce3031653e2c2"
           }
         },
         {
