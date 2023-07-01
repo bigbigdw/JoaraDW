@@ -43,6 +43,7 @@ android {
             }
         }
     }
+    namespace 'bigbigdw.joaradw'
 //    flavorDimensions "flavors"
 //    productFlavors {
 //        novel {
